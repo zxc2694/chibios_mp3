@@ -22,6 +22,7 @@
 //
 // PA2 (TX)
 // PA3 (RX)
+// 38400 baud
 
 #include "ch.h"
 #include "hal.h"
@@ -456,6 +457,11 @@ int Mp3Decode(const char* pszFile)
   // from the thread
   chEvtWaitOneTimeout(2, 50);
   chEvtWaitOneTimeout(4, 50);
+
+  while(1)
+  {
+    chprintf((BaseChannel*)&SD2, "zzzzzzzzzzzzzzzzzzzzz\r\n");
+  }
 
   return nResult;
 }
