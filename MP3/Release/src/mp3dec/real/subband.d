@@ -9,7 +9,17 @@ src/mp3dec/real/subband.d: ../src/mp3dec/real/subband.c \
  /home/zxc2694/workspace/chibios_mp3/MP3/src/ChibiOS_2.4.0/os/ports/common/ARMCMx/CMSIS/include/core_cmFunc.h \
  /home/zxc2694/workspace/chibios_mp3/MP3/src/ChibiOS_2.4.0/os/ports/common/ARMCMx/CMSIS/include/core_cm4_simd.h \
  ../src/mp3dec/real/assembly.h \
- /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx.h
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_gpio.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/stlib.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_dma.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_i2c.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_gpio.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_rcc.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_spi.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_rcc.h \
+ /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_i2c.h
 
 ../src/mp3dec/real/coder.h:
 
@@ -32,3 +42,23 @@ src/mp3dec/real/subband.d: ../src/mp3dec/real/subband.c \
 ../src/mp3dec/real/assembly.h:
 
 /home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_gpio.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/stlib.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_dma.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_i2c.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_gpio.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_rcc.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_spi.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_rcc.h:
+
+/home/zxc2694/workspace/chibios_mp3/MP3/src/codec/st_stm32f4xx_i2c.h:

@@ -347,35 +347,35 @@
  373              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chsem.c
-     /tmp/ccKnMS3u.s:17     .text.queue_insert:00000000 $t
-     /tmp/ccKnMS3u.s:21     .text.queue_insert:00000000 queue_insert
-     /tmp/ccKnMS3u.s:32     .text.fifo_remove:00000000 $t
-     /tmp/ccKnMS3u.s:36     .text.fifo_remove:00000000 fifo_remove
-     /tmp/ccKnMS3u.s:48     .text.chSemInit:00000000 $t
-     /tmp/ccKnMS3u.s:53     .text.chSemInit:00000000 chSemInit
-     /tmp/ccKnMS3u.s:63     .text.chSemResetI:00000000 $t
-     /tmp/ccKnMS3u.s:68     .text.chSemResetI:00000000 chSemResetI
-     /tmp/ccKnMS3u.s:91     .text.chSemReset:00000000 $t
-     /tmp/ccKnMS3u.s:96     .text.chSemReset:00000000 chSemReset
-     /tmp/ccKnMS3u.s:115    .text.chSemWaitS:00000000 $t
-     /tmp/ccKnMS3u.s:120    .text.chSemWaitS:00000000 chSemWaitS
-     /tmp/ccKnMS3u.s:145    .text.chSemWaitS:00000028 $d
-     /tmp/ccKnMS3u.s:148    .text.chSemWait:00000000 $t
-     /tmp/ccKnMS3u.s:153    .text.chSemWait:00000000 chSemWait
-     /tmp/ccKnMS3u.s:171    .text.chSemWaitTimeoutS:00000000 $t
-     /tmp/ccKnMS3u.s:176    .text.chSemWaitTimeoutS:00000000 chSemWaitTimeoutS
-     /tmp/ccKnMS3u.s:207    .text.chSemWaitTimeoutS:00000038 $d
-     /tmp/ccKnMS3u.s:210    .text.chSemWaitTimeout:00000000 $t
-     /tmp/ccKnMS3u.s:215    .text.chSemWaitTimeout:00000000 chSemWaitTimeout
-     /tmp/ccKnMS3u.s:233    .text.chSemSignal:00000000 $t
-     /tmp/ccKnMS3u.s:238    .text.chSemSignal:00000000 chSemSignal
-     /tmp/ccKnMS3u.s:264    .text.chSemSignalI:00000000 $t
-     /tmp/ccKnMS3u.s:269    .text.chSemSignalI:00000000 chSemSignalI
-     /tmp/ccKnMS3u.s:287    .text.chSemAddCounterI:00000000 $t
-     /tmp/ccKnMS3u.s:292    .text.chSemAddCounterI:00000000 chSemAddCounterI
-     /tmp/ccKnMS3u.s:318    .text.chSemSignalWait:00000000 $t
-     /tmp/ccKnMS3u.s:323    .text.chSemSignalWait:00000000 chSemSignalWait
-     /tmp/ccKnMS3u.s:371    .text.chSemSignalWait:00000050 $d
+     /tmp/ccwzAG9o.s:17     .text.queue_insert:00000000 $t
+     /tmp/ccwzAG9o.s:21     .text.queue_insert:00000000 queue_insert
+     /tmp/ccwzAG9o.s:32     .text.fifo_remove:00000000 $t
+     /tmp/ccwzAG9o.s:36     .text.fifo_remove:00000000 fifo_remove
+     /tmp/ccwzAG9o.s:48     .text.chSemInit:00000000 $t
+     /tmp/ccwzAG9o.s:53     .text.chSemInit:00000000 chSemInit
+     /tmp/ccwzAG9o.s:63     .text.chSemResetI:00000000 $t
+     /tmp/ccwzAG9o.s:68     .text.chSemResetI:00000000 chSemResetI
+     /tmp/ccwzAG9o.s:91     .text.chSemReset:00000000 $t
+     /tmp/ccwzAG9o.s:96     .text.chSemReset:00000000 chSemReset
+     /tmp/ccwzAG9o.s:115    .text.chSemWaitS:00000000 $t
+     /tmp/ccwzAG9o.s:120    .text.chSemWaitS:00000000 chSemWaitS
+     /tmp/ccwzAG9o.s:145    .text.chSemWaitS:00000028 $d
+     /tmp/ccwzAG9o.s:148    .text.chSemWait:00000000 $t
+     /tmp/ccwzAG9o.s:153    .text.chSemWait:00000000 chSemWait
+     /tmp/ccwzAG9o.s:171    .text.chSemWaitTimeoutS:00000000 $t
+     /tmp/ccwzAG9o.s:176    .text.chSemWaitTimeoutS:00000000 chSemWaitTimeoutS
+     /tmp/ccwzAG9o.s:207    .text.chSemWaitTimeoutS:00000038 $d
+     /tmp/ccwzAG9o.s:210    .text.chSemWaitTimeout:00000000 $t
+     /tmp/ccwzAG9o.s:215    .text.chSemWaitTimeout:00000000 chSemWaitTimeout
+     /tmp/ccwzAG9o.s:233    .text.chSemSignal:00000000 $t
+     /tmp/ccwzAG9o.s:238    .text.chSemSignal:00000000 chSemSignal
+     /tmp/ccwzAG9o.s:264    .text.chSemSignalI:00000000 $t
+     /tmp/ccwzAG9o.s:269    .text.chSemSignalI:00000000 chSemSignalI
+     /tmp/ccwzAG9o.s:287    .text.chSemAddCounterI:00000000 $t
+     /tmp/ccwzAG9o.s:292    .text.chSemAddCounterI:00000000 chSemAddCounterI
+     /tmp/ccwzAG9o.s:318    .text.chSemSignalWait:00000000 $t
+     /tmp/ccwzAG9o.s:323    .text.chSemSignalWait:00000000 chSemSignalWait
+     /tmp/ccwzAG9o.s:371    .text.chSemSignalWait:00000050 $d
 
 UNDEFINED SYMBOLS
 chSchReadyI

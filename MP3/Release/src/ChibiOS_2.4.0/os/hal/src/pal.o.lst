@@ -65,12 +65,12 @@
   71              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 pal.c
-     /tmp/cccGGdAk.s:17     .text.palReadBus:00000000 $t
-     /tmp/cccGGdAk.s:22     .text.palReadBus:00000000 palReadBus
-     /tmp/cccGGdAk.s:35     .text.palWriteBus:00000000 $t
-     /tmp/cccGGdAk.s:40     .text.palWriteBus:00000000 palWriteBus
-     /tmp/cccGGdAk.s:57     .text.palSetBusMode:00000000 $t
-     /tmp/cccGGdAk.s:62     .text.palSetBusMode:00000000 palSetBusMode
+     /tmp/ccsBAkJg.s:17     .text.palReadBus:00000000 $t
+     /tmp/ccsBAkJg.s:22     .text.palReadBus:00000000 palReadBus
+     /tmp/ccsBAkJg.s:35     .text.palWriteBus:00000000 $t
+     /tmp/ccsBAkJg.s:40     .text.palWriteBus:00000000 palWriteBus
+     /tmp/ccsBAkJg.s:57     .text.palSetBusMode:00000000 $t
+     /tmp/ccsBAkJg.s:62     .text.palSetBusMode:00000000 palSetBusMode
 
 UNDEFINED SYMBOLS
 _pal_lld_setgroupmode

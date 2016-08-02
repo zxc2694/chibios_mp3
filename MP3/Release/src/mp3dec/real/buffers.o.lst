@@ -183,12 +183,12 @@
  189              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 buffers.c
-     /tmp/ccPIY3Yp.s:17     .text.ClearBuffer:00000000 $t
-     /tmp/ccPIY3Yp.s:21     .text.ClearBuffer:00000000 ClearBuffer
-     /tmp/ccPIY3Yp.s:37     .text.xmp3fixpt_FreeBuffers:00000000 $t
-     /tmp/ccPIY3Yp.s:42     .text.xmp3fixpt_FreeBuffers:00000000 xmp3fixpt_FreeBuffers
-     /tmp/ccPIY3Yp.s:95     .text.xmp3fixpt_AllocateBuffers:00000000 $t
-     /tmp/ccPIY3Yp.s:100    .text.xmp3fixpt_AllocateBuffers:00000000 xmp3fixpt_AllocateBuffers
+     /tmp/cct7JKri.s:17     .text.ClearBuffer:00000000 $t
+     /tmp/cct7JKri.s:21     .text.ClearBuffer:00000000 ClearBuffer
+     /tmp/cct7JKri.s:37     .text.xmp3fixpt_FreeBuffers:00000000 $t
+     /tmp/cct7JKri.s:42     .text.xmp3fixpt_FreeBuffers:00000000 xmp3fixpt_FreeBuffers
+     /tmp/cct7JKri.s:95     .text.xmp3fixpt_AllocateBuffers:00000000 $t
+     /tmp/cct7JKri.s:100    .text.xmp3fixpt_AllocateBuffers:00000000 xmp3fixpt_AllocateBuffers
 
 UNDEFINED SYMBOLS
 chHeapFree

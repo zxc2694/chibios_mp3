@@ -263,11 +263,11 @@
  267              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 dequant.c
-     /tmp/cc7X5bbB.s:17     .text.CLZ:00000000 $t
-     /tmp/cc7X5bbB.s:21     .text.CLZ:00000000 CLZ
-     /tmp/cc7X5bbB.s:42     .text.xmp3fixpt_Dequantize:00000000 $t
-     /tmp/cc7X5bbB.s:47     .text.xmp3fixpt_Dequantize:00000000 xmp3fixpt_Dequantize
-     /tmp/cc7X5bbB.s:265    .text.xmp3fixpt_Dequantize:0000020c $d
+     /tmp/ccPAfITu.s:17     .text.CLZ:00000000 $t
+     /tmp/ccPAfITu.s:21     .text.CLZ:00000000 CLZ
+     /tmp/ccPAfITu.s:42     .text.xmp3fixpt_Dequantize:00000000 $t
+     /tmp/ccPAfITu.s:47     .text.xmp3fixpt_Dequantize:00000000 xmp3fixpt_Dequantize
+     /tmp/ccPAfITu.s:265    .text.xmp3fixpt_Dequantize:0000020c $d
 
 UNDEFINED SYMBOLS
 xmp3fixpt_DequantChannel

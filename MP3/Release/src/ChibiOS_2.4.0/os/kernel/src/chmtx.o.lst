@@ -382,33 +382,33 @@
  404              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chmtx.c
-     /tmp/ccUmhk5b.s:17     .text.prio_insert:00000000 $t
-     /tmp/ccUmhk5b.s:21     .text.prio_insert:00000000 prio_insert
-     /tmp/ccUmhk5b.s:43     .text.fifo_remove:00000000 $t
-     /tmp/ccUmhk5b.s:47     .text.fifo_remove:00000000 fifo_remove
-     /tmp/ccUmhk5b.s:59     .text.dequeue:00000000 $t
-     /tmp/ccUmhk5b.s:63     .text.dequeue:00000000 dequeue
-     /tmp/ccUmhk5b.s:74     .text.chMtxInit:00000000 $t
-     /tmp/ccUmhk5b.s:79     .text.chMtxInit:00000000 chMtxInit
-     /tmp/ccUmhk5b.s:90     .text.chMtxLockS:00000000 $t
-     /tmp/ccUmhk5b.s:95     .text.chMtxLockS:00000000 chMtxLockS
-     /tmp/ccUmhk5b.s:155    .text.chMtxLockS:00000070 $d
-     /tmp/ccUmhk5b.s:158    .text.chMtxLock:00000000 $t
-     /tmp/ccUmhk5b.s:163    .text.chMtxLock:00000000 chMtxLock
-     /tmp/ccUmhk5b.s:181    .text.chMtxTryLockS:00000000 $t
-     /tmp/ccUmhk5b.s:186    .text.chMtxTryLockS:00000000 chMtxTryLockS
-     /tmp/ccUmhk5b.s:206    .text.chMtxTryLockS:00000018 $d
-     /tmp/ccUmhk5b.s:209    .text.chMtxTryLock:00000000 $t
-     /tmp/ccUmhk5b.s:214    .text.chMtxTryLock:00000000 chMtxTryLock
-     /tmp/ccUmhk5b.s:232    .text.chMtxUnlock:00000000 $t
-     /tmp/ccUmhk5b.s:237    .text.chMtxUnlock:00000000 chMtxUnlock
-     /tmp/ccUmhk5b.s:293    .text.chMtxUnlock:00000058 $d
-     /tmp/ccUmhk5b.s:296    .text.chMtxUnlockS:00000000 $t
-     /tmp/ccUmhk5b.s:301    .text.chMtxUnlockS:00000000 chMtxUnlockS
-     /tmp/ccUmhk5b.s:346    .text.chMtxUnlockS:00000048 $d
-     /tmp/ccUmhk5b.s:349    .text.chMtxUnlockAll:00000000 $t
-     /tmp/ccUmhk5b.s:354    .text.chMtxUnlockAll:00000000 chMtxUnlockAll
-     /tmp/ccUmhk5b.s:402    .text.chMtxUnlockAll:0000004c $d
+     /tmp/ccNsFcPg.s:17     .text.prio_insert:00000000 $t
+     /tmp/ccNsFcPg.s:21     .text.prio_insert:00000000 prio_insert
+     /tmp/ccNsFcPg.s:43     .text.fifo_remove:00000000 $t
+     /tmp/ccNsFcPg.s:47     .text.fifo_remove:00000000 fifo_remove
+     /tmp/ccNsFcPg.s:59     .text.dequeue:00000000 $t
+     /tmp/ccNsFcPg.s:63     .text.dequeue:00000000 dequeue
+     /tmp/ccNsFcPg.s:74     .text.chMtxInit:00000000 $t
+     /tmp/ccNsFcPg.s:79     .text.chMtxInit:00000000 chMtxInit
+     /tmp/ccNsFcPg.s:90     .text.chMtxLockS:00000000 $t
+     /tmp/ccNsFcPg.s:95     .text.chMtxLockS:00000000 chMtxLockS
+     /tmp/ccNsFcPg.s:155    .text.chMtxLockS:00000070 $d
+     /tmp/ccNsFcPg.s:158    .text.chMtxLock:00000000 $t
+     /tmp/ccNsFcPg.s:163    .text.chMtxLock:00000000 chMtxLock
+     /tmp/ccNsFcPg.s:181    .text.chMtxTryLockS:00000000 $t
+     /tmp/ccNsFcPg.s:186    .text.chMtxTryLockS:00000000 chMtxTryLockS
+     /tmp/ccNsFcPg.s:206    .text.chMtxTryLockS:00000018 $d
+     /tmp/ccNsFcPg.s:209    .text.chMtxTryLock:00000000 $t
+     /tmp/ccNsFcPg.s:214    .text.chMtxTryLock:00000000 chMtxTryLock
+     /tmp/ccNsFcPg.s:232    .text.chMtxUnlock:00000000 $t
+     /tmp/ccNsFcPg.s:237    .text.chMtxUnlock:00000000 chMtxUnlock
+     /tmp/ccNsFcPg.s:293    .text.chMtxUnlock:00000058 $d
+     /tmp/ccNsFcPg.s:296    .text.chMtxUnlockS:00000000 $t
+     /tmp/ccNsFcPg.s:301    .text.chMtxUnlockS:00000000 chMtxUnlockS
+     /tmp/ccNsFcPg.s:346    .text.chMtxUnlockS:00000048 $d
+     /tmp/ccNsFcPg.s:349    .text.chMtxUnlockAll:00000000 $t
+     /tmp/ccNsFcPg.s:354    .text.chMtxUnlockAll:00000000 chMtxUnlockAll
+     /tmp/ccNsFcPg.s:402    .text.chMtxUnlockAll:0000004c $d
 
 UNDEFINED SYMBOLS
 chSchReadyI

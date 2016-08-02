@@ -571,19 +571,19 @@
  583              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 bitstream.c
-     /tmp/ccXgyPkf.s:17     .text.xmp3fixpt_SetBitstreamPointer:00000000 $t
-     /tmp/ccXgyPkf.s:22     .text.xmp3fixpt_SetBitstreamPointer:00000000 xmp3fixpt_SetBitstreamPointer
-     /tmp/ccXgyPkf.s:33     .text.xmp3fixpt_GetBits:00000000 $t
-     /tmp/ccXgyPkf.s:38     .text.xmp3fixpt_GetBits:00000000 xmp3fixpt_GetBits
-     /tmp/ccXgyPkf.s:122    .text.xmp3fixpt_CalcBitsUsed:00000000 $t
-     /tmp/ccXgyPkf.s:127    .text.xmp3fixpt_CalcBitsUsed:00000000 xmp3fixpt_CalcBitsUsed
-     /tmp/ccXgyPkf.s:140    .text.xmp3fixpt_CheckPadBit:00000000 $t
-     /tmp/ccXgyPkf.s:145    .text.xmp3fixpt_CheckPadBit:00000000 xmp3fixpt_CheckPadBit
-     /tmp/ccXgyPkf.s:165    .text.xmp3fixpt_UnpackFrameHeader:00000000 $t
-     /tmp/ccXgyPkf.s:170    .text.xmp3fixpt_UnpackFrameHeader:00000000 xmp3fixpt_UnpackFrameHeader
-     /tmp/ccXgyPkf.s:332    .text.xmp3fixpt_UnpackFrameHeader:000001dc $d
-     /tmp/ccXgyPkf.s:340    .text.xmp3fixpt_UnpackSideInfo:00000000 $t
-     /tmp/ccXgyPkf.s:345    .text.xmp3fixpt_UnpackSideInfo:00000000 xmp3fixpt_UnpackSideInfo
+     /tmp/cc4I36vk.s:17     .text.xmp3fixpt_SetBitstreamPointer:00000000 $t
+     /tmp/cc4I36vk.s:22     .text.xmp3fixpt_SetBitstreamPointer:00000000 xmp3fixpt_SetBitstreamPointer
+     /tmp/cc4I36vk.s:33     .text.xmp3fixpt_GetBits:00000000 $t
+     /tmp/cc4I36vk.s:38     .text.xmp3fixpt_GetBits:00000000 xmp3fixpt_GetBits
+     /tmp/cc4I36vk.s:122    .text.xmp3fixpt_CalcBitsUsed:00000000 $t
+     /tmp/cc4I36vk.s:127    .text.xmp3fixpt_CalcBitsUsed:00000000 xmp3fixpt_CalcBitsUsed
+     /tmp/cc4I36vk.s:140    .text.xmp3fixpt_CheckPadBit:00000000 $t
+     /tmp/cc4I36vk.s:145    .text.xmp3fixpt_CheckPadBit:00000000 xmp3fixpt_CheckPadBit
+     /tmp/cc4I36vk.s:165    .text.xmp3fixpt_UnpackFrameHeader:00000000 $t
+     /tmp/cc4I36vk.s:170    .text.xmp3fixpt_UnpackFrameHeader:00000000 xmp3fixpt_UnpackFrameHeader
+     /tmp/cc4I36vk.s:332    .text.xmp3fixpt_UnpackFrameHeader:000001dc $d
+     /tmp/cc4I36vk.s:340    .text.xmp3fixpt_UnpackSideInfo:00000000 $t
+     /tmp/cc4I36vk.s:345    .text.xmp3fixpt_UnpackSideInfo:00000000 xmp3fixpt_UnpackSideInfo
 
 UNDEFINED SYMBOLS
 xmp3fixpt_slotTab

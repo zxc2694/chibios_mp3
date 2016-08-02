@@ -266,23 +266,23 @@
  282              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 subband.c
-     /tmp/ccuicFxz.s:17     .text.xmp3fixpt_Subband:00000000 $t
-     /tmp/ccuicFxz.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
-     /tmp/ccuicFxz.s:115    .text.xmp3fixpt_Subband:000000e8 $d
-     /tmp/ccuicFxz.s:118    .text.Delay_nop:00000000 $t
-     /tmp/ccuicFxz.s:123    .text.Delay_nop:00000000 Delay_nop
-     /tmp/ccuicFxz.s:139    .text.Delay_1us:00000000 $t
-     /tmp/ccuicFxz.s:144    .text.Delay_1us:00000000 Delay_1us
-     /tmp/ccuicFxz.s:163    .text.Delay_10us:00000000 $t
-     /tmp/ccuicFxz.s:168    .text.Delay_10us:00000000 Delay_10us
-     /tmp/ccuicFxz.s:187    .text.Delay_100us:00000000 $t
-     /tmp/ccuicFxz.s:192    .text.Delay_100us:00000000 Delay_100us
-     /tmp/ccuicFxz.s:211    .text.Delay_1ms:00000000 $t
-     /tmp/ccuicFxz.s:216    .text.Delay_1ms:00000000 Delay_1ms
-     /tmp/ccuicFxz.s:235    .text.Delay_10ms:00000000 $t
-     /tmp/ccuicFxz.s:240    .text.Delay_10ms:00000000 Delay_10ms
-     /tmp/ccuicFxz.s:259    .text.Delay_100ms:00000000 $t
-     /tmp/ccuicFxz.s:264    .text.Delay_100ms:00000000 Delay_100ms
+     /tmp/ccabAxCr.s:17     .text.xmp3fixpt_Subband:00000000 $t
+     /tmp/ccabAxCr.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
+     /tmp/ccabAxCr.s:115    .text.xmp3fixpt_Subband:000000e8 $d
+     /tmp/ccabAxCr.s:118    .text.Delay_nop:00000000 $t
+     /tmp/ccabAxCr.s:123    .text.Delay_nop:00000000 Delay_nop
+     /tmp/ccabAxCr.s:139    .text.Delay_1us:00000000 $t
+     /tmp/ccabAxCr.s:144    .text.Delay_1us:00000000 Delay_1us
+     /tmp/ccabAxCr.s:163    .text.Delay_10us:00000000 $t
+     /tmp/ccabAxCr.s:168    .text.Delay_10us:00000000 Delay_10us
+     /tmp/ccabAxCr.s:187    .text.Delay_100us:00000000 $t
+     /tmp/ccabAxCr.s:192    .text.Delay_100us:00000000 Delay_100us
+     /tmp/ccabAxCr.s:211    .text.Delay_1ms:00000000 $t
+     /tmp/ccabAxCr.s:216    .text.Delay_1ms:00000000 Delay_1ms
+     /tmp/ccabAxCr.s:235    .text.Delay_10ms:00000000 $t
+     /tmp/ccabAxCr.s:240    .text.Delay_10ms:00000000 Delay_10ms
+     /tmp/ccabAxCr.s:259    .text.Delay_100ms:00000000 $t
+     /tmp/ccabAxCr.s:264    .text.Delay_100ms:00000000 Delay_100ms
 
 UNDEFINED SYMBOLS
 xmp3fixpt_FDCT32
