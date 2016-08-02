@@ -592,20 +592,20 @@
  608              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 trigtabs_fixpt.c
-     /tmp/ccKEeU1h.s:149    .rodata.xmp3fixpt_polyCoef:00000000 xmp3fixpt_polyCoef
-     /tmp/ccKEeU1h.s:576    .rodata.xmp3fixpt_coef32:00000000 xmp3fixpt_coef32
-     /tmp/ccKEeU1h.s:109    .rodata.xmp3fixpt_csa:00000000 xmp3fixpt_csa
-     /tmp/ccKEeU1h.s:27     .rodata.xmp3fixpt_uniqueIDTab:00000000 xmp3fixpt_uniqueIDTab
-     /tmp/ccKEeU1h.s:418    .rodata.xmp3fixpt_ISFIIP:00000000 xmp3fixpt_ISFIIP
-     /tmp/ccKEeU1h.s:40     .rodata.xmp3fixpt_ISFMpeg2:00000000 xmp3fixpt_ISFMpeg2
-     /tmp/ccKEeU1h.s:130    .rodata.xmp3fixpt_ISFMpeg1:00000000 xmp3fixpt_ISFMpeg1
-     /tmp/ccKEeU1h.s:427    .rodata.xmp3fixpt_imdctWin:00000000 xmp3fixpt_imdctWin
-     /tmp/ccKEeU1h.s:37     .rodata.xmp3fixpt_ISFMpeg2:00000000 $d
-     /tmp/ccKEeU1h.s:106    .rodata.xmp3fixpt_csa:00000000 $d
-     /tmp/ccKEeU1h.s:127    .rodata.xmp3fixpt_ISFMpeg1:00000000 $d
-     /tmp/ccKEeU1h.s:146    .rodata.xmp3fixpt_polyCoef:00000000 $d
-     /tmp/ccKEeU1h.s:415    .rodata.xmp3fixpt_ISFIIP:00000000 $d
-     /tmp/ccKEeU1h.s:424    .rodata.xmp3fixpt_imdctWin:00000000 $d
-     /tmp/ccKEeU1h.s:573    .rodata.xmp3fixpt_coef32:00000000 $d
+     /tmp/cciMGukD.s:149    .rodata.xmp3fixpt_polyCoef:00000000 xmp3fixpt_polyCoef
+     /tmp/cciMGukD.s:576    .rodata.xmp3fixpt_coef32:00000000 xmp3fixpt_coef32
+     /tmp/cciMGukD.s:109    .rodata.xmp3fixpt_csa:00000000 xmp3fixpt_csa
+     /tmp/cciMGukD.s:27     .rodata.xmp3fixpt_uniqueIDTab:00000000 xmp3fixpt_uniqueIDTab
+     /tmp/cciMGukD.s:418    .rodata.xmp3fixpt_ISFIIP:00000000 xmp3fixpt_ISFIIP
+     /tmp/cciMGukD.s:40     .rodata.xmp3fixpt_ISFMpeg2:00000000 xmp3fixpt_ISFMpeg2
+     /tmp/cciMGukD.s:130    .rodata.xmp3fixpt_ISFMpeg1:00000000 xmp3fixpt_ISFMpeg1
+     /tmp/cciMGukD.s:427    .rodata.xmp3fixpt_imdctWin:00000000 xmp3fixpt_imdctWin
+     /tmp/cciMGukD.s:37     .rodata.xmp3fixpt_ISFMpeg2:00000000 $d
+     /tmp/cciMGukD.s:106    .rodata.xmp3fixpt_csa:00000000 $d
+     /tmp/cciMGukD.s:127    .rodata.xmp3fixpt_ISFMpeg1:00000000 $d
+     /tmp/cciMGukD.s:146    .rodata.xmp3fixpt_polyCoef:00000000 $d
+     /tmp/cciMGukD.s:415    .rodata.xmp3fixpt_ISFIIP:00000000 $d
+     /tmp/cciMGukD.s:424    .rodata.xmp3fixpt_imdctWin:00000000 $d
+     /tmp/cciMGukD.s:573    .rodata.xmp3fixpt_coef32:00000000 $d
 
 NO UNDEFINED SYMBOLS

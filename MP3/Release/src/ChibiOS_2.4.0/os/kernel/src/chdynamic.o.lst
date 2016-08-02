@@ -175,14 +175,14 @@
  183              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chdynamic.c
-     /tmp/ccXBDRiB.s:17     .text.chThdAddRef:00000000 $t
-     /tmp/ccXBDRiB.s:22     .text.chThdAddRef:00000000 chThdAddRef
-     /tmp/ccXBDRiB.s:42     .text.chThdRelease:00000000 $t
-     /tmp/ccXBDRiB.s:47     .text.chThdRelease:00000000 chThdRelease
-     /tmp/ccXBDRiB.s:97     .text.chThdCreateFromHeap:00000000 $t
-     /tmp/ccXBDRiB.s:102    .text.chThdCreateFromHeap:00000000 chThdCreateFromHeap
-     /tmp/ccXBDRiB.s:140    .text.chThdCreateFromMemoryPool:00000000 $t
-     /tmp/ccXBDRiB.s:145    .text.chThdCreateFromMemoryPool:00000000 chThdCreateFromMemoryPool
+     /tmp/cclwnwFQ.s:17     .text.chThdAddRef:00000000 $t
+     /tmp/cclwnwFQ.s:22     .text.chThdAddRef:00000000 chThdAddRef
+     /tmp/cclwnwFQ.s:42     .text.chThdRelease:00000000 $t
+     /tmp/cclwnwFQ.s:47     .text.chThdRelease:00000000 chThdRelease
+     /tmp/cclwnwFQ.s:97     .text.chThdCreateFromHeap:00000000 $t
+     /tmp/cclwnwFQ.s:102    .text.chThdCreateFromHeap:00000000 chThdCreateFromHeap
+     /tmp/cclwnwFQ.s:140    .text.chThdCreateFromMemoryPool:00000000 $t
+     /tmp/cclwnwFQ.s:145    .text.chThdCreateFromMemoryPool:00000000 chThdCreateFromMemoryPool
 
 UNDEFINED SYMBOLS
 chHeapFree

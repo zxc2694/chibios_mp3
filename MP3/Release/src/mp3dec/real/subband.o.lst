@@ -112,12 +112,177 @@
  113 00e6 00BF     		.align	2
  114              	.L13:
  115 00e8 00000000 		.word	xmp3fixpt_polyCoef
- 117              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+ 117              		.section	.text.Delay_nop,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	Delay_nop
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	Delay_nop:
+ 124              		@ args = 0, pretend = 0, frame = 8
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              		@ link register save eliminated.
+ 127 0000 82B0     		sub	sp, sp, #8
+ 128 0002 0190     		str	r0, [sp, #4]
+ 129              	.L16:
+ 130 0004 019B     		ldr	r3, [sp, #4]
+ 131 0006 5A1E     		subs	r2, r3, #1
+ 132 0008 0192     		str	r2, [sp, #4]
+ 133 000a 002B     		cmp	r3, #0
+ 134 000c FAD1     		bne	.L16
+ 135 000e 02B0     		add	sp, sp, #8
+ 136 0010 7047     		bx	lr
+ 138              		.section	.text.Delay_1us,"ax",%progbits
+ 139              		.align	1
+ 140              		.global	Delay_1us
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	Delay_1us:
+ 145              		@ args = 0, pretend = 0, frame = 8
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              		@ link register save eliminated.
+ 148 0000 82B0     		sub	sp, sp, #8
+ 149 0002 0190     		str	r0, [sp, #4]
+ 150 0004 02E0     		b	.L19
+ 151              	.L20:
+ 152 0006 0198     		ldr	r0, [sp, #4]
+ 153 0008 431E     		subs	r3, r0, #1
+ 154 000a 0193     		str	r3, [sp, #4]
+ 155              	.L19:
+ 156 000c 0199     		ldr	r1, [sp, #4]
+ 157 000e 0029     		cmp	r1, #0
+ 158 0010 F9D1     		bne	.L20
+ 159 0012 02B0     		add	sp, sp, #8
+ 160 0014 7047     		bx	lr
+ 162              		.section	.text.Delay_10us,"ax",%progbits
+ 163              		.align	1
+ 164              		.global	Delay_10us
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	Delay_10us:
+ 169              		@ args = 0, pretend = 0, frame = 8
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171              		@ link register save eliminated.
+ 172 0000 82B0     		sub	sp, sp, #8
+ 173 0002 0190     		str	r0, [sp, #4]
+ 174 0004 02E0     		b	.L22
+ 175              	.L23:
+ 176 0006 0198     		ldr	r0, [sp, #4]
+ 177 0008 431E     		subs	r3, r0, #1
+ 178 000a 0193     		str	r3, [sp, #4]
+ 179              	.L22:
+ 180 000c 0199     		ldr	r1, [sp, #4]
+ 181 000e 0029     		cmp	r1, #0
+ 182 0010 F9D1     		bne	.L23
+ 183 0012 02B0     		add	sp, sp, #8
+ 184 0014 7047     		bx	lr
+ 186              		.section	.text.Delay_100us,"ax",%progbits
+ 187              		.align	1
+ 188              		.global	Delay_100us
+ 189              		.thumb
+ 190              		.thumb_func
+ 192              	Delay_100us:
+ 193              		@ args = 0, pretend = 0, frame = 8
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		@ link register save eliminated.
+ 196 0000 82B0     		sub	sp, sp, #8
+ 197 0002 0190     		str	r0, [sp, #4]
+ 198 0004 02E0     		b	.L25
+ 199              	.L26:
+ 200 0006 0198     		ldr	r0, [sp, #4]
+ 201 0008 431E     		subs	r3, r0, #1
+ 202 000a 0193     		str	r3, [sp, #4]
+ 203              	.L25:
+ 204 000c 0199     		ldr	r1, [sp, #4]
+ 205 000e 0029     		cmp	r1, #0
+ 206 0010 F9D1     		bne	.L26
+ 207 0012 02B0     		add	sp, sp, #8
+ 208 0014 7047     		bx	lr
+ 210              		.section	.text.Delay_1ms,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	Delay_1ms
+ 213              		.thumb
+ 214              		.thumb_func
+ 216              	Delay_1ms:
+ 217              		@ args = 0, pretend = 0, frame = 8
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              		@ link register save eliminated.
+ 220 0000 82B0     		sub	sp, sp, #8
+ 221 0002 0190     		str	r0, [sp, #4]
+ 222 0004 02E0     		b	.L28
+ 223              	.L29:
+ 224 0006 0198     		ldr	r0, [sp, #4]
+ 225 0008 431E     		subs	r3, r0, #1
+ 226 000a 0193     		str	r3, [sp, #4]
+ 227              	.L28:
+ 228 000c 0199     		ldr	r1, [sp, #4]
+ 229 000e 0029     		cmp	r1, #0
+ 230 0010 F9D1     		bne	.L29
+ 231 0012 02B0     		add	sp, sp, #8
+ 232 0014 7047     		bx	lr
+ 234              		.section	.text.Delay_10ms,"ax",%progbits
+ 235              		.align	1
+ 236              		.global	Delay_10ms
+ 237              		.thumb
+ 238              		.thumb_func
+ 240              	Delay_10ms:
+ 241              		@ args = 0, pretend = 0, frame = 8
+ 242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 243              		@ link register save eliminated.
+ 244 0000 82B0     		sub	sp, sp, #8
+ 245 0002 0190     		str	r0, [sp, #4]
+ 246 0004 02E0     		b	.L31
+ 247              	.L32:
+ 248 0006 0198     		ldr	r0, [sp, #4]
+ 249 0008 431E     		subs	r3, r0, #1
+ 250 000a 0193     		str	r3, [sp, #4]
+ 251              	.L31:
+ 252 000c 0199     		ldr	r1, [sp, #4]
+ 253 000e 0029     		cmp	r1, #0
+ 254 0010 F9D1     		bne	.L32
+ 255 0012 02B0     		add	sp, sp, #8
+ 256 0014 7047     		bx	lr
+ 258              		.section	.text.Delay_100ms,"ax",%progbits
+ 259              		.align	1
+ 260              		.global	Delay_100ms
+ 261              		.thumb
+ 262              		.thumb_func
+ 264              	Delay_100ms:
+ 265              		@ args = 0, pretend = 0, frame = 8
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267              		@ link register save eliminated.
+ 268 0000 82B0     		sub	sp, sp, #8
+ 269 0002 0190     		str	r0, [sp, #4]
+ 270 0004 02E0     		b	.L34
+ 271              	.L35:
+ 272 0006 0198     		ldr	r0, [sp, #4]
+ 273 0008 431E     		subs	r3, r0, #1
+ 274 000a 0193     		str	r3, [sp, #4]
+ 275              	.L34:
+ 276 000c 0199     		ldr	r1, [sp, #4]
+ 277 000e 0029     		cmp	r1, #0
+ 278 0010 F9D1     		bne	.L35
+ 279 0012 02B0     		add	sp, sp, #8
+ 280 0014 7047     		bx	lr
+ 282              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 subband.c
-     /tmp/ccumfgWe.s:17     .text.xmp3fixpt_Subband:00000000 $t
-     /tmp/ccumfgWe.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
-     /tmp/ccumfgWe.s:115    .text.xmp3fixpt_Subband:000000e8 $d
+     /tmp/ccuicFxz.s:17     .text.xmp3fixpt_Subband:00000000 $t
+     /tmp/ccuicFxz.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
+     /tmp/ccuicFxz.s:115    .text.xmp3fixpt_Subband:000000e8 $d
+     /tmp/ccuicFxz.s:118    .text.Delay_nop:00000000 $t
+     /tmp/ccuicFxz.s:123    .text.Delay_nop:00000000 Delay_nop
+     /tmp/ccuicFxz.s:139    .text.Delay_1us:00000000 $t
+     /tmp/ccuicFxz.s:144    .text.Delay_1us:00000000 Delay_1us
+     /tmp/ccuicFxz.s:163    .text.Delay_10us:00000000 $t
+     /tmp/ccuicFxz.s:168    .text.Delay_10us:00000000 Delay_10us
+     /tmp/ccuicFxz.s:187    .text.Delay_100us:00000000 $t
+     /tmp/ccuicFxz.s:192    .text.Delay_100us:00000000 Delay_100us
+     /tmp/ccuicFxz.s:211    .text.Delay_1ms:00000000 $t
+     /tmp/ccuicFxz.s:216    .text.Delay_1ms:00000000 Delay_1ms
+     /tmp/ccuicFxz.s:235    .text.Delay_10ms:00000000 $t
+     /tmp/ccuicFxz.s:240    .text.Delay_10ms:00000000 Delay_10ms
+     /tmp/ccuicFxz.s:259    .text.Delay_100ms:00000000 $t
+     /tmp/ccuicFxz.s:264    .text.Delay_100ms:00000000 Delay_100ms
 
 UNDEFINED SYMBOLS
 xmp3fixpt_FDCT32

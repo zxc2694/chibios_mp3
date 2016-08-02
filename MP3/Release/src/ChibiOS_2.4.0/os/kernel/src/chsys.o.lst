@@ -149,18 +149,18 @@
  151              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chsys.c
-     /tmp/cccsUxri.s:17     .text._idle_thread:00000000 $t
-     /tmp/cccsUxri.s:22     .text._idle_thread:00000000 _idle_thread
-     /tmp/cccsUxri.s:35     .text._idle_thread:0000000c $d
-     /tmp/cccsUxri.s:39     .text.chSysInit:00000000 $t
-     /tmp/cccsUxri.s:44     .text.chSysInit:00000000 chSysInit
-     /tmp/cccsUxri.s:78     .text.chSysInit:00000044 $d
+     /tmp/cc4VKsVz.s:17     .text._idle_thread:00000000 $t
+     /tmp/cc4VKsVz.s:22     .text._idle_thread:00000000 _idle_thread
+     /tmp/cc4VKsVz.s:35     .text._idle_thread:0000000c $d
+     /tmp/cc4VKsVz.s:39     .text.chSysInit:00000000 $t
+     /tmp/cc4VKsVz.s:44     .text.chSysInit:00000000 chSysInit
+     /tmp/cc4VKsVz.s:78     .text.chSysInit:00000044 $d
                             *COM*:000000c0 _idle_thread_wa
-     /tmp/cccsUxri.s:85     .text.chSysTimerHandlerI:00000000 $t
-     /tmp/cccsUxri.s:90     .text.chSysTimerHandlerI:00000000 chSysTimerHandlerI
-     /tmp/cccsUxri.s:135    .text.chSysTimerHandlerI:00000048 $d
-     /tmp/cccsUxri.s:145    .bss.mainthread.4666:00000000 $d
-     /tmp/cccsUxri.s:149    .bss.mainthread.4666:00000000 mainthread.4666
+     /tmp/cc4VKsVz.s:85     .text.chSysTimerHandlerI:00000000 $t
+     /tmp/cc4VKsVz.s:90     .text.chSysTimerHandlerI:00000000 chSysTimerHandlerI
+     /tmp/cc4VKsVz.s:135    .text.chSysTimerHandlerI:00000048 $d
+     /tmp/cc4VKsVz.s:145    .bss.mainthread.4666:00000000 $d
+     /tmp/cc4VKsVz.s:149    .bss.mainthread.4666:00000000 mainthread.4666
 
 UNDEFINED SYMBOLS
 rlist

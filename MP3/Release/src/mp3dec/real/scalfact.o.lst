@@ -671,13 +671,13 @@
  677              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 scalfact.c
-     /tmp/ccZbgrp9.s:17     .text.xmp3fixpt_UnpackScaleFactors:00000000 $t
-     /tmp/ccZbgrp9.s:22     .text.xmp3fixpt_UnpackScaleFactors:00000000 xmp3fixpt_UnpackScaleFactors
-     /tmp/ccZbgrp9.s:362    .text.xmp3fixpt_UnpackScaleFactors:00000338 $d
-     /tmp/ccZbgrp9.s:364    .text.xmp3fixpt_UnpackScaleFactors:0000033c $t
-     /tmp/ccZbgrp9.s:561    .text.xmp3fixpt_UnpackScaleFactors:00000514 $d
-     /tmp/ccZbgrp9.s:567    .rodata.SFLenTab:00000000 SFLenTab
-     /tmp/ccZbgrp9.s:604    .rodata.NRTab:00000000 NRTab
+     /tmp/cc6jRwBf.s:17     .text.xmp3fixpt_UnpackScaleFactors:00000000 $t
+     /tmp/cc6jRwBf.s:22     .text.xmp3fixpt_UnpackScaleFactors:00000000 xmp3fixpt_UnpackScaleFactors
+     /tmp/cc6jRwBf.s:362    .text.xmp3fixpt_UnpackScaleFactors:00000338 $d
+     /tmp/cc6jRwBf.s:364    .text.xmp3fixpt_UnpackScaleFactors:0000033c $t
+     /tmp/cc6jRwBf.s:561    .text.xmp3fixpt_UnpackScaleFactors:00000514 $d
+     /tmp/cc6jRwBf.s:567    .rodata.SFLenTab:00000000 SFLenTab
+     /tmp/cc6jRwBf.s:604    .rodata.NRTab:00000000 NRTab
 
 UNDEFINED SYMBOLS
 xmp3fixpt_SetBitstreamPointer

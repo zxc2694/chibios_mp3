@@ -173,12 +173,12 @@
  179              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 pal_lld.c
-     /tmp/ccpJJYGN.s:17     .text.initgpio:00000000 $t
-     /tmp/ccpJJYGN.s:21     .text.initgpio:00000000 initgpio
-     /tmp/ccpJJYGN.s:42     .text._pal_lld_init:00000000 $t
-     /tmp/ccpJJYGN.s:47     .text._pal_lld_init:00000000 _pal_lld_init
-     /tmp/ccpJJYGN.s:92     .text._pal_lld_init:0000007c $d
-     /tmp/ccpJJYGN.s:104    .text._pal_lld_setgroupmode:00000000 $t
-     /tmp/ccpJJYGN.s:109    .text._pal_lld_setgroupmode:00000000 _pal_lld_setgroupmode
+     /tmp/ccNHrlj4.s:17     .text.initgpio:00000000 $t
+     /tmp/ccNHrlj4.s:21     .text.initgpio:00000000 initgpio
+     /tmp/ccNHrlj4.s:42     .text._pal_lld_init:00000000 $t
+     /tmp/ccNHrlj4.s:47     .text._pal_lld_init:00000000 _pal_lld_init
+     /tmp/ccNHrlj4.s:92     .text._pal_lld_init:0000007c $d
+     /tmp/ccNHrlj4.s:104    .text._pal_lld_setgroupmode:00000000 $t
+     /tmp/ccNHrlj4.s:109    .text._pal_lld_setgroupmode:00000000 _pal_lld_setgroupmode
 
 NO UNDEFINED SYMBOLS

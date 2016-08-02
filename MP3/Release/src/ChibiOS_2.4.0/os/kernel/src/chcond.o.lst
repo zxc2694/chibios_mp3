@@ -259,30 +259,30 @@
  281              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chcond.c
-     /tmp/ccdYsWgt.s:17     .text.prio_insert:00000000 $t
-     /tmp/ccdYsWgt.s:21     .text.prio_insert:00000000 prio_insert
-     /tmp/ccdYsWgt.s:43     .text.fifo_remove:00000000 $t
-     /tmp/ccdYsWgt.s:47     .text.fifo_remove:00000000 fifo_remove
-     /tmp/ccdYsWgt.s:59     .text.chCondInit:00000000 $t
-     /tmp/ccdYsWgt.s:64     .text.chCondInit:00000000 chCondInit
-     /tmp/ccdYsWgt.s:73     .text.chCondSignal:00000000 $t
-     /tmp/ccdYsWgt.s:78     .text.chCondSignal:00000000 chCondSignal
-     /tmp/ccdYsWgt.s:102    .text.chCondSignalI:00000000 $t
-     /tmp/ccdYsWgt.s:107    .text.chCondSignalI:00000000 chCondSignalI
-     /tmp/ccdYsWgt.s:122    .text.chCondBroadcastI:00000000 $t
-     /tmp/ccdYsWgt.s:127    .text.chCondBroadcastI:00000000 chCondBroadcastI
-     /tmp/ccdYsWgt.s:146    .text.chCondBroadcast:00000000 $t
-     /tmp/ccdYsWgt.s:151    .text.chCondBroadcast:00000000 chCondBroadcast
-     /tmp/ccdYsWgt.s:170    .text.chCondWaitS:00000000 $t
-     /tmp/ccdYsWgt.s:175    .text.chCondWaitS:00000000 chCondWaitS
-     /tmp/ccdYsWgt.s:198    .text.chCondWaitS:0000002c $d
-     /tmp/ccdYsWgt.s:201    .text.chCondWait:00000000 $t
-     /tmp/ccdYsWgt.s:206    .text.chCondWait:00000000 chCondWait
-     /tmp/ccdYsWgt.s:224    .text.chCondWaitTimeoutS:00000000 $t
-     /tmp/ccdYsWgt.s:229    .text.chCondWaitTimeoutS:00000000 chCondWaitTimeoutS
-     /tmp/ccdYsWgt.s:256    .text.chCondWaitTimeoutS:00000030 $d
-     /tmp/ccdYsWgt.s:259    .text.chCondWaitTimeout:00000000 $t
-     /tmp/ccdYsWgt.s:264    .text.chCondWaitTimeout:00000000 chCondWaitTimeout
+     /tmp/ccP7iEcN.s:17     .text.prio_insert:00000000 $t
+     /tmp/ccP7iEcN.s:21     .text.prio_insert:00000000 prio_insert
+     /tmp/ccP7iEcN.s:43     .text.fifo_remove:00000000 $t
+     /tmp/ccP7iEcN.s:47     .text.fifo_remove:00000000 fifo_remove
+     /tmp/ccP7iEcN.s:59     .text.chCondInit:00000000 $t
+     /tmp/ccP7iEcN.s:64     .text.chCondInit:00000000 chCondInit
+     /tmp/ccP7iEcN.s:73     .text.chCondSignal:00000000 $t
+     /tmp/ccP7iEcN.s:78     .text.chCondSignal:00000000 chCondSignal
+     /tmp/ccP7iEcN.s:102    .text.chCondSignalI:00000000 $t
+     /tmp/ccP7iEcN.s:107    .text.chCondSignalI:00000000 chCondSignalI
+     /tmp/ccP7iEcN.s:122    .text.chCondBroadcastI:00000000 $t
+     /tmp/ccP7iEcN.s:127    .text.chCondBroadcastI:00000000 chCondBroadcastI
+     /tmp/ccP7iEcN.s:146    .text.chCondBroadcast:00000000 $t
+     /tmp/ccP7iEcN.s:151    .text.chCondBroadcast:00000000 chCondBroadcast
+     /tmp/ccP7iEcN.s:170    .text.chCondWaitS:00000000 $t
+     /tmp/ccP7iEcN.s:175    .text.chCondWaitS:00000000 chCondWaitS
+     /tmp/ccP7iEcN.s:198    .text.chCondWaitS:0000002c $d
+     /tmp/ccP7iEcN.s:201    .text.chCondWait:00000000 $t
+     /tmp/ccP7iEcN.s:206    .text.chCondWait:00000000 chCondWait
+     /tmp/ccP7iEcN.s:224    .text.chCondWaitTimeoutS:00000000 $t
+     /tmp/ccP7iEcN.s:229    .text.chCondWaitTimeoutS:00000000 chCondWaitTimeoutS
+     /tmp/ccP7iEcN.s:256    .text.chCondWaitTimeoutS:00000030 $d
+     /tmp/ccP7iEcN.s:259    .text.chCondWaitTimeout:00000000 $t
+     /tmp/ccP7iEcN.s:264    .text.chCondWaitTimeout:00000000 chCondWaitTimeout
 
 UNDEFINED SYMBOLS
 chSchWakeupS

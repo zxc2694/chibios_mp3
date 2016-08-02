@@ -141,18 +141,18 @@
  149              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chvt.c
-     /tmp/ccmVY5Do.s:17     .text._vt_init:00000000 $t
-     /tmp/ccmVY5Do.s:22     .text._vt_init:00000000 _vt_init
-     /tmp/ccmVY5Do.s:37     .text._vt_init:00000014 $d
+     /tmp/cc89mtyG.s:17     .text._vt_init:00000000 $t
+     /tmp/cc89mtyG.s:22     .text._vt_init:00000000 _vt_init
+     /tmp/cc89mtyG.s:37     .text._vt_init:00000014 $d
                             *COM*:00000010 vtlist
-     /tmp/ccmVY5Do.s:40     .text.chVTSetI:00000000 $t
-     /tmp/ccmVY5Do.s:45     .text.chVTSetI:00000000 chVTSetI
-     /tmp/ccmVY5Do.s:78     .text.chVTSetI:00000030 $d
-     /tmp/ccmVY5Do.s:81     .text.chVTResetI:00000000 $t
-     /tmp/ccmVY5Do.s:86     .text.chVTResetI:00000000 chVTResetI
-     /tmp/ccmVY5Do.s:109    .text.chVTResetI:00000020 $d
-     /tmp/ccmVY5Do.s:112    .text.chTimeIsWithin:00000000 $t
-     /tmp/ccmVY5Do.s:117    .text.chTimeIsWithin:00000000 chTimeIsWithin
-     /tmp/ccmVY5Do.s:146    .text.chTimeIsWithin:00000024 $d
+     /tmp/cc89mtyG.s:40     .text.chVTSetI:00000000 $t
+     /tmp/cc89mtyG.s:45     .text.chVTSetI:00000000 chVTSetI
+     /tmp/cc89mtyG.s:78     .text.chVTSetI:00000030 $d
+     /tmp/cc89mtyG.s:81     .text.chVTResetI:00000000 $t
+     /tmp/cc89mtyG.s:86     .text.chVTResetI:00000000 chVTResetI
+     /tmp/cc89mtyG.s:109    .text.chVTResetI:00000020 $d
+     /tmp/cc89mtyG.s:112    .text.chTimeIsWithin:00000000 $t
+     /tmp/cc89mtyG.s:117    .text.chTimeIsWithin:00000000 chTimeIsWithin
+     /tmp/cc89mtyG.s:146    .text.chTimeIsWithin:00000024 $d
 
 NO UNDEFINED SYMBOLS

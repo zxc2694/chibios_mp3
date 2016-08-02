@@ -226,22 +226,22 @@
  238              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 diskio.c
-     /tmp/ccUz4hGp.s:17     .text.disk_initialize:00000000 $t
-     /tmp/ccUz4hGp.s:22     .text.disk_initialize:00000000 disk_initialize
-     /tmp/ccUz4hGp.s:46     .text.disk_initialize:00000024 $d
-     /tmp/ccUz4hGp.s:49     .text.disk_status:00000000 $t
-     /tmp/ccUz4hGp.s:54     .text.disk_status:00000000 disk_status
-     /tmp/ccUz4hGp.s:78     .text.disk_status:00000024 $d
-     /tmp/ccUz4hGp.s:81     .text.disk_read:00000000 $t
-     /tmp/ccUz4hGp.s:86     .text.disk_read:00000000 disk_read
-     /tmp/ccUz4hGp.s:132    .text.disk_read:0000004c $d
-     /tmp/ccUz4hGp.s:135    .text.disk_write:00000000 $t
-     /tmp/ccUz4hGp.s:140    .text.disk_write:00000000 disk_write
-     /tmp/ccUz4hGp.s:194    .text.disk_write:0000005c $d
-     /tmp/ccUz4hGp.s:197    .text.disk_ioctl:00000000 $t
-     /tmp/ccUz4hGp.s:202    .text.disk_ioctl:00000000 disk_ioctl
-     /tmp/ccUz4hGp.s:226    .text.get_fattime:00000000 $t
-     /tmp/ccUz4hGp.s:231    .text.get_fattime:00000000 get_fattime
+     /tmp/ccYp3QsC.s:17     .text.disk_initialize:00000000 $t
+     /tmp/ccYp3QsC.s:22     .text.disk_initialize:00000000 disk_initialize
+     /tmp/ccYp3QsC.s:46     .text.disk_initialize:00000024 $d
+     /tmp/ccYp3QsC.s:49     .text.disk_status:00000000 $t
+     /tmp/ccYp3QsC.s:54     .text.disk_status:00000000 disk_status
+     /tmp/ccYp3QsC.s:78     .text.disk_status:00000024 $d
+     /tmp/ccYp3QsC.s:81     .text.disk_read:00000000 $t
+     /tmp/ccYp3QsC.s:86     .text.disk_read:00000000 disk_read
+     /tmp/ccYp3QsC.s:132    .text.disk_read:0000004c $d
+     /tmp/ccYp3QsC.s:135    .text.disk_write:00000000 $t
+     /tmp/ccYp3QsC.s:140    .text.disk_write:00000000 disk_write
+     /tmp/ccYp3QsC.s:194    .text.disk_write:0000005c $d
+     /tmp/ccYp3QsC.s:197    .text.disk_ioctl:00000000 $t
+     /tmp/ccYp3QsC.s:202    .text.disk_ioctl:00000000 disk_ioctl
+     /tmp/ccYp3QsC.s:226    .text.get_fattime:00000000 $t
+     /tmp/ccYp3QsC.s:231    .text.get_fattime:00000000 get_fattime
 
 UNDEFINED SYMBOLS
 MMCD1

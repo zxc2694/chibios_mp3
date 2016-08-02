@@ -1485,32 +1485,32 @@
  1502              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 imdct.c
-     /tmp/ccz2vaIJ.s:17     .text.MULSHIFT32:00000000 $t
-     /tmp/ccz2vaIJ.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
-     /tmp/ccz2vaIJ.s:34     .text.FASTABS:00000000 $t
-     /tmp/ccz2vaIJ.s:38     .text.FASTABS:00000000 FASTABS
-     /tmp/ccz2vaIJ.s:51     .text.WinPrevious:00000000 $t
-     /tmp/ccz2vaIJ.s:55     .text.WinPrevious:00000000 WinPrevious
-     /tmp/ccz2vaIJ.s:186    .text.WinPrevious:0000014c $d
-     /tmp/ccz2vaIJ.s:189    .text.FreqInvertRescale:00000000 $t
-     /tmp/ccz2vaIJ.s:193    .text.FreqInvertRescale:00000000 FreqInvertRescale
-     /tmp/ccz2vaIJ.s:316    .text.idct9:00000000 $t
-     /tmp/ccz2vaIJ.s:320    .text.idct9:00000000 idct9
-     /tmp/ccz2vaIJ.s:443    .text.idct9:0000014c $d
-     /tmp/ccz2vaIJ.s:450    .text.imdct12:00000000 $t
-     /tmp/ccz2vaIJ.s:454    .text.imdct12:00000000 imdct12
-     /tmp/ccz2vaIJ.s:515    .text.imdct12:000000a4 $d
-     /tmp/ccz2vaIJ.s:521    .text.xmp3fixpt_IMDCT:00000000 $t
-     /tmp/ccz2vaIJ.s:526    .text.xmp3fixpt_IMDCT:00000000 xmp3fixpt_IMDCT
-     /tmp/ccz2vaIJ.s:805    .text.xmp3fixpt_IMDCT:000002c4 $d
-     /tmp/ccz2vaIJ.s:808    .text.xmp3fixpt_IMDCT:000002c8 $t
-     /tmp/ccz2vaIJ.s:1155   .text.xmp3fixpt_IMDCT:0000064c $d
-     /tmp/ccz2vaIJ.s:1160   .text.xmp3fixpt_IMDCT:0000065c $t
-     /tmp/ccz2vaIJ.s:1461   .text.xmp3fixpt_IMDCT:00000954 $d
-     /tmp/ccz2vaIJ.s:1464   .rodata.fastWin36:00000000 $d
-     /tmp/ccz2vaIJ.s:1468   .rodata.fastWin36:00000000 fastWin36
-     /tmp/ccz2vaIJ.s:1488   .rodata.c18:00000000 $d
-     /tmp/ccz2vaIJ.s:1492   .rodata.c18:00000000 c18
+     /tmp/ccpveY01.s:17     .text.MULSHIFT32:00000000 $t
+     /tmp/ccpveY01.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
+     /tmp/ccpveY01.s:34     .text.FASTABS:00000000 $t
+     /tmp/ccpveY01.s:38     .text.FASTABS:00000000 FASTABS
+     /tmp/ccpveY01.s:51     .text.WinPrevious:00000000 $t
+     /tmp/ccpveY01.s:55     .text.WinPrevious:00000000 WinPrevious
+     /tmp/ccpveY01.s:186    .text.WinPrevious:0000014c $d
+     /tmp/ccpveY01.s:189    .text.FreqInvertRescale:00000000 $t
+     /tmp/ccpveY01.s:193    .text.FreqInvertRescale:00000000 FreqInvertRescale
+     /tmp/ccpveY01.s:316    .text.idct9:00000000 $t
+     /tmp/ccpveY01.s:320    .text.idct9:00000000 idct9
+     /tmp/ccpveY01.s:443    .text.idct9:0000014c $d
+     /tmp/ccpveY01.s:450    .text.imdct12:00000000 $t
+     /tmp/ccpveY01.s:454    .text.imdct12:00000000 imdct12
+     /tmp/ccpveY01.s:515    .text.imdct12:000000a4 $d
+     /tmp/ccpveY01.s:521    .text.xmp3fixpt_IMDCT:00000000 $t
+     /tmp/ccpveY01.s:526    .text.xmp3fixpt_IMDCT:00000000 xmp3fixpt_IMDCT
+     /tmp/ccpveY01.s:805    .text.xmp3fixpt_IMDCT:000002c4 $d
+     /tmp/ccpveY01.s:808    .text.xmp3fixpt_IMDCT:000002c8 $t
+     /tmp/ccpveY01.s:1155   .text.xmp3fixpt_IMDCT:0000064c $d
+     /tmp/ccpveY01.s:1160   .text.xmp3fixpt_IMDCT:0000065c $t
+     /tmp/ccpveY01.s:1461   .text.xmp3fixpt_IMDCT:00000954 $d
+     /tmp/ccpveY01.s:1464   .rodata.fastWin36:00000000 $d
+     /tmp/ccpveY01.s:1468   .rodata.fastWin36:00000000 fastWin36
+     /tmp/ccpveY01.s:1488   .rodata.c18:00000000 $d
+     /tmp/ccpveY01.s:1492   .rodata.c18:00000000 c18
 
 UNDEFINED SYMBOLS
 xmp3fixpt_imdctWin

@@ -674,19 +674,19 @@
  688              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 mp3tabs.c
-     /tmp/cc65aIvs.s:343    .rodata.xmp3fixpt_sfBandTable:00000000 xmp3fixpt_sfBandTable
-     /tmp/cc65aIvs.s:27     .rodata.xmp3fixpt_slotTab:00000000 xmp3fixpt_slotTab
-     /tmp/cc65aIvs.s:681    .rodata.xmp3fixpt_sideBytesTab:00000000 xmp3fixpt_sideBytesTab
-     /tmp/cc65aIvs.s:335    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 xmp3fixpt_bitsPerSlotTab
-     /tmp/cc65aIvs.s:181    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 xmp3fixpt_samplesPerFrameTab
-     /tmp/cc65aIvs.s:195    .rodata.xmp3fixpt_bitrateTab:00000000 xmp3fixpt_bitrateTab
-     /tmp/cc65aIvs.s:167    .rodata.xmp3fixpt_samplerateTab:00000000 xmp3fixpt_samplerateTab
-     /tmp/cc65aIvs.s:24     .rodata.xmp3fixpt_slotTab:00000000 $d
-     /tmp/cc65aIvs.s:164    .rodata.xmp3fixpt_samplerateTab:00000000 $d
-     /tmp/cc65aIvs.s:178    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 $d
-     /tmp/cc65aIvs.s:192    .rodata.xmp3fixpt_bitrateTab:00000000 $d
-     /tmp/cc65aIvs.s:332    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 $d
-     /tmp/cc65aIvs.s:340    .rodata.xmp3fixpt_sfBandTable:00000000 $d
-     /tmp/cc65aIvs.s:678    .rodata.xmp3fixpt_sideBytesTab:00000000 $d
+     /tmp/cc80yXiP.s:343    .rodata.xmp3fixpt_sfBandTable:00000000 xmp3fixpt_sfBandTable
+     /tmp/cc80yXiP.s:27     .rodata.xmp3fixpt_slotTab:00000000 xmp3fixpt_slotTab
+     /tmp/cc80yXiP.s:681    .rodata.xmp3fixpt_sideBytesTab:00000000 xmp3fixpt_sideBytesTab
+     /tmp/cc80yXiP.s:335    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 xmp3fixpt_bitsPerSlotTab
+     /tmp/cc80yXiP.s:181    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 xmp3fixpt_samplesPerFrameTab
+     /tmp/cc80yXiP.s:195    .rodata.xmp3fixpt_bitrateTab:00000000 xmp3fixpt_bitrateTab
+     /tmp/cc80yXiP.s:167    .rodata.xmp3fixpt_samplerateTab:00000000 xmp3fixpt_samplerateTab
+     /tmp/cc80yXiP.s:24     .rodata.xmp3fixpt_slotTab:00000000 $d
+     /tmp/cc80yXiP.s:164    .rodata.xmp3fixpt_samplerateTab:00000000 $d
+     /tmp/cc80yXiP.s:178    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 $d
+     /tmp/cc80yXiP.s:192    .rodata.xmp3fixpt_bitrateTab:00000000 $d
+     /tmp/cc80yXiP.s:332    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 $d
+     /tmp/cc80yXiP.s:340    .rodata.xmp3fixpt_sfBandTable:00000000 $d
+     /tmp/cc80yXiP.s:678    .rodata.xmp3fixpt_sideBytesTab:00000000 $d
 
 NO UNDEFINED SYMBOLS

@@ -31,7 +31,7 @@
   33              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chcore.c
-     /tmp/ccRAaL7j.s:17     .text.port_halt:00000000 $t
-     /tmp/ccRAaL7j.s:22     .text.port_halt:00000000 port_halt
+     /tmp/ccdy8RfE.s:17     .text.port_halt:00000000 $t
+     /tmp/ccdy8RfE.s:22     .text.port_halt:00000000 port_halt
 
 NO UNDEFINED SYMBOLS

@@ -187,12 +187,12 @@
  191              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 hal_lld.c
-     /tmp/cc9uwtYB.s:17     .text.hal_lld_init:00000000 $t
-     /tmp/cc9uwtYB.s:22     .text.hal_lld_init:00000000 hal_lld_init
-     /tmp/cc9uwtYB.s:87     .text.hal_lld_init:0000008c $d
-     /tmp/cc9uwtYB.s:94     .text.stm32_clock_init:00000000 $t
-     /tmp/cc9uwtYB.s:99     .text.stm32_clock_init:00000000 stm32_clock_init
-     /tmp/cc9uwtYB.s:185    .text.stm32_clock_init:000000b0 $d
+     /tmp/ccDWJv3R.s:17     .text.hal_lld_init:00000000 $t
+     /tmp/ccDWJv3R.s:22     .text.hal_lld_init:00000000 hal_lld_init
+     /tmp/ccDWJv3R.s:87     .text.hal_lld_init:0000008c $d
+     /tmp/ccDWJv3R.s:94     .text.stm32_clock_init:00000000 $t
+     /tmp/ccDWJv3R.s:99     .text.stm32_clock_init:00000000 stm32_clock_init
+     /tmp/ccDWJv3R.s:185    .text.stm32_clock_init:000000b0 $d
 
 UNDEFINED SYMBOLS
 dmaInit

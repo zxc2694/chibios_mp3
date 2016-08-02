@@ -473,31 +473,31 @@
  497              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chqueues.c
-     /tmp/ccVkr8R7.s:17     .text.fifo_remove:00000000 $t
-     /tmp/ccVkr8R7.s:21     .text.fifo_remove:00000000 fifo_remove
-     /tmp/ccVkr8R7.s:33     .text.qwait:00000000 $t
-     /tmp/ccVkr8R7.s:37     .text.qwait:00000000 qwait
-     /tmp/ccVkr8R7.s:57     .text.qwait:00000020 $d
-     /tmp/ccVkr8R7.s:60     .text.chIQInit:00000000 $t
-     /tmp/ccVkr8R7.s:65     .text.chIQInit:00000000 chIQInit
-     /tmp/ccVkr8R7.s:82     .text.chIQResetI:00000000 $t
-     /tmp/ccVkr8R7.s:87     .text.chIQResetI:00000000 chIQResetI
-     /tmp/ccVkr8R7.s:111    .text.chIQPutI:00000000 $t
-     /tmp/ccVkr8R7.s:116    .text.chIQPutI:00000000 chIQPutI
-     /tmp/ccVkr8R7.s:153    .text.chIQGetTimeout:00000000 $t
-     /tmp/ccVkr8R7.s:158    .text.chIQGetTimeout:00000000 chIQGetTimeout
-     /tmp/ccVkr8R7.s:207    .text.chIQReadTimeout:00000000 $t
-     /tmp/ccVkr8R7.s:212    .text.chIQReadTimeout:00000000 chIQReadTimeout
-     /tmp/ccVkr8R7.s:277    .text.chOQInit:00000000 $t
-     /tmp/ccVkr8R7.s:282    .text.chOQInit:00000000 chOQInit
-     /tmp/ccVkr8R7.s:298    .text.chOQResetI:00000000 $t
-     /tmp/ccVkr8R7.s:303    .text.chOQResetI:00000000 chOQResetI
-     /tmp/ccVkr8R7.s:328    .text.chOQPutTimeout:00000000 $t
-     /tmp/ccVkr8R7.s:333    .text.chOQPutTimeout:00000000 chOQPutTimeout
-     /tmp/ccVkr8R7.s:386    .text.chOQGetI:00000000 $t
-     /tmp/ccVkr8R7.s:391    .text.chOQGetI:00000000 chOQGetI
-     /tmp/ccVkr8R7.s:426    .text.chOQWriteTimeout:00000000 $t
-     /tmp/ccVkr8R7.s:431    .text.chOQWriteTimeout:00000000 chOQWriteTimeout
+     /tmp/ccOJCPWe.s:17     .text.fifo_remove:00000000 $t
+     /tmp/ccOJCPWe.s:21     .text.fifo_remove:00000000 fifo_remove
+     /tmp/ccOJCPWe.s:33     .text.qwait:00000000 $t
+     /tmp/ccOJCPWe.s:37     .text.qwait:00000000 qwait
+     /tmp/ccOJCPWe.s:57     .text.qwait:00000020 $d
+     /tmp/ccOJCPWe.s:60     .text.chIQInit:00000000 $t
+     /tmp/ccOJCPWe.s:65     .text.chIQInit:00000000 chIQInit
+     /tmp/ccOJCPWe.s:82     .text.chIQResetI:00000000 $t
+     /tmp/ccOJCPWe.s:87     .text.chIQResetI:00000000 chIQResetI
+     /tmp/ccOJCPWe.s:111    .text.chIQPutI:00000000 $t
+     /tmp/ccOJCPWe.s:116    .text.chIQPutI:00000000 chIQPutI
+     /tmp/ccOJCPWe.s:153    .text.chIQGetTimeout:00000000 $t
+     /tmp/ccOJCPWe.s:158    .text.chIQGetTimeout:00000000 chIQGetTimeout
+     /tmp/ccOJCPWe.s:207    .text.chIQReadTimeout:00000000 $t
+     /tmp/ccOJCPWe.s:212    .text.chIQReadTimeout:00000000 chIQReadTimeout
+     /tmp/ccOJCPWe.s:277    .text.chOQInit:00000000 $t
+     /tmp/ccOJCPWe.s:282    .text.chOQInit:00000000 chOQInit
+     /tmp/ccOJCPWe.s:298    .text.chOQResetI:00000000 $t
+     /tmp/ccOJCPWe.s:303    .text.chOQResetI:00000000 chOQResetI
+     /tmp/ccOJCPWe.s:328    .text.chOQPutTimeout:00000000 $t
+     /tmp/ccOJCPWe.s:333    .text.chOQPutTimeout:00000000 chOQPutTimeout
+     /tmp/ccOJCPWe.s:386    .text.chOQGetI:00000000 $t
+     /tmp/ccOJCPWe.s:391    .text.chOQGetI:00000000 chOQGetI
+     /tmp/ccOJCPWe.s:426    .text.chOQWriteTimeout:00000000 $t
+     /tmp/ccOJCPWe.s:431    .text.chOQWriteTimeout:00000000 chOQWriteTimeout
 
 UNDEFINED SYMBOLS
 chSchGoSleepTimeoutS

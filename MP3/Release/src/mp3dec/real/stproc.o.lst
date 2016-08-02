@@ -669,18 +669,18 @@
  678              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 stproc.c
-     /tmp/ccTQiGxg.s:17     .text.MULSHIFT32:00000000 $t
-     /tmp/ccTQiGxg.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
-     /tmp/ccTQiGxg.s:34     .text.FASTABS:00000000 $t
-     /tmp/ccTQiGxg.s:38     .text.FASTABS:00000000 FASTABS
-     /tmp/ccTQiGxg.s:51     .text.xmp3fixpt_MidSideProc:00000000 $t
-     /tmp/ccTQiGxg.s:56     .text.xmp3fixpt_MidSideProc:00000000 xmp3fixpt_MidSideProc
-     /tmp/ccTQiGxg.s:94     .text.xmp3fixpt_IntensityProcMPEG1:00000000 $t
-     /tmp/ccTQiGxg.s:99     .text.xmp3fixpt_IntensityProcMPEG1:00000000 xmp3fixpt_IntensityProcMPEG1
-     /tmp/ccTQiGxg.s:375    .text.xmp3fixpt_IntensityProcMPEG1:000002bc $d
-     /tmp/ccTQiGxg.s:379    .text.xmp3fixpt_IntensityProcMPEG2:00000000 $t
-     /tmp/ccTQiGxg.s:384    .text.xmp3fixpt_IntensityProcMPEG2:00000000 xmp3fixpt_IntensityProcMPEG2
-     /tmp/ccTQiGxg.s:675    .text.xmp3fixpt_IntensityProcMPEG2:0000029c $d
+     /tmp/ccYHZUAo.s:17     .text.MULSHIFT32:00000000 $t
+     /tmp/ccYHZUAo.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
+     /tmp/ccYHZUAo.s:34     .text.FASTABS:00000000 $t
+     /tmp/ccYHZUAo.s:38     .text.FASTABS:00000000 FASTABS
+     /tmp/ccYHZUAo.s:51     .text.xmp3fixpt_MidSideProc:00000000 $t
+     /tmp/ccYHZUAo.s:56     .text.xmp3fixpt_MidSideProc:00000000 xmp3fixpt_MidSideProc
+     /tmp/ccYHZUAo.s:94     .text.xmp3fixpt_IntensityProcMPEG1:00000000 $t
+     /tmp/ccYHZUAo.s:99     .text.xmp3fixpt_IntensityProcMPEG1:00000000 xmp3fixpt_IntensityProcMPEG1
+     /tmp/ccYHZUAo.s:375    .text.xmp3fixpt_IntensityProcMPEG1:000002bc $d
+     /tmp/ccYHZUAo.s:379    .text.xmp3fixpt_IntensityProcMPEG2:00000000 $t
+     /tmp/ccYHZUAo.s:384    .text.xmp3fixpt_IntensityProcMPEG2:00000000 xmp3fixpt_IntensityProcMPEG2
+     /tmp/ccYHZUAo.s:675    .text.xmp3fixpt_IntensityProcMPEG2:0000029c $d
 
 UNDEFINED SYMBOLS
 xmp3fixpt_ISFMpeg1

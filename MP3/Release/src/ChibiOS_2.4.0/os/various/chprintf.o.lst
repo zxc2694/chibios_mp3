@@ -320,10 +320,10 @@
  323              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chprintf.c
-     /tmp/cc0iHZIk.s:17     .text.ltoa:00000000 $t
-     /tmp/cc0iHZIk.s:21     .text.ltoa:00000000 ltoa
-     /tmp/cc0iHZIk.s:49     .text.chprintf:00000000 $t
-     /tmp/cc0iHZIk.s:54     .text.chprintf:00000000 chprintf
-     /tmp/cc0iHZIk.s:318    .text.chprintf:00000200 $d
+     /tmp/ccZMTDCr.s:17     .text.ltoa:00000000 $t
+     /tmp/ccZMTDCr.s:21     .text.ltoa:00000000 ltoa
+     /tmp/ccZMTDCr.s:49     .text.chprintf:00000000 $t
+     /tmp/ccZMTDCr.s:54     .text.chprintf:00000000 chprintf
+     /tmp/ccZMTDCr.s:318    .text.chprintf:00000200 $d
 
 NO UNDEFINED SYMBOLS

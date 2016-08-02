@@ -148,17 +148,17 @@
  158              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 crt0.c
-     /tmp/ccVI3FSr.s:17     .text.fill32:00000000 $t
-     /tmp/ccVI3FSr.s:21     .text.fill32:00000000 fill32
-     /tmp/ccVI3FSr.s:34     .text.__early_init:00000000 $t
-     /tmp/ccVI3FSr.s:39     .text.__early_init:00000000 __early_init
-     /tmp/ccVI3FSr.s:46     .text.__late_init:00000000 $t
-     /tmp/ccVI3FSr.s:51     .text.__late_init:00000000 __late_init
-     /tmp/ccVI3FSr.s:58     .text._default_exit:00000000 $t
-     /tmp/ccVI3FSr.s:63     .text._default_exit:00000000 _default_exit
-     /tmp/ccVI3FSr.s:71     .text.ResetHandler:00000000 $t
-     /tmp/ccVI3FSr.s:76     .text.ResetHandler:00000000 ResetHandler
-     /tmp/ccVI3FSr.s:144    .text.ResetHandler:00000078 $d
+     /tmp/cchU8u5H.s:17     .text.fill32:00000000 $t
+     /tmp/cchU8u5H.s:21     .text.fill32:00000000 fill32
+     /tmp/cchU8u5H.s:34     .text.__early_init:00000000 $t
+     /tmp/cchU8u5H.s:39     .text.__early_init:00000000 __early_init
+     /tmp/cchU8u5H.s:46     .text.__late_init:00000000 $t
+     /tmp/cchU8u5H.s:51     .text.__late_init:00000000 __late_init
+     /tmp/cchU8u5H.s:58     .text._default_exit:00000000 $t
+     /tmp/cchU8u5H.s:63     .text._default_exit:00000000 _default_exit
+     /tmp/cchU8u5H.s:71     .text.ResetHandler:00000000 $t
+     /tmp/cchU8u5H.s:76     .text.ResetHandler:00000000 ResetHandler
+     /tmp/cchU8u5H.s:144    .text.ResetHandler:00000078 $d
 
 UNDEFINED SYMBOLS
 main

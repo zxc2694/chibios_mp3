@@ -1117,15 +1117,15 @@
  1127              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 polyphase.c
-     /tmp/ccj6JT0X.s:17     .text.MADD64:00000000 $t
-     /tmp/ccj6JT0X.s:21     .text.MADD64:00000000 MADD64
-     /tmp/ccj6JT0X.s:29     .text.ClipToShort.constprop.0:00000000 $t
-     /tmp/ccj6JT0X.s:33     .text.ClipToShort.constprop.0:00000000 ClipToShort.constprop.0
-     /tmp/ccj6JT0X.s:47     .text.SAR64.constprop.1:00000000 $t
-     /tmp/ccj6JT0X.s:51     .text.SAR64.constprop.1:00000000 SAR64.constprop.1
-     /tmp/ccj6JT0X.s:61     .text.xmp3fixpt_PolyphaseMono:00000000 $t
-     /tmp/ccj6JT0X.s:66     .text.xmp3fixpt_PolyphaseMono:00000000 xmp3fixpt_PolyphaseMono
-     /tmp/ccj6JT0X.s:386    .text.xmp3fixpt_PolyphaseStereo:00000000 $t
-     /tmp/ccj6JT0X.s:391    .text.xmp3fixpt_PolyphaseStereo:00000000 xmp3fixpt_PolyphaseStereo
+     /tmp/ccvKSuKh.s:17     .text.MADD64:00000000 $t
+     /tmp/ccvKSuKh.s:21     .text.MADD64:00000000 MADD64
+     /tmp/ccvKSuKh.s:29     .text.ClipToShort.constprop.0:00000000 $t
+     /tmp/ccvKSuKh.s:33     .text.ClipToShort.constprop.0:00000000 ClipToShort.constprop.0
+     /tmp/ccvKSuKh.s:47     .text.SAR64.constprop.1:00000000 $t
+     /tmp/ccvKSuKh.s:51     .text.SAR64.constprop.1:00000000 SAR64.constprop.1
+     /tmp/ccvKSuKh.s:61     .text.xmp3fixpt_PolyphaseMono:00000000 $t
+     /tmp/ccvKSuKh.s:66     .text.xmp3fixpt_PolyphaseMono:00000000 xmp3fixpt_PolyphaseMono
+     /tmp/ccvKSuKh.s:386    .text.xmp3fixpt_PolyphaseStereo:00000000 $t
+     /tmp/ccvKSuKh.s:391    .text.xmp3fixpt_PolyphaseStereo:00000000 xmp3fixpt_PolyphaseStereo
 
 NO UNDEFINED SYMBOLS

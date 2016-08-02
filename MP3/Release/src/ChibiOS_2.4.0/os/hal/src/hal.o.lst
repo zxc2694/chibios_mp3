@@ -37,9 +37,9 @@
   39              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 hal.c
-     /tmp/cccQsstG.s:17     .text.halInit:00000000 $t
-     /tmp/cccQsstG.s:22     .text.halInit:00000000 halInit
-     /tmp/cccQsstG.s:37     .text.halInit:00000020 $d
+     /tmp/ccuTIwiX.s:17     .text.halInit:00000000 $t
+     /tmp/ccuTIwiX.s:22     .text.halInit:00000000 halInit
+     /tmp/ccuTIwiX.s:37     .text.halInit:00000020 $d
 
 UNDEFINED SYMBOLS
 hal_lld_init
