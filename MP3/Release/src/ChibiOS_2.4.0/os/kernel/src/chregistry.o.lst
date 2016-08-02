@@ -82,12 +82,12 @@
   86              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chregistry.c
-     /tmp/ccj1SSJh.s:17     .text.chRegFirstThread:00000000 $t
-     /tmp/ccj1SSJh.s:22     .text.chRegFirstThread:00000000 chRegFirstThread
-     /tmp/ccj1SSJh.s:45     .text.chRegFirstThread:00000018 $d
-     /tmp/ccj1SSJh.s:48     .text.chRegNextThread:00000000 $t
-     /tmp/ccj1SSJh.s:53     .text.chRegNextThread:00000000 chRegNextThread
-     /tmp/ccj1SSJh.s:84     .text.chRegNextThread:00000028 $d
+     /tmp/ccrHG9Gf.s:17     .text.chRegFirstThread:00000000 $t
+     /tmp/ccrHG9Gf.s:22     .text.chRegFirstThread:00000000 chRegFirstThread
+     /tmp/ccrHG9Gf.s:45     .text.chRegFirstThread:00000018 $d
+     /tmp/ccrHG9Gf.s:48     .text.chRegNextThread:00000000 $t
+     /tmp/ccrHG9Gf.s:53     .text.chRegNextThread:00000000 chRegNextThread
+     /tmp/ccrHG9Gf.s:84     .text.chRegNextThread:00000028 $d
 
 UNDEFINED SYMBOLS
 rlist

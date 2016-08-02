@@ -691,11 +691,11 @@
  693              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 huffman.c
-     /tmp/ccYThnkP.s:17     .text.xmp3fixpt_DecodeHuffman:00000000 $t
-     /tmp/ccYThnkP.s:22     .text.xmp3fixpt_DecodeHuffman:00000000 xmp3fixpt_DecodeHuffman
-     /tmp/ccYThnkP.s:419    .text.xmp3fixpt_DecodeHuffman:000003d4 $d
-     /tmp/ccYThnkP.s:423    .text.xmp3fixpt_DecodeHuffman:000003e0 $t
-     /tmp/ccYThnkP.s:689    .text.xmp3fixpt_DecodeHuffman:00000670 $d
+     /tmp/ccXOc13y.s:17     .text.xmp3fixpt_DecodeHuffman:00000000 $t
+     /tmp/ccXOc13y.s:22     .text.xmp3fixpt_DecodeHuffman:00000000 xmp3fixpt_DecodeHuffman
+     /tmp/ccXOc13y.s:419    .text.xmp3fixpt_DecodeHuffman:000003d4 $d
+     /tmp/ccXOc13y.s:423    .text.xmp3fixpt_DecodeHuffman:000003e0 $t
+     /tmp/ccXOc13y.s:689    .text.xmp3fixpt_DecodeHuffman:00000670 $d
 
 UNDEFINED SYMBOLS
 xmp3fixpt_huffTabLookup

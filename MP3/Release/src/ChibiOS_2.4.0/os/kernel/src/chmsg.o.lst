@@ -119,14 +119,14 @@
  125              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chmsg.c
-     /tmp/cckW5n5f.s:17     .text.chMsgSend:00000000 $t
-     /tmp/cckW5n5f.s:22     .text.chMsgSend:00000000 chMsgSend
-     /tmp/cckW5n5f.s:58     .text.chMsgSend:00000038 $d
-     /tmp/cckW5n5f.s:61     .text.chMsgWait:00000000 $t
-     /tmp/cckW5n5f.s:66     .text.chMsgWait:00000000 chMsgWait
-     /tmp/cckW5n5f.s:100    .text.chMsgWait:00000034 $d
-     /tmp/cckW5n5f.s:103    .text.chMsgRelease:00000000 $t
-     /tmp/cckW5n5f.s:108    .text.chMsgRelease:00000000 chMsgRelease
+     /tmp/ccVgXXO1.s:17     .text.chMsgSend:00000000 $t
+     /tmp/ccVgXXO1.s:22     .text.chMsgSend:00000000 chMsgSend
+     /tmp/ccVgXXO1.s:58     .text.chMsgSend:00000038 $d
+     /tmp/ccVgXXO1.s:61     .text.chMsgWait:00000000 $t
+     /tmp/ccVgXXO1.s:66     .text.chMsgWait:00000000 chMsgWait
+     /tmp/ccVgXXO1.s:100    .text.chMsgWait:00000034 $d
+     /tmp/ccVgXXO1.s:103    .text.chMsgRelease:00000000 $t
+     /tmp/ccVgXXO1.s:108    .text.chMsgRelease:00000000 chMsgRelease
 
 UNDEFINED SYMBOLS
 chSchReadyI

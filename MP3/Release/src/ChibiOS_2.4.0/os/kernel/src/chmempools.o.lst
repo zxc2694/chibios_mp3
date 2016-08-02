@@ -109,15 +109,15 @@
  119              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chmempools.c
-     /tmp/cc0nPC0c.s:17     .text.chPoolInit:00000000 $t
-     /tmp/cc0nPC0c.s:22     .text.chPoolInit:00000000 chPoolInit
-     /tmp/cc0nPC0c.s:35     .text.chPoolAllocI:00000000 $t
-     /tmp/cc0nPC0c.s:40     .text.chPoolAllocI:00000000 chPoolAllocI
-     /tmp/cc0nPC0c.s:59     .text.chPoolAlloc:00000000 $t
-     /tmp/cc0nPC0c.s:64     .text.chPoolAlloc:00000000 chPoolAlloc
-     /tmp/cc0nPC0c.s:82     .text.chPoolFreeI:00000000 $t
-     /tmp/cc0nPC0c.s:87     .text.chPoolFreeI:00000000 chPoolFreeI
-     /tmp/cc0nPC0c.s:97     .text.chPoolFree:00000000 $t
-     /tmp/cc0nPC0c.s:102    .text.chPoolFree:00000000 chPoolFree
+     /tmp/ccLP7DTY.s:17     .text.chPoolInit:00000000 $t
+     /tmp/ccLP7DTY.s:22     .text.chPoolInit:00000000 chPoolInit
+     /tmp/ccLP7DTY.s:35     .text.chPoolAllocI:00000000 $t
+     /tmp/ccLP7DTY.s:40     .text.chPoolAllocI:00000000 chPoolAllocI
+     /tmp/ccLP7DTY.s:59     .text.chPoolAlloc:00000000 $t
+     /tmp/ccLP7DTY.s:64     .text.chPoolAlloc:00000000 chPoolAlloc
+     /tmp/ccLP7DTY.s:82     .text.chPoolFreeI:00000000 $t
+     /tmp/ccLP7DTY.s:87     .text.chPoolFreeI:00000000 chPoolFreeI
+     /tmp/ccLP7DTY.s:97     .text.chPoolFree:00000000 $t
+     /tmp/ccLP7DTY.s:102    .text.chPoolFree:00000000 chPoolFree
 
 NO UNDEFINED SYMBOLS

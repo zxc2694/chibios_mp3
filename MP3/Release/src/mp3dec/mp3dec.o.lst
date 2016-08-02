@@ -494,21 +494,21 @@
  508              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 mp3dec.c
-     /tmp/cc9cjgaD.s:17     .text.MP3ClearBadFrame:00000000 $t
-     /tmp/cc9cjgaD.s:21     .text.MP3ClearBadFrame:00000000 MP3ClearBadFrame
-     /tmp/cc9cjgaD.s:44     .text.MP3InitDecoder:00000000 $t
-     /tmp/cc9cjgaD.s:49     .text.MP3InitDecoder:00000000 MP3InitDecoder
-     /tmp/cc9cjgaD.s:56     .text.MP3FreeDecoder:00000000 $t
-     /tmp/cc9cjgaD.s:61     .text.MP3FreeDecoder:00000000 MP3FreeDecoder
-     /tmp/cc9cjgaD.s:71     .text.MP3FindSyncWord:00000000 $t
-     /tmp/cc9cjgaD.s:76     .text.MP3FindSyncWord:00000000 MP3FindSyncWord
-     /tmp/cc9cjgaD.s:102    .text.MP3GetLastFrameInfo:00000000 $t
-     /tmp/cc9cjgaD.s:107    .text.MP3GetLastFrameInfo:00000000 MP3GetLastFrameInfo
-     /tmp/cc9cjgaD.s:147    .text.MP3GetLastFrameInfo:0000004c $d
-     /tmp/cc9cjgaD.s:150    .text.MP3GetNextFrameInfo:00000000 $t
-     /tmp/cc9cjgaD.s:155    .text.MP3GetNextFrameInfo:00000000 MP3GetNextFrameInfo
-     /tmp/cc9cjgaD.s:185    .text.MP3Decode:00000000 $t
-     /tmp/cc9cjgaD.s:190    .text.MP3Decode:00000000 MP3Decode
+     /tmp/ccaCSZnk.s:17     .text.MP3ClearBadFrame:00000000 $t
+     /tmp/ccaCSZnk.s:21     .text.MP3ClearBadFrame:00000000 MP3ClearBadFrame
+     /tmp/ccaCSZnk.s:44     .text.MP3InitDecoder:00000000 $t
+     /tmp/ccaCSZnk.s:49     .text.MP3InitDecoder:00000000 MP3InitDecoder
+     /tmp/ccaCSZnk.s:56     .text.MP3FreeDecoder:00000000 $t
+     /tmp/ccaCSZnk.s:61     .text.MP3FreeDecoder:00000000 MP3FreeDecoder
+     /tmp/ccaCSZnk.s:71     .text.MP3FindSyncWord:00000000 $t
+     /tmp/ccaCSZnk.s:76     .text.MP3FindSyncWord:00000000 MP3FindSyncWord
+     /tmp/ccaCSZnk.s:102    .text.MP3GetLastFrameInfo:00000000 $t
+     /tmp/ccaCSZnk.s:107    .text.MP3GetLastFrameInfo:00000000 MP3GetLastFrameInfo
+     /tmp/ccaCSZnk.s:147    .text.MP3GetLastFrameInfo:0000004c $d
+     /tmp/ccaCSZnk.s:150    .text.MP3GetNextFrameInfo:00000000 $t
+     /tmp/ccaCSZnk.s:155    .text.MP3GetNextFrameInfo:00000000 MP3GetNextFrameInfo
+     /tmp/ccaCSZnk.s:185    .text.MP3Decode:00000000 $t
+     /tmp/ccaCSZnk.s:190    .text.MP3Decode:00000000 MP3Decode
 
 UNDEFINED SYMBOLS
 xmp3fixpt_AllocateBuffers

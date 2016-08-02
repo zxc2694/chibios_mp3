@@ -68,7 +68,7 @@ $(BIN_IMAGE):$(EXECUTABLE)
 $(EXECUTABLE): $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Sourcery Linux GCC C Linker'
-	arm-none-eabi-gcc -T"/home/zxc2694/workspace/player/MP3/src/ChibiOS_2.4.0/os/ports/GCC/ARMCMx/STM32F4xx/ld/STM32F407xG.ld" -nostartfiles -Wl,-Map,F4D_MP3.map -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -o "F4D_MP3.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -T"/home/zxc2694/workspace/chibios_mp3/MP3/src/ChibiOS_2.4.0/os/ports/GCC/ARMCMx/STM32F4xx/ld/STM32F407xG.ld" -nostartfiles -Wl,-Map,F4D_MP3.map -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -o "F4D_MP3.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

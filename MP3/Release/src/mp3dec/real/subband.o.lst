@@ -115,9 +115,9 @@
  117              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 subband.c
-     /tmp/cc9GOI3x.s:17     .text.xmp3fixpt_Subband:00000000 $t
-     /tmp/cc9GOI3x.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
-     /tmp/cc9GOI3x.s:115    .text.xmp3fixpt_Subband:000000e8 $d
+     /tmp/ccumfgWe.s:17     .text.xmp3fixpt_Subband:00000000 $t
+     /tmp/ccumfgWe.s:22     .text.xmp3fixpt_Subband:00000000 xmp3fixpt_Subband
+     /tmp/ccumfgWe.s:115    .text.xmp3fixpt_Subband:000000e8 $d
 
 UNDEFINED SYMBOLS
 xmp3fixpt_FDCT32

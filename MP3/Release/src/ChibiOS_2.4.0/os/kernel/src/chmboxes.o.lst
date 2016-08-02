@@ -321,28 +321,28 @@
  343              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chmboxes.c
-     /tmp/ccORzb42.s:17     .text.chMBInit:00000000 $t
-     /tmp/ccORzb42.s:22     .text.chMBInit:00000000 chMBInit
-     /tmp/ccORzb42.s:41     .text.chMBReset:00000000 $t
-     /tmp/ccORzb42.s:46     .text.chMBReset:00000000 chMBReset
-     /tmp/ccORzb42.s:76     .text.chMBPostS:00000000 $t
-     /tmp/ccORzb42.s:81     .text.chMBPostS:00000000 chMBPostS
-     /tmp/ccORzb42.s:109    .text.chMBPost:00000000 $t
-     /tmp/ccORzb42.s:114    .text.chMBPost:00000000 chMBPost
-     /tmp/ccORzb42.s:132    .text.chMBPostI:00000000 $t
-     /tmp/ccORzb42.s:137    .text.chMBPostI:00000000 chMBPostI
-     /tmp/ccORzb42.s:163    .text.chMBPostAheadS:00000000 $t
-     /tmp/ccORzb42.s:168    .text.chMBPostAheadS:00000000 chMBPostAheadS
-     /tmp/ccORzb42.s:199    .text.chMBPostAhead:00000000 $t
-     /tmp/ccORzb42.s:204    .text.chMBPostAhead:00000000 chMBPostAhead
-     /tmp/ccORzb42.s:222    .text.chMBPostAheadI:00000000 $t
-     /tmp/ccORzb42.s:227    .text.chMBPostAheadI:00000000 chMBPostAheadI
-     /tmp/ccORzb42.s:257    .text.chMBFetchS:00000000 $t
-     /tmp/ccORzb42.s:262    .text.chMBFetchS:00000000 chMBFetchS
-     /tmp/ccORzb42.s:291    .text.chMBFetch:00000000 $t
-     /tmp/ccORzb42.s:296    .text.chMBFetch:00000000 chMBFetch
-     /tmp/ccORzb42.s:314    .text.chMBFetchI:00000000 $t
-     /tmp/ccORzb42.s:319    .text.chMBFetchI:00000000 chMBFetchI
+     /tmp/cc5xb76O.s:17     .text.chMBInit:00000000 $t
+     /tmp/cc5xb76O.s:22     .text.chMBInit:00000000 chMBInit
+     /tmp/cc5xb76O.s:41     .text.chMBReset:00000000 $t
+     /tmp/cc5xb76O.s:46     .text.chMBReset:00000000 chMBReset
+     /tmp/cc5xb76O.s:76     .text.chMBPostS:00000000 $t
+     /tmp/cc5xb76O.s:81     .text.chMBPostS:00000000 chMBPostS
+     /tmp/cc5xb76O.s:109    .text.chMBPost:00000000 $t
+     /tmp/cc5xb76O.s:114    .text.chMBPost:00000000 chMBPost
+     /tmp/cc5xb76O.s:132    .text.chMBPostI:00000000 $t
+     /tmp/cc5xb76O.s:137    .text.chMBPostI:00000000 chMBPostI
+     /tmp/cc5xb76O.s:163    .text.chMBPostAheadS:00000000 $t
+     /tmp/cc5xb76O.s:168    .text.chMBPostAheadS:00000000 chMBPostAheadS
+     /tmp/cc5xb76O.s:199    .text.chMBPostAhead:00000000 $t
+     /tmp/cc5xb76O.s:204    .text.chMBPostAhead:00000000 chMBPostAhead
+     /tmp/cc5xb76O.s:222    .text.chMBPostAheadI:00000000 $t
+     /tmp/cc5xb76O.s:227    .text.chMBPostAheadI:00000000 chMBPostAheadI
+     /tmp/cc5xb76O.s:257    .text.chMBFetchS:00000000 $t
+     /tmp/cc5xb76O.s:262    .text.chMBFetchS:00000000 chMBFetchS
+     /tmp/cc5xb76O.s:291    .text.chMBFetch:00000000 $t
+     /tmp/cc5xb76O.s:296    .text.chMBFetch:00000000 chMBFetch
+     /tmp/cc5xb76O.s:314    .text.chMBFetchI:00000000 $t
+     /tmp/cc5xb76O.s:319    .text.chMBFetchI:00000000 chMBFetchI
 
 UNDEFINED SYMBOLS
 chSemInit

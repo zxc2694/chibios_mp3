@@ -105,14 +105,14 @@
  111              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 nvic.c
-     /tmp/ccaHaZmt.s:17     .text.nvicEnableVector:00000000 $t
-     /tmp/ccaHaZmt.s:22     .text.nvicEnableVector:00000000 nvicEnableVector
-     /tmp/ccaHaZmt.s:49     .text.nvicEnableVector:00000040 $d
-     /tmp/ccaHaZmt.s:52     .text.nvicDisableVector:00000000 $t
-     /tmp/ccaHaZmt.s:57     .text.nvicDisableVector:00000000 nvicDisableVector
-     /tmp/ccaHaZmt.s:81     .text.nvicDisableVector:00000034 $d
-     /tmp/ccaHaZmt.s:84     .text.nvicSetSystemHandlerPriority:00000000 $t
-     /tmp/ccaHaZmt.s:89     .text.nvicSetSystemHandlerPriority:00000000 nvicSetSystemHandlerPriority
-     /tmp/ccaHaZmt.s:109    .text.nvicSetSystemHandlerPriority:00000028 $d
+     /tmp/ccpUJ0hg.s:17     .text.nvicEnableVector:00000000 $t
+     /tmp/ccpUJ0hg.s:22     .text.nvicEnableVector:00000000 nvicEnableVector
+     /tmp/ccpUJ0hg.s:49     .text.nvicEnableVector:00000040 $d
+     /tmp/ccpUJ0hg.s:52     .text.nvicDisableVector:00000000 $t
+     /tmp/ccpUJ0hg.s:57     .text.nvicDisableVector:00000000 nvicDisableVector
+     /tmp/ccpUJ0hg.s:81     .text.nvicDisableVector:00000034 $d
+     /tmp/ccpUJ0hg.s:84     .text.nvicSetSystemHandlerPriority:00000000 $t
+     /tmp/ccpUJ0hg.s:89     .text.nvicSetSystemHandlerPriority:00000000 nvicSetSystemHandlerPriority
+     /tmp/ccpUJ0hg.s:109    .text.nvicSetSystemHandlerPriority:00000028 $d
 
 NO UNDEFINED SYMBOLS

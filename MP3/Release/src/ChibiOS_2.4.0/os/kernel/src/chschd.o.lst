@@ -269,33 +269,33 @@
  287              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chschd.c
-     /tmp/cc9LTYwk.s:17     .text.fifo_remove.constprop.0:00000000 $t
-     /tmp/cc9LTYwk.s:21     .text.fifo_remove.constprop.0:00000000 fifo_remove.constprop.0
-     /tmp/cc9LTYwk.s:34     .text.fifo_remove.constprop.0:0000000c $d
+     /tmp/cchwx9bg.s:17     .text.fifo_remove.constprop.0:00000000 $t
+     /tmp/cchwx9bg.s:21     .text.fifo_remove.constprop.0:00000000 fifo_remove.constprop.0
+     /tmp/cchwx9bg.s:34     .text.fifo_remove.constprop.0:0000000c $d
                             *COM*:00000020 rlist
-     /tmp/cc9LTYwk.s:37     .text._scheduler_init:00000000 $t
-     /tmp/cc9LTYwk.s:42     .text._scheduler_init:00000000 _scheduler_init
-     /tmp/cc9LTYwk.s:59     .text._scheduler_init:00000014 $d
-     /tmp/cc9LTYwk.s:62     .text.chSchReadyI:00000000 $t
-     /tmp/cc9LTYwk.s:67     .text.chSchReadyI:00000000 chSchReadyI
-     /tmp/cc9LTYwk.s:89     .text.chSchReadyI:0000001c $d
-     /tmp/cc9LTYwk.s:92     .text.wakeup:00000000 $t
-     /tmp/cc9LTYwk.s:96     .text.wakeup:00000000 wakeup
-     /tmp/cc9LTYwk.s:130    .text.chSchGoSleepS:00000000 $t
-     /tmp/cc9LTYwk.s:135    .text.chSchGoSleepS:00000000 chSchGoSleepS
-     /tmp/cc9LTYwk.s:154    .text.chSchGoSleepS:00000020 $d
-     /tmp/cc9LTYwk.s:157    .text.chSchGoSleepTimeoutS:00000000 $t
-     /tmp/cc9LTYwk.s:162    .text.chSchGoSleepTimeoutS:00000000 chSchGoSleepTimeoutS
-     /tmp/cc9LTYwk.s:192    .text.chSchGoSleepTimeoutS:00000034 $d
-     /tmp/cc9LTYwk.s:196    .text.chSchWakeupS:00000000 $t
-     /tmp/cc9LTYwk.s:201    .text.chSchWakeupS:00000000 chSchWakeupS
-     /tmp/cc9LTYwk.s:230    .text.chSchWakeupS:00000038 $d
-     /tmp/cc9LTYwk.s:233    .text.chSchDoReschedule:00000000 $t
-     /tmp/cc9LTYwk.s:238    .text.chSchDoReschedule:00000000 chSchDoReschedule
-     /tmp/cc9LTYwk.s:259    .text.chSchDoReschedule:00000028 $d
-     /tmp/cc9LTYwk.s:262    .text.chSchRescheduleS:00000000 $t
-     /tmp/cc9LTYwk.s:267    .text.chSchRescheduleS:00000000 chSchRescheduleS
-     /tmp/cc9LTYwk.s:284    .text.chSchRescheduleS:00000014 $d
+     /tmp/cchwx9bg.s:37     .text._scheduler_init:00000000 $t
+     /tmp/cchwx9bg.s:42     .text._scheduler_init:00000000 _scheduler_init
+     /tmp/cchwx9bg.s:59     .text._scheduler_init:00000014 $d
+     /tmp/cchwx9bg.s:62     .text.chSchReadyI:00000000 $t
+     /tmp/cchwx9bg.s:67     .text.chSchReadyI:00000000 chSchReadyI
+     /tmp/cchwx9bg.s:89     .text.chSchReadyI:0000001c $d
+     /tmp/cchwx9bg.s:92     .text.wakeup:00000000 $t
+     /tmp/cchwx9bg.s:96     .text.wakeup:00000000 wakeup
+     /tmp/cchwx9bg.s:130    .text.chSchGoSleepS:00000000 $t
+     /tmp/cchwx9bg.s:135    .text.chSchGoSleepS:00000000 chSchGoSleepS
+     /tmp/cchwx9bg.s:154    .text.chSchGoSleepS:00000020 $d
+     /tmp/cchwx9bg.s:157    .text.chSchGoSleepTimeoutS:00000000 $t
+     /tmp/cchwx9bg.s:162    .text.chSchGoSleepTimeoutS:00000000 chSchGoSleepTimeoutS
+     /tmp/cchwx9bg.s:192    .text.chSchGoSleepTimeoutS:00000034 $d
+     /tmp/cchwx9bg.s:196    .text.chSchWakeupS:00000000 $t
+     /tmp/cchwx9bg.s:201    .text.chSchWakeupS:00000000 chSchWakeupS
+     /tmp/cchwx9bg.s:230    .text.chSchWakeupS:00000038 $d
+     /tmp/cchwx9bg.s:233    .text.chSchDoReschedule:00000000 $t
+     /tmp/cchwx9bg.s:238    .text.chSchDoReschedule:00000000 chSchDoReschedule
+     /tmp/cchwx9bg.s:259    .text.chSchDoReschedule:00000028 $d
+     /tmp/cchwx9bg.s:262    .text.chSchRescheduleS:00000000 $t
+     /tmp/cchwx9bg.s:267    .text.chSchRescheduleS:00000000 chSchRescheduleS
+     /tmp/cchwx9bg.s:284    .text.chSchRescheduleS:00000014 $d
 
 UNDEFINED SYMBOLS
 _port_switch
