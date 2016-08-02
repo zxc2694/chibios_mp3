@@ -96,7 +96,7 @@ flash:
 	st-flash write $(BIN_IMAGE) 0x8000000
 #Make screen
 screen:
-	echo sudo screen /dev/ttyUSB0 9600 	
+	echo sudo screen /dev/ttyUSB0 38400 	
 # Other Targets
 clean:
 	-$(RM) $(SECONDARY_SIZE)$(OBJS)$(C_DEPS)$(ASM_DEPS)$(SECONDARY_FLASH)$(EXECUTABLES)$(SECONDARY_LIST)$(S_UPPER_DEPS) F4D_MP3.elf
