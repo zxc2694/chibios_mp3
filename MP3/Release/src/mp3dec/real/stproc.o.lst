@@ -1,0 +1,688 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"stproc.c"
+  16              		.section	.text.MULSHIFT32,"ax",%progbits
+  17              		.align	1
+  18              		.thumb
+  19              		.thumb_func
+  21              	MULSHIFT32:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24              		@ link register save eliminated.
+  25 0000 0B46     		mov	r3, r1
+  26              	@ 285 "../src/mp3dec/real/assembly.h" 1
+  27 0002 80FB0323 		smull r2,r3,r0,r3
+  28              	@ 0 "" 2
+  29              		.thumb
+  30 0006 1846     		mov	r0, r3
+  31 0008 7047     		bx	lr
+  33              		.section	.text.FASTABS,"ax",%progbits
+  34              		.align	1
+  35              		.thumb
+  36              		.thumb_func
+  38              	FASTABS:
+  39              		@ args = 0, pretend = 0, frame = 0
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		@ link register save eliminated.
+  42 0000 0023     		movs	r3, #0
+  43              	@ 294 "../src/mp3dec/real/assembly.h" 1
+  44 0002 80EAE073 		eor r3,r0,r0, asr #31;sub r3,r3,r0, asr #31;
+  44      A3EBE073 
+  45              	@ 0 "" 2
+  46              		.thumb
+  47 000a 1846     		mov	r0, r3
+  48 000c 7047     		bx	lr
+  50              		.section	.text.xmp3fixpt_MidSideProc,"ax",%progbits
+  51              		.align	1
+  52              		.global	xmp3fixpt_MidSideProc
+  53              		.thumb
+  54              		.thumb_func
+  56              	xmp3fixpt_MidSideProc:
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  60 0004 0026     		movs	r6, #0
+  61 0006 0446     		mov	r4, r0
+  62 0008 0D46     		mov	r5, r1
+  63 000a 1746     		mov	r7, r2
+  64 000c B046     		mov	r8, r6
+  65 000e B146     		mov	r9, r6
+  66 0010 B246     		mov	sl, r6
+  67 0012 16E0     		b	.L4
+  68              	.L5:
+  69 0014 04F5106B 		add	fp, r4, #2304
+  70 0018 A259     		ldr	r2, [r4, r6]
+  71 001a 5BF80610 		ldr	r1, [fp, r6]
+  72 001e 5018     		adds	r0, r2, r1
+  73 0020 531A     		subs	r3, r2, r1
+  74 0022 A051     		str	r0, [r4, r6]
+  75 0024 4BF80630 		str	r3, [fp, r6]
+  76 0028 FFF7FEFF 		bl	FASTABS
+  77 002c 49EA0009 		orr	r9, r9, r0
+  78 0030 5BF80600 		ldr	r0, [fp, r6]
+  79 0034 FFF7FEFF 		bl	FASTABS
+  80 0038 0AF1010A 		add	sl, sl, #1
+  81 003c 48EA0008 		orr	r8, r8, r0
+  82 0040 0436     		adds	r6, r6, #4
+  83              	.L4:
+  84 0042 AA45     		cmp	sl, r5
+  85 0044 E6DB     		blt	.L5
+  86 0046 97E80C00 		ldmia	r7, {r2, r3}
+  87 004a 42EA0901 		orr	r1, r2, r9
+  88 004e 43EA0800 		orr	r0, r3, r8
+  89 0052 3960     		str	r1, [r7, #0]
+  90 0054 7860     		str	r0, [r7, #4]
+  91 0056 BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  93              		.section	.text.xmp3fixpt_IntensityProcMPEG1,"ax",%progbits
+  94              		.align	1
+  95              		.global	xmp3fixpt_IntensityProcMPEG1
+  96              		.thumb
+  97              		.thumb_func
+  99              	xmp3fixpt_IntensityProcMPEG1:
+ 100              		@ args = 16, pretend = 0, frame = 80
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 103 0004 95B0     		sub	sp, sp, #84
+ 104 0006 1446     		mov	r4, r2
+ 105 0008 0590     		str	r0, [sp, #20]
+ 106 000a 1E98     		ldr	r0, [sp, #120]
+ 107 000c 0893     		str	r3, [sp, #32]
+ 108 000e 8769     		ldr	r7, [r0, #24]
+ 109 0010 4FB9     		cbnz	r7, .L7
+ 110 0012 C26A     		ldr	r2, [r0, #44]
+ 111 0014 636B     		ldr	r3, [r4, #52]
+ 112 0016 4069     		ldr	r0, [r0, #20]
+ 113 0018 0132     		adds	r2, r2, #1
+ 114 001a 00F1010C 		add	ip, r0, #1
+ 115 001e 33F91250 		ldrsh	r5, [r3, r2, lsl #1]
+ 116 0022 3B46     		mov	r3, r7
+ 117 0024 16E0     		b	.L8
+ 118              	.L7:
+ 119 0026 013F     		subs	r7, r7, #1
+ 120 0028 012F     		cmp	r7, #1
+ 121 002a 0ED8     		bhi	.L26
+ 122 002c 826A     		ldr	r2, [r0, #40]
+ 123 002e 0769     		ldr	r7, [r0, #16]
+ 124 0030 606B     		ldr	r0, [r4, #52]
+ 125 0032 00EB4206 		add	r6, r0, r2, lsl #1
+ 126 0036 4FF0000C 		mov	ip, #0
+ 127 003a B6F93050 		ldrsh	r5, [r6, #48]
+ 128 003e 531C     		adds	r3, r2, #1
+ 129 0040 0137     		adds	r7, r7, #1
+ 130 0042 05EB4505 		add	r5, r5, r5, lsl #1
+ 131 0046 6246     		mov	r2, ip
+ 132 0048 04E0     		b	.L8
+ 133              	.L26:
+ 134 004a 0027     		movs	r7, #0
+ 135 004c BC46     		mov	ip, r7
+ 136 004e 3B46     		mov	r3, r7
+ 137 0050 3A46     		mov	r2, r7
+ 138 0052 3D46     		mov	r5, r7
+ 139              	.L8:
+ 140 0054 4E1B     		subs	r6, r1, r5
+ 141 0056 1F98     		ldr	r0, [sp, #124]
+ 142 0058 9849     		ldr	r1, .L31
+ 143 005a 0993     		str	r3, [sp, #36]
+ 144 005c 4FF01C0A 		mov	sl, #28
+ 145 0060 4FF00009 		mov	r9, #0
+ 146 0064 0AFB001A 		mla	sl, sl, r0, r1
+ 147 0068 CB46     		mov	fp, r9
+ 148 006a 1146     		mov	r1, r2
+ 149 006c 0A97     		str	r7, [sp, #40]
+ 150 006e 5AE0     		b	.L9
+ 151              	.L17:
+ 152 0070 089B     		ldr	r3, [sp, #32]
+ 153 0072 5B5C     		ldrb	r3, [r3, r1]	@ zero_extendqisi2
+ 154 0074 072B     		cmp	r3, #7
+ 155 0076 09D1     		bne	.L10
+ 156 0078 914F     		ldr	r7, .L31+4
+ 157 007a 1F9A     		ldr	r2, [sp, #124]
+ 158 007c 1F98     		ldr	r0, [sp, #124]
+ 159 007e 57F83230 		ldr	r3, [r7, r2, lsl #3]
+ 160 0082 07EBC002 		add	r2, r7, r0, lsl #3
+ 161 0086 0493     		str	r3, [sp, #16]
+ 162 0088 5368     		ldr	r3, [r2, #4]
+ 163 008a 06E0     		b	.L29
+ 164              	.L10:
+ 165 008c 5AF82330 		ldr	r3, [sl, r3, lsl #2]
+ 166 0090 DAF81870 		ldr	r7, [sl, #24]
+ 167 0094 0493     		str	r3, [sp, #16]
+ 168 0096 0498     		ldr	r0, [sp, #16]
+ 169 0098 3B1A     		subs	r3, r7, r0
+ 170              	.L29:
+ 171 009a 606B     		ldr	r0, [r4, #52]
+ 172 009c 0D94     		str	r4, [sp, #52]
+ 173 009e 4A1C     		adds	r2, r1, #1
+ 174 00a0 30F91170 		ldrsh	r7, [r0, r1, lsl #1]
+ 175 00a4 30F91280 		ldrsh	r8, [r0, r2, lsl #1]
+ 176 00a8 0693     		str	r3, [sp, #24]
+ 177 00aa C7EB0801 		rsb	r1, r7, r8
+ 178 00ae 0027     		movs	r7, #0
+ 179 00b0 0792     		str	r2, [sp, #28]
+ 180 00b2 0B91     		str	r1, [sp, #44]
+ 181 00b4 CDF830A0 		str	sl, [sp, #48]
+ 182 00b8 3C46     		mov	r4, r7
+ 183 00ba 28E0     		b	.L12
+ 184              	.L14:
+ 185 00bc 0598     		ldr	r0, [sp, #20]
+ 186 00be 4FEA850A 		lsl	sl, r5, #2
+ 187 00c2 00EB0A08 		add	r8, r0, sl
+ 188 00c6 0698     		ldr	r0, [sp, #24]
+ 189 00c8 58F80710 		ldr	r1, [r8, r7]
+ 190 00cc CDF808C0 		str	ip, [sp, #8]
+ 191 00d0 FFF7FEFF 		bl	MULSHIFT32
+ 192 00d4 0599     		ldr	r1, [sp, #20]
+ 193 00d6 01F51063 		add	r3, r1, #2304
+ 194 00da 03EB0A0C 		add	ip, r3, sl
+ 195 00de 8000     		lsls	r0, r0, #2
+ 196 00e0 4CF80700 		str	r0, [ip, r7]
+ 197 00e4 FFF7FEFF 		bl	FASTABS
+ 198 00e8 58F80710 		ldr	r1, [r8, r7]
+ 199 00ec 49EA0009 		orr	r9, r9, r0
+ 200 00f0 0498     		ldr	r0, [sp, #16]
+ 201 00f2 FFF7FEFF 		bl	MULSHIFT32
+ 202 00f6 8000     		lsls	r0, r0, #2
+ 203 00f8 48F80700 		str	r0, [r8, r7]
+ 204 00fc FFF7FEFF 		bl	FASTABS
+ 205 0100 DDF808C0 		ldr	ip, [sp, #8]
+ 206 0104 4BEA000B 		orr	fp, fp, r0
+ 207 0108 013E     		subs	r6, r6, #1
+ 208 010a 0134     		adds	r4, r4, #1
+ 209 010c 0437     		adds	r7, r7, #4
+ 210              	.L12:
+ 211 010e 0B9B     		ldr	r3, [sp, #44]
+ 212 0110 9C42     		cmp	r4, r3
+ 213 0112 04EB0502 		add	r2, r4, r5
+ 214 0116 01DA     		bge	.L13
+ 215 0118 002E     		cmp	r6, #0
+ 216 011a CFD1     		bne	.L14
+ 217              	.L13:
+ 218 011c DDF830A0 		ldr	sl, [sp, #48]
+ 219 0120 0D9C     		ldr	r4, [sp, #52]
+ 220 0122 0799     		ldr	r1, [sp, #28]
+ 221 0124 1546     		mov	r5, r2
+ 222              	.L9:
+ 223 0126 6145     		cmp	r1, ip
+ 224 0128 0CDB     		blt	.L15
+ 225              	.L30:
+ 226 012a 099B     		ldr	r3, [sp, #36]
+ 227 012c DDF820C0 		ldr	ip, [sp, #32]
+ 228 0130 0A9F     		ldr	r7, [sp, #40]
+ 229 0132 03EB4308 		add	r8, r3, r3, lsl #1
+ 230 0136 0CEB0802 		add	r2, ip, r8
+ 231 013a 0492     		str	r2, [sp, #16]
+ 232 013c D846     		mov	r8, fp
+ 233 013e 3A46     		mov	r2, r7
+ 234 0140 A346     		mov	fp, r4
+ 235 0142 AFE0     		b	.L16
+ 236              	.L15:
+ 237 0144 002E     		cmp	r6, #0
+ 238 0146 93DC     		bgt	.L17
+ 239 0148 EFE7     		b	.L30
+ 240              	.L27:
+ 241 014a 0021     		movs	r1, #0
+ 242 014c 5746     		mov	r7, sl
+ 243 014e DDF87CA0 		ldr	sl, [sp, #124]
+ 244 0152 0693     		str	r3, [sp, #24]
+ 245 0154 0846     		mov	r0, r1
+ 246              	.L21:
+ 247 0156 049B     		ldr	r3, [sp, #16]
+ 248 0158 1C18     		adds	r4, r3, r0
+ 249 015a E47D     		ldrb	r4, [r4, #23]	@ zero_extendqisi2
+ 250 015c 072C     		cmp	r4, #7
+ 251 015e 0ED1     		bne	.L19
+ 252 0160 574C     		ldr	r4, .L31+4
+ 253 0162 0DF1380C 		add	ip, sp, #56
+ 254 0166 54F83A30 		ldr	r3, [r4, sl, lsl #3]
+ 255 016a 4CF80130 		str	r3, [ip, r1]
+ 256 016e 04EBCA03 		add	r3, r4, sl, lsl #3
+ 257 0172 11AC     		add	r4, sp, #68
+ 258 0174 D3F804C0 		ldr	ip, [r3, #4]
+ 259 0178 41F804C0 		str	ip, [r1, r4]
+ 260 017c 09E0     		b	.L20
+ 261              	.L19:
+ 262 017e 57F82440 		ldr	r4, [r7, r4, lsl #2]
+ 263 0182 D7F818C0 		ldr	ip, [r7, #24]
+ 264 0186 0EAB     		add	r3, sp, #56
+ 265 0188 5C50     		str	r4, [r3, r1]
+ 266 018a 11AB     		add	r3, sp, #68
+ 267 018c C4EB0C04 		rsb	r4, r4, ip
+ 268 0190 CC50     		str	r4, [r1, r3]
+ 269              	.L20:
+ 270 0192 0130     		adds	r0, r0, #1
+ 271 0194 0431     		adds	r1, r1, #4
+ 272 0196 0328     		cmp	r0, #3
+ 273 0198 DDD1     		bne	.L21
+ 274 019a 069C     		ldr	r4, [sp, #24]
+ 275 019c BA46     		mov	sl, r7
+ 276 019e DBF83470 		ldr	r7, [fp, #52]
+ 277 01a2 CDF820A0 		str	sl, [sp, #32]
+ 278 01a6 07EB4403 		add	r3, r7, r4, lsl #1
+ 279 01aa 07EB4401 		add	r1, r7, r4, lsl #1
+ 280 01ae 04F1010C 		add	ip, r4, #1
+ 281 01b2 B3F93000 		ldrsh	r0, [r3, #48]
+ 282 01b6 CDF818C0 		str	ip, [sp, #24]
+ 283 01ba B1F92E30 		ldrsh	r3, [r1, #46]
+ 284 01be DDF814C0 		ldr	ip, [sp, #20]
+ 285 01c2 C71A     		subs	r7, r0, r3
+ 286 01c4 AC00     		lsls	r4, r5, #2
+ 287 01c6 0CF51060 		add	r0, ip, #2304
+ 288 01ca 0021     		movs	r1, #0
+ 289 01cc 0797     		str	r7, [sp, #28]
+ 290 01ce 8A46     		mov	sl, r1
+ 291 01d0 0CEB0407 		add	r7, ip, r4
+ 292 01d4 0419     		adds	r4, r0, r4
+ 293 01d6 55E0     		b	.L22
+ 294              	.L24:
+ 295 01d8 57F80C1C 		ldr	r1, [r7, #-12]
+ 296 01dc 1198     		ldr	r0, [sp, #68]
+ 297 01de 0192     		str	r2, [sp, #4]
+ 298 01e0 FFF7FEFF 		bl	MULSHIFT32
+ 299 01e4 8000     		lsls	r0, r0, #2
+ 300 01e6 44F80C0C 		str	r0, [r4, #-12]
+ 301 01ea FFF7FEFF 		bl	FASTABS
+ 302 01ee 57F80C1C 		ldr	r1, [r7, #-12]
+ 303 01f2 8446     		mov	ip, r0
+ 304 01f4 0E98     		ldr	r0, [sp, #56]
+ 305 01f6 CDF808C0 		str	ip, [sp, #8]
+ 306 01fa FFF7FEFF 		bl	MULSHIFT32
+ 307 01fe 8000     		lsls	r0, r0, #2
+ 308 0200 47F80C0C 		str	r0, [r7, #-12]
+ 309 0204 FFF7FEFF 		bl	FASTABS
+ 310 0208 57F8081C 		ldr	r1, [r7, #-8]
+ 311 020c 0346     		mov	r3, r0
+ 312 020e 1298     		ldr	r0, [sp, #72]
+ 313 0210 0393     		str	r3, [sp, #12]
+ 314 0212 FFF7FEFF 		bl	MULSHIFT32
+ 315 0216 8000     		lsls	r0, r0, #2
+ 316 0218 44F8080C 		str	r0, [r4, #-8]
+ 317 021c FFF7FEFF 		bl	FASTABS
+ 318 0220 DDF808C0 		ldr	ip, [sp, #8]
+ 319 0224 57F8081C 		ldr	r1, [r7, #-8]
+ 320 0228 4CEA0000 		orr	r0, ip, r0
+ 321 022c 40EA0909 		orr	r9, r0, r9
+ 322 0230 0F98     		ldr	r0, [sp, #60]
+ 323 0232 FFF7FEFF 		bl	MULSHIFT32
+ 324 0236 8000     		lsls	r0, r0, #2
+ 325 0238 47F8080C 		str	r0, [r7, #-8]
+ 326 023c FFF7FEFF 		bl	FASTABS
+ 327 0240 0399     		ldr	r1, [sp, #12]
+ 328 0242 41EA0002 		orr	r2, r1, r0
+ 329 0246 57F8041C 		ldr	r1, [r7, #-4]
+ 330 024a 1398     		ldr	r0, [sp, #76]
+ 331 024c 42EA0808 		orr	r8, r2, r8
+ 332 0250 FFF7FEFF 		bl	MULSHIFT32
+ 333 0254 8000     		lsls	r0, r0, #2
+ 334 0256 44F8040C 		str	r0, [r4, #-4]
+ 335 025a FFF7FEFF 		bl	FASTABS
+ 336 025e 57F8041C 		ldr	r1, [r7, #-4]
+ 337 0262 49EA0009 		orr	r9, r9, r0
+ 338 0266 1098     		ldr	r0, [sp, #64]
+ 339 0268 FFF7FEFF 		bl	MULSHIFT32
+ 340 026c 8000     		lsls	r0, r0, #2
+ 341 026e 47F8040C 		str	r0, [r7, #-4]
+ 342 0272 FFF7FEFF 		bl	FASTABS
+ 343 0276 019A     		ldr	r2, [sp, #4]
+ 344 0278 48EA0008 		orr	r8, r8, r0
+ 345 027c 033E     		subs	r6, r6, #3
+ 346 027e 0AF1010A 		add	sl, sl, #1
+ 347 0282 0335     		adds	r5, r5, #3
+ 348              	.L22:
+ 349 0284 0799     		ldr	r1, [sp, #28]
+ 350 0286 8A45     		cmp	sl, r1
+ 351 0288 03DA     		bge	.L23
+ 352 028a 0C37     		adds	r7, r7, #12
+ 353 028c 0C34     		adds	r4, r4, #12
+ 354 028e 022E     		cmp	r6, #2
+ 355 0290 A2DC     		bgt	.L24
+ 356              	.L23:
+ 357 0292 DDF810C0 		ldr	ip, [sp, #16]
+ 358 0296 DDF820A0 		ldr	sl, [sp, #32]
+ 359 029a 069B     		ldr	r3, [sp, #24]
+ 360 029c 0CF1030C 		add	ip, ip, #3
+ 361 02a0 CDF810C0 		str	ip, [sp, #16]
+ 362              	.L16:
+ 363 02a4 9342     		cmp	r3, r2
+ 364 02a6 02DA     		bge	.L25
+ 365 02a8 022E     		cmp	r6, #2
+ 366 02aa 3FF74EAF 		bgt	.L27
+ 367              	.L25:
+ 368 02ae 219A     		ldr	r2, [sp, #132]
+ 369 02b0 82E80003 		stmia	r2, {r8, r9}
+ 370 02b4 15B0     		add	sp, sp, #84
+ 371 02b6 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 372              	.L32:
+ 373 02ba 00BF     		.align	2
+ 374              	.L31:
+ 375 02bc 00000000 		.word	xmp3fixpt_ISFMpeg1
+ 376 02c0 00000000 		.word	xmp3fixpt_ISFIIP
+ 378              		.section	.text.xmp3fixpt_IntensityProcMPEG2,"ax",%progbits
+ 379              		.align	1
+ 380              		.global	xmp3fixpt_IntensityProcMPEG2
+ 381              		.thumb
+ 382              		.thumb_func
+ 384              	xmp3fixpt_IntensityProcMPEG2:
+ 385              		@ args = 20, pretend = 0, frame = 144
+ 386              		@ frame_needed = 0, uses_anonymous_args = 0
+ 387 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 388 0004 A5B0     		sub	sp, sp, #148
+ 389 0006 1446     		mov	r4, r2
+ 390 0008 2F9E     		ldr	r6, [sp, #188]
+ 391 000a 309A     		ldr	r2, [sp, #192]
+ 392 000c 3568     		ldr	r5, [r6, #0]
+ 393 000e 0690     		str	r0, [sp, #24]
+ 394 0010 02EB4507 		add	r7, r2, r5, lsl #1
+ 395 0014 A14D     		ldr	r5, .L64
+ 396 0016 0993     		str	r3, [sp, #36]
+ 397 0018 B801     		lsls	r0, r7, #6
+ 398 001a 4219     		adds	r2, r0, r5
+ 399 001c 2E9B     		ldr	r3, [sp, #184]
+ 400 001e 0592     		str	r2, [sp, #20]
+ 401 0020 0425     		movs	r5, #4
+ 402 0022 0020     		movs	r0, #0
+ 403              	.L36:
+ 404 0024 56F8042F 		ldr	r2, [r6, #4]!
+ 405 0028 0127     		movs	r7, #1
+ 406 002a 07FA02FC 		lsl	ip, r7, r2
+ 407 002e 0CF1FF3C 		add	ip, ip, #-1
+ 408 0032 3769     		ldr	r7, [r6, #16]
+ 409 0034 0022     		movs	r2, #0
+ 410 0036 06E0     		b	.L34
+ 411              	.L35:
+ 412 0038 0DF13409 		add	r9, sp, #52
+ 413 003c 09EB8008 		add	r8, r9, r0, lsl #2
+ 414 0040 48F822C0 		str	ip, [r8, r2, lsl #2]
+ 415 0044 0132     		adds	r2, r2, #1
+ 416              	.L34:
+ 417 0046 BA42     		cmp	r2, r7
+ 418 0048 F6DB     		blt	.L35
+ 419 004a 002F     		cmp	r7, #0
+ 420 004c A8BF     		it	ge
+ 421 004e C019     		addge	r0, r0, r7
+ 422 0050 013D     		subs	r5, r5, #1
+ 423 0052 E7D1     		bne	.L36
+ 424 0054 9E69     		ldr	r6, [r3, #24]
+ 425 0056 0122     		movs	r2, #1
+ 426 0058 002E     		cmp	r6, #0
+ 427 005a 7ED1     		bne	.L37
+ 428 005c DF6A     		ldr	r7, [r3, #44]
+ 429 005e 2392     		str	r2, [sp, #140]
+ 430 0060 B818     		adds	r0, r7, r2
+ 431 0062 2292     		str	r2, [sp, #136]
+ 432 0064 626B     		ldr	r2, [r4, #52]
+ 433 0066 5E69     		ldr	r6, [r3, #20]
+ 434 0068 32F91080 		ldrsh	r8, [r2, r0, lsl #1]
+ 435 006c 0796     		str	r6, [sp, #28]
+ 436 006e C8EB010C 		rsb	ip, r8, r1
+ 437 0072 0DA9     		add	r1, sp, #52
+ 438 0074 01EB8703 		add	r3, r1, r7, lsl #2
+ 439 0078 0293     		str	r3, [sp, #8]
+ 440 007a 0146     		mov	r1, r0
+ 441 007c 2F46     		mov	r7, r5
+ 442 007e E146     		mov	r9, ip
+ 443 0080 67E0     		b	.L38
+ 444              	.L46:
+ 445 0082 029B     		ldr	r3, [sp, #8]
+ 446 0084 099A     		ldr	r2, [sp, #36]
+ 447 0086 53F8040F 		ldr	r0, [r3, #4]!
+ 448 008a 525C     		ldrb	r2, [r2, r1]	@ zero_extendqisi2
+ 449 008c 0293     		str	r3, [sp, #8]
+ 450 008e 8242     		cmp	r2, r0
+ 451 0090 0AD1     		bne	.L39
+ 452 0092 8348     		ldr	r0, .L64+4
+ 453 0094 309E     		ldr	r6, [sp, #192]
+ 454 0096 309B     		ldr	r3, [sp, #192]
+ 455 0098 50F83620 		ldr	r2, [r0, r6, lsl #3]
+ 456 009c 00EBC306 		add	r6, r0, r3, lsl #3
+ 457 00a0 0392     		str	r2, [sp, #12]
+ 458 00a2 D6F804C0 		ldr	ip, [r6, #4]
+ 459 00a6 11E0     		b	.L40
+ 460              	.L39:
+ 461 00a8 501C     		adds	r0, r2, #1
+ 462 00aa 4310     		asrs	r3, r0, #1
+ 463 00ac 12F00102 		ands	r2, r2, #1
+ 464 00b0 01D0     		beq	.L56
+ 465 00b2 9800     		lsls	r0, r3, #2
+ 466 00b4 00E0     		b	.L41
+ 467              	.L56:
+ 468 00b6 1046     		mov	r0, r2
+ 469              	.L41:
+ 470 00b8 059E     		ldr	r6, [sp, #20]
+ 471 00ba 3658     		ldr	r6, [r6, r0]
+ 472 00bc 0396     		str	r6, [sp, #12]
+ 473 00be 0AB9     		cbnz	r2, .L57
+ 474 00c0 9B00     		lsls	r3, r3, #2
+ 475 00c2 00E0     		b	.L42
+ 476              	.L57:
+ 477 00c4 0023     		movs	r3, #0
+ 478              	.L42:
+ 479 00c6 059A     		ldr	r2, [sp, #20]
+ 480 00c8 52F803C0 		ldr	ip, [r2, r3]
+ 481              	.L40:
+ 482 00cc 4E1C     		adds	r6, r1, #1
+ 483 00ce 636B     		ldr	r3, [r4, #52]
+ 484 00d0 0496     		str	r6, [sp, #16]
+ 485 00d2 33F91600 		ldrsh	r0, [r3, r6, lsl #1]
+ 486 00d6 33F91110 		ldrsh	r1, [r3, r1, lsl #1]
+ 487 00da 0894     		str	r4, [sp, #32]
+ 488 00dc C1EB000B 		rsb	fp, r1, r0
+ 489 00e0 0026     		movs	r6, #0
+ 490 00e2 E246     		mov	sl, ip
+ 491 00e4 CB45     		cmp	fp, r9
+ 492 00e6 A8BF     		it	ge
+ 493 00e8 CB46     		movge	fp, r9
+ 494 00ea CC46     		mov	ip, r9
+ 495 00ec 3446     		mov	r4, r6
+ 496 00ee 24E0     		b	.L43
+ 497              	.L44:
+ 498 00f0 0698     		ldr	r0, [sp, #24]
+ 499 00f2 4FEA8809 		lsl	r9, r8, #2
+ 500 00f6 00EB0902 		add	r2, r0, r9
+ 501 00fa 5046     		mov	r0, sl
+ 502 00fc 9159     		ldr	r1, [r2, r6]
+ 503 00fe 0192     		str	r2, [sp, #4]
+ 504 0100 CDF800C0 		str	ip, [sp, #0]
+ 505 0104 FFF7FEFF 		bl	MULSHIFT32
+ 506 0108 069B     		ldr	r3, [sp, #24]
+ 507 010a 03F5106C 		add	ip, r3, #2304
+ 508 010e E144     		add	r9, ip, r9
+ 509 0110 8000     		lsls	r0, r0, #2
+ 510 0112 49F80600 		str	r0, [r9, r6]
+ 511 0116 FFF7FEFF 		bl	FASTABS
+ 512 011a 0199     		ldr	r1, [sp, #4]
+ 513 011c 0543     		orrs	r5, r5, r0
+ 514 011e 8959     		ldr	r1, [r1, r6]
+ 515 0120 0398     		ldr	r0, [sp, #12]
+ 516 0122 FFF7FEFF 		bl	MULSHIFT32
+ 517 0126 019A     		ldr	r2, [sp, #4]
+ 518 0128 8000     		lsls	r0, r0, #2
+ 519 012a 9051     		str	r0, [r2, r6]
+ 520 012c FFF7FEFF 		bl	FASTABS
+ 521 0130 DDF800C0 		ldr	ip, [sp, #0]
+ 522 0134 0743     		orrs	r7, r7, r0
+ 523 0136 0134     		adds	r4, r4, #1
+ 524 0138 0436     		adds	r6, r6, #4
+ 525              	.L43:
+ 526 013a 5C45     		cmp	r4, fp
+ 527 013c D8DB     		blt	.L44
+ 528 013e BBF1000F 		cmp	fp, #0
+ 529 0142 A8BF     		it	ge
+ 530 0144 D844     		addge	r8, r8, fp
+ 531 0146 BCEB0B09 		subs	r9, ip, fp
+ 532 014a 089C     		ldr	r4, [sp, #32]
+ 533 014c 00F09F80 		beq	.L45
+ 534 0150 0499     		ldr	r1, [sp, #16]
+ 535              	.L38:
+ 536 0152 079E     		ldr	r6, [sp, #28]
+ 537 0154 8E42     		cmp	r6, r1
+ 538 0156 94DA     		bge	.L46
+ 539 0158 99E0     		b	.L45
+ 540              	.L37:
+ 541 015a A346     		mov	fp, r4
+ 542 015c 1992     		str	r2, [sp, #100]
+ 543 015e 2F46     		mov	r7, r5
+ 544 0160 A846     		mov	r8, r5
+ 545 0162 1C46     		mov	r4, r3
+ 546              	.L55:
+ 547 0164 E369     		ldr	r3, [r4, #28]
+ 548 0166 DBF83400 		ldr	r0, [fp, #52]
+ 549 016a 54F8042F 		ldr	r2, [r4, #4]!
+ 550 016e DDF824C0 		ldr	ip, [sp, #36]
+ 551 0172 0892     		str	r2, [sp, #32]
+ 552 0174 00EB4301 		add	r1, r0, r3, lsl #1
+ 553 0178 03EB4300 		add	r0, r3, r3, lsl #1
+ 554 017c 0E8E     		ldrh	r6, [r1, #48]
+ 555 017e 0322     		movs	r2, #3
+ 556 0180 08EB0001 		add	r1, r8, r0
+ 557 0184 16FB0282 		smlabb	r2, r6, r2, r8
+ 558 0188 0DF13409 		add	r9, sp, #52
+ 559 018c 0CEB0106 		add	r6, ip, r1
+ 560 0190 09EB8300 		add	r0, r9, r3, lsl #2
+ 561 0194 06F1170C 		add	ip, r6, #23
+ 562 0198 4146     		mov	r1, r8
+ 563 019a 9146     		mov	r9, r2
+ 564 019c E046     		mov	r8, ip
+ 565 019e 0790     		str	r0, [sp, #28]
+ 566 01a0 0133     		adds	r3, r3, #1
+ 567 01a2 2246     		mov	r2, r4
+ 568 01a4 8C46     		mov	ip, r1
+ 569 01a6 68E0     		b	.L47
+ 570              	.L54:
+ 571 01a8 079C     		ldr	r4, [sp, #28]
+ 572 01aa 98F80300 		ldrb	r0, [r8, #3]	@ zero_extendqisi2
+ 573 01ae 54F8046F 		ldr	r6, [r4, #4]!
+ 574 01b2 B042     		cmp	r0, r6
+ 575 01b4 0794     		str	r4, [sp, #28]
+ 576 01b6 09D1     		bne	.L48
+ 577 01b8 3948     		ldr	r0, .L64+4
+ 578 01ba 3099     		ldr	r1, [sp, #192]
+ 579 01bc 309E     		ldr	r6, [sp, #192]
+ 580 01be 50F83140 		ldr	r4, [r0, r1, lsl #3]
+ 581 01c2 00EBC601 		add	r1, r0, r6, lsl #3
+ 582 01c6 0294     		str	r4, [sp, #8]
+ 583 01c8 4968     		ldr	r1, [r1, #4]
+ 584 01ca 10E0     		b	.L63
+ 585              	.L48:
+ 586 01cc 461C     		adds	r6, r0, #1
+ 587 01ce 7110     		asrs	r1, r6, #1
+ 588 01d0 10F00100 		ands	r0, r0, #1
+ 589 01d4 01D0     		beq	.L58
+ 590 01d6 8C00     		lsls	r4, r1, #2
+ 591 01d8 00E0     		b	.L50
+ 592              	.L58:
+ 593 01da 0446     		mov	r4, r0
+ 594              	.L50:
+ 595 01dc 059E     		ldr	r6, [sp, #20]
+ 596 01de 3459     		ldr	r4, [r6, r4]
+ 597 01e0 0294     		str	r4, [sp, #8]
+ 598 01e2 08B9     		cbnz	r0, .L59
+ 599 01e4 8900     		lsls	r1, r1, #2
+ 600 01e6 00E0     		b	.L51
+ 601              	.L59:
+ 602 01e8 0021     		movs	r1, #0
+ 603              	.L51:
+ 604 01ea 0598     		ldr	r0, [sp, #20]
+ 605 01ec 4158     		ldr	r1, [r0, r1]
+ 606              	.L63:
+ 607 01ee 0391     		str	r1, [sp, #12]
+ 608 01f0 DBF83410 		ldr	r1, [fp, #52]
+ 609 01f4 CDF82C80 		str	r8, [sp, #44]
+ 610 01f8 01EB4300 		add	r0, r1, r3, lsl #1
+ 611 01fc 01EB4306 		add	r6, r1, r3, lsl #1
+ 612 0200 5C1C     		adds	r4, r3, #1
+ 613 0202 0A94     		str	r4, [sp, #40]
+ 614 0204 B6F92E10 		ldrsh	r1, [r6, #46]
+ 615 0208 B0F93040 		ldrsh	r4, [r0, #48]
+ 616 020c 631A     		subs	r3, r4, r1
+ 617 020e 0024     		movs	r4, #0
+ 618 0210 0493     		str	r3, [sp, #16]
+ 619 0212 A046     		mov	r8, r4
+ 620 0214 24E0     		b	.L52
+ 621              	.L53:
+ 622 0216 069B     		ldr	r3, [sp, #24]
+ 623 0218 0398     		ldr	r0, [sp, #12]
+ 624 021a 4FEA890A 		lsl	sl, r9, #2
+ 625 021e 03EB0A06 		add	r6, r3, sl
+ 626 0222 08F10108 		add	r8, r8, #1
+ 627 0226 3159     		ldr	r1, [r6, r4]
+ 628 0228 0192     		str	r2, [sp, #4]
+ 629 022a CDF800C0 		str	ip, [sp, #0]
+ 630 022e FFF7FEFF 		bl	MULSHIFT32
+ 631 0232 069A     		ldr	r2, [sp, #24]
+ 632 0234 02F5106C 		add	ip, r2, #2304
+ 633 0238 E244     		add	sl, ip, sl
+ 634 023a 8000     		lsls	r0, r0, #2
+ 635 023c 4AF80400 		str	r0, [sl, r4]
+ 636 0240 FFF7FEFF 		bl	FASTABS
+ 637 0244 3159     		ldr	r1, [r6, r4]
+ 638 0246 0543     		orrs	r5, r5, r0
+ 639 0248 0298     		ldr	r0, [sp, #8]
+ 640 024a FFF7FEFF 		bl	MULSHIFT32
+ 641 024e 8000     		lsls	r0, r0, #2
+ 642 0250 3051     		str	r0, [r6, r4]
+ 643 0252 FFF7FEFF 		bl	FASTABS
+ 644 0256 DDF800C0 		ldr	ip, [sp, #0]
+ 645 025a 019A     		ldr	r2, [sp, #4]
+ 646 025c 0743     		orrs	r7, r7, r0
+ 647 025e 0C34     		adds	r4, r4, #12
+ 648              	.L52:
+ 649 0260 049E     		ldr	r6, [sp, #16]
+ 650 0262 B045     		cmp	r8, r6
+ 651 0264 D7DB     		blt	.L53
+ 652 0266 DDF82C80 		ldr	r8, [sp, #44]
+ 653 026a 0A9B     		ldr	r3, [sp, #40]
+ 654 026c 26EAE670 		bic	r0, r6, r6, asr #31
+ 655 0270 00EB4001 		add	r1, r0, r0, lsl #1
+ 656 0274 8944     		add	r9, r9, r1
+ 657 0276 08F10308 		add	r8, r8, #3
+ 658              	.L47:
+ 659 027a 089C     		ldr	r4, [sp, #32]
+ 660 027c 9C42     		cmp	r4, r3
+ 661 027e 93DA     		bge	.L54
+ 662 0280 0CF10108 		add	r8, ip, #1
+ 663 0284 B8F1030F 		cmp	r8, #3
+ 664 0288 1446     		mov	r4, r2
+ 665 028a 7FF46BAF 		bne	.L55
+ 666              	.L45:
+ 667 028e 329E     		ldr	r6, [sp, #200]
+ 668 0290 3760     		str	r7, [r6, #0]
+ 669 0292 7560     		str	r5, [r6, #4]
+ 670 0294 25B0     		add	sp, sp, #148
+ 671 0296 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 672              	.L65:
+ 673 029a 00BF     		.align	2
+ 674              	.L64:
+ 675 029c 00000000 		.word	xmp3fixpt_ISFMpeg2
+ 676 02a0 00000000 		.word	xmp3fixpt_ISFIIP
+ 678              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 stproc.c
+     /tmp/ccD08opo.s:17     .text.MULSHIFT32:00000000 $t
+     /tmp/ccD08opo.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
+     /tmp/ccD08opo.s:34     .text.FASTABS:00000000 $t
+     /tmp/ccD08opo.s:38     .text.FASTABS:00000000 FASTABS
+     /tmp/ccD08opo.s:51     .text.xmp3fixpt_MidSideProc:00000000 $t
+     /tmp/ccD08opo.s:56     .text.xmp3fixpt_MidSideProc:00000000 xmp3fixpt_MidSideProc
+     /tmp/ccD08opo.s:94     .text.xmp3fixpt_IntensityProcMPEG1:00000000 $t
+     /tmp/ccD08opo.s:99     .text.xmp3fixpt_IntensityProcMPEG1:00000000 xmp3fixpt_IntensityProcMPEG1
+     /tmp/ccD08opo.s:375    .text.xmp3fixpt_IntensityProcMPEG1:000002bc $d
+     /tmp/ccD08opo.s:379    .text.xmp3fixpt_IntensityProcMPEG2:00000000 $t
+     /tmp/ccD08opo.s:384    .text.xmp3fixpt_IntensityProcMPEG2:00000000 xmp3fixpt_IntensityProcMPEG2
+     /tmp/ccD08opo.s:675    .text.xmp3fixpt_IntensityProcMPEG2:0000029c $d
+
+UNDEFINED SYMBOLS
+xmp3fixpt_ISFMpeg1
+xmp3fixpt_ISFIIP
+xmp3fixpt_ISFMpeg2

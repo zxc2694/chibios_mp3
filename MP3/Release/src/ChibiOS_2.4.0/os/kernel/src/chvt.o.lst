@@ -1,0 +1,158 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"chvt.c"
+  16              		.section	.text._vt_init,"ax",%progbits
+  17              		.align	1
+  18              		.global	_vt_init
+  19              		.thumb
+  20              		.thumb_func
+  22              	_vt_init:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 044B     		ldr	r3, .L2
+  27 0002 4FF0FF30 		mov	r0, #-1
+  28 0006 0022     		movs	r2, #0
+  29 0008 5B60     		str	r3, [r3, #4]
+  30 000a 1B60     		str	r3, [r3, #0]
+  31 000c 9860     		str	r0, [r3, #8]
+  32 000e DA60     		str	r2, [r3, #12]
+  33 0010 7047     		bx	lr
+  34              	.L3:
+  35 0012 00BF     		.align	2
+  36              	.L2:
+  37 0014 00000000 		.word	vtlist
+  39              		.section	.text.chVTSetI,"ax",%progbits
+  40              		.align	1
+  41              		.global	chVTSetI
+  42              		.thumb
+  43              		.thumb_func
+  45              	chVTSetI:
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48 0000 30B5     		push	{r4, r5, lr}
+  49 0002 C260     		str	r2, [r0, #12]
+  50 0004 0A4A     		ldr	r2, .L8
+  51 0006 0361     		str	r3, [r0, #16]
+  52 0008 1546     		mov	r5, r2
+  53 000a 1368     		ldr	r3, [r2, #0]
+  54 000c 01E0     		b	.L5
+  55              	.L6:
+  56 000e 1B68     		ldr	r3, [r3, #0]
+  57 0010 091B     		subs	r1, r1, r4
+  58              	.L5:
+  59 0012 9C68     		ldr	r4, [r3, #8]
+  60 0014 8C42     		cmp	r4, r1
+  61 0016 FAD3     		bcc	.L6
+  62 0018 5A68     		ldr	r2, [r3, #4]
+  63 001a 0360     		str	r3, [r0, #0]
+  64 001c AB42     		cmp	r3, r5
+  65 001e 4260     		str	r2, [r0, #4]
+  66 0020 1060     		str	r0, [r2, #0]
+  67 0022 5860     		str	r0, [r3, #4]
+  68 0024 8160     		str	r1, [r0, #8]
+  69 0026 02D0     		beq	.L4
+  70 0028 9868     		ldr	r0, [r3, #8]
+  71 002a 411A     		subs	r1, r0, r1
+  72 002c 9960     		str	r1, [r3, #8]
+  73              	.L4:
+  74 002e 30BD     		pop	{r4, r5, pc}
+  75              	.L9:
+  76              		.align	2
+  77              	.L8:
+  78 0030 00000000 		.word	vtlist
+  80              		.section	.text.chVTResetI,"ax",%progbits
+  81              		.align	1
+  82              		.global	chVTResetI
+  83              		.thumb
+  84              		.thumb_func
+  86              	chVTResetI:
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		@ link register save eliminated.
+  90 0000 0368     		ldr	r3, [r0, #0]
+  91 0002 074A     		ldr	r2, .L12
+  92 0004 9342     		cmp	r3, r2
+  93 0006 03D0     		beq	.L11
+  94 0008 9968     		ldr	r1, [r3, #8]
+  95 000a 8268     		ldr	r2, [r0, #8]
+  96 000c 8918     		adds	r1, r1, r2
+  97 000e 9960     		str	r1, [r3, #8]
+  98              	.L11:
+  99 0010 4268     		ldr	r2, [r0, #4]
+ 100 0012 1360     		str	r3, [r2, #0]
+ 101 0014 0168     		ldr	r1, [r0, #0]
+ 102 0016 0023     		movs	r3, #0
+ 103 0018 4A60     		str	r2, [r1, #4]
+ 104 001a C360     		str	r3, [r0, #12]
+ 105 001c 7047     		bx	lr
+ 106              	.L13:
+ 107 001e 00BF     		.align	2
+ 108              	.L12:
+ 109 0020 00000000 		.word	vtlist
+ 111              		.section	.text.chTimeIsWithin,"ax",%progbits
+ 112              		.align	1
+ 113              		.global	chTimeIsWithin
+ 114              		.thumb
+ 115              		.thumb_func
+ 117              	chTimeIsWithin:
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 121 0000 084B     		ldr	r3, .L20
+ 122 0002 8142     		cmp	r1, r0
+ 123 0004 DB68     		ldr	r3, [r3, #12]
+ 124 0006 02D9     		bls	.L15
+ 125 0008 8342     		cmp	r3, r0
+ 126 000a 07D3     		bcc	.L17
+ 127 000c 01E0     		b	.L19
+ 128              	.L15:
+ 129 000e 8342     		cmp	r3, r0
+ 130 0010 06D2     		bcs	.L18
+ 131              	.L19:
+ 132 0012 8B42     		cmp	r3, r1
+ 133 0014 2CBF     		ite	cs
+ 134 0016 0020     		movcs	r0, #0
+ 135 0018 0120     		movcc	r0, #1
+ 136 001a 7047     		bx	lr
+ 137              	.L17:
+ 138 001c 0020     		movs	r0, #0
+ 139 001e 7047     		bx	lr
+ 140              	.L18:
+ 141 0020 0120     		movs	r0, #1
+ 142 0022 7047     		bx	lr
+ 143              	.L21:
+ 144              		.align	2
+ 145              	.L20:
+ 146 0024 00000000 		.word	vtlist
+ 148              		.comm	vtlist,16,4
+ 149              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 chvt.c
+     /tmp/ccXzSbTD.s:17     .text._vt_init:00000000 $t
+     /tmp/ccXzSbTD.s:22     .text._vt_init:00000000 _vt_init
+     /tmp/ccXzSbTD.s:37     .text._vt_init:00000014 $d
+                            *COM*:00000010 vtlist
+     /tmp/ccXzSbTD.s:40     .text.chVTSetI:00000000 $t
+     /tmp/ccXzSbTD.s:45     .text.chVTSetI:00000000 chVTSetI
+     /tmp/ccXzSbTD.s:78     .text.chVTSetI:00000030 $d
+     /tmp/ccXzSbTD.s:81     .text.chVTResetI:00000000 $t
+     /tmp/ccXzSbTD.s:86     .text.chVTResetI:00000000 chVTResetI
+     /tmp/ccXzSbTD.s:109    .text.chVTResetI:00000020 $d
+     /tmp/ccXzSbTD.s:112    .text.chTimeIsWithin:00000000 $t
+     /tmp/ccXzSbTD.s:117    .text.chTimeIsWithin:00000000 chTimeIsWithin
+     /tmp/ccXzSbTD.s:146    .text.chTimeIsWithin:00000024 $d
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,329 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"chprintf.c"
+  16              		.section	.text.ltoa,"ax",%progbits
+  17              		.align	1
+  18              		.thumb
+  19              		.thumb_func
+  21              	ltoa:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24 0000 70B5     		push	{r4, r5, r6, lr}
+  25 0002 00F10B06 		add	r6, r0, #11
+  26 0006 3446     		mov	r4, r6
+  27              	.L3:
+  28 0008 B1FBF2F3 		udiv	r3, r1, r2
+  29 000c 02FB1311 		mls	r1, r2, r3, r1
+  30 0010 01F13005 		add	r5, r1, #48
+  31 0014 392D     		cmp	r5, #57
+  32 0016 C8BF     		it	gt
+  33 0018 01F13705 		addgt	r5, r1, #55
+  34 001c 04F8015D 		strb	r5, [r4, #-1]!
+  35 0020 1946     		mov	r1, r3
+  36 0022 002B     		cmp	r3, #0
+  37 0024 F0D1     		bne	.L3
+  38 0026 361B     		subs	r6, r6, r4
+  39              	.L4:
+  40 0028 E25C     		ldrb	r2, [r4, r3]	@ zero_extendqisi2
+  41 002a C254     		strb	r2, [r0, r3]
+  42 002c 0133     		adds	r3, r3, #1
+  43 002e B342     		cmp	r3, r6
+  44 0030 FAD1     		bne	.L4
+  45 0032 C018     		adds	r0, r0, r3
+  46 0034 70BD     		pop	{r4, r5, r6, pc}
+  48              		.section	.text.chprintf,"ax",%progbits
+  49              		.align	1
+  50              		.global	chprintf
+  51              		.thumb
+  52              		.thumb_func
+  54              	chprintf:
+  55              		@ args = 4, pretend = 12, frame = 16
+  56              		@ frame_needed = 0, uses_anonymous_args = 1
+  57 0000 0EB4     		push	{r1, r2, r3}
+  58 0002 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, sl, lr}
+  59 0006 85B0     		sub	sp, sp, #20
+  60 0008 0DAA     		add	r2, sp, #52
+  61 000a 0646     		mov	r6, r0
+  62 000c 52F8043B 		ldr	r3, [r2], #4
+  63 0010 0392     		str	r2, [sp, #12]
+  64 0012 00E0     		b	.L8
+  65              	.L11:
+  66 0014 2B46     		mov	r3, r5
+  67              	.L8:
+  68 0016 1978     		ldrb	r1, [r3, #0]	@ zero_extendqisi2
+  69 0018 0029     		cmp	r1, #0
+  70 001a 00F0EB80 		beq	.L63
+  71 001e 5D1C     		adds	r5, r3, #1
+  72 0020 2529     		cmp	r1, #37
+  73 0022 06D0     		beq	.L10
+  74 0024 3068     		ldr	r0, [r6, #0]
+  75 0026 4FF0FF32 		mov	r2, #-1
+  76 002a 0369     		ldr	r3, [r0, #16]
+  77 002c 3046     		mov	r0, r6
+  78 002e 9847     		blx	r3
+  79 0030 F0E7     		b	.L11
+  80              	.L10:
+  81 0032 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+  82 0034 2D29     		cmp	r1, #45
+  83 0036 03D1     		bne	.L50
+  84 0038 9D1C     		adds	r5, r3, #2
+  85 003a 4FF0010A 		mov	sl, #1
+  86 003e 01E0     		b	.L12
+  87              	.L50:
+  88 0040 4FF0000A 		mov	sl, #0
+  89              	.L12:
+  90 0044 2C78     		ldrb	r4, [r5, #0]	@ zero_extendqisi2
+  91 0046 2E2C     		cmp	r4, #46
+  92 0048 03D1     		bne	.L51
+  93 004a 0135     		adds	r5, r5, #1
+  94 004c 4FF03008 		mov	r8, #48
+  95 0050 01E0     		b	.L13
+  96              	.L51:
+  97 0052 4FF02008 		mov	r8, #32
+  98              	.L13:
+  99 0056 039A     		ldr	r2, [sp, #12]
+ 100 0058 2946     		mov	r1, r5
+ 101 005a 0027     		movs	r7, #0
+ 102              	.L16:
+ 103 005c 11F8013B 		ldrb	r3, [r1], #1	@ zero_extendqisi2
+ 104 0060 A3F13009 		sub	r9, r3, #48
+ 105 0064 5FFA89F0 		uxtb	r0, r9
+ 106 0068 0928     		cmp	r0, #9
+ 107 006a 0D46     		mov	r5, r1
+ 108 006c 03D9     		bls	.L14
+ 109 006e 2A2B     		cmp	r3, #42
+ 110 0070 05D1     		bne	.L15
+ 111 0072 1078     		ldrb	r0, [r2, #0]	@ zero_extendqisi2
+ 112 0074 0432     		adds	r2, r2, #4
+ 113              	.L14:
+ 114 0076 0A25     		movs	r5, #10
+ 115 0078 05FB0707 		mla	r7, r5, r7, r0
+ 116 007c EEE7     		b	.L16
+ 117              	.L15:
+ 118 007e 2E2B     		cmp	r3, #46
+ 119 0080 0392     		str	r2, [sp, #12]
+ 120 0082 15D1     		bne	.L52
+ 121 0084 0C46     		mov	r4, r1
+ 122 0086 0021     		movs	r1, #0
+ 123              	.L20:
+ 124 0088 2546     		mov	r5, r4
+ 125 008a 15F8013B 		ldrb	r3, [r5], #1	@ zero_extendqisi2
+ 126 008e A3F1300C 		sub	ip, r3, #48
+ 127 0092 5FFA8CF0 		uxtb	r0, ip
+ 128 0096 0928     		cmp	r0, #9
+ 129 0098 2C46     		mov	r4, r5
+ 130 009a 05D9     		bls	.L18
+ 131 009c 2A2B     		cmp	r3, #42
+ 132 009e 01D0     		beq	.L19
+ 133 00a0 0392     		str	r2, [sp, #12]
+ 134 00a2 06E0     		b	.L17
+ 135              	.L19:
+ 136 00a4 1078     		ldrb	r0, [r2, #0]	@ zero_extendqisi2
+ 137 00a6 0432     		adds	r2, r2, #4
+ 138              	.L18:
+ 139 00a8 0A23     		movs	r3, #10
+ 140 00aa 03FB0101 		mla	r1, r3, r1, r0
+ 141 00ae EBE7     		b	.L20
+ 142              	.L52:
+ 143 00b0 0021     		movs	r1, #0
+ 144              	.L17:
+ 145 00b2 6C2B     		cmp	r3, #108
+ 146 00b4 01D0     		beq	.L21
+ 147 00b6 4C2B     		cmp	r3, #76
+ 148 00b8 03D1     		bne	.L23
+ 149              	.L21:
+ 150 00ba 2A78     		ldrb	r2, [r5, #0]	@ zero_extendqisi2
+ 151 00bc 0AB1     		cbz	r2, .L23
+ 152 00be 0135     		adds	r5, r5, #1
+ 153 00c0 1346     		mov	r3, r2
+ 154              	.L23:
+ 155 00c2 632B     		cmp	r3, #99
+ 156 00c4 18D0     		beq	.L29
+ 157 00c6 09D8     		bhi	.L31
+ 158 00c8 4F2B     		cmp	r3, #79
+ 159 00ca 44D0     		beq	.L26
+ 160 00cc 02D8     		bhi	.L32
+ 161 00ce 442B     		cmp	r3, #68
+ 162 00d0 4DD1     		bne	.L24
+ 163 00d2 30E0     		b	.L25
+ 164              	.L32:
+ 165 00d4 552B     		cmp	r3, #85
+ 166 00d6 40D0     		beq	.L54
+ 167 00d8 582B     		cmp	r3, #88
+ 168 00da 0AE0     		b	.L66
+ 169              	.L31:
+ 170 00dc 732B     		cmp	r3, #115
+ 171 00de 15D0     		beq	.L30
+ 172 00e0 04D8     		bhi	.L33
+ 173 00e2 642B     		cmp	r3, #100
+ 174 00e4 27D0     		beq	.L25
+ 175 00e6 6F2B     		cmp	r3, #111
+ 176 00e8 41D1     		bne	.L24
+ 177 00ea 34E0     		b	.L26
+ 178              	.L33:
+ 179 00ec 752B     		cmp	r3, #117
+ 180 00ee 34D0     		beq	.L54
+ 181 00f0 782B     		cmp	r3, #120
+ 182              	.L66:
+ 183 00f2 3CD1     		bne	.L24
+ 184 00f4 1022     		movs	r2, #16
+ 185 00f6 31E0     		b	.L27
+ 186              	.L29:
+ 187 00f8 0398     		ldr	r0, [sp, #12]
+ 188 00fa 04AC     		add	r4, sp, #16
+ 189 00fc 0268     		ldr	r2, [r0, #0]
+ 190 00fe 011D     		adds	r1, r0, #4
+ 191 0100 0391     		str	r1, [sp, #12]
+ 192 0102 04F8102D 		strb	r2, [r4, #-16]!
+ 193 0106 4FF02008 		mov	r8, #32
+ 194 010a 33E0     		b	.L68
+ 195              	.L30:
+ 196 010c 039C     		ldr	r4, [sp, #12]
+ 197 010e 3C4B     		ldr	r3, .L69
+ 198 0110 221D     		adds	r2, r4, #4
+ 199 0112 0392     		str	r2, [sp, #12]
+ 200 0114 2468     		ldr	r4, [r4, #0]
+ 201 0116 47F6FF78 		movw	r8, #32767
+ 202 011a 002C     		cmp	r4, #0
+ 203 011c 08BF     		it	eq
+ 204 011e 1C46     		moveq	r4, r3
+ 205 0120 0029     		cmp	r1, #0
+ 206 0122 08BF     		it	eq
+ 207 0124 4146     		moveq	r1, r8
+ 208 0126 2346     		mov	r3, r4
+ 209              	.L37:
+ 210 0128 1846     		mov	r0, r3
+ 211 012a 0133     		adds	r3, r3, #1
+ 212 012c 0278     		ldrb	r2, [r0, #0]	@ zero_extendqisi2
+ 213 012e 22B3     		cbz	r2, .L57
+ 214 0130 0139     		subs	r1, r1, #1
+ 215 0132 F9D5     		bpl	.L37
+ 216 0134 21E0     		b	.L57
+ 217              	.L25:
+ 218 0136 0398     		ldr	r0, [sp, #12]
+ 219 0138 011D     		adds	r1, r0, #4
+ 220 013a 0391     		str	r1, [sp, #12]
+ 221 013c 0168     		ldr	r1, [r0, #0]
+ 222 013e 0029     		cmp	r1, #0
+ 223 0140 06DA     		bge	.L58
+ 224 0142 2D23     		movs	r3, #45
+ 225 0144 8DF80030 		strb	r3, [sp, #0]
+ 226 0148 4942     		negs	r1, r1
+ 227 014a 0DF10100 		add	r0, sp, #1
+ 228 014e 00E0     		b	.L40
+ 229              	.L58:
+ 230 0150 6846     		mov	r0, sp
+ 231              	.L40:
+ 232 0152 0A22     		movs	r2, #10
+ 233 0154 07E0     		b	.L67
+ 234              	.L26:
+ 235 0156 0822     		movs	r2, #8
+ 236 0158 00E0     		b	.L27
+ 237              	.L54:
+ 238 015a 0A22     		movs	r2, #10
+ 239              	.L27:
+ 240 015c 039C     		ldr	r4, [sp, #12]
+ 241 015e 201D     		adds	r0, r4, #4
+ 242 0160 0390     		str	r0, [sp, #12]
+ 243 0162 2168     		ldr	r1, [r4, #0]
+ 244 0164 6846     		mov	r0, sp
+ 245              	.L67:
+ 246 0166 FFF7FEFF 		bl	ltoa
+ 247 016a 6C46     		mov	r4, sp
+ 248 016c 07E0     		b	.L34
+ 249              	.L24:
+ 250 016e 04AC     		add	r4, sp, #16
+ 251 0170 04F8103D 		strb	r3, [r4, #-16]!
+ 252              	.L68:
+ 253 0174 0DF10100 		add	r0, sp, #1
+ 254 0178 01E0     		b	.L34
+ 255              	.L57:
+ 256 017a 4FF02008 		mov	r8, #32
+ 257              	.L34:
+ 258 017e C4EB0009 		rsb	r9, r4, r0
+ 259 0182 C9EB0707 		rsb	r7, r9, r7
+ 260 0186 27EAE777 		bic	r7, r7, r7, asr #31
+ 261 018a BAF1000F 		cmp	sl, #0
+ 262 018e 22D1     		bne	.L62
+ 263 0190 7F42     		negs	r7, r7
+ 264 0192 07B3     		cbz	r7, .L62
+ 265 0194 2178     		ldrb	r1, [r4, #0]	@ zero_extendqisi2
+ 266 0196 2D29     		cmp	r1, #45
+ 267 0198 0BD1     		bne	.L59
+ 268 019a B8F1300F 		cmp	r8, #48
+ 269 019e 08D1     		bne	.L59
+ 270 01a0 3268     		ldr	r2, [r6, #0]
+ 271 01a2 3046     		mov	r0, r6
+ 272 01a4 1369     		ldr	r3, [r2, #16]
+ 273 01a6 4FF0FF32 		mov	r2, #-1
+ 274 01aa 9847     		blx	r3
+ 275 01ac 0134     		adds	r4, r4, #1
+ 276 01ae 09F1FF39 		add	r9, r9, #-1
+ 277              	.L59:
+ 278 01b2 3168     		ldr	r1, [r6, #0]
+ 279 01b4 3046     		mov	r0, r6
+ 280 01b6 0B69     		ldr	r3, [r1, #16]
+ 281 01b8 4FF0FF32 		mov	r2, #-1
+ 282 01bc 4146     		mov	r1, r8
+ 283 01be 9847     		blx	r3
+ 284 01c0 0137     		adds	r7, r7, #1
+ 285 01c2 F6D1     		bne	.L59
+ 286 01c4 07E0     		b	.L62
+ 287              	.L47:
+ 288 01c6 3068     		ldr	r0, [r6, #0]
+ 289 01c8 14F8011B 		ldrb	r1, [r4], #1	@ zero_extendqisi2
+ 290 01cc 0369     		ldr	r3, [r0, #16]
+ 291 01ce 4FF0FF32 		mov	r2, #-1
+ 292 01d2 3046     		mov	r0, r6
+ 293 01d4 9847     		blx	r3
+ 294              	.L62:
+ 295 01d6 B9F10109 		subs	r9, r9, #1
+ 296 01da F4D5     		bpl	.L47
+ 297 01dc 07E0     		b	.L64
+ 298              	.L49:
+ 299 01de 3268     		ldr	r2, [r6, #0]
+ 300 01e0 3046     		mov	r0, r6
+ 301 01e2 1369     		ldr	r3, [r2, #16]
+ 302 01e4 4146     		mov	r1, r8
+ 303 01e6 4FF0FF32 		mov	r2, #-1
+ 304 01ea 9847     		blx	r3
+ 305 01ec 013F     		subs	r7, r7, #1
+ 306              	.L64:
+ 307 01ee 002F     		cmp	r7, #0
+ 308 01f0 F5D1     		bne	.L49
+ 309 01f2 0FE7     		b	.L11
+ 310              	.L63:
+ 311 01f4 05B0     		add	sp, sp, #20
+ 312 01f6 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, sl, lr}
+ 313 01fa 03B0     		add	sp, sp, #12
+ 314 01fc 7047     		bx	lr
+ 315              	.L70:
+ 316 01fe 00BF     		.align	2
+ 317              	.L69:
+ 318 0200 00000000 		.word	.LC0
+ 320              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 321              	.LC0:
+ 322 0000 286E756C 		.ascii	"(null)\000"
+ 322      6C2900
+ 323              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 chprintf.c
+     /tmp/cc2IxaCo.s:17     .text.ltoa:00000000 $t
+     /tmp/cc2IxaCo.s:21     .text.ltoa:00000000 ltoa
+     /tmp/cc2IxaCo.s:49     .text.chprintf:00000000 $t
+     /tmp/cc2IxaCo.s:54     .text.chprintf:00000000 chprintf
+     /tmp/cc2IxaCo.s:318    .text.chprintf:00000200 $d
+
+NO UNDEFINED SYMBOLS

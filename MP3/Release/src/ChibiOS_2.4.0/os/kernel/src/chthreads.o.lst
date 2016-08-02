@@ -1,0 +1,416 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"chthreads.c"
+  16              		.section	.text._thread_init,"ax",%progbits
+  17              		.align	1
+  18              		.global	_thread_init
+  19              		.thumb
+  20              		.thumb_func
+  22              	_thread_init:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0222     		movs	r2, #2
+  27 0002 0277     		strb	r2, [r0, #28]
+  28 0004 0022     		movs	r2, #0
+  29 0006 4277     		strb	r2, [r0, #29]
+  30 0008 C263     		str	r2, [r0, #60]
+  31 000a 8263     		str	r2, [r0, #56]
+  32 000c 0262     		str	r2, [r0, #32]
+  33 000e 8261     		str	r2, [r0, #24]
+  34 0010 084A     		ldr	r2, .L2
+  35 0012 8160     		str	r1, [r0, #8]
+  36 0014 0164     		str	r1, [r0, #64]
+  37 0016 0121     		movs	r1, #1
+  38 0018 8177     		strb	r1, [r0, #30]
+  39 001a 5169     		ldr	r1, [r2, #20]
+  40 001c 0261     		str	r2, [r0, #16]
+  41 001e 4161     		str	r1, [r0, #20]
+  42 0020 5061     		str	r0, [r2, #20]
+  43 0022 00F12C02 		add	r2, r0, #44
+  44 0026 0861     		str	r0, [r1, #16]
+  45 0028 00F12801 		add	r1, r0, #40
+  46 002c 8162     		str	r1, [r0, #40]
+  47 002e 0263     		str	r2, [r0, #48]
+  48 0030 C262     		str	r2, [r0, #44]
+  49 0032 7047     		bx	lr
+  50              	.L3:
+  51              		.align	2
+  52              	.L2:
+  53 0034 00000000 		.word	rlist
+  55              		.section	.text.chThdCreateI,"ax",%progbits
+  56              		.align	1
+  57              		.global	chThdCreateI
+  58              		.thumb
+  59              		.thumb_func
+  61              	chThdCreateI:
+  62              		@ args = 4, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 30B5     		push	{r4, r5, lr}
+  65 0002 2439     		subs	r1, r1, #36
+  66 0004 4518     		adds	r5, r0, r1
+  67 0006 C560     		str	r5, [r0, #12]
+  68 0008 4350     		str	r3, [r0, r1]
+  69 000a 0399     		ldr	r1, [sp, #12]
+  70 000c 034B     		ldr	r3, .L5
+  71 000e 6960     		str	r1, [r5, #4]
+  72 0010 1146     		mov	r1, r2
+  73 0012 2B62     		str	r3, [r5, #32]
+  74 0014 BDE83040 		pop	{r4, r5, lr}
+  75 0018 FFF7FEBF 		b	_thread_init
+  76              	.L6:
+  77              		.align	2
+  78              	.L5:
+  79 001c 00000000 		.word	_port_thread_start
+  81              		.section	.text.chThdCreateStatic,"ax",%progbits
+  82              		.align	1
+  83              		.global	chThdCreateStatic
+  84              		.thumb
+  85              		.thumb_func
+  87              	chThdCreateStatic:
+  88              		@ args = 4, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90 0000 13B5     		push	{r0, r1, r4, lr}
+  91 0002 1C46     		mov	r4, r3
+  92 0004 2023     		movs	r3, #32
+  93              	@ 196 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+  94 0006 83F31188 		msr     BASEPRI, r3
+  95              	@ 0 "" 2
+  96              		.thumb
+  97 000a 049B     		ldr	r3, [sp, #16]
+  98 000c 0093     		str	r3, [sp, #0]
+  99 000e 2346     		mov	r3, r4
+ 100 0010 FFF7FEFF 		bl	chThdCreateI
+ 101 0014 0021     		movs	r1, #0
+ 102 0016 0446     		mov	r4, r0
+ 103 0018 FFF7FEFF 		bl	chSchWakeupS
+ 104 001c 0023     		movs	r3, #0
+ 105              	@ 198 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 106 001e 83F31188 		msr     BASEPRI, r3
+ 107              	@ 0 "" 2
+ 108              		.thumb
+ 109 0022 2046     		mov	r0, r4
+ 110 0024 1CBD     		pop	{r2, r3, r4, pc}
+ 112              		.section	.text.chThdSetPriority,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	chThdSetPriority
+ 115              		.thumb
+ 116              		.thumb_func
+ 118              	chThdSetPriority:
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121 0000 10B5     		push	{r4, lr}
+ 122 0002 2023     		movs	r3, #32
+ 123              	@ 219 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 124 0004 83F31188 		msr     BASEPRI, r3
+ 125              	@ 0 "" 2
+ 126              		.thumb
+ 127 0008 084B     		ldr	r3, .L11
+ 128 000a DB69     		ldr	r3, [r3, #28]
+ 129 000c 1C6C     		ldr	r4, [r3, #64]
+ 130 000e 9A68     		ldr	r2, [r3, #8]
+ 131 0010 A242     		cmp	r2, r4
+ 132 0012 01D0     		beq	.L9
+ 133 0014 9042     		cmp	r0, r2
+ 134 0016 00D9     		bls	.L10
+ 135              	.L9:
+ 136 0018 9860     		str	r0, [r3, #8]
+ 137              	.L10:
+ 138 001a 1864     		str	r0, [r3, #64]
+ 139 001c FFF7FEFF 		bl	chSchRescheduleS
+ 140 0020 0023     		movs	r3, #0
+ 141              	@ 230 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 142 0022 83F31188 		msr     BASEPRI, r3
+ 143              	@ 0 "" 2
+ 144              		.thumb
+ 145 0026 2046     		mov	r0, r4
+ 146 0028 10BD     		pop	{r4, pc}
+ 147              	.L12:
+ 148 002a 00BF     		.align	2
+ 149              	.L11:
+ 150 002c 00000000 		.word	rlist
+ 152              		.section	.text.chThdResume,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	chThdResume
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	chThdResume:
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161 0000 10B5     		push	{r4, lr}
+ 162 0002 2023     		movs	r3, #32
+ 163 0004 0446     		mov	r4, r0
+ 164              	@ 249 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 165 0006 83F31188 		msr     BASEPRI, r3
+ 166              	@ 0 "" 2
+ 167              		.thumb
+ 168 000a 0021     		movs	r1, #0
+ 169 000c FFF7FEFF 		bl	chSchWakeupS
+ 170 0010 0023     		movs	r3, #0
+ 171              	@ 254 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 172 0012 83F31188 		msr     BASEPRI, r3
+ 173              	@ 0 "" 2
+ 174              		.thumb
+ 175 0016 2046     		mov	r0, r4
+ 176 0018 10BD     		pop	{r4, pc}
+ 178              		.section	.text.chThdTerminate,"ax",%progbits
+ 179              		.align	1
+ 180              		.global	chThdTerminate
+ 181              		.thumb
+ 182              		.thumb_func
+ 184              	chThdTerminate:
+ 185              		@ args = 0, pretend = 0, frame = 0
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187              		@ link register save eliminated.
+ 188 0000 2023     		movs	r3, #32
+ 189              	@ 272 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 190 0002 83F31188 		msr     BASEPRI, r3
+ 191              	@ 0 "" 2
+ 192              		.thumb
+ 193 0006 417F     		ldrb	r1, [r0, #29]	@ zero_extendqisi2
+ 194 0008 41F00403 		orr	r3, r1, #4
+ 195 000c 4377     		strb	r3, [r0, #29]
+ 196 000e 0023     		movs	r3, #0
+ 197              	@ 274 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 198 0010 83F31188 		msr     BASEPRI, r3
+ 199              	@ 0 "" 2
+ 200              		.thumb
+ 201 0014 7047     		bx	lr
+ 203              		.section	.text.chThdSleep,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	chThdSleep
+ 206              		.thumb
+ 207              		.thumb_func
+ 209              	chThdSleep:
+ 210              		@ args = 0, pretend = 0, frame = 0
+ 211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 212 0000 08B5     		push	{r3, lr}
+ 213 0002 0146     		mov	r1, r0
+ 214 0004 2023     		movs	r3, #32
+ 215              	@ 293 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 216 0006 83F31188 		msr     BASEPRI, r3
+ 217              	@ 0 "" 2
+ 218              		.thumb
+ 219 000a 0620     		movs	r0, #6
+ 220 000c FFF7FEFF 		bl	chSchGoSleepTimeoutS
+ 221 0010 0023     		movs	r3, #0
+ 222              	@ 295 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 223 0012 83F31188 		msr     BASEPRI, r3
+ 224              	@ 0 "" 2
+ 225              		.thumb
+ 226 0016 08BD     		pop	{r3, pc}
+ 228              		.section	.text.chThdSleepUntil,"ax",%progbits
+ 229              		.align	1
+ 230              		.global	chThdSleepUntil
+ 231              		.thumb
+ 232              		.thumb_func
+ 234              	chThdSleepUntil:
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237 0000 08B5     		push	{r3, lr}
+ 238 0002 2023     		movs	r3, #32
+ 239              	@ 308 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 240 0004 83F31188 		msr     BASEPRI, r3
+ 241              	@ 0 "" 2
+ 242              		.thumb
+ 243 0008 054B     		ldr	r3, .L18
+ 244 000a D968     		ldr	r1, [r3, #12]
+ 245 000c 411A     		subs	r1, r0, r1
+ 246 000e 02D0     		beq	.L17
+ 247 0010 0620     		movs	r0, #6
+ 248 0012 FFF7FEFF 		bl	chSchGoSleepTimeoutS
+ 249              	.L17:
+ 250 0016 0023     		movs	r3, #0
+ 251              	@ 311 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 252 0018 83F31188 		msr     BASEPRI, r3
+ 253              	@ 0 "" 2
+ 254              		.thumb
+ 255 001c 08BD     		pop	{r3, pc}
+ 256              	.L19:
+ 257 001e 00BF     		.align	2
+ 258              	.L18:
+ 259 0020 00000000 		.word	vtlist
+ 261              		.section	.text.chThdYield,"ax",%progbits
+ 262              		.align	1
+ 263              		.global	chThdYield
+ 264              		.thumb
+ 265              		.thumb_func
+ 267              	chThdYield:
+ 268              		@ args = 0, pretend = 0, frame = 0
+ 269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 270 0000 08B5     		push	{r3, lr}
+ 271 0002 2023     		movs	r3, #32
+ 272              	@ 323 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 273 0004 83F31188 		msr     BASEPRI, r3
+ 274              	@ 0 "" 2
+ 275              		.thumb
+ 276 0008 064A     		ldr	r2, .L22
+ 277 000a D069     		ldr	r0, [r2, #28]
+ 278 000c 1168     		ldr	r1, [r2, #0]
+ 279 000e 8368     		ldr	r3, [r0, #8]
+ 280 0010 8A68     		ldr	r2, [r1, #8]
+ 281 0012 9A42     		cmp	r2, r3
+ 282 0014 01D3     		bcc	.L21
+ 283 0016 FFF7FEFF 		bl	chSchDoReschedule
+ 284              	.L21:
+ 285 001a 0023     		movs	r3, #0
+ 286              	@ 325 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 287 001c 83F31188 		msr     BASEPRI, r3
+ 288              	@ 0 "" 2
+ 289              		.thumb
+ 290 0020 08BD     		pop	{r3, pc}
+ 291              	.L23:
+ 292 0022 00BF     		.align	2
+ 293              	.L22:
+ 294 0024 00000000 		.word	rlist
+ 296              		.section	.text.chThdExitS,"ax",%progbits
+ 297              		.align	1
+ 298              		.global	chThdExitS
+ 299              		.thumb
+ 300              		.thumb_func
+ 302              	chThdExitS:
+ 303              		@ args = 0, pretend = 0, frame = 0
+ 304              		@ frame_needed = 0, uses_anonymous_args = 0
+ 305 0000 0D4B     		ldr	r3, .L28
+ 306 0002 10B5     		push	{r4, lr}
+ 307 0004 DC69     		ldr	r4, [r3, #28]
+ 308 0006 6062     		str	r0, [r4, #36]
+ 309 0008 03E0     		b	.L25
+ 310              	.L26:
+ 311 000a 0168     		ldr	r1, [r0, #0]
+ 312 000c A162     		str	r1, [r4, #40]
+ 313 000e FFF7FEFF 		bl	chSchReadyI
+ 314              	.L25:
+ 315 0012 2246     		mov	r2, r4
+ 316 0014 52F8280F 		ldr	r0, [r2, #40]!
+ 317 0018 9042     		cmp	r0, r2
+ 318 001a F6D1     		bne	.L26
+ 319 001c 607F     		ldrb	r0, [r4, #29]	@ zero_extendqisi2
+ 320 001e 8307     		lsls	r3, r0, #30
+ 321 0020 04D1     		bne	.L27
+ 322 0022 6369     		ldr	r3, [r4, #20]
+ 323 0024 2269     		ldr	r2, [r4, #16]
+ 324 0026 1A61     		str	r2, [r3, #16]
+ 325 0028 2169     		ldr	r1, [r4, #16]
+ 326 002a 4B61     		str	r3, [r1, #20]
+ 327              	.L27:
+ 328 002c 0E20     		movs	r0, #14
+ 329 002e BDE81040 		pop	{r4, lr}
+ 330 0032 FFF7FEBF 		b	chSchGoSleepS
+ 331              	.L29:
+ 332 0036 00BF     		.align	2
+ 333              	.L28:
+ 334 0038 00000000 		.word	rlist
+ 336              		.section	.text.chThdExit,"ax",%progbits
+ 337              		.align	1
+ 338              		.global	chThdExit
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	chThdExit:
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              		@ link register save eliminated.
+ 346 0000 2023     		movs	r3, #32
+ 347              	@ 344 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 348 0002 83F31188 		msr     BASEPRI, r3
+ 349              	@ 0 "" 2
+ 350              		.thumb
+ 351 0006 FFF7FEBF 		b	chThdExitS
+ 353              		.section	.text.chThdWait,"ax",%progbits
+ 354              		.align	1
+ 355              		.global	chThdWait
+ 356              		.thumb
+ 357              		.thumb_func
+ 359              	chThdWait:
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362 0000 38B5     		push	{r3, r4, r5, lr}
+ 363 0002 0446     		mov	r4, r0
+ 364 0004 2023     		movs	r3, #32
+ 365              	@ 422 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 366 0006 83F31188 		msr     BASEPRI, r3
+ 367              	@ 0 "" 2
+ 368              		.thumb
+ 369 000a 037F     		ldrb	r3, [r0, #28]	@ zero_extendqisi2
+ 370 000c 0E2B     		cmp	r3, #14
+ 371 000e 07D0     		beq	.L32
+ 372 0010 084D     		ldr	r5, .L33
+ 373 0012 826A     		ldr	r2, [r0, #40]
+ 374 0014 E969     		ldr	r1, [r5, #28]
+ 375 0016 0A60     		str	r2, [r1, #0]
+ 376 0018 8162     		str	r1, [r0, #40]
+ 377 001a 0720     		movs	r0, #7
+ 378 001c FFF7FEFF 		bl	chSchGoSleepS
+ 379              	.L32:
+ 380 0020 656A     		ldr	r5, [r4, #36]
+ 381 0022 0023     		movs	r3, #0
+ 382              	@ 432 "../src/ChibiOS_2.4.0/os/kernel/src/chthreads.c" 1
+ 383 0024 83F31188 		msr     BASEPRI, r3
+ 384              	@ 0 "" 2
+ 385              		.thumb
+ 386 0028 2046     		mov	r0, r4
+ 387 002a FFF7FEFF 		bl	chThdRelease
+ 388 002e 2846     		mov	r0, r5
+ 389 0030 38BD     		pop	{r3, r4, r5, pc}
+ 390              	.L34:
+ 391 0032 00BF     		.align	2
+ 392              	.L33:
+ 393 0034 00000000 		.word	rlist
+ 395              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 chthreads.c
+     /tmp/ccx4QIUy.s:17     .text._thread_init:00000000 $t
+     /tmp/ccx4QIUy.s:22     .text._thread_init:00000000 _thread_init
+     /tmp/ccx4QIUy.s:53     .text._thread_init:00000034 $d
+     /tmp/ccx4QIUy.s:56     .text.chThdCreateI:00000000 $t
+     /tmp/ccx4QIUy.s:61     .text.chThdCreateI:00000000 chThdCreateI
+     /tmp/ccx4QIUy.s:79     .text.chThdCreateI:0000001c $d
+     /tmp/ccx4QIUy.s:82     .text.chThdCreateStatic:00000000 $t
+     /tmp/ccx4QIUy.s:87     .text.chThdCreateStatic:00000000 chThdCreateStatic
+     /tmp/ccx4QIUy.s:113    .text.chThdSetPriority:00000000 $t
+     /tmp/ccx4QIUy.s:118    .text.chThdSetPriority:00000000 chThdSetPriority
+     /tmp/ccx4QIUy.s:150    .text.chThdSetPriority:0000002c $d
+     /tmp/ccx4QIUy.s:153    .text.chThdResume:00000000 $t
+     /tmp/ccx4QIUy.s:158    .text.chThdResume:00000000 chThdResume
+     /tmp/ccx4QIUy.s:179    .text.chThdTerminate:00000000 $t
+     /tmp/ccx4QIUy.s:184    .text.chThdTerminate:00000000 chThdTerminate
+     /tmp/ccx4QIUy.s:204    .text.chThdSleep:00000000 $t
+     /tmp/ccx4QIUy.s:209    .text.chThdSleep:00000000 chThdSleep
+     /tmp/ccx4QIUy.s:229    .text.chThdSleepUntil:00000000 $t
+     /tmp/ccx4QIUy.s:234    .text.chThdSleepUntil:00000000 chThdSleepUntil
+     /tmp/ccx4QIUy.s:259    .text.chThdSleepUntil:00000020 $d
+     /tmp/ccx4QIUy.s:262    .text.chThdYield:00000000 $t
+     /tmp/ccx4QIUy.s:267    .text.chThdYield:00000000 chThdYield
+     /tmp/ccx4QIUy.s:294    .text.chThdYield:00000024 $d
+     /tmp/ccx4QIUy.s:297    .text.chThdExitS:00000000 $t
+     /tmp/ccx4QIUy.s:302    .text.chThdExitS:00000000 chThdExitS
+     /tmp/ccx4QIUy.s:334    .text.chThdExitS:00000038 $d
+     /tmp/ccx4QIUy.s:337    .text.chThdExit:00000000 $t
+     /tmp/ccx4QIUy.s:342    .text.chThdExit:00000000 chThdExit
+     /tmp/ccx4QIUy.s:354    .text.chThdWait:00000000 $t
+     /tmp/ccx4QIUy.s:359    .text.chThdWait:00000000 chThdWait
+     /tmp/ccx4QIUy.s:393    .text.chThdWait:00000034 $d
+
+UNDEFINED SYMBOLS
+rlist
+_port_thread_start
+chSchWakeupS
+chSchRescheduleS
+chSchGoSleepTimeoutS
+vtlist
+chSchDoReschedule
+chSchReadyI
+chSchGoSleepS
+chThdRelease

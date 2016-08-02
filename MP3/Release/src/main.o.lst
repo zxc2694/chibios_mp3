@@ -1,0 +1,1423 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"main.c"
+  16              		.section	.text.mmc_is_inserted,"ax",%progbits
+  17              		.align	1
+  18              		.thumb
+  19              		.thumb_func
+  21              	mmc_is_inserted:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24              		@ link register save eliminated.
+  25 0000 0120     		movs	r0, #1
+  26 0002 7047     		bx	lr
+  28              		.section	.text.mmc_is_protected,"ax",%progbits
+  29              		.align	1
+  30              		.thumb
+  31              		.thumb_func
+  33              	mmc_is_protected:
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              		@ link register save eliminated.
+  37 0000 0120     		movs	r0, #1
+  38 0002 7047     		bx	lr
+  40              		.section	.text.RemoveHandler,"ax",%progbits
+  41              		.align	1
+  42              		.thumb
+  43              		.thumb_func
+  45              	RemoveHandler:
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48              		@ link register save eliminated.
+  49 0000 014B     		ldr	r3, .L4
+  50 0002 0022     		movs	r2, #0
+  51 0004 1A60     		str	r2, [r3, #0]
+  52 0006 7047     		bx	lr
+  53              	.L5:
+  54              		.align	2
+  55              	.L4:
+  56 0008 00000000 		.word	.LANCHOR0
+  58              		.section	.text.BlinkThread,"ax",%progbits
+  59              		.align	1
+  60              		.thumb
+  61              		.thumb_func
+  63              	BlinkThread:
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66 0000 0F48     		ldr	r0, .L9
+  67 0002 104A     		ldr	r2, .L9+4
+  68 0004 C369     		ldr	r3, [r0, #28]
+  69 0006 10B5     		push	{r4, lr}
+  70 0008 9A61     		str	r2, [r3, #24]
+  71              	.L8:
+  72 000a 0F4C     		ldr	r4, .L9+8
+  73 000c 2169     		ldr	r1, [r4, #16]
+  74 000e CB07     		lsls	r3, r1, #31
+  75 0010 05D5     		bpl	.L7
+  76 0012 0E4A     		ldr	r2, .L9+12
+  77 0014 1068     		ldr	r0, [r2, #0]
+  78 0016 10B1     		cbz	r0, .L7
+  79 0018 0821     		movs	r1, #8
+  80 001a FFF7FEFF 		bl	chEvtSignalFlags
+  81              	.L7:
+  82 001e 0C4C     		ldr	r4, .L9+16
+  83 0020 4FF4005E 		mov	lr, #8192	@ movhi
+  84 0024 5020     		movs	r0, #80
+  85 0026 A4F818E0 		strh	lr, [r4, #24]	@ movhi
+  86 002a FFF7FEFF 		bl	chThdSleep
+  87 002e 4FF4005C 		mov	ip, #8192	@ movhi
+  88 0032 A4F81AC0 		strh	ip, [r4, #26]	@ movhi
+  89 0036 5020     		movs	r0, #80
+  90 0038 FFF7FEFF 		bl	chThdSleep
+  91 003c E5E7     		b	.L8
+  92              	.L10:
+  93 003e 00BF     		.align	2
+  94              	.L9:
+  95 0040 00000000 		.word	rlist
+  96 0044 00000000 		.word	.LC0
+  97 0048 00000240 		.word	1073872896
+  98 004c 00000000 		.word	.LANCHOR1
+  99 0050 000C0240 		.word	1073875968
+ 101              		.section	.text.I2SDmaTxInterrupt,"ax",%progbits
+ 102              		.align	1
+ 103              		.thumb
+ 104              		.thumb_func
+ 106              	I2SDmaTxInterrupt:
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109 0000 0F4B     		ldr	r3, .L14
+ 110 0002 8342     		cmp	r3, r0
+ 111 0004 10B5     		push	{r4, lr}
+ 112 0006 0C46     		mov	r4, r1
+ 113 0008 19D1     		bne	.L11
+ 114 000a C906     		lsls	r1, r1, #27
+ 115 000c 0AD5     		bpl	.L13
+ 116 000e 2023     		movs	r3, #32
+ 117              	@ 470 "../src/main.c" 1
+ 118 0010 83F31188 		msr     BASEPRI, r3
+ 119              	@ 0 "" 2
+ 120              		.thumb
+ 121 0014 0B48     		ldr	r0, .L14+4
+ 122 0016 0221     		movs	r1, #2
+ 123 0018 0068     		ldr	r0, [r0, #0]
+ 124 001a FFF7FEFF 		bl	chEvtSignalFlagsI
+ 125 001e 0023     		movs	r3, #0
+ 126              	@ 472 "../src/main.c" 1
+ 127 0020 83F31188 		msr     BASEPRI, r3
+ 128              	@ 0 "" 2
+ 129              		.thumb
+ 130              	.L13:
+ 131 0024 A206     		lsls	r2, r4, #26
+ 132 0026 0AD5     		bpl	.L11
+ 133 0028 2023     		movs	r3, #32
+ 134              	@ 477 "../src/main.c" 1
+ 135 002a 83F31188 		msr     BASEPRI, r3
+ 136              	@ 0 "" 2
+ 137              		.thumb
+ 138 002e 0549     		ldr	r1, .L14+4
+ 139 0030 0868     		ldr	r0, [r1, #0]
+ 140 0032 0421     		movs	r1, #4
+ 141 0034 FFF7FEFF 		bl	chEvtSignalFlagsI
+ 142 0038 0023     		movs	r3, #0
+ 143              	@ 479 "../src/main.c" 1
+ 144 003a 83F31188 		msr     BASEPRI, r3
+ 145              	@ 0 "" 2
+ 146              		.thumb
+ 147              	.L11:
+ 148 003e 10BD     		pop	{r4, pc}
+ 149              	.L15:
+ 150              		.align	2
+ 151              	.L14:
+ 152 0040 00000000 		.word	SPID3
+ 153 0044 00000000 		.word	.LANCHOR1
+ 155              		.section	.text.Mp3ReadId3V2Text.constprop.1,"ax",%progbits
+ 156              		.align	1
+ 157              		.thumb
+ 158              		.thumb_func
+ 160              	Mp3ReadId3V2Text.constprop.1:
+ 161              		@ args = 0, pretend = 0, frame = 8
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 164 0002 0C46     		mov	r4, r1
+ 165 0004 02A9     		add	r1, sp, #8
+ 166 0006 0023     		movs	r3, #0
+ 167 0008 1546     		mov	r5, r2
+ 168 000a 0093     		str	r3, [sp, #0]
+ 169 000c 01F8013D 		strb	r3, [r1, #-1]!
+ 170 0010 0122     		movs	r2, #1
+ 171 0012 6B46     		mov	r3, sp
+ 172 0014 0646     		mov	r6, r0
+ 173 0016 FFF7FEFF 		bl	f_read
+ 174 001a 0028     		cmp	r0, #0
+ 175 001c 36D1     		bne	.L25
+ 176 001e 009F     		ldr	r7, [sp, #0]
+ 177 0020 012F     		cmp	r7, #1
+ 178 0022 33D1     		bne	.L25
+ 179 0024 013C     		subs	r4, r4, #1
+ 180 0026 4F2C     		cmp	r4, #79
+ 181 0028 27D8     		bhi	.L18
+ 182 002a 3046     		mov	r0, r6
+ 183 002c 2946     		mov	r1, r5
+ 184 002e 2246     		mov	r2, r4
+ 185 0030 6B46     		mov	r3, sp
+ 186 0032 FFF7FEFF 		bl	f_read
+ 187 0036 10B1     		cbz	r0, .L19
+ 188 0038 0098     		ldr	r0, [sp, #0]
+ 189 003a A042     		cmp	r0, r4
+ 190 003c 28D1     		bne	.L26
+ 191              	.L19:
+ 192 003e 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 193 0042 08B9     		cbnz	r0, .L20
+ 194 0044 2855     		strb	r0, [r5, r4]
+ 195 0046 26E0     		b	.L17
+ 196              	.L20:
+ 197 0048 0128     		cmp	r0, #1
+ 198 004a 23D1     		bne	.L27
+ 199 004c 022C     		cmp	r4, #2
+ 200 004e 08D9     		bls	.L29
+ 201 0050 2978     		ldrb	r1, [r5, #0]	@ zero_extendqisi2
+ 202 0052 FF29     		cmp	r1, #255
+ 203 0054 05D1     		bne	.L29
+ 204 0056 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
+ 205 0058 FE2A     		cmp	r2, #254
+ 206 005a 0CBF     		ite	eq
+ 207 005c 0223     		moveq	r3, #2
+ 208 005e 0023     		movne	r3, #0
+ 209 0060 00E0     		b	.L21
+ 210              	.L29:
+ 211 0062 0023     		movs	r3, #0
+ 212              	.L21:
+ 213 0064 0022     		movs	r2, #0
+ 214 0066 03E0     		b	.L22
+ 215              	.L23:
+ 216 0068 E85C     		ldrb	r0, [r5, r3]	@ zero_extendqisi2
+ 217 006a 0233     		adds	r3, r3, #2
+ 218 006c A854     		strb	r0, [r5, r2]
+ 219 006e 0132     		adds	r2, r2, #1
+ 220              	.L22:
+ 221 0070 A342     		cmp	r3, r4
+ 222 0072 F9D3     		bcc	.L23
+ 223 0074 0020     		movs	r0, #0
+ 224 0076 A854     		strb	r0, [r5, r2]
+ 225 0078 0DE0     		b	.L17
+ 226              	.L18:
+ 227 007a B368     		ldr	r3, [r6, #8]
+ 228 007c 3046     		mov	r0, r6
+ 229 007e E118     		adds	r1, r4, r3
+ 230 0080 FFF7FEFF 		bl	f_lseek
+ 231 0084 0030     		adds	r0, r0, #0
+ 232 0086 18BF     		it	ne
+ 233 0088 0120     		movne	r0, #1
+ 234 008a 04E0     		b	.L17
+ 235              	.L25:
+ 236 008c 0120     		movs	r0, #1
+ 237 008e 02E0     		b	.L17
+ 238              	.L26:
+ 239 0090 3846     		mov	r0, r7
+ 240 0092 00E0     		b	.L17
+ 241              	.L27:
+ 242 0094 0020     		movs	r0, #0
+ 243              	.L17:
+ 244 0096 FEBD     		pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+ 246              		.section	.text.Mp3Decode,"ax",%progbits
+ 247              		.align	1
+ 248              		.global	Mp3Decode
+ 249              		.thumb
+ 250              		.thumb_func
+ 252              	Mp3Decode:
+ 253              		@ args = 0, pretend = 0, frame = 800
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 256 0004 0646     		mov	r6, r0
+ 257 0006 9D48     		ldr	r0, .L99
+ 258 0008 9D4B     		ldr	r3, .L99+4
+ 259 000a C269     		ldr	r2, [r0, #28]
+ 260 000c DFF8A482 		ldr	r8, .L99+56
+ 261 0010 9C4D     		ldr	r5, .L99+8
+ 262 0012 9D4F     		ldr	r7, .L99+12
+ 263 0014 1A60     		str	r2, [r3, #0]
+ 264 0016 ADF54B7D 		sub	sp, sp, #812
+ 265 001a 0021     		movs	r1, #0
+ 266 001c C891     		str	r1, [sp, #800]
+ 267 001e 07A8     		add	r0, sp, #28
+ 268 0020 3146     		mov	r1, r6
+ 269 0022 0122     		movs	r2, #1
+ 270 0024 CDF81C83 		str	r8, [sp, #796]
+ 271 0028 2F60     		str	r7, [r5, #0]
+ 272 002a FFF7FEFF 		bl	f_open
+ 273 002e 0446     		mov	r4, r0
+ 274 0030 40B1     		cbz	r0, .L32
+ 275 0032 9648     		ldr	r0, .L99+16
+ 276 0034 9649     		ldr	r1, .L99+20
+ 277 0036 3246     		mov	r2, r6
+ 278 0038 2346     		mov	r3, r4
+ 279 003a FFF7FEFF 		bl	chprintf
+ 280 003e 4FF0FF37 		mov	r7, #-1
+ 281 0042 31E2     		b	.L33
+ 282              	.L32:
+ 283 0044 FFF7FEFF 		bl	MP3InitDecoder
+ 284 0048 0490     		str	r0, [sp, #16]
+ 285 004a 30B9     		cbnz	r0, .L34
+ 286 004c 8F48     		ldr	r0, .L99+16
+ 287 004e 9149     		ldr	r1, .L99+24
+ 288 0050 FFF7FEFF 		bl	chprintf
+ 289 0054 6FF00107 		mvn	r7, #1
+ 290 0058 26E2     		b	.L33
+ 291              	.L34:
+ 292 005a 3246     		mov	r2, r6
+ 293 005c 8B48     		ldr	r0, .L99+16
+ 294 005e 8E49     		ldr	r1, .L99+28
+ 295 0060 FFF7FEFF 		bl	chprintf
+ 296 0064 8D4A     		ldr	r2, .L99+32
+ 297 0066 4FF48056 		mov	r6, #4096	@ movhi
+ 298 006a 1683     		strh	r6, [r2, #24]	@ movhi
+ 299 006c 07A8     		add	r0, sp, #28
+ 300 006e BFA9     		add	r1, sp, #764
+ 301 0070 0A22     		movs	r2, #10
+ 302 0072 C9AB     		add	r3, sp, #804
+ 303 0074 8DF84042 		strb	r4, [sp, #576]
+ 304 0078 8DF89042 		strb	r4, [sp, #656]
+ 305 007c C994     		str	r4, [sp, #804]
+ 306 007e FFF7FEFF 		bl	f_read
+ 307 0082 8246     		mov	sl, r0
+ 308 0084 0028     		cmp	r0, #0
+ 309 0086 40F0B780 		bne	.L35
+ 310 008a C99C     		ldr	r4, [sp, #804]
+ 311 008c 0A2C     		cmp	r4, #10
+ 312 008e 40F0B380 		bne	.L35
+ 313 0092 9DF8FC82 		ldrb	r8, [sp, #764]	@ zero_extendqisi2
+ 314 0096 B8F1490F 		cmp	r8, #73
+ 315 009a 40F0A980 		bne	.L36
+ 316 009e 9DF8FDC2 		ldrb	ip, [sp, #765]	@ zero_extendqisi2
+ 317 00a2 BCF1440F 		cmp	ip, #68
+ 318 00a6 40F0A380 		bne	.L36
+ 319 00aa 9DF8FEE2 		ldrb	lr, [sp, #766]	@ zero_extendqisi2
+ 320 00ae BEF1330F 		cmp	lr, #51
+ 321 00b2 40F09D80 		bne	.L36
+ 322 00b6 9DF80133 		ldrb	r3, [sp, #769]	@ zero_extendqisi2
+ 323 00ba 9DF80403 		ldrb	r0, [sp, #772]	@ zero_extendqisi2
+ 324 00be 9DF80273 		ldrb	r7, [sp, #770]	@ zero_extendqisi2
+ 325 00c2 9DF80393 		ldrb	r9, [sp, #771]	@ zero_extendqisi2
+ 326 00c6 0390     		str	r0, [sp, #12]
+ 327 00c8 5A06     		lsls	r2, r3, #25
+ 328 00ca 9DF805A3 		ldrb	sl, [sp, #773]	@ zero_extendqisi2
+ 329 00ce 9DF8FF62 		ldrb	r6, [sp, #767]	@ zero_extendqisi2
+ 330 00d2 02D4     		bmi	.L37
+ 331              	.L39:
+ 332 00d4 0224     		movs	r4, #2
+ 333 00d6 B846     		mov	r8, r7
+ 334 00d8 25E0     		b	.L38
+ 335              	.L37:
+ 336 00da C5A9     		add	r1, sp, #788
+ 337 00dc 0422     		movs	r2, #4
+ 338 00de C9AB     		add	r3, sp, #804
+ 339 00e0 07A8     		add	r0, sp, #28
+ 340 00e2 FFF7FEFF 		bl	f_read
+ 341 00e6 9DF81543 		ldrb	r4, [sp, #789]	@ zero_extendqisi2
+ 342 00ea 9DF81403 		ldrb	r0, [sp, #788]	@ zero_extendqisi2
+ 343 00ee 9DF81683 		ldrb	r8, [sp, #790]	@ zero_extendqisi2
+ 344 00f2 0999     		ldr	r1, [sp, #36]
+ 345 00f4 04F07F02 		and	r2, r4, #127
+ 346 00f8 9DF81743 		ldrb	r4, [sp, #791]	@ zero_extendqisi2
+ 347 00fc 00F07F00 		and	r0, r0, #127
+ 348 0100 9303     		lsls	r3, r2, #14
+ 349 0102 43EA4053 		orr	r3, r3, r0, lsl #21
+ 350 0106 04F07F02 		and	r2, r4, #127
+ 351 010a 43EA0200 		orr	r0, r3, r2
+ 352 010e 08F07F04 		and	r4, r8, #127
+ 353 0112 40EAC412 		orr	r2, r0, r4, lsl #7
+ 354 0116 0439     		subs	r1, r1, #4
+ 355 0118 07A8     		add	r0, sp, #28
+ 356 011a 8918     		adds	r1, r1, r2
+ 357 011c FFF7FEFF 		bl	f_lseek
+ 358 0120 0028     		cmp	r0, #0
+ 359 0122 D7D0     		beq	.L39
+ 360 0124 68E0     		b	.L35
+ 361              	.L38:
+ 362 0126 07A8     		add	r0, sp, #28
+ 363 0128 C2A9     		add	r1, sp, #776
+ 364 012a 0A22     		movs	r2, #10
+ 365 012c C9AB     		add	r3, sp, #804
+ 366 012e FFF7FEFF 		bl	f_read
+ 367 0132 0746     		mov	r7, r0
+ 368 0134 0028     		cmp	r0, #0
+ 369 0136 5FD1     		bne	.L35
+ 370 0138 C99B     		ldr	r3, [sp, #804]
+ 371 013a 0A2B     		cmp	r3, #10
+ 372 013c 5CD1     		bne	.L35
+ 373 013e 9DF80823 		ldrb	r2, [sp, #776]	@ zero_extendqisi2
+ 374 0142 002A     		cmp	r2, #0
+ 375 0144 3DD0     		beq	.L40
+ 376 0146 C2A8     		add	r0, sp, #776
+ 377 0148 5549     		ldr	r1, .L99+36
+ 378 014a 0322     		movs	r2, #3
+ 379 014c FFF7FEFF 		bl	strncmp
+ 380 0150 0028     		cmp	r0, #0
+ 381 0152 36D0     		beq	.L40
+ 382 0154 C298     		ldr	r0, [sp, #776]
+ 383 0156 8DF81873 		strb	r7, [sp, #792]
+ 384 015a C590     		str	r0, [sp, #788]
+ 385 015c C2AB     		add	r3, sp, #776
+ 386 015e BB46     		mov	fp, r7
+ 387              	.L43:
+ 388 0160 032E     		cmp	r6, #3
+ 389 0162 03D1     		bne	.L41
+ 390 0164 4FEA0B2B 		lsl	fp, fp, #8
+ 391 0168 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+ 392 016a 06E0     		b	.L94
+ 393              	.L41:
+ 394 016c 042E     		cmp	r6, #4
+ 395 016e 05D1     		bne	.L42
+ 396 0170 1979     		ldrb	r1, [r3, #4]	@ zero_extendqisi2
+ 397 0172 4FEACB1B 		lsl	fp, fp, #7
+ 398 0176 01F07F02 		and	r2, r1, #127
+ 399              	.L94:
+ 400 017a 9344     		add	fp, r2, fp
+ 401              	.L42:
+ 402 017c 0137     		adds	r7, r7, #1
+ 403 017e 0133     		adds	r3, r3, #1
+ 404 0180 042F     		cmp	r7, #4
+ 405 0182 EDD1     		bne	.L43
+ 406 0184 C5A8     		add	r0, sp, #788
+ 407 0186 4749     		ldr	r1, .L99+40
+ 408 0188 FFF7FEFF 		bl	strcmp
+ 409 018c 18B9     		cbnz	r0, .L44
+ 410 018e 07A8     		add	r0, sp, #28
+ 411 0190 5946     		mov	r1, fp
+ 412 0192 90AA     		add	r2, sp, #576
+ 413 0194 07E0     		b	.L96
+ 414              	.L44:
+ 415 0196 C5A8     		add	r0, sp, #788
+ 416 0198 4349     		ldr	r1, .L99+44
+ 417 019a FFF7FEFF 		bl	strcmp
+ 418 019e 38B9     		cbnz	r0, .L46
+ 419 01a0 07A8     		add	r0, sp, #28
+ 420 01a2 5946     		mov	r1, fp
+ 421 01a4 A4AA     		add	r2, sp, #656
+ 422              	.L96:
+ 423 01a6 FFF7FEFF 		bl	Mp3ReadId3V2Text.constprop.1
+ 424 01aa 50B9     		cbnz	r0, .L40
+ 425 01ac 013C     		subs	r4, r4, #1
+ 426 01ae 06E0     		b	.L45
+ 427              	.L46:
+ 428 01b0 099F     		ldr	r7, [sp, #36]
+ 429 01b2 07A8     		add	r0, sp, #28
+ 430 01b4 0BEB0701 		add	r1, fp, r7
+ 431 01b8 FFF7FEFF 		bl	f_lseek
+ 432 01bc E0B9     		cbnz	r0, .L35
+ 433              	.L45:
+ 434 01be 002C     		cmp	r4, #0
+ 435 01c0 B1D1     		bne	.L38
+ 436              	.L40:
+ 437 01c2 09F07F07 		and	r7, r9, #127
+ 438 01c6 08F07F01 		and	r1, r8, #127
+ 439 01ca 4FEA8739 		lsl	r9, r7, #14
+ 440 01ce 039B     		ldr	r3, [sp, #12]
+ 441 01d0 49EA4150 		orr	r0, r9, r1, lsl #21
+ 442 01d4 0AF07F02 		and	r2, sl, #127
+ 443 01d8 40EA0206 		orr	r6, r0, r2
+ 444 01dc 03F07F04 		and	r4, r3, #127
+ 445 01e0 46EAC41A 		orr	sl, r6, r4, lsl #7
+ 446 01e4 2948     		ldr	r0, .L99+16
+ 447 01e6 3149     		ldr	r1, .L99+48
+ 448 01e8 0AF10102 		add	r2, sl, #1
+ 449 01ec FFF7FEFF 		bl	chprintf
+ 450              	.L36:
+ 451 01f0 07A8     		add	r0, sp, #28
+ 452 01f2 5146     		mov	r1, sl
+ 453 01f4 FFF7FEFF 		bl	f_lseek
+ 454              	.L35:
+ 455 01f8 284B     		ldr	r3, .L99+32
+ 456 01fa 4FF48054 		mov	r4, #4096	@ movhi
+ 457 01fe 5C83     		strh	r4, [r3, #26]	@ movhi
+ 458 0200 9DF84062 		ldrb	r6, [sp, #576]	@ zero_extendqisi2
+ 459 0204 16B9     		cbnz	r6, .L47
+ 460 0206 9DF89022 		ldrb	r2, [sp, #656]	@ zero_extendqisi2
+ 461 020a 2AB1     		cbz	r2, .L48
+ 462              	.L47:
+ 463 020c 1F48     		ldr	r0, .L99+16
+ 464 020e 2849     		ldr	r1, .L99+52
+ 465 0210 90AA     		add	r2, sp, #576
+ 466 0212 A4AB     		add	r3, sp, #656
+ 467 0214 FFF7FEFF 		bl	chprintf
+ 468              	.L48:
+ 469 0218 0024     		movs	r4, #0
+ 470 021a 2646     		mov	r6, r4
+ 471 021c A246     		mov	sl, r4
+ 472              	.L92:
+ 473 021e DDF82083 		ldr	r8, [sp, #800]
+ 474 0222 40F62770 		movw	r0, #3879
+ 475 0226 8045     		cmp	r8, r0
+ 476 0228 48D8     		bhi	.L51
+ 477 022a BAF1000F 		cmp	sl, #0
+ 478 022e 43D1     		bne	.L83
+ 479 0230 C799     		ldr	r1, [sp, #796]
+ 480 0232 2048     		ldr	r0, .L99+56
+ 481 0234 194F     		ldr	r7, .L99+32
+ 482 0236 4246     		mov	r2, r8
+ 483 0238 FFF7FEFF 		bl	memmove
+ 484 023c 1D4B     		ldr	r3, .L99+56
+ 485 023e CDF824A3 		str	sl, [sp, #804]
+ 486 0242 4FF48052 		mov	r2, #4096	@ movhi
+ 487 0246 03EB0801 		add	r1, r3, r8
+ 488 024a 3A83     		strh	r2, [r7, #24]	@ movhi
+ 489 024c 07A8     		add	r0, sp, #28
+ 490 024e C8F58052 		rsb	r2, r8, #4096
+ 491 0252 C9AB     		add	r3, sp, #804
+ 492 0254 FFF7FEFF 		bl	f_read
+ 493 0258 4FF48051 		mov	r1, #4096	@ movhi
+ 494 025c 7983     		strh	r1, [r7, #26]	@ movhi
+ 495 025e 08B1     		cbz	r0, .L52
+ 496 0260 CDF824A3 		str	sl, [sp, #804]
+ 497              	.L52:
+ 498 0264 C998     		ldr	r0, [sp, #804]
+ 499 0266 C89B     		ldr	r3, [sp, #800]
+ 500 0268 1249     		ldr	r1, .L99+56
+ 501 026a 1F18     		adds	r7, r3, r0
+ 502 026c D0F1010A 		rsbs	sl, r0, #1
+ 503 0270 C897     		str	r7, [sp, #800]
+ 504 0272 C791     		str	r1, [sp, #796]
+ 505 0274 38BF     		it	cc
+ 506 0276 4FF0000A 		movcc	sl, #0
+ 507 027a 1FE0     		b	.L51
+ 508              	.L100:
+ 509              		.align	2
+ 510              	.L99:
+ 511 027c 00000000 		.word	rlist
+ 512 0280 00000000 		.word	.LANCHOR1
+ 513 0284 00000000 		.word	.LANCHOR3
+ 514 0288 00000000 		.word	.LANCHOR4
+ 515 028c 00000000 		.word	SD2
+ 516 0290 0C000000 		.word	.LC1
+ 517 0294 46000000 		.word	.LC2
+ 518 0298 7B000000 		.word	.LC3
+ 519 029c 000C0240 		.word	1073875968
+ 520 02a0 9C000000 		.word	.LC4
+ 521 02a4 A0000000 		.word	.LC5
+ 522 02a8 A5000000 		.word	.LC6
+ 523 02ac AA000000 		.word	.LC7
+ 524 02b0 D6000000 		.word	.LC8
+ 525 02b4 00000000 		.word	.LANCHOR2
+ 526              	.L83:
+ 527 02b8 4FF0010A 		mov	sl, #1
+ 528              	.L51:
+ 529 02bc C798     		ldr	r0, [sp, #796]
+ 530 02be C899     		ldr	r1, [sp, #800]
+ 531 02c0 FFF7FEFF 		bl	MP3FindSyncWord
+ 532 02c4 0028     		cmp	r0, #0
+ 533 02c6 C0F2D280 		blt	.L85
+ 534 02ca C79A     		ldr	r2, [sp, #796]
+ 535 02cc C89F     		ldr	r7, [sp, #800]
+ 536 02ce 1318     		adds	r3, r2, r0
+ 537 02d0 391A     		subs	r1, r7, r0
+ 538 02d2 0022     		movs	r2, #0
+ 539 02d4 C793     		str	r3, [sp, #796]
+ 540 02d6 C891     		str	r1, [sp, #800]
+ 541 02d8 0092     		str	r2, [sp, #0]
+ 542 02da 0498     		ldr	r0, [sp, #16]
+ 543 02dc 754B     		ldr	r3, .L101
+ 544 02de C8AA     		add	r2, sp, #800
+ 545 02e0 C7A9     		add	r1, sp, #796
+ 546 02e2 FFF7FEFF 		bl	MP3Decode
+ 547 02e6 0246     		mov	r2, r0
+ 548 02e8 0330     		adds	r0, r0, #3
+ 549 02ea 0328     		cmp	r0, #3
+ 550 02ec 00F2BB80 		bhi	.L54
+ 551 02f0 01A1     		adr	r1, .L57
+ 552 02f2 51F820F0 		ldr	pc, [r1, r0, lsl #2]
+ 553 02f6 00BF     		.align	2
+ 554              	.L57:
+ 555 02f8 1F020000 		.word	.L92+1
+ 556 02fc 1F020000 		.word	.L92+1
+ 557 0300 5D040000 		.word	.L55+1
+ 558 0304 09030000 		.word	.L56+1
+ 559              	.L56:
+ 560 0308 0498     		ldr	r0, [sp, #16]
+ 561 030a B8A9     		add	r1, sp, #736
+ 562 030c FFF7FEFF 		bl	MP3GetLastFrameInfo
+ 563 0310 CCB9     		cbnz	r4, .L58
+ 564 0312 B99F     		ldr	r7, [sp, #740]
+ 565 0314 6848     		ldr	r0, .L101+4
+ 566 0316 6949     		ldr	r1, .L101+8
+ 567 0318 BA9A     		ldr	r2, [sp, #744]
+ 568 031a BB9B     		ldr	r3, [sp, #748]
+ 569 031c 0097     		str	r7, [sp, #0]
+ 570 031e FFF7FEFF 		bl	chprintf
+ 571 0322 BA98     		ldr	r0, [sp, #744]
+ 572 0324 4BF68031 		movw	r1, #48000
+ 573 0328 8842     		cmp	r0, r1
+ 574 032a 05DC     		bgt	.L59
+ 575 032c BB9B     		ldr	r3, [sp, #748]
+ 576 032e 102B     		cmp	r3, #16
+ 577 0330 02D1     		bne	.L59
+ 578 0332 B99A     		ldr	r2, [sp, #740]
+ 579 0334 022A     		cmp	r2, #2
+ 580 0336 06D0     		beq	.L58
+ 581              	.L59:
+ 582 0338 5F48     		ldr	r0, .L101+4
+ 583 033a 6149     		ldr	r1, .L101+12
+ 584 033c FFF7FEFF 		bl	chprintf
+ 585 0340 6FF00407 		mvn	r7, #4
+ 586 0344 94E0     		b	.L53
+ 587              	.L58:
+ 588 0346 6421     		movs	r1, #100
+ 589 0348 B4FBF1F7 		udiv	r7, r4, r1
+ 590 034c 01FB1740 		mls	r0, r1, r7, r4
+ 591 0350 28B9     		cbnz	r0, .L61
+ 592 0352 5948     		ldr	r0, .L101+4
+ 593 0354 5B49     		ldr	r1, .L101+16
+ 594 0356 B89B     		ldr	r3, [sp, #736]
+ 595 0358 2246     		mov	r2, r4
+ 596 035a FFF7FEFF 		bl	chprintf
+ 597              	.L61:
+ 598 035e 5A48     		ldr	r0, .L101+20
+ 599 0360 544A     		ldr	r2, .L101
+ 600 0362 BC9B     		ldr	r3, [sp, #752]
+ 601 0364 0260     		str	r2, [r0, #0]
+ 602 0366 0134     		adds	r4, r4, #1
+ 603 0368 0393     		str	r3, [sp, #12]
+ 604 036a 4FF00009 		mov	r9, #0
+ 605 036e CDF814A0 		str	sl, [sp, #20]
+ 606 0372 A346     		mov	fp, r4
+ 607 0374 66E0     		b	.L93
+ 608              	.L76:
+ 609 0376 2B68     		ldr	r3, [r5, #0]
+ 610 0378 1EB1     		cbz	r6, .L65
+ 611              	.L63:
+ 612 037a 012E     		cmp	r6, #1
+ 613 037c 01D1     		bne	.L65
+ 614 037e 534C     		ldr	r4, .L101+24
+ 615 0380 00E0     		b	.L97
+ 616              	.L65:
+ 617 0382 534C     		ldr	r4, .L101+28
+ 618              	.L97:
+ 619 0384 E11A     		subs	r1, r4, r3
+ 620 0386 039F     		ldr	r7, [sp, #12]
+ 621 0388 4C10     		asrs	r4, r1, #1
+ 622 038a BC42     		cmp	r4, r7
+ 623 038c 38BF     		it	cc
+ 624 038e 2746     		movcc	r7, r4
+ 625 0390 AFB1     		cbz	r7, .L66
+ 626 0392 4D4A     		ldr	r2, .L101+20
+ 627 0394 2868     		ldr	r0, [r5, #0]
+ 628 0396 D2F80080 		ldr	r8, [r2, #0]
+ 629 039a 4FEA470A 		lsl	sl, r7, #1
+ 630 039e 4146     		mov	r1, r8
+ 631 03a0 5246     		mov	r2, sl
+ 632 03a2 FFF7FEFF 		bl	memcpy
+ 633 03a6 039B     		ldr	r3, [sp, #12]
+ 634 03a8 474A     		ldr	r2, .L101+20
+ 635 03aa D91B     		subs	r1, r3, r7
+ 636 03ac 2B68     		ldr	r3, [r5, #0]
+ 637 03ae 0391     		str	r1, [sp, #12]
+ 638 03b0 08EB0A00 		add	r0, r8, sl
+ 639 03b4 E41B     		subs	r4, r4, r7
+ 640 03b6 03EB0A07 		add	r7, r3, sl
+ 641 03ba 1060     		str	r0, [r2, #0]
+ 642 03bc 2F60     		str	r7, [r5, #0]
+ 643              	.L66:
+ 644 03be 002C     		cmp	r4, #0
+ 645 03c0 40D1     		bne	.L93
+ 646 03c2 8EB9     		cbnz	r6, .L68
+ 647 03c4 0220     		movs	r0, #2
+ 648 03c6 5021     		movs	r1, #80
+ 649 03c8 BA9A     		ldr	r2, [sp, #744]
+ 650 03ca FFF7FEFF 		bl	EVAL_AUDIO_Init
+ 651 03ce 30B1     		cbz	r0, .L69
+ 652 03d0 3948     		ldr	r0, .L101+4
+ 653 03d2 4049     		ldr	r1, .L101+32
+ 654 03d4 FFF7FEFF 		bl	chprintf
+ 655 03d8 6FF00307 		mvn	r7, #3
+ 656 03dc 48E0     		b	.L53
+ 657              	.L69:
+ 658 03de 3E48     		ldr	r0, .L101+36
+ 659 03e0 4FF49041 		mov	r1, #18432
+ 660 03e4 FFF7FEFF 		bl	EVAL_AUDIO_Play
+ 661              	.L68:
+ 662 03e8 0E20     		movs	r0, #14
+ 663 03ea FFF7FEFF 		bl	chEvtWaitAny
+ 664 03ee 0307     		lsls	r3, r0, #28
+ 665 03f0 05D5     		bpl	.L70
+ 666 03f2 3148     		ldr	r0, .L101+4
+ 667 03f4 3949     		ldr	r1, .L101+40
+ 668 03f6 FFF7FEFF 		bl	chprintf
+ 669 03fa 0127     		movs	r7, #1
+ 670 03fc 38E0     		b	.L53
+ 671              	.L70:
+ 672 03fe 00F00607 		and	r7, r0, #6
+ 673 0402 062F     		cmp	r7, #6
+ 674 0404 02D1     		bne	.L71
+ 675 0406 2C48     		ldr	r0, .L101+4
+ 676 0408 3549     		ldr	r1, .L101+44
+ 677 040a 0AE0     		b	.L98
+ 678              	.L71:
+ 679 040c 0EB1     		cbz	r6, .L72
+ 680 040e 022E     		cmp	r6, #2
+ 681 0410 0CD1     		bne	.L73
+ 682              	.L72:
+ 683 0412 8707     		lsls	r7, r0, #30
+ 684 0414 03D5     		bpl	.L74
+ 685 0416 304E     		ldr	r6, .L101+36
+ 686 0418 2E60     		str	r6, [r5, #0]
+ 687 041a 0126     		movs	r6, #1
+ 688 041c 12E0     		b	.L93
+ 689              	.L74:
+ 690 041e 2648     		ldr	r0, .L101+4
+ 691 0420 3049     		ldr	r1, .L101+48
+ 692              	.L98:
+ 693 0422 FFF7FEFF 		bl	chprintf
+ 694 0426 6FF00207 		mvn	r7, #2
+ 695 042a 21E0     		b	.L53
+ 696              	.L73:
+ 697 042c 4007     		lsls	r0, r0, #29
+ 698 042e 03D5     		bpl	.L75
+ 699 0430 264C     		ldr	r4, .L101+24
+ 700 0432 0226     		movs	r6, #2
+ 701 0434 2C60     		str	r4, [r5, #0]
+ 702 0436 05E0     		b	.L93
+ 703              	.L75:
+ 704 0438 1F48     		ldr	r0, .L101+4
+ 705 043a 2B49     		ldr	r1, .L101+52
+ 706 043c FFF7FEFF 		bl	chprintf
+ 707 0440 6FF00209 		mvn	r9, #2
+ 708              	.L93:
+ 709 0444 0398     		ldr	r0, [sp, #12]
+ 710 0446 0028     		cmp	r0, #0
+ 711 0448 95D1     		bne	.L76
+ 712 044a DDF814A0 		ldr	sl, [sp, #20]
+ 713 044e 5C46     		mov	r4, fp
+ 714 0450 B9F1000F 		cmp	r9, #0
+ 715 0454 3FF4E3AE 		beq	.L92
+ 716 0458 4F46     		mov	r7, r9
+ 717 045a 09E0     		b	.L53
+ 718              	.L55:
+ 719 045c 1648     		ldr	r0, .L101+4
+ 720 045e 2349     		ldr	r1, .L101+56
+ 721 0460 FFF7FEFF 		bl	chprintf
+ 722 0464 03E0     		b	.L85
+ 723              	.L54:
+ 724 0466 1448     		ldr	r0, .L101+4
+ 725 0468 2149     		ldr	r1, .L101+60
+ 726 046a FFF7FEFF 		bl	chprintf
+ 727              	.L85:
+ 728 046e 0027     		movs	r7, #0
+ 729              	.L53:
+ 730 0470 1148     		ldr	r0, .L101+4
+ 731 0472 2049     		ldr	r1, .L101+64
+ 732 0474 FFF7FEFF 		bl	chprintf
+ 733 0478 0498     		ldr	r0, [sp, #16]
+ 734 047a FFF7FEFF 		bl	MP3FreeDecoder
+ 735 047e 0120     		movs	r0, #1
+ 736 0480 FFF7FEFF 		bl	EVAL_AUDIO_Stop
+ 737 0484 18B1     		cbz	r0, .L79
+ 738 0486 0C48     		ldr	r0, .L101+4
+ 739 0488 1B49     		ldr	r1, .L101+68
+ 740 048a FFF7FEFF 		bl	chprintf
+ 741              	.L79:
+ 742 048e FFF7FEFF 		bl	EVAL_AUDIO_DeInit
+ 743 0492 07A8     		add	r0, sp, #28
+ 744 0494 FFF7FEFF 		bl	f_close
+ 745 0498 3221     		movs	r1, #50
+ 746 049a 0220     		movs	r0, #2
+ 747 049c FFF7FEFF 		bl	chEvtWaitOneTimeout
+ 748 04a0 0420     		movs	r0, #4
+ 749 04a2 3221     		movs	r1, #50
+ 750 04a4 FFF7FEFF 		bl	chEvtWaitOneTimeout
+ 751              	.L33:
+ 752 04a8 3846     		mov	r0, r7
+ 753 04aa 0DF54B7D 		add	sp, sp, #812
+ 754 04ae BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 755              	.L102:
+ 756 04b2 00BF     		.align	2
+ 757              	.L101:
+ 758 04b4 00000000 		.word	.LANCHOR5
+ 759 04b8 00000000 		.word	SD2
+ 760 04bc 00010000 		.word	.LC9
+ 761 04c0 26010000 		.word	.LC10
+ 762 04c4 4A010000 		.word	.LC11
+ 763 04c8 00000000 		.word	.LANCHOR6
+ 764 04cc 00240000 		.word	.LANCHOR4+9216
+ 765 04d0 00480000 		.word	.LANCHOR4+18432
+ 766 04d4 6C010000 		.word	.LC12
+ 767 04d8 00000000 		.word	.LANCHOR4
+ 768 04dc 8B010000 		.word	.LC13
+ 769 04e0 A7010000 		.word	.LC14
+ 770 04e4 D9010000 		.word	.LC15
+ 771 04e8 0C020000 		.word	.LC16
+ 772 04ec 3F020000 		.word	.LC17
+ 773 04f0 74020000 		.word	.LC18
+ 774 04f4 93020000 		.word	.LC19
+ 775 04f8 B2020000 		.word	.LC20
+ 777              		.section	.text.Mp3PlayAllFiles,"ax",%progbits
+ 778              		.align	1
+ 779              		.global	Mp3PlayAllFiles
+ 780              		.thumb
+ 781              		.thumb_func
+ 783              	Mp3PlayAllFiles:
+ 784              		@ args = 0, pretend = 0, frame = 104
+ 785              		@ frame_needed = 0, uses_anonymous_args = 0
+ 786 0000 30B5     		push	{r4, r5, lr}
+ 787 0002 0546     		mov	r5, r0
+ 788 0004 9BB0     		sub	sp, sp, #108
+ 789 0006 2548     		ldr	r0, .L110
+ 790 0008 2549     		ldr	r1, .L110+4
+ 791 000a 2A46     		mov	r2, r5
+ 792 000c FFF7FEFF 		bl	chprintf
+ 793 0010 0DA8     		add	r0, sp, #52
+ 794 0012 2946     		mov	r1, r5
+ 795 0014 FFF7FEFF 		bl	f_opendir
+ 796 0018 0446     		mov	r4, r0
+ 797 001a 0028     		cmp	r0, #0
+ 798 001c 31D1     		bne	.L104
+ 799 001e 25E0     		b	.L107
+ 800              	.L109:
+ 801 0020 2946     		mov	r1, r5
+ 802 0022 6846     		mov	r0, sp
+ 803 0024 FFF7FEFF 		bl	strcpy
+ 804 0028 0DF15901 		add	r1, sp, #89
+ 805 002c 6846     		mov	r0, sp
+ 806 002e FFF7FEFF 		bl	strcat
+ 807 0032 9DF85830 		ldrb	r3, [sp, #88]	@ zero_extendqisi2
+ 808 0036 1948     		ldr	r0, .L110
+ 809 0038 D906     		lsls	r1, r3, #27
+ 810 003a 04D5     		bpl	.L106
+ 811 003c 1949     		ldr	r1, .L110+8
+ 812 003e 6A46     		mov	r2, sp
+ 813 0040 FFF7FEFF 		bl	chprintf
+ 814 0044 12E0     		b	.L107
+ 815              	.L106:
+ 816 0046 1849     		ldr	r1, .L110+12
+ 817 0048 6A46     		mov	r2, sp
+ 818 004a FFF7FEFF 		bl	chprintf
+ 819 004e 6846     		mov	r0, sp
+ 820 0050 FFF7FEFF 		bl	strlen
+ 821 0054 0328     		cmp	r0, #3
+ 822 0056 09D9     		bls	.L107
+ 823 0058 00A9     		add	r1, sp, #0
+ 824 005a 0438     		subs	r0, r0, #4
+ 825 005c 0818     		adds	r0, r1, r0
+ 826 005e 1349     		ldr	r1, .L110+16
+ 827 0060 FFF7FEFF 		bl	strcasecmp
+ 828 0064 10B9     		cbnz	r0, .L107
+ 829 0066 6846     		mov	r0, sp
+ 830 0068 FFF7FEFF 		bl	Mp3Decode
+ 831              	.L107:
+ 832 006c 0DA8     		add	r0, sp, #52
+ 833 006e 14A9     		add	r1, sp, #80
+ 834 0070 FFF7FEFF 		bl	f_readdir
+ 835 0074 0446     		mov	r4, r0
+ 836 0076 48B9     		cbnz	r0, .L108
+ 837 0078 9DF85920 		ldrb	r2, [sp, #89]	@ zero_extendqisi2
+ 838 007c 002A     		cmp	r2, #0
+ 839 007e CFD1     		bne	.L109
+ 840 0080 04E0     		b	.L108
+ 841              	.L104:
+ 842 0082 0648     		ldr	r0, .L110
+ 843 0084 0A49     		ldr	r1, .L110+20
+ 844 0086 2246     		mov	r2, r4
+ 845 0088 FFF7FEFF 		bl	chprintf
+ 846              	.L108:
+ 847 008c 0348     		ldr	r0, .L110
+ 848 008e 0949     		ldr	r1, .L110+24
+ 849 0090 2A46     		mov	r2, r5
+ 850 0092 FFF7FEFF 		bl	chprintf
+ 851 0096 2046     		mov	r0, r4
+ 852 0098 1BB0     		add	sp, sp, #108
+ 853 009a 30BD     		pop	{r4, r5, pc}
+ 854              	.L111:
+ 855              		.align	2
+ 856              	.L110:
+ 857 009c 00000000 		.word	SD2
+ 858 00a0 D4020000 		.word	.LC21
+ 859 00a4 01030000 		.word	.LC22
+ 860 00a8 1D030000 		.word	.LC23
+ 861 00ac 3A030000 		.word	.LC24
+ 862 00b0 3F030000 		.word	.LC25
+ 863 00b4 66030000 		.word	.LC26
+ 865              		.section	.text.InsertHandler,"ax",%progbits
+ 866              		.align	1
+ 867              		.thumb
+ 868              		.thumb_func
+ 870              	InsertHandler:
+ 871              		@ args = 0, pretend = 0, frame = 0
+ 872              		@ frame_needed = 0, uses_anonymous_args = 0
+ 873 0000 10B5     		push	{r4, lr}
+ 874 0002 1448     		ldr	r0, .L116
+ 875 0004 FFF7FEFF 		bl	mmcConnect
+ 876 0008 0446     		mov	r4, r0
+ 877 000a 28B1     		cbz	r0, .L113
+ 878 000c 1248     		ldr	r0, .L116+4
+ 879 000e 1349     		ldr	r1, .L116+8
+ 880 0010 BDE81040 		pop	{r4, lr}
+ 881 0014 FFF7FEBF 		b	chprintf
+ 882              	.L113:
+ 883 0018 0F48     		ldr	r0, .L116+4
+ 884 001a 1149     		ldr	r1, .L116+12
+ 885 001c FFF7FEFF 		bl	chprintf
+ 886 0020 2046     		mov	r0, r4
+ 887 0022 1049     		ldr	r1, .L116+16
+ 888 0024 FFF7FEFF 		bl	f_mount
+ 889 0028 0246     		mov	r2, r0
+ 890 002a 40B1     		cbz	r0, .L114
+ 891 002c 0A48     		ldr	r0, .L116+4
+ 892 002e 0E49     		ldr	r1, .L116+20
+ 893 0030 FFF7FEFF 		bl	chprintf
+ 894 0034 0748     		ldr	r0, .L116
+ 895 0036 BDE81040 		pop	{r4, lr}
+ 896 003a FFF7FEBF 		b	mmcDisconnect
+ 897              	.L114:
+ 898 003e 0648     		ldr	r0, .L116+4
+ 899 0040 0A49     		ldr	r1, .L116+24
+ 900 0042 FFF7FEFF 		bl	chprintf
+ 901 0046 0A4B     		ldr	r3, .L116+28
+ 902 0048 0122     		movs	r2, #1
+ 903 004a 1A60     		str	r2, [r3, #0]
+ 904              	.L115:
+ 905 004c 0948     		ldr	r0, .L116+32
+ 906 004e FFF7FEFF 		bl	Mp3PlayAllFiles
+ 907 0052 FBE7     		b	.L115
+ 908              	.L117:
+ 909              		.align	2
+ 910              	.L116:
+ 911 0054 00000000 		.word	MMCD1
+ 912 0058 00000000 		.word	SD2
+ 913 005c 94030000 		.word	.LC27
+ 914 0060 B4030000 		.word	.LC28
+ 915 0064 00000000 		.word	MMC_FS
+ 916 0068 CC030000 		.word	.LC29
+ 917 006c E6030000 		.word	.LC30
+ 918 0070 00000000 		.word	.LANCHOR0
+ 919 0074 00040000 		.word	.LC31
+ 921              		.section	.text.port_halt,"ax",%progbits
+ 922              		.align	1
+ 923              		.global	port_halt
+ 924              		.thumb
+ 925              		.thumb_func
+ 927              	port_halt:
+ 928              		@ args = 0, pretend = 0, frame = 0
+ 929              		@ frame_needed = 0, uses_anonymous_args = 0
+ 930              		@ link register save eliminated.
+ 931              	@ 613 "../src/main.c" 1
+ 932 0000 72B6     		cpsid   i
+ 933              	@ 0 "" 2
+ 934              		.thumb
+ 935 0002 024B     		ldr	r3, .L120
+ 936 0004 48F20002 		movw	r2, 32768	@ movhi
+ 937 0008 1A83     		strh	r2, [r3, #24]	@ movhi
+ 938              	.L119:
+ 939 000a FEE7     		b	.L119
+ 940              	.L121:
+ 941              		.align	2
+ 942              	.L120:
+ 943 000c 000C0240 		.word	1073875968
+ 945              		.section	.text.Codec_TIMEOUT_UserCallback,"ax",%progbits
+ 946              		.align	1
+ 947              		.global	Codec_TIMEOUT_UserCallback
+ 948              		.thumb
+ 949              		.thumb_func
+ 951              	Codec_TIMEOUT_UserCallback:
+ 952              		@ args = 0, pretend = 0, frame = 0
+ 953              		@ frame_needed = 0, uses_anonymous_args = 0
+ 954 0000 08B5     		push	{r3, lr}
+ 955 0002 FFF7FEFF 		bl	port_halt
+ 957              		.section	.text.startup.main,"ax",%progbits
+ 958              		.align	1
+ 959              		.global	main
+ 960              		.thumb
+ 961              		.thumb_func
+ 963              	main:
+ 964              		@ args = 0, pretend = 0, frame = 24
+ 965              		@ frame_needed = 0, uses_anonymous_args = 0
+ 966 0000 10B5     		push	{r4, lr}
+ 967 0002 88B0     		sub	sp, sp, #32
+ 968 0004 FFF7FEFF 		bl	halInit
+ 969 0008 374C     		ldr	r4, .L125
+ 970 000a FFF7FEFF 		bl	chSysInit
+ 971 000e 3648     		ldr	r0, .L125
+ 972 0010 4FF48051 		mov	r1, #4096
+ 973 0014 1922     		movs	r2, #25
+ 974 0016 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 975 001a 4FF48053 		mov	r3, #4096	@ movhi
+ 976 001e 6383     		strh	r3, [r4, #26]	@ movhi
+ 977 0020 2046     		mov	r0, r4
+ 978 0022 1922     		movs	r2, #25
+ 979 0024 4FF40041 		mov	r1, #32768
+ 980 0028 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 981 002c 48F2000C 		movw	ip, 32768	@ movhi
+ 982 0030 A4F81AC0 		strh	ip, [r4, #26]	@ movhi
+ 983 0034 2D48     		ldr	r0, .L125+4
+ 984 0036 2E4C     		ldr	r4, .L125+8
+ 985 0038 0021     		movs	r1, #0
+ 986 003a FFF7FEFF 		bl	sdStart
+ 987 003e 2D48     		ldr	r0, .L125+12
+ 988 0040 0421     		movs	r1, #4
+ 989 0042 40F29A32 		movw	r2, #922
+ 990 0046 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 991 004a 2A48     		ldr	r0, .L125+12
+ 992 004c 0821     		movs	r1, #8
+ 993 004e 40F28232 		movw	r2, #898
+ 994 0052 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 995 0056 2648     		ldr	r0, .L125+8
+ 996 0058 1021     		movs	r1, #16
+ 997 005a 1922     		movs	r2, #25
+ 998 005c FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 999 0060 2448     		ldr	r0, .L125+12
+ 1000 0062 2021     		movs	r1, #32
+ 1001 0064 40F29A22 		movw	r2, #666
+ 1002 0068 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 1003 006c 2148     		ldr	r0, .L125+12
+ 1004 006e 4021     		movs	r1, #64
+ 1005 0070 40F28222 		movw	r2, #642
+ 1006 0074 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 1007 0078 1E48     		ldr	r0, .L125+12
+ 1008 007a 8021     		movs	r1, #128
+ 1009 007c 40F29A22 		movw	r2, #666
+ 1010 0080 FFF7FEFF 		bl	_pal_lld_setgroupmode
+ 1011 0084 1C49     		ldr	r1, .L125+16
+ 1012 0086 1D48     		ldr	r0, .L125+20
+ 1013 0088 1D4B     		ldr	r3, .L125+24
+ 1014 008a 1022     		movs	r2, #16
+ 1015 008c 2283     		strh	r2, [r4, #24]	@ movhi
+ 1016 008e 1D4A     		ldr	r2, .L125+28
+ 1017 0090 0091     		str	r1, [sp, #0]
+ 1018 0092 0190     		str	r0, [sp, #4]
+ 1019 0094 1C49     		ldr	r1, .L125+32
+ 1020 0096 1D48     		ldr	r0, .L125+36
+ 1021 0098 FFF7FEFF 		bl	mmcObjectInit
+ 1022 009c 1B48     		ldr	r0, .L125+36
+ 1023 009e 0021     		movs	r1, #0
+ 1024 00a0 FFF7FEFF 		bl	mmcStart
+ 1025 00a4 1A4B     		ldr	r3, .L125+40
+ 1026 00a6 1B4A     		ldr	r2, .L125+44
+ 1027 00a8 586A     		ldr	r0, [r3, #36]
+ 1028 00aa 0A21     		movs	r1, #10
+ 1029 00ac FFF7FEFF 		bl	dmaStreamAllocate
+ 1030 00b0 0023     		movs	r3, #0
+ 1031 00b2 0093     		str	r3, [sp, #0]
+ 1032 00b4 4FF4D871 		mov	r1, #432
+ 1033 00b8 4022     		movs	r2, #64
+ 1034 00ba 174B     		ldr	r3, .L125+48
+ 1035 00bc 1748     		ldr	r0, .L125+52
+ 1036 00be FFF7FEFF 		bl	chThdCreateStatic
+ 1037 00c2 1748     		ldr	r0, .L125+56
+ 1038 00c4 02A9     		add	r1, sp, #8
+ 1039 00c6 0122     		movs	r2, #1
+ 1040 00c8 FFF7FEFF 		bl	chEvtRegisterMask
+ 1041 00cc 1548     		ldr	r0, .L125+60
+ 1042 00ce 05A9     		add	r1, sp, #20
+ 1043 00d0 0222     		movs	r2, #2
+ 1044 00d2 FFF7FEFF 		bl	chEvtRegisterMask
+ 1045              	.L124:
+ 1046 00d6 4FF0FF30 		mov	r0, #-1
+ 1047 00da FFF7FEFF 		bl	chEvtWaitOne
+ 1048 00de 0146     		mov	r1, r0
+ 1049 00e0 1148     		ldr	r0, .L125+64
+ 1050 00e2 FFF7FEFF 		bl	chEvtDispatch
+ 1051 00e6 F6E7     		b	.L124
+ 1052              	.L126:
+ 1053              		.align	2
+ 1054              	.L125:
+ 1055 00e8 000C0240 		.word	1073875968
+ 1056 00ec 00000000 		.word	SD2
+ 1057 00f0 00080240 		.word	1073874944
+ 1058 00f4 00000240 		.word	1073872896
+ 1059 00f8 00000000 		.word	mmc_is_protected
+ 1060 00fc 00000000 		.word	mmc_is_inserted
+ 1061 0100 00000000 		.word	.LANCHOR8
+ 1062 0104 00000000 		.word	.LANCHOR7
+ 1063 0108 00000000 		.word	SPID1
+ 1064 010c 00000000 		.word	MMCD1
+ 1065 0110 00000000 		.word	SPID3
+ 1066 0114 00000000 		.word	I2SDmaTxInterrupt
+ 1067 0118 00000000 		.word	BlinkThread
+ 1068 011c 00000000 		.word	.LANCHOR9
+ 1069 0120 1C000000 		.word	MMCD1+28
+ 1070 0124 20000000 		.word	MMCD1+32
+ 1071 0128 00000000 		.word	.LANCHOR10
+ 1073              		.comm	MMCD1,64,4
+ 1074              		.comm	MMC_FS,560,4
+ 1075              		.section	.rodata.evhndl.6977,"a",%progbits
+ 1076              		.align	2
+ 1077              		.set	.LANCHOR10,. + 0
+ 1080              	evhndl.6977:
+ 1081 0000 00000000 		.word	InsertHandler
+ 1082 0004 00000000 		.word	RemoveHandler
+ 1083              		.section	.bss.g_pMp3DmaBuffer,"aw",%nobits
+ 1084              		.align	1
+ 1085              		.set	.LANCHOR4,. + 0
+ 1088              	g_pMp3DmaBuffer:
+ 1089 0000 00000000 		.space	18432
+ 1089      00000000 
+ 1089      00000000 
+ 1089      00000000 
+ 1089      00000000 
+ 1090              		.section	.bss.waBlinkThread,"aw",%nobits
+ 1091              		.align	3
+ 1092              		.set	.LANCHOR9,. + 0
+ 1095              	waBlinkThread:
+ 1096 0000 00000000 		.space	432
+ 1096      00000000 
+ 1096      00000000 
+ 1096      00000000 
+ 1096      00000000 
+ 1097              		.section	.bss.g_pMp3DmaBufferPtr,"aw",%nobits
+ 1098              		.align	2
+ 1099              		.set	.LANCHOR3,. + 0
+ 1102              	g_pMp3DmaBufferPtr:
+ 1103 0000 00000000 		.space	4
+ 1104              		.section	.bss.g_Mp3InBuffer,"aw",%nobits
+ 1105              		.set	.LANCHOR2,. + 0
+ 1108              	g_Mp3InBuffer:
+ 1109 0000 00000000 		.space	4096
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1110              		.section	.bss.g_pMp3DecoderThread,"aw",%nobits
+ 1111              		.align	2
+ 1112              		.set	.LANCHOR1,. + 0
+ 1115              	g_pMp3DecoderThread:
+ 1116 0000 00000000 		.space	4
+ 1117              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 1118              	.LC0:
+ 1119 0000 426C696E 		.ascii	"BlinkThread\000"
+ 1119      6B546872 
+ 1119      65616400 
+ 1120              	.LC1:
+ 1121 000c 4D703344 		.ascii	"Mp3Decode: Failed to open file \"%s\" for reading, "
+ 1121      65636F64 
+ 1121      653A2046 
+ 1121      61696C65 
+ 1121      6420746F 
+ 1122 003d 6572723D 		.ascii	"err=%d\015\012\000"
+ 1122      25640D0A 
+ 1122      00
+ 1123              	.LC2:
+ 1124 0046 4D703344 		.ascii	"Mp3Decode: Failed to initialize mp3 decoder engine\015"
+ 1124      65636F64 
+ 1124      653A2046 
+ 1124      61696C65 
+ 1124      6420746F 
+ 1125 0079 0A00     		.ascii	"\012\000"
+ 1126              	.LC3:
+ 1127 007b 4D703344 		.ascii	"Mp3Decode: Start decoding \"%s\"\015\012\000"
+ 1127      65636F64 
+ 1127      653A2053 
+ 1127      74617274 
+ 1127      20646563 
+ 1128              	.LC4:
+ 1129 009c 33444900 		.ascii	"3DI\000"
+ 1130              	.LC5:
+ 1131 00a0 54504531 		.ascii	"TPE1\000"
+ 1131      00
+ 1132              	.LC6:
+ 1133 00a5 54495432 		.ascii	"TIT2\000"
+ 1133      00
+ 1134              	.LC7:
+ 1135 00aa 4D703344 		.ascii	"Mp3Decode: Skipping %u bytes of ID3v2 tag\015\012\000"
+ 1135      65636F64 
+ 1135      653A2053 
+ 1135      6B697070 
+ 1135      696E6720 
+ 1136              	.LC8:
+ 1137 00d6 4D703344 		.ascii	"Mp3Decode: Now playing (ID3v2): %s - %s\015\012\000"
+ 1137      65636F64 
+ 1137      653A204E 
+ 1137      6F772070 
+ 1137      6C617969 
+ 1138              	.LC9:
+ 1139 0100 4D703344 		.ascii	"Mp3Decode: %d Hz %d Bit %d Channels\015\012\000"
+ 1139      65636F64 
+ 1139      653A2025 
+ 1139      6420487A 
+ 1139      20256420 
+ 1140              	.LC10:
+ 1141 0126 4D703344 		.ascii	"Mp3Decode: incompatible MP3 file.\015\012\000"
+ 1141      65636F64 
+ 1141      653A2069 
+ 1141      6E636F6D 
+ 1141      70617469 
+ 1142              	.LC11:
+ 1143 014a 4D703344 		.ascii	"Mp3Decode: frame %u, bitrate=%d\015\012\000"
+ 1143      65636F64 
+ 1143      653A2066 
+ 1143      72616D65 
+ 1143      2025752C 
+ 1144              	.LC12:
+ 1145 016c 4D703344 		.ascii	"Mp3Decode: audio init failed\015\012\000"
+ 1145      65636F64 
+ 1145      653A2061 
+ 1145      7564696F 
+ 1145      20696E69 
+ 1146              	.LC13:
+ 1147 018b 4D703344 		.ascii	"Mp3Decode: Stop requested\015\012\000"
+ 1147      65636F64 
+ 1147      653A2053 
+ 1147      746F7020 
+ 1147      72657175 
+ 1148              	.LC14:
+ 1149 01a7 4D703344 		.ascii	"Mp3Decode: DMA out of sync (HT and TC both set)\015"
+ 1149      65636F64 
+ 1149      653A2044 
+ 1149      4D41206F 
+ 1149      7574206F 
+ 1150 01d7 0A00     		.ascii	"\012\000"
+ 1151              	.LC15:
+ 1152 01d9 4D703344 		.ascii	"Mp3Decode: DMA out of sync (expected HT, got TC)\015"
+ 1152      65636F64 
+ 1152      653A2044 
+ 1152      4D41206F 
+ 1152      7574206F 
+ 1153 020a 0A00     		.ascii	"\012\000"
+ 1154              	.LC16:
+ 1155 020c 4D703344 		.ascii	"Mp3Decode: DMA out of sync (expected TC, got HT)\015"
+ 1155      65636F64 
+ 1155      653A2044 
+ 1155      4D41206F 
+ 1155      7574206F 
+ 1156 023d 0A00     		.ascii	"\012\000"
+ 1157              	.LC17:
+ 1158 023f 4D703344 		.ascii	"Mp3Decode: Decoding error ERR_MP3_INDATA_UNDERFLOW\015"
+ 1158      65636F64 
+ 1158      653A2044 
+ 1158      65636F64 
+ 1158      696E6720 
+ 1159 0272 0A00     		.ascii	"\012\000"
+ 1160              	.LC18:
+ 1161 0274 4D703344 		.ascii	"Mp3Decode: Decoding error %d\015\012\000"
+ 1161      65636F64 
+ 1161      653A2044 
+ 1161      65636F64 
+ 1161      696E6720 
+ 1162              	.LC19:
+ 1163 0293 4D703344 		.ascii	"Mp3Decode: Finished decoding\015\012\000"
+ 1163      65636F64 
+ 1163      653A2046 
+ 1163      696E6973 
+ 1163      68656420 
+ 1164              	.LC20:
+ 1165 02b2 4D703344 		.ascii	"Mp3Decode: Failed to stop audio\015\012\000"
+ 1165      65636F64 
+ 1165      653A2046 
+ 1165      61696C65 
+ 1165      6420746F 
+ 1166              	.LC21:
+ 1167 02d4 4D703350 		.ascii	"Mp3PlayAllFiles: Playing all files in \"%s\"\015\012"
+ 1167      6C617941 
+ 1167      6C6C4669 
+ 1167      6C65733A 
+ 1167      20506C61 
+ 1168 0300 00       		.ascii	"\000"
+ 1169              	.LC22:
+ 1170 0301 4D703350 		.ascii	"Mp3PlayAllFiles: DIR \"%s\"\015\012\000"
+ 1170      6C617941 
+ 1170      6C6C4669 
+ 1170      6C65733A 
+ 1170      20444952 
+ 1171              	.LC23:
+ 1172 031d 4D703350 		.ascii	"Mp3PlayAllFiles: FILE \"%s\"\015\012\000"
+ 1172      6C617941 
+ 1172      6C6C4669 
+ 1172      6C65733A 
+ 1172      2046494C 
+ 1173              	.LC24:
+ 1174 033a 2E6D7033 		.ascii	".mp3\000"
+ 1174      00
+ 1175              	.LC25:
+ 1176 033f 4D703350 		.ascii	"Mp3PlayAllFiles: f_opendir failed %d\015\012\000"
+ 1176      6C617941 
+ 1176      6C6C4669 
+ 1176      6C65733A 
+ 1176      20665F6F 
+ 1177              	.LC26:
+ 1178 0366 4D703350 		.ascii	"Mp3PlayAllFiles: Finished playing all files\015\012"
+ 1178      6C617941 
+ 1178      6C6C4669 
+ 1178      6C65733A 
+ 1178      2046696E 
+ 1179 0393 00       		.ascii	"\000"
+ 1180              	.LC27:
+ 1181 0394 53443A20 		.ascii	"SD: Failed to connect to card\015\012\000"
+ 1181      4661696C 
+ 1181      65642074 
+ 1181      6F20636F 
+ 1181      6E6E6563 
+ 1182              	.LC28:
+ 1183 03b4 53443A20 		.ascii	"SD: Connected to card\015\012\000"
+ 1183      436F6E6E 
+ 1183      65637465 
+ 1183      6420746F 
+ 1183      20636172 
+ 1184              	.LC29:
+ 1185 03cc 53443A20 		.ascii	"SD: f_mount() failed %d\015\012\000"
+ 1185      665F6D6F 
+ 1185      756E7428 
+ 1185      29206661 
+ 1185      696C6564 
+ 1186              	.LC30:
+ 1187 03e6 53443A20 		.ascii	"SD: File system mounted\015\012\000"
+ 1187      46696C65 
+ 1187      20737973 
+ 1187      74656D20 
+ 1187      6D6F756E 
+ 1188              	.LC31:
+ 1189 0400 2F00     		.ascii	"/\000"
+ 1190              		.section	.bss.fs_ready,"aw",%nobits
+ 1191              		.align	2
+ 1192              		.set	.LANCHOR0,. + 0
+ 1195              	fs_ready:
+ 1196 0000 00000000 		.space	4
+ 1197              		.section	.data.ls_spicfg,"aw",%progbits
+ 1198              		.align	2
+ 1199              		.set	.LANCHOR7,. + 0
+ 1202              	ls_spicfg:
+ 1203 0000 00000000 		.word	0
+ 1204 0004 00080240 		.word	1073874944
+ 1205 0008 0400     		.short	4
+ 1206 000a 3000     		.short	48
+ 1207              		.section	.bss.g_pMp3OutBuffer,"aw",%nobits
+ 1208              		.align	1
+ 1209              		.set	.LANCHOR5,. + 0
+ 1212              	g_pMp3OutBuffer:
+ 1213 0000 00000000 		.space	4608
+ 1213      00000000 
+ 1213      00000000 
+ 1213      00000000 
+ 1213      00000000 
+ 1214              		.section	.bss.g_pMp3OutBufferPtr,"aw",%nobits
+ 1215              		.align	2
+ 1216              		.set	.LANCHOR6,. + 0
+ 1219              	g_pMp3OutBufferPtr:
+ 1220 0000 00000000 		.space	4
+ 1221              		.section	.data.hs_spicfg,"aw",%progbits
+ 1222              		.align	2
+ 1223              		.set	.LANCHOR8,. + 0
+ 1226              	hs_spicfg:
+ 1227 0000 00000000 		.word	0
+ 1228 0004 00080240 		.word	1073874944
+ 1229 0008 0400     		.short	4
+ 1230 000a 0000     		.short	0
+ 1231              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+     /tmp/ccj2HTu7.s:17     .text.mmc_is_inserted:00000000 $t
+     /tmp/ccj2HTu7.s:21     .text.mmc_is_inserted:00000000 mmc_is_inserted
+     /tmp/ccj2HTu7.s:29     .text.mmc_is_protected:00000000 $t
+     /tmp/ccj2HTu7.s:33     .text.mmc_is_protected:00000000 mmc_is_protected
+     /tmp/ccj2HTu7.s:41     .text.RemoveHandler:00000000 $t
+     /tmp/ccj2HTu7.s:45     .text.RemoveHandler:00000000 RemoveHandler
+     /tmp/ccj2HTu7.s:56     .text.RemoveHandler:00000008 $d
+     /tmp/ccj2HTu7.s:59     .text.BlinkThread:00000000 $t
+     /tmp/ccj2HTu7.s:63     .text.BlinkThread:00000000 BlinkThread
+     /tmp/ccj2HTu7.s:95     .text.BlinkThread:00000040 $d
+     /tmp/ccj2HTu7.s:102    .text.I2SDmaTxInterrupt:00000000 $t
+     /tmp/ccj2HTu7.s:106    .text.I2SDmaTxInterrupt:00000000 I2SDmaTxInterrupt
+     /tmp/ccj2HTu7.s:152    .text.I2SDmaTxInterrupt:00000040 $d
+     /tmp/ccj2HTu7.s:156    .text.Mp3ReadId3V2Text.constprop.1:00000000 $t
+     /tmp/ccj2HTu7.s:160    .text.Mp3ReadId3V2Text.constprop.1:00000000 Mp3ReadId3V2Text.constprop.1
+     /tmp/ccj2HTu7.s:247    .text.Mp3Decode:00000000 $t
+     /tmp/ccj2HTu7.s:252    .text.Mp3Decode:00000000 Mp3Decode
+     /tmp/ccj2HTu7.s:511    .text.Mp3Decode:0000027c $d
+     /tmp/ccj2HTu7.s:527    .text.Mp3Decode:000002b8 $t
+     /tmp/ccj2HTu7.s:555    .text.Mp3Decode:000002f8 $d
+     /tmp/ccj2HTu7.s:560    .text.Mp3Decode:00000308 $t
+     /tmp/ccj2HTu7.s:758    .text.Mp3Decode:000004b4 $d
+     /tmp/ccj2HTu7.s:778    .text.Mp3PlayAllFiles:00000000 $t
+     /tmp/ccj2HTu7.s:783    .text.Mp3PlayAllFiles:00000000 Mp3PlayAllFiles
+     /tmp/ccj2HTu7.s:857    .text.Mp3PlayAllFiles:0000009c $d
+     /tmp/ccj2HTu7.s:866    .text.InsertHandler:00000000 $t
+     /tmp/ccj2HTu7.s:870    .text.InsertHandler:00000000 InsertHandler
+     /tmp/ccj2HTu7.s:911    .text.InsertHandler:00000054 $d
+                            *COM*:00000040 MMCD1
+                            *COM*:00000230 MMC_FS
+     /tmp/ccj2HTu7.s:922    .text.port_halt:00000000 $t
+     /tmp/ccj2HTu7.s:927    .text.port_halt:00000000 port_halt
+     /tmp/ccj2HTu7.s:943    .text.port_halt:0000000c $d
+     /tmp/ccj2HTu7.s:946    .text.Codec_TIMEOUT_UserCallback:00000000 $t
+     /tmp/ccj2HTu7.s:951    .text.Codec_TIMEOUT_UserCallback:00000000 Codec_TIMEOUT_UserCallback
+     /tmp/ccj2HTu7.s:958    .text.startup.main:00000000 $t
+     /tmp/ccj2HTu7.s:963    .text.startup.main:00000000 main
+     /tmp/ccj2HTu7.s:1055   .text.startup.main:000000e8 $d
+     /tmp/ccj2HTu7.s:1076   .rodata.evhndl.6977:00000000 $d
+     /tmp/ccj2HTu7.s:1080   .rodata.evhndl.6977:00000000 evhndl.6977
+     /tmp/ccj2HTu7.s:1084   .bss.g_pMp3DmaBuffer:00000000 $d
+     /tmp/ccj2HTu7.s:1088   .bss.g_pMp3DmaBuffer:00000000 g_pMp3DmaBuffer
+     /tmp/ccj2HTu7.s:1091   .bss.waBlinkThread:00000000 $d
+     /tmp/ccj2HTu7.s:1095   .bss.waBlinkThread:00000000 waBlinkThread
+     /tmp/ccj2HTu7.s:1098   .bss.g_pMp3DmaBufferPtr:00000000 $d
+     /tmp/ccj2HTu7.s:1102   .bss.g_pMp3DmaBufferPtr:00000000 g_pMp3DmaBufferPtr
+     /tmp/ccj2HTu7.s:1108   .bss.g_Mp3InBuffer:00000000 g_Mp3InBuffer
+     /tmp/ccj2HTu7.s:1109   .bss.g_Mp3InBuffer:00000000 $d
+     /tmp/ccj2HTu7.s:1111   .bss.g_pMp3DecoderThread:00000000 $d
+     /tmp/ccj2HTu7.s:1115   .bss.g_pMp3DecoderThread:00000000 g_pMp3DecoderThread
+     /tmp/ccj2HTu7.s:1191   .bss.fs_ready:00000000 $d
+     /tmp/ccj2HTu7.s:1195   .bss.fs_ready:00000000 fs_ready
+     /tmp/ccj2HTu7.s:1198   .data.ls_spicfg:00000000 $d
+     /tmp/ccj2HTu7.s:1202   .data.ls_spicfg:00000000 ls_spicfg
+     /tmp/ccj2HTu7.s:1208   .bss.g_pMp3OutBuffer:00000000 $d
+     /tmp/ccj2HTu7.s:1212   .bss.g_pMp3OutBuffer:00000000 g_pMp3OutBuffer
+     /tmp/ccj2HTu7.s:1215   .bss.g_pMp3OutBufferPtr:00000000 $d
+     /tmp/ccj2HTu7.s:1219   .bss.g_pMp3OutBufferPtr:00000000 g_pMp3OutBufferPtr
+     /tmp/ccj2HTu7.s:1222   .data.hs_spicfg:00000000 $d
+     /tmp/ccj2HTu7.s:1226   .data.hs_spicfg:00000000 hs_spicfg
+
+UNDEFINED SYMBOLS
+chEvtSignalFlags
+chThdSleep
+rlist
+chEvtSignalFlagsI
+SPID3
+f_read
+f_lseek
+f_open
+chprintf
+MP3InitDecoder
+strncmp
+strcmp
+memmove
+SD2
+MP3FindSyncWord
+MP3Decode
+MP3GetLastFrameInfo
+memcpy
+EVAL_AUDIO_Init
+EVAL_AUDIO_Play
+chEvtWaitAny
+MP3FreeDecoder
+EVAL_AUDIO_Stop
+EVAL_AUDIO_DeInit
+f_close
+chEvtWaitOneTimeout
+f_opendir
+strcpy
+strcat
+strlen
+strcasecmp
+f_readdir
+mmcConnect
+f_mount
+mmcDisconnect
+halInit
+chSysInit
+_pal_lld_setgroupmode
+sdStart
+mmcObjectInit
+mmcStart
+dmaStreamAllocate
+chThdCreateStatic
+chEvtRegisterMask
+chEvtWaitOne
+chEvtDispatch
+SPID1

@@ -1,0 +1,123 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"chmempools.c"
+  16              		.section	.text.chPoolInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	chPoolInit
+  19              		.thumb
+  20              		.thumb_func
+  22              	chPoolInit:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0023     		movs	r3, #0
+  27 0002 0360     		str	r3, [r0, #0]
+  28 0004 CB1D     		adds	r3, r1, #7
+  29 0006 23F00701 		bic	r1, r3, #7
+  30 000a 4160     		str	r1, [r0, #4]
+  31 000c 8260     		str	r2, [r0, #8]
+  32 000e 7047     		bx	lr
+  34              		.section	.text.chPoolAllocI,"ax",%progbits
+  35              		.align	1
+  36              		.global	chPoolAllocI
+  37              		.thumb
+  38              		.thumb_func
+  40              	chPoolAllocI:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 0246     		mov	r2, r0
+  44 0002 0068     		ldr	r0, [r0, #0]
+  45 0004 08B5     		push	{r3, lr}
+  46 0006 10B1     		cbz	r0, .L3
+  47 0008 0368     		ldr	r3, [r0, #0]
+  48 000a 1360     		str	r3, [r2, #0]
+  49 000c 08BD     		pop	{r3, pc}
+  50              	.L3:
+  51 000e 9368     		ldr	r3, [r2, #8]
+  52 0010 0BB1     		cbz	r3, .L4
+  53 0012 5068     		ldr	r0, [r2, #4]
+  54 0014 9847     		blx	r3
+  55              	.L4:
+  56 0016 08BD     		pop	{r3, pc}
+  58              		.section	.text.chPoolAlloc,"ax",%progbits
+  59              		.align	1
+  60              		.global	chPoolAlloc
+  61              		.thumb
+  62              		.thumb_func
+  64              	chPoolAlloc:
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67 0000 08B5     		push	{r3, lr}
+  68 0002 2023     		movs	r3, #32
+  69              	@ 104 "../src/ChibiOS_2.4.0/os/kernel/src/chmempools.c" 1
+  70 0004 83F31188 		msr     BASEPRI, r3
+  71              	@ 0 "" 2
+  72              		.thumb
+  73 0008 FFF7FEFF 		bl	chPoolAllocI
+  74 000c 0023     		movs	r3, #0
+  75              	@ 106 "../src/ChibiOS_2.4.0/os/kernel/src/chmempools.c" 1
+  76 000e 83F31188 		msr     BASEPRI, r3
+  77              	@ 0 "" 2
+  78              		.thumb
+  79 0012 08BD     		pop	{r3, pc}
+  81              		.section	.text.chPoolFreeI,"ax",%progbits
+  82              		.align	1
+  83              		.global	chPoolFreeI
+  84              		.thumb
+  85              		.thumb_func
+  87              	chPoolFreeI:
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              		@ link register save eliminated.
+  91 0000 0368     		ldr	r3, [r0, #0]
+  92 0002 0B60     		str	r3, [r1, #0]
+  93 0004 0160     		str	r1, [r0, #0]
+  94 0006 7047     		bx	lr
+  96              		.section	.text.chPoolFree,"ax",%progbits
+  97              		.align	1
+  98              		.global	chPoolFree
+  99              		.thumb
+ 100              		.thumb_func
+ 102              	chPoolFree:
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105 0000 08B5     		push	{r3, lr}
+ 106 0002 2023     		movs	r3, #32
+ 107              	@ 147 "../src/ChibiOS_2.4.0/os/kernel/src/chmempools.c" 1
+ 108 0004 83F31188 		msr     BASEPRI, r3
+ 109              	@ 0 "" 2
+ 110              		.thumb
+ 111 0008 FFF7FEFF 		bl	chPoolFreeI
+ 112 000c 0023     		movs	r3, #0
+ 113              	@ 149 "../src/ChibiOS_2.4.0/os/kernel/src/chmempools.c" 1
+ 114 000e 83F31188 		msr     BASEPRI, r3
+ 115              	@ 0 "" 2
+ 116              		.thumb
+ 117 0012 08BD     		pop	{r3, pc}
+ 119              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 chmempools.c
+     /tmp/cc0nPC0c.s:17     .text.chPoolInit:00000000 $t
+     /tmp/cc0nPC0c.s:22     .text.chPoolInit:00000000 chPoolInit
+     /tmp/cc0nPC0c.s:35     .text.chPoolAllocI:00000000 $t
+     /tmp/cc0nPC0c.s:40     .text.chPoolAllocI:00000000 chPoolAllocI
+     /tmp/cc0nPC0c.s:59     .text.chPoolAlloc:00000000 $t
+     /tmp/cc0nPC0c.s:64     .text.chPoolAlloc:00000000 chPoolAlloc
+     /tmp/cc0nPC0c.s:82     .text.chPoolFreeI:00000000 $t
+     /tmp/cc0nPC0c.s:87     .text.chPoolFreeI:00000000 chPoolFreeI
+     /tmp/cc0nPC0c.s:97     .text.chPoolFree:00000000 $t
+     /tmp/cc0nPC0c.s:102    .text.chPoolFree:00000000 chPoolFree
+
+NO UNDEFINED SYMBOLS

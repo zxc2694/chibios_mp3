@@ -1,0 +1,51 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"hal.c"
+  16              		.section	.text.halInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	halInit
+  19              		.thumb
+  20              		.thumb_func
+  22              	halInit:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 08B5     		push	{r3, lr}
+  26 0002 FFF7FEFF 		bl	hal_lld_init
+  27 0006 0648     		ldr	r0, .L2
+  28 0008 FFF7FEFF 		bl	_pal_lld_init
+  29 000c FFF7FEFF 		bl	sdInit
+  30 0010 FFF7FEFF 		bl	spiInit
+  31 0014 FFF7FEFF 		bl	mmcInit
+  32 0018 BDE80840 		pop	{r3, lr}
+  33 001c FFF7FEBF 		b	boardInit
+  34              	.L3:
+  35              		.align	2
+  36              	.L2:
+  37 0020 00000000 		.word	pal_default_config
+  39              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 hal.c
+     /tmp/ccNCQFpR.s:17     .text.halInit:00000000 $t
+     /tmp/ccNCQFpR.s:22     .text.halInit:00000000 halInit
+     /tmp/ccNCQFpR.s:37     .text.halInit:00000020 $d
+
+UNDEFINED SYMBOLS
+hal_lld_init
+_pal_lld_init
+sdInit
+spiInit
+mmcInit
+boardInit
+pal_default_config

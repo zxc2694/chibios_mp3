@@ -1,0 +1,353 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"serial_lld.c"
+  16              		.section	.text.notify2,"ax",%progbits
+  17              		.align	1
+  18              		.thumb
+  19              		.thumb_func
+  21              	notify2:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24              		@ link register save eliminated.
+  25 0000 034B     		ldr	r3, .L2
+  26 0002 9989     		ldrh	r1, [r3, #12]
+  27 0004 88B2     		uxth	r0, r1
+  28 0006 40F08002 		orr	r2, r0, #128
+  29 000a 9A81     		strh	r2, [r3, #12]	@ movhi
+  30 000c 7047     		bx	lr
+  31              	.L3:
+  32 000e 00BF     		.align	2
+  33              	.L2:
+  34 0010 00440040 		.word	1073759232
+  36              		.section	.text.VectorD8,"ax",%progbits
+  37              		.align	1
+  38              		.global	VectorD8
+  39              		.thumb
+  40              		.thumb_func
+  42              	VectorD8:
+  43              		@ args = 0, pretend = 0, frame = 0
+  44              		@ frame_needed = 0, uses_anonymous_args = 0
+  45 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  46 0004 444E     		ldr	r6, .L17
+  47 0006 346F     		ldr	r4, [r6, #112]
+  48 0008 A789     		ldrh	r7, [r4, #12]
+  49 000a 2588     		ldrh	r5, [r4, #0]
+  50 000c B4F80480 		ldrh	r8, [r4, #4]
+  51 0010 ADB2     		uxth	r5, r5
+  52 0012 2A07     		lsls	r2, r5, #28
+  53 0014 BFB2     		uxth	r7, r7
+  54 0016 1ED0     		beq	.L5
+  55 0018 15F0080C 		ands	ip, r5, #8
+  56 001c 18BF     		it	ne
+  57 001e 4FF0800C 		movne	ip, #128
+  58 0022 EB07     		lsls	r3, r5, #31
+  59 0024 48BF     		it	mi
+  60 0026 4CF0200C 		orrmi	ip, ip, #32
+  61 002a A807     		lsls	r0, r5, #30
+  62 002c 48BF     		it	mi
+  63 002e 4CF0400C 		orrmi	ip, ip, #64
+  64 0032 6907     		lsls	r1, r5, #29
+  65 0034 48BF     		it	mi
+  66 0036 4CF4807C 		orrmi	ip, ip, #256
+  67 003a 2023     		movs	r3, #32
+  68              	@ 160 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+  69 003c 83F31188 		msr     BASEPRI, r3
+  70              	@ 0 "" 2
+  71              		.thumb
+  72 0040 B368     		ldr	r3, [r6, #8]
+  73 0042 3648     		ldr	r0, .L17+4
+  74 0044 4CEA0302 		orr	r2, ip, r3
+  75 0048 0021     		movs	r1, #0
+  76 004a B260     		str	r2, [r6, #8]
+  77 004c FFF7FEFF 		bl	chEvtBroadcastFlagsI
+  78 0050 0023     		movs	r3, #0
+  79              	@ 162 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+  80 0052 83F31188 		msr     BASEPRI, r3
+  81              	@ 0 "" 2
+  82              		.thumb
+  83              	.L5:
+  84 0056 EB05     		lsls	r3, r5, #23
+  85 0058 14D5     		bpl	.L10
+  86 005a 2023     		movs	r3, #32
+  87              	@ 181 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+  88 005c 83F31188 		msr     BASEPRI, r3
+  89              	@ 0 "" 2
+  90              		.thumb
+  91 0060 B068     		ldr	r0, [r6, #8]
+  92 0062 0021     		movs	r1, #0
+  93 0064 40F40073 		orr	r3, r0, #512
+  94 0068 2C48     		ldr	r0, .L17+4
+  95 006a B360     		str	r3, [r6, #8]
+  96 006c FFF7FEFF 		bl	chEvtBroadcastFlagsI
+  97 0070 0023     		movs	r3, #0
+  98              	@ 183 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+  99 0072 83F31188 		msr     BASEPRI, r3
+ 100              	@ 0 "" 2
+ 101              		.thumb
+ 102 0076 B4F800C0 		ldrh	ip, [r4, #0]
+ 103 007a 2CF48072 		bic	r2, ip, #256
+ 104 007e 1104     		lsls	r1, r2, #16
+ 105 0080 080C     		lsrs	r0, r1, #16
+ 106 0082 2080     		strh	r0, [r4, #0]	@ movhi
+ 107              	.L10:
+ 108 0084 A806     		lsls	r0, r5, #26
+ 109 0086 0AD5     		bpl	.L11
+ 110 0088 2023     		movs	r3, #32
+ 111              	@ 188 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 112 008a 83F31188 		msr     BASEPRI, r3
+ 113              	@ 0 "" 2
+ 114              		.thumb
+ 115 008e 2248     		ldr	r0, .L17
+ 116 0090 5FFA88F1 		uxtb	r1, r8
+ 117 0094 FFF7FEFF 		bl	sdIncomingDataI
+ 118 0098 0023     		movs	r3, #0
+ 119              	@ 190 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 120 009a 83F31188 		msr     BASEPRI, r3
+ 121              	@ 0 "" 2
+ 122              		.thumb
+ 123              	.L11:
+ 124 009e 3906     		lsls	r1, r7, #24
+ 125 00a0 1BD5     		bpl	.L12
+ 126 00a2 2A06     		lsls	r2, r5, #24
+ 127 00a4 19D5     		bpl	.L12
+ 128 00a6 2023     		movs	r3, #32
+ 129              	@ 195 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 130 00a8 83F31188 		msr     BASEPRI, r3
+ 131              	@ 0 "" 2
+ 132              		.thumb
+ 133 00ac 1C48     		ldr	r0, .L17+8
+ 134 00ae FFF7FEFF 		bl	chOQGetI
+ 135 00b2 0028     		cmp	r0, #0
+ 136 00b4 0DDA     		bge	.L13
+ 137 00b6 B068     		ldr	r0, [r6, #8]
+ 138 00b8 0021     		movs	r1, #0
+ 139 00ba 40F00803 		orr	r3, r0, #8
+ 140 00be 1748     		ldr	r0, .L17+4
+ 141 00c0 B360     		str	r3, [r6, #8]
+ 142 00c2 FFF7FEFF 		bl	chEvtBroadcastFlagsI
+ 143 00c6 27F0C002 		bic	r2, r7, #192
+ 144 00ca 42F04001 		orr	r1, r2, #64
+ 145 00ce A181     		strh	r1, [r4, #12]	@ movhi
+ 146 00d0 00E0     		b	.L14
+ 147              	.L13:
+ 148 00d2 A080     		strh	r0, [r4, #4]	@ movhi
+ 149              	.L14:
+ 150 00d4 0023     		movs	r3, #0
+ 151              	@ 203 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 152 00d6 83F31188 		msr     BASEPRI, r3
+ 153              	@ 0 "" 2
+ 154              		.thumb
+ 155              	.L12:
+ 156 00da 6B06     		lsls	r3, r5, #25
+ 157 00dc 18D5     		bpl	.L15
+ 158 00de 2023     		movs	r3, #32
+ 159              	@ 207 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 160 00e0 83F31188 		msr     BASEPRI, r3
+ 161              	@ 0 "" 2
+ 162              		.thumb
+ 163 00e4 B068     		ldr	r0, [r6, #8]
+ 164 00e6 0021     		movs	r1, #0
+ 165 00e8 40F01003 		orr	r3, r0, #16
+ 166 00ec 0B48     		ldr	r0, .L17+4
+ 167 00ee B360     		str	r3, [r6, #8]
+ 168 00f0 FFF7FEFF 		bl	chEvtBroadcastFlagsI
+ 169 00f4 0023     		movs	r3, #0
+ 170              	@ 209 "../src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.c" 1
+ 171 00f6 83F31188 		msr     BASEPRI, r3
+ 172              	@ 0 "" 2
+ 173              		.thumb
+ 174 00fa 4FF6BF72 		movw	r2, #65471
+ 175 00fe 07EA0201 		and	r1, r7, r2
+ 176 0102 A181     		strh	r1, [r4, #12]	@ movhi
+ 177 0104 2088     		ldrh	r0, [r4, #0]
+ 178 0106 20F04003 		bic	r3, r0, #64
+ 179 010a 1A04     		lsls	r2, r3, #16
+ 180 010c 110C     		lsrs	r1, r2, #16
+ 181 010e 2180     		strh	r1, [r4, #0]	@ movhi
+ 182              	.L15:
+ 183 0110 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 184 0114 FFF7FEBF 		b	_port_irq_epilogue
+ 185              	.L18:
+ 186              		.align	2
+ 187              	.L17:
+ 188 0118 00000000 		.word	SD2
+ 189 011c 04000000 		.word	SD2+4
+ 190 0120 30000000 		.word	SD2+48
+ 192              		.section	.text.sd_lld_init,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	sd_lld_init
+ 195              		.thumb
+ 196              		.thumb_func
+ 198              	sd_lld_init:
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 201 0000 08B5     		push	{r3, lr}
+ 202 0002 044A     		ldr	r2, .L20
+ 203 0004 0448     		ldr	r0, .L20+4
+ 204 0006 0021     		movs	r1, #0
+ 205 0008 FFF7FEFF 		bl	sdObjectInit
+ 206 000c 034A     		ldr	r2, .L20+8
+ 207 000e 024B     		ldr	r3, .L20+4
+ 208 0010 1A67     		str	r2, [r3, #112]
+ 209 0012 08BD     		pop	{r3, pc}
+ 210              	.L21:
+ 211              		.align	2
+ 212              	.L20:
+ 213 0014 00000000 		.word	notify2
+ 214 0018 00000000 		.word	SD2
+ 215 001c 00440040 		.word	1073759232
+ 217              		.section	.text.sd_lld_start,"ax",%progbits
+ 218              		.align	1
+ 219              		.global	sd_lld_start
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	sd_lld_start:
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226 0000 38B5     		push	{r3, r4, r5, lr}
+ 227 0002 1B4C     		ldr	r4, .L30
+ 228 0004 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 229 0006 0029     		cmp	r1, #0
+ 230 0008 18BF     		it	ne
+ 231 000a 0C46     		movne	r4, r1
+ 232 000c 012B     		cmp	r3, #1
+ 233 000e 0546     		mov	r5, r0
+ 234 0010 0BD1     		bne	.L24
+ 235 0012 1849     		ldr	r1, .L30+4
+ 236 0014 8842     		cmp	r0, r1
+ 237 0016 08D1     		bne	.L24
+ 238 0018 1748     		ldr	r0, .L30+8
+ 239 001a 036C     		ldr	r3, [r0, #64]
+ 240 001c 43F40032 		orr	r2, r3, #131072
+ 241 0020 0264     		str	r2, [r0, #64]
+ 242 0022 C021     		movs	r1, #192
+ 243 0024 2620     		movs	r0, #38
+ 244 0026 FFF7FEFF 		bl	nvicEnableVector
+ 245              	.L24:
+ 246 002a 2B6F     		ldr	r3, [r5, #112]
+ 247 002c 1349     		ldr	r1, .L30+12
+ 248 002e 8B42     		cmp	r3, r1
+ 249 0030 02D0     		beq	.L25
+ 250 0032 134A     		ldr	r2, .L30+16
+ 251 0034 9342     		cmp	r3, r2
+ 252 0036 02D1     		bne	.L26
+ 253              	.L25:
+ 254 0038 2268     		ldr	r2, [r4, #0]
+ 255 003a 1249     		ldr	r1, .L30+20
+ 256 003c 01E0     		b	.L29
+ 257              	.L26:
+ 258 003e 2268     		ldr	r2, [r4, #0]
+ 259 0040 1149     		ldr	r1, .L30+24
+ 260              	.L29:
+ 261 0042 B1FBF2F0 		udiv	r0, r1, r2
+ 262 0046 1881     		strh	r0, [r3, #8]	@ movhi
+ 263 0048 A288     		ldrh	r2, [r4, #4]
+ 264 004a E088     		ldrh	r0, [r4, #6]
+ 265 004c 42F4045C 		orr	ip, r2, #8448
+ 266 0050 4CF02C01 		orr	r1, ip, #44
+ 267 0054 B4F808C0 		ldrh	ip, [r4, #8]
+ 268 0058 9981     		strh	r1, [r3, #12]	@ movhi
+ 269 005a 40F04002 		orr	r2, r0, #64
+ 270 005e 4CF00101 		orr	r1, ip, #1
+ 271 0062 0020     		movs	r0, #0
+ 272 0064 1A82     		strh	r2, [r3, #16]	@ movhi
+ 273 0066 9982     		strh	r1, [r3, #20]	@ movhi
+ 274 0068 1880     		strh	r0, [r3, #0]	@ movhi
+ 275 006a 1A88     		ldrh	r2, [r3, #0]
+ 276 006c 9B88     		ldrh	r3, [r3, #4]
+ 277 006e 38BD     		pop	{r3, r4, r5, pc}
+ 278              	.L31:
+ 279              		.align	2
+ 280              	.L30:
+ 281 0070 00000000 		.word	.LANCHOR0
+ 282 0074 00000000 		.word	SD2
+ 283 0078 00380240 		.word	1073887232
+ 284 007c 00100140 		.word	1073811456
+ 285 0080 00140140 		.word	1073812480
+ 286 0084 00BD0105 		.word	84000000
+ 287 0088 80DE8002 		.word	42000000
+ 289              		.section	.text.sd_lld_stop,"ax",%progbits
+ 290              		.align	1
+ 291              		.global	sd_lld_stop
+ 292              		.thumb
+ 293              		.thumb_func
+ 295              	sd_lld_stop:
+ 296              		@ args = 0, pretend = 0, frame = 0
+ 297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 298              		@ link register save eliminated.
+ 299 0000 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 300 0002 022B     		cmp	r3, #2
+ 301 0004 0FD1     		bne	.L32
+ 302 0006 0849     		ldr	r1, .L34
+ 303 0008 036F     		ldr	r3, [r0, #112]
+ 304 000a 0022     		movs	r2, #0
+ 305 000c 8842     		cmp	r0, r1
+ 306 000e 9A81     		strh	r2, [r3, #12]	@ movhi
+ 307 0010 1A82     		strh	r2, [r3, #16]	@ movhi
+ 308 0012 9A82     		strh	r2, [r3, #20]	@ movhi
+ 309 0014 07D1     		bne	.L32
+ 310 0016 0549     		ldr	r1, .L34+4
+ 311 0018 0A6C     		ldr	r2, [r1, #64]
+ 312 001a 22F40030 		bic	r0, r2, #131072
+ 313 001e 0864     		str	r0, [r1, #64]
+ 314 0020 2620     		movs	r0, #38
+ 315 0022 FFF7FEBF 		b	nvicDisableVector
+ 316              	.L32:
+ 317 0026 7047     		bx	lr
+ 318              	.L35:
+ 319              		.align	2
+ 320              	.L34:
+ 321 0028 00000000 		.word	SD2
+ 322 002c 00380240 		.word	1073887232
+ 324              		.comm	SD2,116,4
+ 325              		.section	.rodata.default_config,"a",%progbits
+ 326              		.align	2
+ 327              		.set	.LANCHOR0,. + 0
+ 330              	default_config:
+ 331 0000 00960000 		.word	38400
+ 332 0004 0000     		.short	0
+ 333 0006 0040     		.short	16384
+ 334 0008 0000     		.short	0
+ 335 000a 0000     		.space	2
+ 336              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 serial_lld.c
+     /tmp/ccDIsExi.s:17     .text.notify2:00000000 $t
+     /tmp/ccDIsExi.s:21     .text.notify2:00000000 notify2
+     /tmp/ccDIsExi.s:34     .text.notify2:00000010 $d
+     /tmp/ccDIsExi.s:37     .text.VectorD8:00000000 $t
+     /tmp/ccDIsExi.s:42     .text.VectorD8:00000000 VectorD8
+     /tmp/ccDIsExi.s:188    .text.VectorD8:00000118 $d
+                            *COM*:00000074 SD2
+     /tmp/ccDIsExi.s:193    .text.sd_lld_init:00000000 $t
+     /tmp/ccDIsExi.s:198    .text.sd_lld_init:00000000 sd_lld_init
+     /tmp/ccDIsExi.s:213    .text.sd_lld_init:00000014 $d
+     /tmp/ccDIsExi.s:218    .text.sd_lld_start:00000000 $t
+     /tmp/ccDIsExi.s:223    .text.sd_lld_start:00000000 sd_lld_start
+     /tmp/ccDIsExi.s:281    .text.sd_lld_start:00000070 $d
+     /tmp/ccDIsExi.s:290    .text.sd_lld_stop:00000000 $t
+     /tmp/ccDIsExi.s:295    .text.sd_lld_stop:00000000 sd_lld_stop
+     /tmp/ccDIsExi.s:321    .text.sd_lld_stop:00000028 $d
+     /tmp/ccDIsExi.s:326    .rodata.default_config:00000000 $d
+     /tmp/ccDIsExi.s:330    .rodata.default_config:00000000 default_config
+
+UNDEFINED SYMBOLS
+chEvtBroadcastFlagsI
+sdIncomingDataI
+chOQGetI
+_port_irq_epilogue
+sdObjectInit
+nvicEnableVector
+nvicDisableVector

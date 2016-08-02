@@ -1,0 +1,431 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"vectors.c"
+  16              		.section	.text._unhandled_exception,"ax",%progbits
+  17              		.align	1
+  18              		.global	_unhandled_exception
+  19              		.thumb
+  20              		.thumb_func
+  22              	_unhandled_exception:
+  23              		@ Naked Function: prologue and epilogue provided by programmer.
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              	@ 187 "../src/ChibiOS_2.4.0/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c" 1
+  27              		.weak NMIVector            
+  28              	NMIVector:                
+  29              		.weak HardFaultVector      
+  30              	HardFaultVector:          
+  31              		.weak MemManageVector      
+  32              	MemManageVector:          
+  33              		.weak BusFaultVector       
+  34              	BusFaultVector:           
+  35              		.weak UsageFaultVector     
+  36              	UsageFaultVector:         
+  37              		.weak Vector1C             
+  38              	Vector1C:                 
+  39              		.weak Vector20             
+  40              	Vector20:                 
+  41              		.weak Vector24             
+  42              	Vector24:                 
+  43              		.weak Vector28             
+  44              	Vector28:                 
+  45              		.weak SVCallVector         
+  46              	SVCallVector:             
+  47              		.weak DebugMonitorVector   
+  48              	DebugMonitorVector:       
+  49              		.weak Vector34             
+  50              	Vector34:                 
+  51              		.weak PendSVVector         
+  52              	PendSVVector:             
+  53              		.weak SysTickVector        
+  54              	SysTickVector:            
+  55              		.weak Vector40             
+  56              	Vector40:                 
+  57              		.weak Vector44             
+  58              	Vector44:                 
+  59              		.weak Vector48             
+  60              	Vector48:                 
+  61              		.weak Vector4C             
+  62              	Vector4C:                 
+  63              		.weak Vector50             
+  64              	Vector50:                 
+  65              		.weak Vector54             
+  66              	Vector54:                 
+  67              		.weak Vector58             
+  68              	Vector58:                 
+  69              		.weak Vector5C             
+  70              	Vector5C:                 
+  71              		.weak Vector60             
+  72              	Vector60:                 
+  73              		.weak Vector64             
+  74              	Vector64:                 
+  75              		.weak Vector68             
+  76              	Vector68:                 
+  77              		.weak Vector6C             
+  78              	Vector6C:                 
+  79              		.weak Vector70             
+  80              	Vector70:                 
+  81              		.weak Vector74             
+  82              	Vector74:                 
+  83              		.weak Vector78             
+  84              	Vector78:                 
+  85              		.weak Vector7C             
+  86              	Vector7C:                 
+  87              		.weak Vector80             
+  88              	Vector80:                 
+  89              		.weak Vector84             
+  90              	Vector84:                 
+  91              		.weak Vector88             
+  92              	Vector88:                 
+  93              		.weak Vector8C             
+  94              	Vector8C:                 
+  95              		.weak Vector90             
+  96              	Vector90:                 
+  97              		.weak Vector94             
+  98              	Vector94:                 
+  99              		.weak Vector98             
+ 100              	Vector98:                 
+ 101              		.weak Vector9C             
+ 102              	Vector9C:                 
+ 103              		.weak VectorA0             
+ 104              	VectorA0:                 
+ 105              		.weak VectorA4             
+ 106              	VectorA4:                 
+ 107              		.weak VectorA8             
+ 108              	VectorA8:                 
+ 109              		.weak VectorAC             
+ 110              	VectorAC:                 
+ 111              		.weak VectorB0             
+ 112              	VectorB0:                 
+ 113              		.weak VectorB4             
+ 114              	VectorB4:                 
+ 115              		.weak VectorB8             
+ 116              	VectorB8:                 
+ 117              		.weak VectorBC             
+ 118              	VectorBC:                 
+ 119              		.weak VectorC0             
+ 120              	VectorC0:                 
+ 121              		.weak VectorC4             
+ 122              	VectorC4:                 
+ 123              		.weak VectorC8             
+ 124              	VectorC8:                 
+ 125              		.weak VectorCC             
+ 126              	VectorCC:                 
+ 127              		.weak VectorD0             
+ 128              	VectorD0:                 
+ 129              		.weak VectorD4             
+ 130              	VectorD4:                 
+ 131              		.weak VectorD8             
+ 132              	VectorD8:                 
+ 133              		.weak VectorDC             
+ 134              	VectorDC:                 
+ 135              		.weak VectorE0             
+ 136              	VectorE0:                 
+ 137              		.weak VectorE4             
+ 138              	VectorE4:                 
+ 139              		.weak VectorE8             
+ 140              	VectorE8:                 
+ 141              		.weak VectorEC             
+ 142              	VectorEC:                 
+ 143              		.weak VectorF0             
+ 144              	VectorF0:                 
+ 145              		.weak VectorF4             
+ 146              	VectorF4:                 
+ 147              		.weak VectorF8             
+ 148              	VectorF8:                 
+ 149              		.weak VectorFC             
+ 150              	VectorFC:                 
+ 151              		.weak Vector100            
+ 152              	Vector100:                
+ 153              		.weak Vector104            
+ 154              	Vector104:                
+ 155              		.weak Vector108            
+ 156              	Vector108:                
+ 157              		.weak Vector10C            
+ 158              	Vector10C:                
+ 159              		.weak Vector110            
+ 160              	Vector110:                
+ 161              		.weak Vector114            
+ 162              	Vector114:                
+ 163              		.weak Vector118            
+ 164              	Vector118:                
+ 165              		.weak Vector11C            
+ 166              	Vector11C:                
+ 167              		.weak Vector120            
+ 168              	Vector120:                
+ 169              		.weak Vector124            
+ 170              	Vector124:                
+ 171              		.weak Vector128            
+ 172              	Vector128:                
+ 173              		.weak Vector12C            
+ 174              	Vector12C:                
+ 175              		.weak Vector130            
+ 176              	Vector130:                
+ 177              		.weak Vector134            
+ 178              	Vector134:                
+ 179              		.weak Vector138            
+ 180              	Vector138:                
+ 181              		.weak Vector13C            
+ 182              	Vector13C:                
+ 183              		.weak Vector140            
+ 184              	Vector140:                
+ 185              		.weak Vector144            
+ 186              	Vector144:                
+ 187              		.weak Vector148            
+ 188              	Vector148:                
+ 189              		.weak Vector14C            
+ 190              	Vector14C:                
+ 191              		.weak Vector150            
+ 192              	Vector150:                
+ 193              		.weak Vector154            
+ 194              	Vector154:                
+ 195              		.weak Vector158            
+ 196              	Vector158:                
+ 197              		.weak Vector15C            
+ 198              	Vector15C:                
+ 199              		.weak Vector160            
+ 200              	Vector160:                
+ 201              		.weak Vector164            
+ 202              	Vector164:                
+ 203              		.weak Vector168            
+ 204              	Vector168:                
+ 205              		.weak Vector16C            
+ 206              	Vector16C:                
+ 207              		.weak Vector170            
+ 208              	Vector170:                
+ 209              		.weak Vector174            
+ 210              	Vector174:                
+ 211              		.weak Vector178            
+ 212              	Vector178:                
+ 213              		.weak Vector17C            
+ 214              	Vector17C:                
+ 215              		.weak Vector180            
+ 216              	Vector180:                
+ 217              		.weak Vector184            
+ 218              	Vector184:                
+ 219              		
+ 220              	@ 0 "" 2
+ 221              		.thumb
+ 222              	.L2:
+ 223 0000 FEE7     		b	.L2
+ 225              		.global	_vectors
+ 226              		.section	vectors,"aw",%progbits
+ 227              		.align	2
+ 230              	_vectors:
+ 231 0000 00000000 		.word	__main_stack_end__
+ 232 0004 00000000 		.word	ResetHandler
+ 233 0008 00000000 		.word	NMIVector
+ 234 000c 00000000 		.word	HardFaultVector
+ 235 0010 00000000 		.word	MemManageVector
+ 236 0014 00000000 		.word	BusFaultVector
+ 237 0018 00000000 		.word	UsageFaultVector
+ 238 001c 00000000 		.word	Vector1C
+ 239 0020 00000000 		.word	Vector20
+ 240 0024 00000000 		.word	Vector24
+ 241 0028 00000000 		.word	Vector28
+ 242 002c 00000000 		.word	SVCallVector
+ 243 0030 00000000 		.word	DebugMonitorVector
+ 244 0034 00000000 		.word	Vector34
+ 245 0038 00000000 		.word	PendSVVector
+ 246 003c 00000000 		.word	SysTickVector
+ 247 0040 00000000 		.word	Vector40
+ 248 0044 00000000 		.word	Vector44
+ 249 0048 00000000 		.word	Vector48
+ 250 004c 00000000 		.word	Vector4C
+ 251 0050 00000000 		.word	Vector50
+ 252 0054 00000000 		.word	Vector54
+ 253 0058 00000000 		.word	Vector58
+ 254 005c 00000000 		.word	Vector5C
+ 255 0060 00000000 		.word	Vector60
+ 256 0064 00000000 		.word	Vector64
+ 257 0068 00000000 		.word	Vector68
+ 258 006c 00000000 		.word	Vector6C
+ 259 0070 00000000 		.word	Vector70
+ 260 0074 00000000 		.word	Vector74
+ 261 0078 00000000 		.word	Vector78
+ 262 007c 00000000 		.word	Vector7C
+ 263 0080 00000000 		.word	Vector80
+ 264 0084 00000000 		.word	Vector84
+ 265 0088 00000000 		.word	Vector88
+ 266 008c 00000000 		.word	Vector8C
+ 267 0090 00000000 		.word	Vector90
+ 268 0094 00000000 		.word	Vector94
+ 269 0098 00000000 		.word	Vector98
+ 270 009c 00000000 		.word	Vector9C
+ 271 00a0 00000000 		.word	VectorA0
+ 272 00a4 00000000 		.word	VectorA4
+ 273 00a8 00000000 		.word	VectorA8
+ 274 00ac 00000000 		.word	VectorAC
+ 275 00b0 00000000 		.word	VectorB0
+ 276 00b4 00000000 		.word	VectorB4
+ 277 00b8 00000000 		.word	VectorB8
+ 278 00bc 00000000 		.word	VectorBC
+ 279 00c0 00000000 		.word	VectorC0
+ 280 00c4 00000000 		.word	VectorC4
+ 281 00c8 00000000 		.word	VectorC8
+ 282 00cc 00000000 		.word	VectorCC
+ 283 00d0 00000000 		.word	VectorD0
+ 284 00d4 00000000 		.word	VectorD4
+ 285 00d8 00000000 		.word	VectorD8
+ 286 00dc 00000000 		.word	VectorDC
+ 287 00e0 00000000 		.word	VectorE0
+ 288 00e4 00000000 		.word	VectorE4
+ 289 00e8 00000000 		.word	VectorE8
+ 290 00ec 00000000 		.word	VectorEC
+ 291 00f0 00000000 		.word	VectorF0
+ 292 00f4 00000000 		.word	VectorF4
+ 293 00f8 00000000 		.word	VectorF8
+ 294 00fc 00000000 		.word	VectorFC
+ 295 0100 00000000 		.word	Vector100
+ 296 0104 00000000 		.word	Vector104
+ 297 0108 00000000 		.word	Vector108
+ 298 010c 00000000 		.word	Vector10C
+ 299 0110 00000000 		.word	Vector110
+ 300 0114 00000000 		.word	Vector114
+ 301 0118 00000000 		.word	Vector118
+ 302 011c 00000000 		.word	Vector11C
+ 303 0120 00000000 		.word	Vector120
+ 304 0124 00000000 		.word	Vector124
+ 305 0128 00000000 		.word	Vector128
+ 306 012c 00000000 		.word	Vector12C
+ 307 0130 00000000 		.word	Vector130
+ 308 0134 00000000 		.word	Vector134
+ 309 0138 00000000 		.word	Vector138
+ 310 013c 00000000 		.word	Vector13C
+ 311 0140 00000000 		.word	Vector140
+ 312 0144 00000000 		.word	Vector144
+ 313 0148 00000000 		.word	Vector148
+ 314 014c 00000000 		.word	Vector14C
+ 315 0150 00000000 		.word	Vector150
+ 316 0154 00000000 		.word	Vector154
+ 317 0158 00000000 		.word	Vector158
+ 318 015c 00000000 		.word	Vector15C
+ 319 0160 00000000 		.word	Vector160
+ 320 0164 00000000 		.word	Vector164
+ 321 0168 00000000 		.word	Vector168
+ 322 016c 00000000 		.word	Vector16C
+ 323 0170 00000000 		.word	Vector170
+ 324 0174 00000000 		.word	Vector174
+ 325 0178 00000000 		.word	Vector178
+ 326 017c 00000000 		.word	Vector17C
+ 327 0180 00000000 		.word	Vector180
+ 328 0184 00000000 		.word	Vector184
+ 329              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 vectors.c
+     /tmp/cc4Frc7v.s:17     .text._unhandled_exception:00000000 $t
+     /tmp/cc4Frc7v.s:22     .text._unhandled_exception:00000000 _unhandled_exception
+     /tmp/cc4Frc7v.s:28     .text._unhandled_exception:00000000 NMIVector
+     /tmp/cc4Frc7v.s:30     .text._unhandled_exception:00000000 HardFaultVector
+     /tmp/cc4Frc7v.s:32     .text._unhandled_exception:00000000 MemManageVector
+     /tmp/cc4Frc7v.s:34     .text._unhandled_exception:00000000 BusFaultVector
+     /tmp/cc4Frc7v.s:36     .text._unhandled_exception:00000000 UsageFaultVector
+     /tmp/cc4Frc7v.s:38     .text._unhandled_exception:00000000 Vector1C
+     /tmp/cc4Frc7v.s:40     .text._unhandled_exception:00000000 Vector20
+     /tmp/cc4Frc7v.s:42     .text._unhandled_exception:00000000 Vector24
+     /tmp/cc4Frc7v.s:44     .text._unhandled_exception:00000000 Vector28
+     /tmp/cc4Frc7v.s:46     .text._unhandled_exception:00000000 SVCallVector
+     /tmp/cc4Frc7v.s:48     .text._unhandled_exception:00000000 DebugMonitorVector
+     /tmp/cc4Frc7v.s:50     .text._unhandled_exception:00000000 Vector34
+     /tmp/cc4Frc7v.s:52     .text._unhandled_exception:00000000 PendSVVector
+     /tmp/cc4Frc7v.s:54     .text._unhandled_exception:00000000 SysTickVector
+     /tmp/cc4Frc7v.s:56     .text._unhandled_exception:00000000 Vector40
+     /tmp/cc4Frc7v.s:58     .text._unhandled_exception:00000000 Vector44
+     /tmp/cc4Frc7v.s:60     .text._unhandled_exception:00000000 Vector48
+     /tmp/cc4Frc7v.s:62     .text._unhandled_exception:00000000 Vector4C
+     /tmp/cc4Frc7v.s:64     .text._unhandled_exception:00000000 Vector50
+     /tmp/cc4Frc7v.s:66     .text._unhandled_exception:00000000 Vector54
+     /tmp/cc4Frc7v.s:68     .text._unhandled_exception:00000000 Vector58
+     /tmp/cc4Frc7v.s:70     .text._unhandled_exception:00000000 Vector5C
+     /tmp/cc4Frc7v.s:72     .text._unhandled_exception:00000000 Vector60
+     /tmp/cc4Frc7v.s:74     .text._unhandled_exception:00000000 Vector64
+     /tmp/cc4Frc7v.s:76     .text._unhandled_exception:00000000 Vector68
+     /tmp/cc4Frc7v.s:78     .text._unhandled_exception:00000000 Vector6C
+     /tmp/cc4Frc7v.s:80     .text._unhandled_exception:00000000 Vector70
+     /tmp/cc4Frc7v.s:82     .text._unhandled_exception:00000000 Vector74
+     /tmp/cc4Frc7v.s:84     .text._unhandled_exception:00000000 Vector78
+     /tmp/cc4Frc7v.s:86     .text._unhandled_exception:00000000 Vector7C
+     /tmp/cc4Frc7v.s:88     .text._unhandled_exception:00000000 Vector80
+     /tmp/cc4Frc7v.s:90     .text._unhandled_exception:00000000 Vector84
+     /tmp/cc4Frc7v.s:92     .text._unhandled_exception:00000000 Vector88
+     /tmp/cc4Frc7v.s:94     .text._unhandled_exception:00000000 Vector8C
+     /tmp/cc4Frc7v.s:96     .text._unhandled_exception:00000000 Vector90
+     /tmp/cc4Frc7v.s:98     .text._unhandled_exception:00000000 Vector94
+     /tmp/cc4Frc7v.s:100    .text._unhandled_exception:00000000 Vector98
+     /tmp/cc4Frc7v.s:102    .text._unhandled_exception:00000000 Vector9C
+     /tmp/cc4Frc7v.s:104    .text._unhandled_exception:00000000 VectorA0
+     /tmp/cc4Frc7v.s:106    .text._unhandled_exception:00000000 VectorA4
+     /tmp/cc4Frc7v.s:108    .text._unhandled_exception:00000000 VectorA8
+     /tmp/cc4Frc7v.s:110    .text._unhandled_exception:00000000 VectorAC
+     /tmp/cc4Frc7v.s:112    .text._unhandled_exception:00000000 VectorB0
+     /tmp/cc4Frc7v.s:114    .text._unhandled_exception:00000000 VectorB4
+     /tmp/cc4Frc7v.s:116    .text._unhandled_exception:00000000 VectorB8
+     /tmp/cc4Frc7v.s:118    .text._unhandled_exception:00000000 VectorBC
+     /tmp/cc4Frc7v.s:120    .text._unhandled_exception:00000000 VectorC0
+     /tmp/cc4Frc7v.s:122    .text._unhandled_exception:00000000 VectorC4
+     /tmp/cc4Frc7v.s:124    .text._unhandled_exception:00000000 VectorC8
+     /tmp/cc4Frc7v.s:126    .text._unhandled_exception:00000000 VectorCC
+     /tmp/cc4Frc7v.s:128    .text._unhandled_exception:00000000 VectorD0
+     /tmp/cc4Frc7v.s:130    .text._unhandled_exception:00000000 VectorD4
+     /tmp/cc4Frc7v.s:132    .text._unhandled_exception:00000000 VectorD8
+     /tmp/cc4Frc7v.s:134    .text._unhandled_exception:00000000 VectorDC
+     /tmp/cc4Frc7v.s:136    .text._unhandled_exception:00000000 VectorE0
+     /tmp/cc4Frc7v.s:138    .text._unhandled_exception:00000000 VectorE4
+     /tmp/cc4Frc7v.s:140    .text._unhandled_exception:00000000 VectorE8
+     /tmp/cc4Frc7v.s:142    .text._unhandled_exception:00000000 VectorEC
+     /tmp/cc4Frc7v.s:144    .text._unhandled_exception:00000000 VectorF0
+     /tmp/cc4Frc7v.s:146    .text._unhandled_exception:00000000 VectorF4
+     /tmp/cc4Frc7v.s:148    .text._unhandled_exception:00000000 VectorF8
+     /tmp/cc4Frc7v.s:150    .text._unhandled_exception:00000000 VectorFC
+     /tmp/cc4Frc7v.s:152    .text._unhandled_exception:00000000 Vector100
+     /tmp/cc4Frc7v.s:154    .text._unhandled_exception:00000000 Vector104
+     /tmp/cc4Frc7v.s:156    .text._unhandled_exception:00000000 Vector108
+     /tmp/cc4Frc7v.s:158    .text._unhandled_exception:00000000 Vector10C
+     /tmp/cc4Frc7v.s:160    .text._unhandled_exception:00000000 Vector110
+     /tmp/cc4Frc7v.s:162    .text._unhandled_exception:00000000 Vector114
+     /tmp/cc4Frc7v.s:164    .text._unhandled_exception:00000000 Vector118
+     /tmp/cc4Frc7v.s:166    .text._unhandled_exception:00000000 Vector11C
+     /tmp/cc4Frc7v.s:168    .text._unhandled_exception:00000000 Vector120
+     /tmp/cc4Frc7v.s:170    .text._unhandled_exception:00000000 Vector124
+     /tmp/cc4Frc7v.s:172    .text._unhandled_exception:00000000 Vector128
+     /tmp/cc4Frc7v.s:174    .text._unhandled_exception:00000000 Vector12C
+     /tmp/cc4Frc7v.s:176    .text._unhandled_exception:00000000 Vector130
+     /tmp/cc4Frc7v.s:178    .text._unhandled_exception:00000000 Vector134
+     /tmp/cc4Frc7v.s:180    .text._unhandled_exception:00000000 Vector138
+     /tmp/cc4Frc7v.s:182    .text._unhandled_exception:00000000 Vector13C
+     /tmp/cc4Frc7v.s:184    .text._unhandled_exception:00000000 Vector140
+     /tmp/cc4Frc7v.s:186    .text._unhandled_exception:00000000 Vector144
+     /tmp/cc4Frc7v.s:188    .text._unhandled_exception:00000000 Vector148
+     /tmp/cc4Frc7v.s:190    .text._unhandled_exception:00000000 Vector14C
+     /tmp/cc4Frc7v.s:192    .text._unhandled_exception:00000000 Vector150
+     /tmp/cc4Frc7v.s:194    .text._unhandled_exception:00000000 Vector154
+     /tmp/cc4Frc7v.s:196    .text._unhandled_exception:00000000 Vector158
+     /tmp/cc4Frc7v.s:198    .text._unhandled_exception:00000000 Vector15C
+     /tmp/cc4Frc7v.s:200    .text._unhandled_exception:00000000 Vector160
+     /tmp/cc4Frc7v.s:202    .text._unhandled_exception:00000000 Vector164
+     /tmp/cc4Frc7v.s:204    .text._unhandled_exception:00000000 Vector168
+     /tmp/cc4Frc7v.s:206    .text._unhandled_exception:00000000 Vector16C
+     /tmp/cc4Frc7v.s:208    .text._unhandled_exception:00000000 Vector170
+     /tmp/cc4Frc7v.s:210    .text._unhandled_exception:00000000 Vector174
+     /tmp/cc4Frc7v.s:212    .text._unhandled_exception:00000000 Vector178
+     /tmp/cc4Frc7v.s:214    .text._unhandled_exception:00000000 Vector17C
+     /tmp/cc4Frc7v.s:216    .text._unhandled_exception:00000000 Vector180
+     /tmp/cc4Frc7v.s:218    .text._unhandled_exception:00000000 Vector184
+     /tmp/cc4Frc7v.s:230    vectors:00000000 _vectors
+     /tmp/cc4Frc7v.s:227    vectors:00000000 $d
+
+UNDEFINED SYMBOLS
+__main_stack_end__
+ResetHandler

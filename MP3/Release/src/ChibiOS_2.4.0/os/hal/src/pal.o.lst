@@ -1,0 +1,76 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"pal.c"
+  16              		.section	.text.palReadBus,"ax",%progbits
+  17              		.align	1
+  18              		.global	palReadBus
+  19              		.thumb
+  20              		.thumb_func
+  22              	palReadBus:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0368     		ldr	r3, [r0, #0]
+  27 0002 8268     		ldr	r2, [r0, #8]
+  28 0004 1969     		ldr	r1, [r3, #16]
+  29 0006 4368     		ldr	r3, [r0, #4]
+  30 0008 21FA02F2 		lsr	r2, r1, r2
+  31 000c 02EA0300 		and	r0, r2, r3
+  32 0010 7047     		bx	lr
+  34              		.section	.text.palWriteBus,"ax",%progbits
+  35              		.align	1
+  36              		.global	palWriteBus
+  37              		.thumb
+  38              		.thumb_func
+  40              	palWriteBus:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 8368     		ldr	r3, [r0, #8]
+  44 0002 4268     		ldr	r2, [r0, #4]
+  45 0004 30B5     		push	{r4, r5, lr}
+  46 0006 03F1100C 		add	ip, r3, #16
+  47 000a 22EA0105 		bic	r5, r2, r1
+  48 000e 0A40     		ands	r2, r2, r1
+  49 0010 0468     		ldr	r4, [r0, #0]
+  50 0012 02FA03F1 		lsl	r1, r2, r3
+  51 0016 05FA0CF0 		lsl	r0, r5, ip
+  52 001a 40EA0103 		orr	r3, r0, r1
+  53 001e A361     		str	r3, [r4, #24]
+  54 0020 30BD     		pop	{r4, r5, pc}
+  56              		.section	.text.palSetBusMode,"ax",%progbits
+  57              		.align	1
+  58              		.global	palSetBusMode
+  59              		.thumb
+  60              		.thumb_func
+  62              	palSetBusMode:
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66 0000 0A46     		mov	r2, r1
+  67 0002 0BC8     		ldmia	r0, {r0, r1, r3}
+  68 0004 01FA03F1 		lsl	r1, r1, r3
+  69 0008 FFF7FEBF 		b	_pal_lld_setgroupmode
+  71              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 pal.c
+     /tmp/ccNGstNe.s:17     .text.palReadBus:00000000 $t
+     /tmp/ccNGstNe.s:22     .text.palReadBus:00000000 palReadBus
+     /tmp/ccNGstNe.s:35     .text.palWriteBus:00000000 $t
+     /tmp/ccNGstNe.s:40     .text.palWriteBus:00000000 palWriteBus
+     /tmp/ccNGstNe.s:57     .text.palSetBusMode:00000000 $t
+     /tmp/ccNGstNe.s:62     .text.palSetBusMode:00000000 palSetBusMode
+
+UNDEFINED SYMBOLS
+_pal_lld_setgroupmode

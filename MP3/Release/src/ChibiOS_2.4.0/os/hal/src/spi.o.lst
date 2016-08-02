@@ -1,0 +1,438 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"spi.c"
+  16              		.section	.text.spiInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	spiInit
+  19              		.thumb
+  20              		.thumb_func
+  22              	spiInit:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 FFF7FEBF 		b	spi_lld_init
+  28              		.section	.text.spiObjectInit,"ax",%progbits
+  29              		.align	1
+  30              		.global	spiObjectInit
+  31              		.thumb
+  32              		.thumb_func
+  34              	spiObjectInit:
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37              		@ link register save eliminated.
+  38 0000 0023     		movs	r3, #0
+  39 0002 0121     		movs	r1, #1
+  40 0004 0170     		strb	r1, [r0, #0]
+  41 0006 4360     		str	r3, [r0, #4]
+  42 0008 8360     		str	r3, [r0, #8]
+  43 000a 0C30     		adds	r0, r0, #12
+  44 000c FFF7FEBF 		b	chMtxInit
+  46              		.section	.text.spiStart,"ax",%progbits
+  47              		.align	1
+  48              		.global	spiStart
+  49              		.thumb
+  50              		.thumb_func
+  52              	spiStart:
+  53              		@ args = 0, pretend = 0, frame = 0
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55 0000 10B5     		push	{r4, lr}
+  56 0002 2023     		movs	r3, #32
+  57 0004 0446     		mov	r4, r0
+  58              	@ 111 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+  59 0006 83F31188 		msr     BASEPRI, r3
+  60              	@ 0 "" 2
+  61              		.thumb
+  62 000a 4160     		str	r1, [r0, #4]
+  63 000c FFF7FEFF 		bl	spi_lld_start
+  64 0010 0223     		movs	r3, #2
+  65 0012 2370     		strb	r3, [r4, #0]
+  66 0014 0023     		movs	r3, #0
+  67              	@ 117 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+  68 0016 83F31188 		msr     BASEPRI, r3
+  69              	@ 0 "" 2
+  70              		.thumb
+  71 001a 10BD     		pop	{r4, pc}
+  73              		.section	.text.spiStop,"ax",%progbits
+  74              		.align	1
+  75              		.global	spiStop
+  76              		.thumb
+  77              		.thumb_func
+  79              	spiStop:
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82 0000 10B5     		push	{r4, lr}
+  83 0002 2023     		movs	r3, #32
+  84 0004 0446     		mov	r4, r0
+  85              	@ 133 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+  86 0006 83F31188 		msr     BASEPRI, r3
+  87              	@ 0 "" 2
+  88              		.thumb
+  89 000a FFF7FEFF 		bl	spi_lld_unselect
+  90 000e 2046     		mov	r0, r4
+  91 0010 FFF7FEFF 		bl	spi_lld_stop
+  92 0014 0123     		movs	r3, #1
+  93 0016 2370     		strb	r3, [r4, #0]
+  94 0018 0023     		movs	r3, #0
+  95              	@ 139 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+  96 001a 83F31188 		msr     BASEPRI, r3
+  97              	@ 0 "" 2
+  98              		.thumb
+  99 001e 10BD     		pop	{r4, pc}
+ 101              		.section	.text.spiSelect,"ax",%progbits
+ 102              		.align	1
+ 103              		.global	spiSelect
+ 104              		.thumb
+ 105              		.thumb_func
+ 107              	spiSelect:
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110 0000 08B5     		push	{r3, lr}
+ 111 0002 2023     		movs	r3, #32
+ 112              	@ 153 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 113 0004 83F31188 		msr     BASEPRI, r3
+ 114              	@ 0 "" 2
+ 115              		.thumb
+ 116 0008 FFF7FEFF 		bl	spi_lld_select
+ 117 000c 0023     		movs	r3, #0
+ 118              	@ 156 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 119 000e 83F31188 		msr     BASEPRI, r3
+ 120              	@ 0 "" 2
+ 121              		.thumb
+ 122 0012 08BD     		pop	{r3, pc}
+ 124              		.section	.text.spiUnselect,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	spiUnselect
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	spiUnselect:
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133 0000 08B5     		push	{r3, lr}
+ 134 0002 2023     		movs	r3, #32
+ 135              	@ 171 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 136 0004 83F31188 		msr     BASEPRI, r3
+ 137              	@ 0 "" 2
+ 138              		.thumb
+ 139 0008 FFF7FEFF 		bl	spi_lld_unselect
+ 140 000c 0023     		movs	r3, #0
+ 141              	@ 174 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 142 000e 83F31188 		msr     BASEPRI, r3
+ 143              	@ 0 "" 2
+ 144              		.thumb
+ 145 0012 08BD     		pop	{r3, pc}
+ 147              		.section	.text.spiStartIgnore,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	spiStartIgnore
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	spiStartIgnore:
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156 0000 08B5     		push	{r3, lr}
+ 157 0002 2023     		movs	r3, #32
+ 158              	@ 194 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 159 0004 83F31188 		msr     BASEPRI, r3
+ 160              	@ 0 "" 2
+ 161              		.thumb
+ 162 0008 0323     		movs	r3, #3
+ 163 000a 0370     		strb	r3, [r0, #0]
+ 164 000c FFF7FEFF 		bl	spi_lld_ignore
+ 165 0010 0023     		movs	r3, #0
+ 166              	@ 197 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 167 0012 83F31188 		msr     BASEPRI, r3
+ 168              	@ 0 "" 2
+ 169              		.thumb
+ 170 0016 08BD     		pop	{r3, pc}
+ 172              		.section	.text.spiStartExchange,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	spiStartExchange
+ 175              		.thumb
+ 176              		.thumb_func
+ 178              	spiStartExchange:
+ 179              		@ args = 0, pretend = 0, frame = 0
+ 180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181 0000 38B5     		push	{r3, r4, r5, lr}
+ 182 0002 1C46     		mov	r4, r3
+ 183 0004 2023     		movs	r3, #32
+ 184              	@ 223 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 185 0006 83F31188 		msr     BASEPRI, r3
+ 186              	@ 0 "" 2
+ 187              		.thumb
+ 188 000a 0323     		movs	r3, #3
+ 189 000c 0370     		strb	r3, [r0, #0]
+ 190 000e 2346     		mov	r3, r4
+ 191 0010 FFF7FEFF 		bl	spi_lld_exchange
+ 192 0014 0023     		movs	r3, #0
+ 193              	@ 226 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 194 0016 83F31188 		msr     BASEPRI, r3
+ 195              	@ 0 "" 2
+ 196              		.thumb
+ 197 001a 38BD     		pop	{r3, r4, r5, pc}
+ 199              		.section	.text.spiStartSend,"ax",%progbits
+ 200              		.align	1
+ 201              		.global	spiStartSend
+ 202              		.thumb
+ 203              		.thumb_func
+ 205              	spiStartSend:
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208 0000 10B5     		push	{r4, lr}
+ 209 0002 2023     		movs	r3, #32
+ 210              	@ 249 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 211 0004 83F31188 		msr     BASEPRI, r3
+ 212              	@ 0 "" 2
+ 213              		.thumb
+ 214 0008 0323     		movs	r3, #3
+ 215 000a 0370     		strb	r3, [r0, #0]
+ 216 000c FFF7FEFF 		bl	spi_lld_send
+ 217 0010 0023     		movs	r3, #0
+ 218              	@ 252 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 219 0012 83F31188 		msr     BASEPRI, r3
+ 220              	@ 0 "" 2
+ 221              		.thumb
+ 222 0016 10BD     		pop	{r4, pc}
+ 224              		.section	.text.spiStartReceive,"ax",%progbits
+ 225              		.align	1
+ 226              		.global	spiStartReceive
+ 227              		.thumb
+ 228              		.thumb_func
+ 230              	spiStartReceive:
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233 0000 10B5     		push	{r4, lr}
+ 234 0002 2023     		movs	r3, #32
+ 235              	@ 275 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 236 0004 83F31188 		msr     BASEPRI, r3
+ 237              	@ 0 "" 2
+ 238              		.thumb
+ 239 0008 0323     		movs	r3, #3
+ 240 000a 0370     		strb	r3, [r0, #0]
+ 241 000c FFF7FEFF 		bl	spi_lld_receive
+ 242 0010 0023     		movs	r3, #0
+ 243              	@ 278 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 244 0012 83F31188 		msr     BASEPRI, r3
+ 245              	@ 0 "" 2
+ 246              		.thumb
+ 247 0016 10BD     		pop	{r4, pc}
+ 249              		.section	.text.spiIgnore,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	spiIgnore
+ 252              		.thumb
+ 253              		.thumb_func
+ 255              	spiIgnore:
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258 0000 10B5     		push	{r4, lr}
+ 259 0002 2023     		movs	r3, #32
+ 260 0004 0446     		mov	r4, r0
+ 261              	@ 300 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 262 0006 83F31188 		msr     BASEPRI, r3
+ 263              	@ 0 "" 2
+ 264              		.thumb
+ 265 000a 0322     		movs	r2, #3
+ 266 000c 0270     		strb	r2, [r0, #0]
+ 267 000e FFF7FEFF 		bl	spi_lld_ignore
+ 268 0012 0548     		ldr	r0, .L12
+ 269 0014 C369     		ldr	r3, [r0, #28]
+ 270 0016 0220     		movs	r0, #2
+ 271 0018 A360     		str	r3, [r4, #8]
+ 272 001a FFF7FEFF 		bl	chSchGoSleepS
+ 273 001e 0023     		movs	r3, #0
+ 274              	@ 305 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 275 0020 83F31188 		msr     BASEPRI, r3
+ 276              	@ 0 "" 2
+ 277              		.thumb
+ 278 0024 10BD     		pop	{r4, pc}
+ 279              	.L13:
+ 280 0026 00BF     		.align	2
+ 281              	.L12:
+ 282 0028 00000000 		.word	rlist
+ 284              		.section	.text.spiExchange,"ax",%progbits
+ 285              		.align	1
+ 286              		.global	spiExchange
+ 287              		.thumb
+ 288              		.thumb_func
+ 290              	spiExchange:
+ 291              		@ args = 0, pretend = 0, frame = 0
+ 292              		@ frame_needed = 0, uses_anonymous_args = 0
+ 293 0000 38B5     		push	{r3, r4, r5, lr}
+ 294 0002 1D46     		mov	r5, r3
+ 295 0004 0446     		mov	r4, r0
+ 296 0006 2023     		movs	r3, #32
+ 297              	@ 332 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 298 0008 83F31188 		msr     BASEPRI, r3
+ 299              	@ 0 "" 2
+ 300              		.thumb
+ 301 000c 0323     		movs	r3, #3
+ 302 000e 0370     		strb	r3, [r0, #0]
+ 303 0010 2B46     		mov	r3, r5
+ 304 0012 FFF7FEFF 		bl	spi_lld_exchange
+ 305 0016 0548     		ldr	r0, .L15
+ 306 0018 C369     		ldr	r3, [r0, #28]
+ 307 001a 0220     		movs	r0, #2
+ 308 001c A360     		str	r3, [r4, #8]
+ 309 001e FFF7FEFF 		bl	chSchGoSleepS
+ 310 0022 0023     		movs	r3, #0
+ 311              	@ 338 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 312 0024 83F31188 		msr     BASEPRI, r3
+ 313              	@ 0 "" 2
+ 314              		.thumb
+ 315 0028 38BD     		pop	{r3, r4, r5, pc}
+ 316              	.L16:
+ 317 002a 00BF     		.align	2
+ 318              	.L15:
+ 319 002c 00000000 		.word	rlist
+ 321              		.section	.text.spiSend,"ax",%progbits
+ 322              		.align	1
+ 323              		.global	spiSend
+ 324              		.thumb
+ 325              		.thumb_func
+ 327              	spiSend:
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330 0000 10B5     		push	{r4, lr}
+ 331 0002 2023     		movs	r3, #32
+ 332 0004 0446     		mov	r4, r0
+ 333              	@ 361 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 334 0006 83F31188 		msr     BASEPRI, r3
+ 335              	@ 0 "" 2
+ 336              		.thumb
+ 337 000a 0323     		movs	r3, #3
+ 338 000c 0370     		strb	r3, [r0, #0]
+ 339 000e FFF7FEFF 		bl	spi_lld_send
+ 340 0012 0548     		ldr	r0, .L18
+ 341 0014 C369     		ldr	r3, [r0, #28]
+ 342 0016 0220     		movs	r0, #2
+ 343 0018 A360     		str	r3, [r4, #8]
+ 344 001a FFF7FEFF 		bl	chSchGoSleepS
+ 345 001e 0023     		movs	r3, #0
+ 346              	@ 366 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 347 0020 83F31188 		msr     BASEPRI, r3
+ 348              	@ 0 "" 2
+ 349              		.thumb
+ 350 0024 10BD     		pop	{r4, pc}
+ 351              	.L19:
+ 352 0026 00BF     		.align	2
+ 353              	.L18:
+ 354 0028 00000000 		.word	rlist
+ 356              		.section	.text.spiReceive,"ax",%progbits
+ 357              		.align	1
+ 358              		.global	spiReceive
+ 359              		.thumb
+ 360              		.thumb_func
+ 362              	spiReceive:
+ 363              		@ args = 0, pretend = 0, frame = 0
+ 364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 365 0000 10B5     		push	{r4, lr}
+ 366 0002 2023     		movs	r3, #32
+ 367 0004 0446     		mov	r4, r0
+ 368              	@ 390 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 369 0006 83F31188 		msr     BASEPRI, r3
+ 370              	@ 0 "" 2
+ 371              		.thumb
+ 372 000a 0323     		movs	r3, #3
+ 373 000c 0370     		strb	r3, [r0, #0]
+ 374 000e FFF7FEFF 		bl	spi_lld_receive
+ 375 0012 0548     		ldr	r0, .L21
+ 376 0014 C369     		ldr	r3, [r0, #28]
+ 377 0016 0220     		movs	r0, #2
+ 378 0018 A360     		str	r3, [r4, #8]
+ 379 001a FFF7FEFF 		bl	chSchGoSleepS
+ 380 001e 0023     		movs	r3, #0
+ 381              	@ 396 "../src/ChibiOS_2.4.0/os/hal/src/spi.c" 1
+ 382 0020 83F31188 		msr     BASEPRI, r3
+ 383              	@ 0 "" 2
+ 384              		.thumb
+ 385 0024 10BD     		pop	{r4, pc}
+ 386              	.L22:
+ 387 0026 00BF     		.align	2
+ 388              	.L21:
+ 389 0028 00000000 		.word	rlist
+ 391              		.section	.text.spiAcquireBus,"ax",%progbits
+ 392              		.align	1
+ 393              		.global	spiAcquireBus
+ 394              		.thumb
+ 395              		.thumb_func
+ 397              	spiAcquireBus:
+ 398              		@ args = 0, pretend = 0, frame = 0
+ 399              		@ frame_needed = 0, uses_anonymous_args = 0
+ 400              		@ link register save eliminated.
+ 401 0000 0C30     		adds	r0, r0, #12
+ 402 0002 FFF7FEBF 		b	chMtxLock
+ 404              		.section	.text.spiReleaseBus,"ax",%progbits
+ 405              		.align	1
+ 406              		.global	spiReleaseBus
+ 407              		.thumb
+ 408              		.thumb_func
+ 410              	spiReleaseBus:
+ 411              		@ args = 0, pretend = 0, frame = 0
+ 412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413              		@ link register save eliminated.
+ 414 0000 FFF7FEBF 		b	chMtxUnlock
+ 416              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi.c
+     /tmp/ccKSLBer.s:17     .text.spiInit:00000000 $t
+     /tmp/ccKSLBer.s:22     .text.spiInit:00000000 spiInit
+     /tmp/ccKSLBer.s:29     .text.spiObjectInit:00000000 $t
+     /tmp/ccKSLBer.s:34     .text.spiObjectInit:00000000 spiObjectInit
+     /tmp/ccKSLBer.s:47     .text.spiStart:00000000 $t
+     /tmp/ccKSLBer.s:52     .text.spiStart:00000000 spiStart
+     /tmp/ccKSLBer.s:74     .text.spiStop:00000000 $t
+     /tmp/ccKSLBer.s:79     .text.spiStop:00000000 spiStop
+     /tmp/ccKSLBer.s:102    .text.spiSelect:00000000 $t
+     /tmp/ccKSLBer.s:107    .text.spiSelect:00000000 spiSelect
+     /tmp/ccKSLBer.s:125    .text.spiUnselect:00000000 $t
+     /tmp/ccKSLBer.s:130    .text.spiUnselect:00000000 spiUnselect
+     /tmp/ccKSLBer.s:148    .text.spiStartIgnore:00000000 $t
+     /tmp/ccKSLBer.s:153    .text.spiStartIgnore:00000000 spiStartIgnore
+     /tmp/ccKSLBer.s:173    .text.spiStartExchange:00000000 $t
+     /tmp/ccKSLBer.s:178    .text.spiStartExchange:00000000 spiStartExchange
+     /tmp/ccKSLBer.s:200    .text.spiStartSend:00000000 $t
+     /tmp/ccKSLBer.s:205    .text.spiStartSend:00000000 spiStartSend
+     /tmp/ccKSLBer.s:225    .text.spiStartReceive:00000000 $t
+     /tmp/ccKSLBer.s:230    .text.spiStartReceive:00000000 spiStartReceive
+     /tmp/ccKSLBer.s:250    .text.spiIgnore:00000000 $t
+     /tmp/ccKSLBer.s:255    .text.spiIgnore:00000000 spiIgnore
+     /tmp/ccKSLBer.s:282    .text.spiIgnore:00000028 $d
+     /tmp/ccKSLBer.s:285    .text.spiExchange:00000000 $t
+     /tmp/ccKSLBer.s:290    .text.spiExchange:00000000 spiExchange
+     /tmp/ccKSLBer.s:319    .text.spiExchange:0000002c $d
+     /tmp/ccKSLBer.s:322    .text.spiSend:00000000 $t
+     /tmp/ccKSLBer.s:327    .text.spiSend:00000000 spiSend
+     /tmp/ccKSLBer.s:354    .text.spiSend:00000028 $d
+     /tmp/ccKSLBer.s:357    .text.spiReceive:00000000 $t
+     /tmp/ccKSLBer.s:362    .text.spiReceive:00000000 spiReceive
+     /tmp/ccKSLBer.s:389    .text.spiReceive:00000028 $d
+     /tmp/ccKSLBer.s:392    .text.spiAcquireBus:00000000 $t
+     /tmp/ccKSLBer.s:397    .text.spiAcquireBus:00000000 spiAcquireBus
+     /tmp/ccKSLBer.s:405    .text.spiReleaseBus:00000000 $t
+     /tmp/ccKSLBer.s:410    .text.spiReleaseBus:00000000 spiReleaseBus
+
+UNDEFINED SYMBOLS
+spi_lld_init
+chMtxInit
+spi_lld_start
+spi_lld_unselect
+spi_lld_stop
+spi_lld_select
+spi_lld_ignore
+spi_lld_exchange
+spi_lld_send
+spi_lld_receive
+chSchGoSleepS
+rlist
+chMtxLock
+chMtxUnlock

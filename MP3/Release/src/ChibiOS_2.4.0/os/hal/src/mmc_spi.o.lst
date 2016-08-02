@@ -1,0 +1,1242 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"mmc_spi.c"
+  16              		.section	.text.recvr1,"ax",%progbits
+  17              		.align	1
+  18              		.thumb
+  19              		.thumb_func
+  21              	recvr1:
+  22              		@ args = 0, pretend = 0, frame = 8
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+  25 0002 0546     		mov	r5, r0
+  26 0004 0924     		movs	r4, #9
+  27              	.L3:
+  28 0006 A868     		ldr	r0, [r5, #8]
+  29 0008 0121     		movs	r1, #1
+  30 000a 01AA     		add	r2, sp, #4
+  31 000c FFF7FEFF 		bl	spiReceive
+  32 0010 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+  33 0014 FF28     		cmp	r0, #255
+  34 0016 01D1     		bne	.L2
+  35 0018 013C     		subs	r4, r4, #1
+  36 001a F4D1     		bne	.L3
+  37              	.L2:
+  38 001c 3EBD     		pop	{r1, r2, r3, r4, r5, pc}
+  40              		.section	.text.wait,"ax",%progbits
+  41              		.align	1
+  42              		.thumb
+  43              		.thumb_func
+  45              	wait:
+  46              		@ args = 0, pretend = 0, frame = 8
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+  49 0002 0546     		mov	r5, r0
+  50 0004 1024     		movs	r4, #16
+  51              	.L7:
+  52 0006 0121     		movs	r1, #1
+  53 0008 A868     		ldr	r0, [r5, #8]
+  54 000a 01AA     		add	r2, sp, #4
+  55 000c FFF7FEFF 		bl	spiReceive
+  56 0010 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+  57 0014 FF2B     		cmp	r3, #255
+  58 0016 01D0     		beq	.L10
+  59 0018 013C     		subs	r4, r4, #1
+  60 001a F4D1     		bne	.L7
+  61              	.L10:
+  62 001c A868     		ldr	r0, [r5, #8]
+  63 001e 0121     		movs	r1, #1
+  64 0020 01AA     		add	r2, sp, #4
+  65 0022 FFF7FEFF 		bl	spiReceive
+  66 0026 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+  67 002a FF28     		cmp	r0, #255
+  68 002c 03D0     		beq	.L5
+  69 002e 0120     		movs	r0, #1
+  70 0030 FFF7FEFF 		bl	chThdSleep
+  71 0034 F2E7     		b	.L10
+  72              	.L5:
+  73 0036 3EBD     		pop	{r1, r2, r3, r4, r5, pc}
+  75              		.section	.text.tmrfunc,"ax",%progbits
+  76              		.align	1
+  77              		.thumb
+  78              		.thumb_func
+  80              	tmrfunc:
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83 0000 826B     		ldr	r2, [r0, #56]
+  84 0002 8369     		ldr	r3, [r0, #24]
+  85 0004 10B5     		push	{r4, lr}
+  86 0006 0446     		mov	r4, r0
+  87 0008 6AB1     		cbz	r2, .L12
+  88 000a 9847     		blx	r3
+  89 000c 40B1     		cbz	r0, .L13
+  90 000e A16B     		ldr	r1, [r4, #56]
+  91 0010 0139     		subs	r1, r1, #1
+  92 0012 A163     		str	r1, [r4, #56]
+  93 0014 91B9     		cbnz	r1, .L14
+  94 0016 2046     		mov	r0, r4
+  95 0018 0323     		movs	r3, #3
+  96 001a 00F81C3B 		strb	r3, [r0], #28
+  97 001e 0BE0     		b	.L15
+  98              	.L13:
+  99 0020 0A20     		movs	r0, #10
+ 100 0022 A063     		str	r0, [r4, #56]
+ 101 0024 0AE0     		b	.L14
+ 102              	.L12:
+ 103 0026 9847     		blx	r3
+ 104 0028 0146     		mov	r1, r0
+ 105 002a 38B9     		cbnz	r0, .L14
+ 106 002c 0223     		movs	r3, #2
+ 107 002e 0A22     		movs	r2, #10
+ 108 0030 2370     		strb	r3, [r4, #0]
+ 109 0032 A263     		str	r2, [r4, #56]
+ 110 0034 04F12000 		add	r0, r4, #32
+ 111              	.L15:
+ 112 0038 FFF7FEFF 		bl	chEvtBroadcastFlagsI
+ 113              	.L14:
+ 114 003c 044A     		ldr	r2, .L16
+ 115 003e 04F12400 		add	r0, r4, #36
+ 116 0042 4FF4FA71 		mov	r1, #500
+ 117 0046 2346     		mov	r3, r4
+ 118 0048 BDE81040 		pop	{r4, lr}
+ 119 004c FFF7FEBF 		b	chVTSetI
+ 120              	.L17:
+ 121              		.align	2
+ 122              	.L16:
+ 123 0050 00000000 		.word	tmrfunc
+ 125              		.section	.text.send_hdr,"ax",%progbits
+ 126              		.align	1
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	send_hdr:
+ 131              		@ args = 0, pretend = 0, frame = 8
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133 0000 73B5     		push	{r0, r1, r4, r5, r6, lr}
+ 134 0002 1646     		mov	r6, r2
+ 135 0004 0D46     		mov	r5, r1
+ 136 0006 0446     		mov	r4, r0
+ 137 0008 FFF7FEFF 		bl	wait
+ 138 000c 330A     		lsrs	r3, r6, #8
+ 139 000e 45F04005 		orr	r5, r5, #64
+ 140 0012 310E     		lsrs	r1, r6, #24
+ 141 0014 300C     		lsrs	r0, r6, #16
+ 142 0016 8DF80330 		strb	r3, [sp, #3]
+ 143 001a 0023     		movs	r3, #0
+ 144 001c 8DF80050 		strb	r5, [sp, #0]
+ 145 0020 8DF80110 		strb	r1, [sp, #1]
+ 146 0024 8DF80200 		strb	r0, [sp, #2]
+ 147 0028 8DF80460 		strb	r6, [sp, #4]
+ 148 002c 1A46     		mov	r2, r3
+ 149              	.L19:
+ 150 002e 1DF803C0 		ldrb	ip, [sp, r3]	@ zero_extendqisi2
+ 151 0032 0948     		ldr	r0, .L21
+ 152 0034 8CEA4202 		eor	r2, ip, r2, lsl #1
+ 153 0038 0133     		adds	r3, r3, #1
+ 154 003a 052B     		cmp	r3, #5
+ 155 003c 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ 156 003e F6D1     		bne	.L19
+ 157 0040 5100     		lsls	r1, r2, #1
+ 158 0042 41F00103 		orr	r3, r1, #1
+ 159 0046 A068     		ldr	r0, [r4, #8]
+ 160 0048 8DF80530 		strb	r3, [sp, #5]
+ 161 004c 0621     		movs	r1, #6
+ 162 004e 6A46     		mov	r2, sp
+ 163 0050 FFF7FEFF 		bl	spiSend
+ 164 0054 7CBD     		pop	{r2, r3, r4, r5, r6, pc}
+ 165              	.L22:
+ 166 0056 00BF     		.align	2
+ 167              	.L21:
+ 168 0058 00000000 		.word	.LANCHOR0
+ 170              		.section	.text.send_command_R3,"ax",%progbits
+ 171              		.align	1
+ 172              		.thumb
+ 173              		.thumb_func
+ 175              	send_command_R3:
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 179 0002 0446     		mov	r4, r0
+ 180 0004 0F46     		mov	r7, r1
+ 181 0006 1546     		mov	r5, r2
+ 182 0008 8068     		ldr	r0, [r0, #8]
+ 183 000a 1E46     		mov	r6, r3
+ 184 000c FFF7FEFF 		bl	spiSelect
+ 185 0010 3946     		mov	r1, r7
+ 186 0012 2A46     		mov	r2, r5
+ 187 0014 2046     		mov	r0, r4
+ 188 0016 FFF7FEFF 		bl	send_hdr
+ 189 001a 2046     		mov	r0, r4
+ 190 001c FFF7FEFF 		bl	recvr1
+ 191 0020 0421     		movs	r1, #4
+ 192 0022 0546     		mov	r5, r0
+ 193 0024 3246     		mov	r2, r6
+ 194 0026 A068     		ldr	r0, [r4, #8]
+ 195 0028 FFF7FEFF 		bl	spiReceive
+ 196 002c A068     		ldr	r0, [r4, #8]
+ 197 002e FFF7FEFF 		bl	spiUnselect
+ 198 0032 2846     		mov	r0, r5
+ 199 0034 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 201              		.section	.text.send_command_R1,"ax",%progbits
+ 202              		.align	1
+ 203              		.thumb
+ 204              		.thumb_func
+ 206              	send_command_R1:
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0000 70B5     		push	{r4, r5, r6, lr}
+ 210 0002 0446     		mov	r4, r0
+ 211 0004 0E46     		mov	r6, r1
+ 212 0006 1546     		mov	r5, r2
+ 213 0008 8068     		ldr	r0, [r0, #8]
+ 214 000a FFF7FEFF 		bl	spiSelect
+ 215 000e 2A46     		mov	r2, r5
+ 216 0010 3146     		mov	r1, r6
+ 217 0012 2046     		mov	r0, r4
+ 218 0014 FFF7FEFF 		bl	send_hdr
+ 219 0018 2046     		mov	r0, r4
+ 220 001a FFF7FEFF 		bl	recvr1
+ 221 001e 0546     		mov	r5, r0
+ 222 0020 A068     		ldr	r0, [r4, #8]
+ 223 0022 FFF7FEFF 		bl	spiUnselect
+ 224 0026 2846     		mov	r0, r5
+ 225 0028 70BD     		pop	{r4, r5, r6, pc}
+ 227              		.section	.text.mmcInit,"ax",%progbits
+ 228              		.align	1
+ 229              		.global	mmcInit
+ 230              		.thumb
+ 231              		.thumb_func
+ 233              	mmcInit:
+ 234              		@ args = 0, pretend = 0, frame = 0
+ 235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236              		@ link register save eliminated.
+ 237 0000 7047     		bx	lr
+ 239              		.section	.text.mmcObjectInit,"ax",%progbits
+ 240              		.align	1
+ 241              		.global	mmcObjectInit
+ 242              		.thumb
+ 243              		.thumb_func
+ 245              	mmcObjectInit:
+ 246              		@ args = 8, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248 0000 10B5     		push	{r4, lr}
+ 249 0002 0361     		str	r3, [r0, #16]
+ 250 0004 029B     		ldr	r3, [sp, #8]
+ 251 0006 C260     		str	r2, [r0, #12]
+ 252 0008 0124     		movs	r4, #1
+ 253 000a 039A     		ldr	r2, [sp, #12]
+ 254 000c 0470     		strb	r4, [r0, #0]
+ 255 000e 8160     		str	r1, [r0, #8]
+ 256 0010 0024     		movs	r4, #0
+ 257 0012 4361     		str	r3, [r0, #20]
+ 258 0014 00F11C01 		add	r1, r0, #28
+ 259 0018 00F12003 		add	r3, r0, #32
+ 260 001c 4460     		str	r4, [r0, #4]
+ 261 001e 8261     		str	r2, [r0, #24]
+ 262 0020 C463     		str	r4, [r0, #60]
+ 263 0022 C161     		str	r1, [r0, #28]
+ 264 0024 0362     		str	r3, [r0, #32]
+ 265 0026 10BD     		pop	{r4, pc}
+ 267              		.section	.text.mmcStart,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	mmcStart
+ 270              		.thumb
+ 271              		.thumb_func
+ 273              	mmcStart:
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276 0000 10B5     		push	{r4, lr}
+ 277 0002 2023     		movs	r3, #32
+ 278 0004 0446     		mov	r4, r0
+ 279              	@ 353 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 280 0006 83F31188 		msr     BASEPRI, r3
+ 281              	@ 0 "" 2
+ 282              		.thumb
+ 283 000a 0A23     		movs	r3, #10
+ 284 000c 4160     		str	r1, [r0, #4]
+ 285 000e 0221     		movs	r1, #2
+ 286 0010 0170     		strb	r1, [r0, #0]
+ 287 0012 8363     		str	r3, [r0, #56]
+ 288 0014 4FF4FA71 		mov	r1, #500
+ 289 0018 2346     		mov	r3, r4
+ 290 001a 2430     		adds	r0, r0, #36
+ 291 001c 034A     		ldr	r2, .L28
+ 292 001e FFF7FEFF 		bl	chVTSetI
+ 293 0022 0023     		movs	r3, #0
+ 294              	@ 359 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 295 0024 83F31188 		msr     BASEPRI, r3
+ 296              	@ 0 "" 2
+ 297              		.thumb
+ 298 0028 10BD     		pop	{r4, pc}
+ 299              	.L29:
+ 300 002a 00BF     		.align	2
+ 301              	.L28:
+ 302 002c 00000000 		.word	tmrfunc
+ 304              		.section	.text.mmcStop,"ax",%progbits
+ 305              		.align	1
+ 306              		.global	mmcStop
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	mmcStop:
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313 0000 10B5     		push	{r4, lr}
+ 314 0002 2023     		movs	r3, #32
+ 315 0004 0446     		mov	r4, r0
+ 316              	@ 373 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 317 0006 83F31188 		msr     BASEPRI, r3
+ 318              	@ 0 "" 2
+ 319              		.thumb
+ 320 000a 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 321 000c 012B     		cmp	r3, #1
+ 322 000e 04D0     		beq	.L31
+ 323 0010 0121     		movs	r1, #1
+ 324 0012 00F8241B 		strb	r1, [r0], #36
+ 325 0016 FFF7FEFF 		bl	chVTResetI
+ 326              	.L31:
+ 327 001a 0023     		movs	r3, #0
+ 328              	@ 382 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 329 001c 83F31188 		msr     BASEPRI, r3
+ 330              	@ 0 "" 2
+ 331              		.thumb
+ 332 0020 A068     		ldr	r0, [r4, #8]
+ 333 0022 BDE81040 		pop	{r4, lr}
+ 334 0026 FFF7FEBF 		b	spiStop
+ 336              		.section	.text.mmcConnect,"ax",%progbits
+ 337              		.align	1
+ 338              		.global	mmcConnect
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	mmcConnect:
+ 343              		@ args = 0, pretend = 0, frame = 8
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345 0000 73B5     		push	{r0, r1, r4, r5, r6, lr}
+ 346 0002 0446     		mov	r4, r0
+ 347 0004 0078     		ldrb	r0, [r0, #0]	@ zero_extendqisi2
+ 348 0006 0328     		cmp	r0, #3
+ 349 0008 67D1     		bne	.L33
+ 350 000a A068     		ldr	r0, [r4, #8]
+ 351 000c E168     		ldr	r1, [r4, #12]
+ 352 000e FFF7FEFF 		bl	spiStart
+ 353 0012 A068     		ldr	r0, [r4, #8]
+ 354 0014 1021     		movs	r1, #16
+ 355 0016 FFF7FEFF 		bl	spiIgnore
+ 356 001a 0A25     		movs	r5, #10
+ 357              	.L36:
+ 358 001c 0021     		movs	r1, #0
+ 359 001e 2046     		mov	r0, r4
+ 360 0020 0A46     		mov	r2, r1
+ 361 0022 FFF7FEFF 		bl	send_command_R1
+ 362 0026 0128     		cmp	r0, #1
+ 363 0028 05D0     		beq	.L34
+ 364 002a 013D     		subs	r5, r5, #1
+ 365 002c 59D0     		beq	.L48
+ 366 002e 0A20     		movs	r0, #10
+ 367 0030 FFF7FEFF 		bl	chThdSleep
+ 368 0034 F2E7     		b	.L36
+ 369              	.L34:
+ 370 0036 0821     		movs	r1, #8
+ 371 0038 2046     		mov	r0, r4
+ 372 003a 4FF4D572 		mov	r2, #426
+ 373 003e 01AB     		add	r3, sp, #4
+ 374 0040 FFF7FEFF 		bl	send_command_R3
+ 375 0044 0528     		cmp	r0, #5
+ 376 0046 20D0     		beq	.L37
+ 377 0048 6425     		movs	r5, #100
+ 378              	.L40:
+ 379 004a 3721     		movs	r1, #55
+ 380 004c 0022     		movs	r2, #0
+ 381 004e 2046     		mov	r0, r4
+ 382 0050 FFF7FEFF 		bl	send_command_R1
+ 383 0054 0128     		cmp	r0, #1
+ 384 0056 0646     		mov	r6, r0
+ 385 0058 07D1     		bne	.L38
+ 386 005a 234A     		ldr	r2, .L50
+ 387 005c 2046     		mov	r0, r4
+ 388 005e 2921     		movs	r1, #41
+ 389 0060 01AB     		add	r3, sp, #4
+ 390 0062 FFF7FEFF 		bl	send_command_R3
+ 391 0066 0246     		mov	r2, r0
+ 392 0068 28B1     		cbz	r0, .L39
+ 393              	.L38:
+ 394 006a 013D     		subs	r5, r5, #1
+ 395 006c 39D0     		beq	.L48
+ 396 006e 0A20     		movs	r0, #10
+ 397 0070 FFF7FEFF 		bl	chThdSleep
+ 398 0074 E9E7     		b	.L40
+ 399              	.L39:
+ 400 0076 3A21     		movs	r1, #58
+ 401 0078 01AB     		add	r3, sp, #4
+ 402 007a 2046     		mov	r0, r4
+ 403 007c FFF7FEFF 		bl	send_command_R3
+ 404 0080 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 405 0084 5B06     		lsls	r3, r3, #25
+ 406 0086 48BF     		it	mi
+ 407 0088 E663     		strmi	r6, [r4, #60]
+ 408              	.L37:
+ 409 008a 6425     		movs	r5, #100
+ 410              	.L42:
+ 411 008c 2046     		mov	r0, r4
+ 412 008e 0121     		movs	r1, #1
+ 413 0090 0022     		movs	r2, #0
+ 414 0092 FFF7FEFF 		bl	send_command_R1
+ 415 0096 38B1     		cbz	r0, .L41
+ 416 0098 0128     		cmp	r0, #1
+ 417 009a 22D1     		bne	.L48
+ 418 009c 013D     		subs	r5, r5, #1
+ 419 009e 21D0     		beq	.L35
+ 420 00a0 0A20     		movs	r0, #10
+ 421 00a2 FFF7FEFF 		bl	chThdSleep
+ 422 00a6 F1E7     		b	.L42
+ 423              	.L41:
+ 424 00a8 A068     		ldr	r0, [r4, #8]
+ 425 00aa 2169     		ldr	r1, [r4, #16]
+ 426 00ac FFF7FEFF 		bl	spiStart
+ 427 00b0 2046     		mov	r0, r4
+ 428 00b2 1021     		movs	r1, #16
+ 429 00b4 4FF40072 		mov	r2, #512
+ 430 00b8 FFF7FEFF 		bl	send_command_R1
+ 431 00bc 88B9     		cbnz	r0, .L48
+ 432 00be 2023     		movs	r3, #32
+ 433              	@ 477 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 434 00c0 83F31188 		msr     BASEPRI, r3
+ 435              	@ 0 "" 2
+ 436              		.thumb
+ 437 00c4 2178     		ldrb	r1, [r4, #0]	@ zero_extendqisi2
+ 438 00c6 0329     		cmp	r1, #3
+ 439 00c8 02D1     		bne	.L49
+ 440 00ca 0422     		movs	r2, #4
+ 441 00cc 2270     		strb	r2, [r4, #0]
+ 442 00ce 00E0     		b	.L43
+ 443              	.L49:
+ 444 00d0 0120     		movs	r0, #1
+ 445              	.L43:
+ 446 00d2 0023     		movs	r3, #0
+ 447              	@ 484 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 448 00d4 83F31188 		msr     BASEPRI, r3
+ 449              	@ 0 "" 2
+ 450              		.thumb
+ 451 00d8 04E0     		b	.L35
+ 452              	.L33:
+ 453 00da 0438     		subs	r0, r0, #4
+ 454 00dc 18BF     		it	ne
+ 455 00de 0120     		movne	r0, #1
+ 456 00e0 00E0     		b	.L35
+ 457              	.L48:
+ 458 00e2 0120     		movs	r0, #1
+ 459              	.L35:
+ 460 00e4 7CBD     		pop	{r2, r3, r4, r5, r6, pc}
+ 461              	.L51:
+ 462 00e6 00BF     		.align	2
+ 463              	.L50:
+ 464 00e8 AA010040 		.word	1073742250
+ 466              		.section	.text.mmcDisconnect,"ax",%progbits
+ 467              		.align	1
+ 468              		.global	mmcDisconnect
+ 469              		.thumb
+ 470              		.thumb_func
+ 472              	mmcDisconnect:
+ 473              		@ args = 0, pretend = 0, frame = 8
+ 474              		@ frame_needed = 0, uses_anonymous_args = 0
+ 475 0000 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 476 0002 042B     		cmp	r3, #4
+ 477 0004 13B5     		push	{r0, r1, r4, lr}
+ 478 0006 0446     		mov	r4, r0
+ 479 0008 1DD1     		bne	.L53
+ 480 000a 8068     		ldr	r0, [r0, #8]
+ 481 000c FFF7FEFF 		bl	spiSelect
+ 482              	.L56:
+ 483 0010 A068     		ldr	r0, [r4, #8]
+ 484 0012 0121     		movs	r1, #1
+ 485 0014 01AA     		add	r2, sp, #4
+ 486 0016 FFF7FEFF 		bl	spiReceive
+ 487 001a 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 488 001e FF28     		cmp	r0, #255
+ 489 0020 03D0     		beq	.L55
+ 490 0022 0120     		movs	r0, #1
+ 491 0024 FFF7FEFF 		bl	chThdSleep
+ 492 0028 F2E7     		b	.L56
+ 493              	.L55:
+ 494 002a A068     		ldr	r0, [r4, #8]
+ 495 002c FFF7FEFF 		bl	spiUnselect
+ 496 0030 2023     		movs	r3, #32
+ 497              	@ 515 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 498 0032 83F31188 		msr     BASEPRI, r3
+ 499              	@ 0 "" 2
+ 500              		.thumb
+ 501 0036 2178     		ldrb	r1, [r4, #0]	@ zero_extendqisi2
+ 502 0038 0429     		cmp	r1, #4
+ 503 003a 01D1     		bne	.L57
+ 504 003c 0322     		movs	r2, #3
+ 505 003e 2270     		strb	r2, [r4, #0]
+ 506              	.L57:
+ 507 0040 0023     		movs	r3, #0
+ 508              	@ 518 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 509 0042 83F31188 		msr     BASEPRI, r3
+ 510              	@ 0 "" 2
+ 511              		.thumb
+ 512              	.L53:
+ 513 0046 A068     		ldr	r0, [r4, #8]
+ 514 0048 FFF7FEFF 		bl	spiStop
+ 515 004c 0120     		movs	r0, #1
+ 516 004e 1CBD     		pop	{r2, r3, r4, pc}
+ 518              		.section	.text.mmcStartSequentialRead,"ax",%progbits
+ 519              		.align	1
+ 520              		.global	mmcStartSequentialRead
+ 521              		.thumb
+ 522              		.thumb_func
+ 524              	mmcStartSequentialRead:
+ 525              		@ args = 0, pretend = 0, frame = 0
+ 526              		@ frame_needed = 0, uses_anonymous_args = 0
+ 527 0000 38B5     		push	{r3, r4, r5, lr}
+ 528 0002 0446     		mov	r4, r0
+ 529 0004 0D46     		mov	r5, r1
+ 530 0006 2023     		movs	r3, #32
+ 531              	@ 543 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 532 0008 83F31188 		msr     BASEPRI, r3
+ 533              	@ 0 "" 2
+ 534              		.thumb
+ 535 000c 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 536 000e 042B     		cmp	r3, #4
+ 537 0010 04D0     		beq	.L59
+ 538 0012 0023     		movs	r3, #0
+ 539              	@ 545 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 540 0014 83F31188 		msr     BASEPRI, r3
+ 541              	@ 0 "" 2
+ 542              		.thumb
+ 543 0018 0120     		movs	r0, #1
+ 544 001a 38BD     		pop	{r3, r4, r5, pc}
+ 545              	.L59:
+ 546 001c 0521     		movs	r1, #5
+ 547 001e 0170     		strb	r1, [r0, #0]
+ 548 0020 0023     		movs	r3, #0
+ 549              	@ 549 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 550 0022 83F31188 		msr     BASEPRI, r3
+ 551              	@ 0 "" 2
+ 552              		.thumb
+ 553 0026 2169     		ldr	r1, [r4, #16]
+ 554 0028 8068     		ldr	r0, [r0, #8]
+ 555 002a FFF7FEFF 		bl	spiStart
+ 556 002e A068     		ldr	r0, [r4, #8]
+ 557 0030 FFF7FEFF 		bl	spiSelect
+ 558 0034 E26B     		ldr	r2, [r4, #60]
+ 559 0036 2046     		mov	r0, r4
+ 560 0038 1221     		movs	r1, #18
+ 561 003a 0AB1     		cbz	r2, .L61
+ 562 003c 2A46     		mov	r2, r5
+ 563 003e 00E0     		b	.L65
+ 564              	.L61:
+ 565 0040 6A02     		lsls	r2, r5, #9
+ 566              	.L65:
+ 567 0042 FFF7FEFF 		bl	send_hdr
+ 568 0046 2046     		mov	r0, r4
+ 569 0048 FFF7FEFF 		bl	recvr1
+ 570 004c 70B1     		cbz	r0, .L60
+ 571 004e A068     		ldr	r0, [r4, #8]
+ 572 0050 FFF7FEFF 		bl	spiUnselect
+ 573 0054 2023     		movs	r3, #32
+ 574              	@ 561 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 575 0056 83F31188 		msr     BASEPRI, r3
+ 576              	@ 0 "" 2
+ 577              		.thumb
+ 578 005a 2078     		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 579 005c 0528     		cmp	r0, #5
+ 580 005e 01D1     		bne	.L63
+ 581 0060 0423     		movs	r3, #4
+ 582 0062 2370     		strb	r3, [r4, #0]
+ 583              	.L63:
+ 584 0064 0023     		movs	r3, #0
+ 585              	@ 564 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 586 0066 83F31188 		msr     BASEPRI, r3
+ 587              	@ 0 "" 2
+ 588              		.thumb
+ 589 006a 0120     		movs	r0, #1
+ 590              	.L60:
+ 591 006c 38BD     		pop	{r3, r4, r5, pc}
+ 593              		.section	.text.mmcSequentialRead,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	mmcSequentialRead
+ 596              		.thumb
+ 597              		.thumb_func
+ 599              	mmcSequentialRead:
+ 600              		@ args = 0, pretend = 0, frame = 0
+ 601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 602 0000 70B5     		push	{r4, r5, r6, lr}
+ 603 0002 2023     		movs	r3, #32
+ 604 0004 0446     		mov	r4, r0
+ 605 0006 0D46     		mov	r5, r1
+ 606              	@ 586 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 607 0008 83F31188 		msr     BASEPRI, r3
+ 608              	@ 0 "" 2
+ 609              		.thumb
+ 610 000c 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 611 000e 052B     		cmp	r3, #5
+ 612 0010 4FF00003 		mov	r3, #0
+ 613              	@ 588 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 614 0014 83F31188 		msr     BASEPRI, r3
+ 615              	@ 0 "" 2
+ 616              		.thumb
+ 617 0018 01D0     		beq	.L67
+ 618 001a 0120     		movs	r0, #1
+ 619 001c 70BD     		pop	{r4, r5, r6, pc}
+ 620              	.L67:
+ 621 001e 42F21076 		movw	r6, #10000
+ 622              	.L70:
+ 623 0022 A068     		ldr	r0, [r4, #8]
+ 624 0024 0121     		movs	r1, #1
+ 625 0026 2A46     		mov	r2, r5
+ 626 0028 FFF7FEFF 		bl	spiReceive
+ 627 002c 2878     		ldrb	r0, [r5, #0]	@ zero_extendqisi2
+ 628 002e FE28     		cmp	r0, #254
+ 629 0030 0BD1     		bne	.L69
+ 630 0032 A068     		ldr	r0, [r4, #8]
+ 631 0034 4FF40071 		mov	r1, #512
+ 632 0038 2A46     		mov	r2, r5
+ 633 003a FFF7FEFF 		bl	spiReceive
+ 634 003e A068     		ldr	r0, [r4, #8]
+ 635 0040 0221     		movs	r1, #2
+ 636 0042 FFF7FEFF 		bl	spiIgnore
+ 637 0046 0020     		movs	r0, #0
+ 638 0048 70BD     		pop	{r4, r5, r6, pc}
+ 639              	.L69:
+ 640 004a 013E     		subs	r6, r6, #1
+ 641 004c E9D1     		bne	.L70
+ 642 004e A068     		ldr	r0, [r4, #8]
+ 643 0050 FFF7FEFF 		bl	spiUnselect
+ 644 0054 2023     		movs	r3, #32
+ 645              	@ 604 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 646 0056 83F31188 		msr     BASEPRI, r3
+ 647              	@ 0 "" 2
+ 648              		.thumb
+ 649 005a 2178     		ldrb	r1, [r4, #0]	@ zero_extendqisi2
+ 650 005c 0529     		cmp	r1, #5
+ 651 005e 01D1     		bne	.L71
+ 652 0060 0422     		movs	r2, #4
+ 653 0062 2270     		strb	r2, [r4, #0]
+ 654              	.L71:
+ 655 0064 0023     		movs	r3, #0
+ 656              	@ 607 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 657 0066 83F31188 		msr     BASEPRI, r3
+ 658              	@ 0 "" 2
+ 659              		.thumb
+ 660 006a 0120     		movs	r0, #1
+ 661 006c 70BD     		pop	{r4, r5, r6, pc}
+ 663              		.section	.text.mmcStopSequentialRead,"ax",%progbits
+ 664              		.align	1
+ 665              		.global	mmcStopSequentialRead
+ 666              		.thumb
+ 667              		.thumb_func
+ 669              	mmcStopSequentialRead:
+ 670              		@ args = 0, pretend = 0, frame = 0
+ 671              		@ frame_needed = 0, uses_anonymous_args = 0
+ 672 0000 10B5     		push	{r4, lr}
+ 673 0002 2023     		movs	r3, #32
+ 674 0004 0446     		mov	r4, r0
+ 675              	@ 627 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 676 0006 83F31188 		msr     BASEPRI, r3
+ 677              	@ 0 "" 2
+ 678              		.thumb
+ 679 000a 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 680 000c 052B     		cmp	r3, #5
+ 681 000e 4FF00003 		mov	r3, #0
+ 682              	@ 629 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 683 0012 83F31188 		msr     BASEPRI, r3
+ 684              	@ 0 "" 2
+ 685              		.thumb
+ 686 0016 01D0     		beq	.L74
+ 687 0018 0123     		movs	r3, #1
+ 688 001a 15E0     		b	.L75
+ 689              	.L74:
+ 690 001c 0721     		movs	r1, #7
+ 691 001e 0B4A     		ldr	r2, .L77
+ 692 0020 8068     		ldr	r0, [r0, #8]
+ 693 0022 FFF7FEFF 		bl	spiSend
+ 694 0026 2046     		mov	r0, r4
+ 695 0028 FFF7FEFF 		bl	recvr1
+ 696 002c A068     		ldr	r0, [r4, #8]
+ 697 002e FFF7FEFF 		bl	spiUnselect
+ 698 0032 2023     		movs	r3, #32
+ 699              	@ 641 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 700 0034 83F31188 		msr     BASEPRI, r3
+ 701              	@ 0 "" 2
+ 702              		.thumb
+ 703 0038 2078     		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 704 003a 0528     		cmp	r0, #5
+ 705 003c 01D1     		bne	.L76
+ 706 003e 0421     		movs	r1, #4
+ 707 0040 2170     		strb	r1, [r4, #0]
+ 708              	.L76:
+ 709 0042 0023     		movs	r3, #0
+ 710              	@ 644 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 711 0044 83F31188 		msr     BASEPRI, r3
+ 712              	@ 0 "" 2
+ 713              		.thumb
+ 714              	.L75:
+ 715 0048 1846     		mov	r0, r3
+ 716 004a 10BD     		pop	{r4, pc}
+ 717              	.L78:
+ 718              		.align	2
+ 719              	.L77:
+ 720 004c 00000000 		.word	.LANCHOR1
+ 722              		.section	.text.mmcStartSequentialWrite,"ax",%progbits
+ 723              		.align	1
+ 724              		.global	mmcStartSequentialWrite
+ 725              		.thumb
+ 726              		.thumb_func
+ 728              	mmcStartSequentialWrite:
+ 729              		@ args = 0, pretend = 0, frame = 0
+ 730              		@ frame_needed = 0, uses_anonymous_args = 0
+ 731 0000 38B5     		push	{r3, r4, r5, lr}
+ 732 0002 0446     		mov	r4, r0
+ 733 0004 0D46     		mov	r5, r1
+ 734 0006 2023     		movs	r3, #32
+ 735              	@ 663 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 736 0008 83F31188 		msr     BASEPRI, r3
+ 737              	@ 0 "" 2
+ 738              		.thumb
+ 739 000c 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 740 000e 042B     		cmp	r3, #4
+ 741 0010 04D0     		beq	.L80
+ 742 0012 0023     		movs	r3, #0
+ 743              	@ 665 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 744 0014 83F31188 		msr     BASEPRI, r3
+ 745              	@ 0 "" 2
+ 746              		.thumb
+ 747 0018 0120     		movs	r0, #1
+ 748 001a 38BD     		pop	{r3, r4, r5, pc}
+ 749              	.L80:
+ 750 001c 0621     		movs	r1, #6
+ 751 001e 0170     		strb	r1, [r0, #0]
+ 752 0020 0023     		movs	r3, #0
+ 753              	@ 669 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 754 0022 83F31188 		msr     BASEPRI, r3
+ 755              	@ 0 "" 2
+ 756              		.thumb
+ 757 0026 2169     		ldr	r1, [r4, #16]
+ 758 0028 8068     		ldr	r0, [r0, #8]
+ 759 002a FFF7FEFF 		bl	spiStart
+ 760 002e A068     		ldr	r0, [r4, #8]
+ 761 0030 FFF7FEFF 		bl	spiSelect
+ 762 0034 E26B     		ldr	r2, [r4, #60]
+ 763 0036 2046     		mov	r0, r4
+ 764 0038 1921     		movs	r1, #25
+ 765 003a 0AB1     		cbz	r2, .L82
+ 766 003c 2A46     		mov	r2, r5
+ 767 003e 00E0     		b	.L86
+ 768              	.L82:
+ 769 0040 6A02     		lsls	r2, r5, #9
+ 770              	.L86:
+ 771 0042 FFF7FEFF 		bl	send_hdr
+ 772 0046 2046     		mov	r0, r4
+ 773 0048 FFF7FEFF 		bl	recvr1
+ 774 004c 70B1     		cbz	r0, .L81
+ 775 004e A068     		ldr	r0, [r4, #8]
+ 776 0050 FFF7FEFF 		bl	spiUnselect
+ 777 0054 2023     		movs	r3, #32
+ 778              	@ 681 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 779 0056 83F31188 		msr     BASEPRI, r3
+ 780              	@ 0 "" 2
+ 781              		.thumb
+ 782 005a 2078     		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 783 005c 0628     		cmp	r0, #6
+ 784 005e 01D1     		bne	.L84
+ 785 0060 0423     		movs	r3, #4
+ 786 0062 2370     		strb	r3, [r4, #0]
+ 787              	.L84:
+ 788 0064 0023     		movs	r3, #0
+ 789              	@ 684 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 790 0066 83F31188 		msr     BASEPRI, r3
+ 791              	@ 0 "" 2
+ 792              		.thumb
+ 793 006a 0120     		movs	r0, #1
+ 794              	.L81:
+ 795 006c 38BD     		pop	{r3, r4, r5, pc}
+ 797              		.section	.text.mmcSequentialWrite,"ax",%progbits
+ 798              		.align	1
+ 799              		.global	mmcSequentialWrite
+ 800              		.thumb
+ 801              		.thumb_func
+ 803              	mmcSequentialWrite:
+ 804              		@ args = 0, pretend = 0, frame = 8
+ 805              		@ frame_needed = 0, uses_anonymous_args = 0
+ 806 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 807 0002 2023     		movs	r3, #32
+ 808 0004 0446     		mov	r4, r0
+ 809 0006 0D46     		mov	r5, r1
+ 810              	@ 707 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 811 0008 83F31188 		msr     BASEPRI, r3
+ 812              	@ 0 "" 2
+ 813              		.thumb
+ 814 000c 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 815 000e 062B     		cmp	r3, #6
+ 816 0010 4FF00003 		mov	r3, #0
+ 817              	@ 709 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 818 0014 83F31188 		msr     BASEPRI, r3
+ 819              	@ 0 "" 2
+ 820              		.thumb
+ 821 0018 2CD1     		bne	.L92
+ 822              	.L88:
+ 823 001a 0221     		movs	r1, #2
+ 824 001c 8068     		ldr	r0, [r0, #8]
+ 825 001e 164A     		ldr	r2, .L93
+ 826 0020 FFF7FEFF 		bl	spiSend
+ 827 0024 2A46     		mov	r2, r5
+ 828 0026 A068     		ldr	r0, [r4, #8]
+ 829 0028 4FF40071 		mov	r1, #512
+ 830 002c FFF7FEFF 		bl	spiSend
+ 831 0030 0221     		movs	r1, #2
+ 832 0032 A068     		ldr	r0, [r4, #8]
+ 833 0034 FFF7FEFF 		bl	spiIgnore
+ 834 0038 0121     		movs	r1, #1
+ 835 003a A068     		ldr	r0, [r4, #8]
+ 836 003c 01AA     		add	r2, sp, #4
+ 837 003e FFF7FEFF 		bl	spiReceive
+ 838 0042 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 839 0046 01F01F00 		and	r0, r1, #31
+ 840 004a 0528     		cmp	r0, #5
+ 841 004c 04D1     		bne	.L90
+ 842 004e 2046     		mov	r0, r4
+ 843 0050 FFF7FEFF 		bl	wait
+ 844 0054 0020     		movs	r0, #0
+ 845 0056 0EE0     		b	.L89
+ 846              	.L90:
+ 847 0058 A068     		ldr	r0, [r4, #8]
+ 848 005a FFF7FEFF 		bl	spiUnselect
+ 849 005e 2023     		movs	r3, #32
+ 850              	@ 725 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 851 0060 83F31188 		msr     BASEPRI, r3
+ 852              	@ 0 "" 2
+ 853              		.thumb
+ 854 0064 2278     		ldrb	r2, [r4, #0]	@ zero_extendqisi2
+ 855 0066 062A     		cmp	r2, #6
+ 856 0068 01D1     		bne	.L91
+ 857 006a 0423     		movs	r3, #4
+ 858 006c 2370     		strb	r3, [r4, #0]
+ 859              	.L91:
+ 860 006e 0023     		movs	r3, #0
+ 861              	@ 728 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 862 0070 83F31188 		msr     BASEPRI, r3
+ 863              	@ 0 "" 2
+ 864              		.thumb
+ 865              	.L92:
+ 866 0074 0120     		movs	r0, #1
+ 867              	.L89:
+ 868 0076 3EBD     		pop	{r1, r2, r3, r4, r5, pc}
+ 869              	.L94:
+ 870              		.align	2
+ 871              	.L93:
+ 872 0078 00000000 		.word	.LANCHOR2
+ 874              		.section	.text.mmcStopSequentialWrite,"ax",%progbits
+ 875              		.align	1
+ 876              		.global	mmcStopSequentialWrite
+ 877              		.thumb
+ 878              		.thumb_func
+ 880              	mmcStopSequentialWrite:
+ 881              		@ args = 0, pretend = 0, frame = 0
+ 882              		@ frame_needed = 0, uses_anonymous_args = 0
+ 883 0000 10B5     		push	{r4, lr}
+ 884 0002 2023     		movs	r3, #32
+ 885 0004 0446     		mov	r4, r0
+ 886              	@ 747 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 887 0006 83F31188 		msr     BASEPRI, r3
+ 888              	@ 0 "" 2
+ 889              		.thumb
+ 890 000a 0378     		ldrb	r3, [r0, #0]	@ zero_extendqisi2
+ 891 000c 062B     		cmp	r3, #6
+ 892 000e 4FF00003 		mov	r3, #0
+ 893              	@ 749 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 894 0012 83F31188 		msr     BASEPRI, r3
+ 895              	@ 0 "" 2
+ 896              		.thumb
+ 897 0016 16D1     		bne	.L99
+ 898              	.L96:
+ 899 0018 0221     		movs	r1, #2
+ 900 001a 0C4A     		ldr	r2, .L100
+ 901 001c 8068     		ldr	r0, [r0, #8]
+ 902 001e FFF7FEFF 		bl	spiSend
+ 903 0022 A068     		ldr	r0, [r4, #8]
+ 904 0024 FFF7FEFF 		bl	spiUnselect
+ 905 0028 2023     		movs	r3, #32
+ 906              	@ 757 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 907 002a 83F31188 		msr     BASEPRI, r3
+ 908              	@ 0 "" 2
+ 909              		.thumb
+ 910 002e 2078     		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 911 0030 0628     		cmp	r0, #6
+ 912 0032 05D1     		bne	.L98
+ 913 0034 0421     		movs	r1, #4
+ 914 0036 2170     		strb	r1, [r4, #0]
+ 915 0038 0023     		movs	r3, #0
+ 916              	@ 760 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 917 003a 83F31188 		msr     BASEPRI, r3
+ 918              	@ 0 "" 2
+ 919              		.thumb
+ 920 003e 03E0     		b	.L97
+ 921              	.L98:
+ 922 0040 0023     		movs	r3, #0
+ 923              	@ 763 "../src/ChibiOS_2.4.0/os/hal/src/mmc_spi.c" 1
+ 924 0042 83F31188 		msr     BASEPRI, r3
+ 925              	@ 0 "" 2
+ 926              		.thumb
+ 927              	.L99:
+ 928 0046 0123     		movs	r3, #1
+ 929              	.L97:
+ 930 0048 1846     		mov	r0, r3
+ 931 004a 10BD     		pop	{r4, pc}
+ 932              	.L101:
+ 933              		.align	2
+ 934              	.L100:
+ 935 004c 00000000 		.word	.LANCHOR3
+ 937              		.section	.rodata.stop.6758,"a",%progbits
+ 938              		.set	.LANCHOR3,. + 0
+ 941              	stop.6758:
+ 942 0000 FD       		.byte	-3
+ 943 0001 FF       		.byte	-1
+ 944              		.section	.rodata.crc7_lookup_table,"a",%progbits
+ 945              		.set	.LANCHOR0,. + 0
+ 948              	crc7_lookup_table:
+ 949 0000 00       		.byte	0
+ 950 0001 09       		.byte	9
+ 951 0002 12       		.byte	18
+ 952 0003 1B       		.byte	27
+ 953 0004 24       		.byte	36
+ 954 0005 2D       		.byte	45
+ 955 0006 36       		.byte	54
+ 956 0007 3F       		.byte	63
+ 957 0008 48       		.byte	72
+ 958 0009 41       		.byte	65
+ 959 000a 5A       		.byte	90
+ 960 000b 53       		.byte	83
+ 961 000c 6C       		.byte	108
+ 962 000d 65       		.byte	101
+ 963 000e 7E       		.byte	126
+ 964 000f 77       		.byte	119
+ 965 0010 19       		.byte	25
+ 966 0011 10       		.byte	16
+ 967 0012 0B       		.byte	11
+ 968 0013 02       		.byte	2
+ 969 0014 3D       		.byte	61
+ 970 0015 34       		.byte	52
+ 971 0016 2F       		.byte	47
+ 972 0017 26       		.byte	38
+ 973 0018 51       		.byte	81
+ 974 0019 58       		.byte	88
+ 975 001a 43       		.byte	67
+ 976 001b 4A       		.byte	74
+ 977 001c 75       		.byte	117
+ 978 001d 7C       		.byte	124
+ 979 001e 67       		.byte	103
+ 980 001f 6E       		.byte	110
+ 981 0020 32       		.byte	50
+ 982 0021 3B       		.byte	59
+ 983 0022 20       		.byte	32
+ 984 0023 29       		.byte	41
+ 985 0024 16       		.byte	22
+ 986 0025 1F       		.byte	31
+ 987 0026 04       		.byte	4
+ 988 0027 0D       		.byte	13
+ 989 0028 7A       		.byte	122
+ 990 0029 73       		.byte	115
+ 991 002a 68       		.byte	104
+ 992 002b 61       		.byte	97
+ 993 002c 5E       		.byte	94
+ 994 002d 57       		.byte	87
+ 995 002e 4C       		.byte	76
+ 996 002f 45       		.byte	69
+ 997 0030 2B       		.byte	43
+ 998 0031 22       		.byte	34
+ 999 0032 39       		.byte	57
+ 1000 0033 30       		.byte	48
+ 1001 0034 0F       		.byte	15
+ 1002 0035 06       		.byte	6
+ 1003 0036 1D       		.byte	29
+ 1004 0037 14       		.byte	20
+ 1005 0038 63       		.byte	99
+ 1006 0039 6A       		.byte	106
+ 1007 003a 71       		.byte	113
+ 1008 003b 78       		.byte	120
+ 1009 003c 47       		.byte	71
+ 1010 003d 4E       		.byte	78
+ 1011 003e 55       		.byte	85
+ 1012 003f 5C       		.byte	92
+ 1013 0040 64       		.byte	100
+ 1014 0041 6D       		.byte	109
+ 1015 0042 76       		.byte	118
+ 1016 0043 7F       		.byte	127
+ 1017 0044 40       		.byte	64
+ 1018 0045 49       		.byte	73
+ 1019 0046 52       		.byte	82
+ 1020 0047 5B       		.byte	91
+ 1021 0048 2C       		.byte	44
+ 1022 0049 25       		.byte	37
+ 1023 004a 3E       		.byte	62
+ 1024 004b 37       		.byte	55
+ 1025 004c 08       		.byte	8
+ 1026 004d 01       		.byte	1
+ 1027 004e 1A       		.byte	26
+ 1028 004f 13       		.byte	19
+ 1029 0050 7D       		.byte	125
+ 1030 0051 74       		.byte	116
+ 1031 0052 6F       		.byte	111
+ 1032 0053 66       		.byte	102
+ 1033 0054 59       		.byte	89
+ 1034 0055 50       		.byte	80
+ 1035 0056 4B       		.byte	75
+ 1036 0057 42       		.byte	66
+ 1037 0058 35       		.byte	53
+ 1038 0059 3C       		.byte	60
+ 1039 005a 27       		.byte	39
+ 1040 005b 2E       		.byte	46
+ 1041 005c 11       		.byte	17
+ 1042 005d 18       		.byte	24
+ 1043 005e 03       		.byte	3
+ 1044 005f 0A       		.byte	10
+ 1045 0060 56       		.byte	86
+ 1046 0061 5F       		.byte	95
+ 1047 0062 44       		.byte	68
+ 1048 0063 4D       		.byte	77
+ 1049 0064 72       		.byte	114
+ 1050 0065 7B       		.byte	123
+ 1051 0066 60       		.byte	96
+ 1052 0067 69       		.byte	105
+ 1053 0068 1E       		.byte	30
+ 1054 0069 17       		.byte	23
+ 1055 006a 0C       		.byte	12
+ 1056 006b 05       		.byte	5
+ 1057 006c 3A       		.byte	58
+ 1058 006d 33       		.byte	51
+ 1059 006e 28       		.byte	40
+ 1060 006f 21       		.byte	33
+ 1061 0070 4F       		.byte	79
+ 1062 0071 46       		.byte	70
+ 1063 0072 5D       		.byte	93
+ 1064 0073 54       		.byte	84
+ 1065 0074 6B       		.byte	107
+ 1066 0075 62       		.byte	98
+ 1067 0076 79       		.byte	121
+ 1068 0077 70       		.byte	112
+ 1069 0078 07       		.byte	7
+ 1070 0079 0E       		.byte	14
+ 1071 007a 15       		.byte	21
+ 1072 007b 1C       		.byte	28
+ 1073 007c 23       		.byte	35
+ 1074 007d 2A       		.byte	42
+ 1075 007e 31       		.byte	49
+ 1076 007f 38       		.byte	56
+ 1077 0080 41       		.byte	65
+ 1078 0081 48       		.byte	72
+ 1079 0082 53       		.byte	83
+ 1080 0083 5A       		.byte	90
+ 1081 0084 65       		.byte	101
+ 1082 0085 6C       		.byte	108
+ 1083 0086 77       		.byte	119
+ 1084 0087 7E       		.byte	126
+ 1085 0088 09       		.byte	9
+ 1086 0089 00       		.byte	0
+ 1087 008a 1B       		.byte	27
+ 1088 008b 12       		.byte	18
+ 1089 008c 2D       		.byte	45
+ 1090 008d 24       		.byte	36
+ 1091 008e 3F       		.byte	63
+ 1092 008f 36       		.byte	54
+ 1093 0090 58       		.byte	88
+ 1094 0091 51       		.byte	81
+ 1095 0092 4A       		.byte	74
+ 1096 0093 43       		.byte	67
+ 1097 0094 7C       		.byte	124
+ 1098 0095 75       		.byte	117
+ 1099 0096 6E       		.byte	110
+ 1100 0097 67       		.byte	103
+ 1101 0098 10       		.byte	16
+ 1102 0099 19       		.byte	25
+ 1103 009a 02       		.byte	2
+ 1104 009b 0B       		.byte	11
+ 1105 009c 34       		.byte	52
+ 1106 009d 3D       		.byte	61
+ 1107 009e 26       		.byte	38
+ 1108 009f 2F       		.byte	47
+ 1109 00a0 73       		.byte	115
+ 1110 00a1 7A       		.byte	122
+ 1111 00a2 61       		.byte	97
+ 1112 00a3 68       		.byte	104
+ 1113 00a4 57       		.byte	87
+ 1114 00a5 5E       		.byte	94
+ 1115 00a6 45       		.byte	69
+ 1116 00a7 4C       		.byte	76
+ 1117 00a8 3B       		.byte	59
+ 1118 00a9 32       		.byte	50
+ 1119 00aa 29       		.byte	41
+ 1120 00ab 20       		.byte	32
+ 1121 00ac 1F       		.byte	31
+ 1122 00ad 16       		.byte	22
+ 1123 00ae 0D       		.byte	13
+ 1124 00af 04       		.byte	4
+ 1125 00b0 6A       		.byte	106
+ 1126 00b1 63       		.byte	99
+ 1127 00b2 78       		.byte	120
+ 1128 00b3 71       		.byte	113
+ 1129 00b4 4E       		.byte	78
+ 1130 00b5 47       		.byte	71
+ 1131 00b6 5C       		.byte	92
+ 1132 00b7 55       		.byte	85
+ 1133 00b8 22       		.byte	34
+ 1134 00b9 2B       		.byte	43
+ 1135 00ba 30       		.byte	48
+ 1136 00bb 39       		.byte	57
+ 1137 00bc 06       		.byte	6
+ 1138 00bd 0F       		.byte	15
+ 1139 00be 14       		.byte	20
+ 1140 00bf 1D       		.byte	29
+ 1141 00c0 25       		.byte	37
+ 1142 00c1 2C       		.byte	44
+ 1143 00c2 37       		.byte	55
+ 1144 00c3 3E       		.byte	62
+ 1145 00c4 01       		.byte	1
+ 1146 00c5 08       		.byte	8
+ 1147 00c6 13       		.byte	19
+ 1148 00c7 1A       		.byte	26
+ 1149 00c8 6D       		.byte	109
+ 1150 00c9 64       		.byte	100
+ 1151 00ca 7F       		.byte	127
+ 1152 00cb 76       		.byte	118
+ 1153 00cc 49       		.byte	73
+ 1154 00cd 40       		.byte	64
+ 1155 00ce 5B       		.byte	91
+ 1156 00cf 52       		.byte	82
+ 1157 00d0 3C       		.byte	60
+ 1158 00d1 35       		.byte	53
+ 1159 00d2 2E       		.byte	46
+ 1160 00d3 27       		.byte	39
+ 1161 00d4 18       		.byte	24
+ 1162 00d5 11       		.byte	17
+ 1163 00d6 0A       		.byte	10
+ 1164 00d7 03       		.byte	3
+ 1165 00d8 74       		.byte	116
+ 1166 00d9 7D       		.byte	125
+ 1167 00da 66       		.byte	102
+ 1168 00db 6F       		.byte	111
+ 1169 00dc 50       		.byte	80
+ 1170 00dd 59       		.byte	89
+ 1171 00de 42       		.byte	66
+ 1172 00df 4B       		.byte	75
+ 1173 00e0 17       		.byte	23
+ 1174 00e1 1E       		.byte	30
+ 1175 00e2 05       		.byte	5
+ 1176 00e3 0C       		.byte	12
+ 1177 00e4 33       		.byte	51
+ 1178 00e5 3A       		.byte	58
+ 1179 00e6 21       		.byte	33
+ 1180 00e7 28       		.byte	40
+ 1181 00e8 5F       		.byte	95
+ 1182 00e9 56       		.byte	86
+ 1183 00ea 4D       		.byte	77
+ 1184 00eb 44       		.byte	68
+ 1185 00ec 7B       		.byte	123
+ 1186 00ed 72       		.byte	114
+ 1187 00ee 69       		.byte	105
+ 1188 00ef 60       		.byte	96
+ 1189 00f0 0E       		.byte	14
+ 1190 00f1 07       		.byte	7
+ 1191 00f2 1C       		.byte	28
+ 1192 00f3 15       		.byte	21
+ 1193 00f4 2A       		.byte	42
+ 1194 00f5 23       		.byte	35
+ 1195 00f6 38       		.byte	56
+ 1196 00f7 31       		.byte	49
+ 1197 00f8 46       		.byte	70
+ 1198 00f9 4F       		.byte	79
+ 1199 00fa 54       		.byte	84
+ 1200 00fb 5D       		.byte	93
+ 1201 00fc 62       		.byte	98
+ 1202 00fd 6B       		.byte	107
+ 1203 00fe 70       		.byte	112
+ 1204 00ff 79       		.byte	121
+ 1205              		.section	.rodata.start.6748,"a",%progbits
+ 1206              		.set	.LANCHOR2,. + 0
+ 1209              	start.6748:
+ 1210 0000 FF       		.byte	-1
+ 1211 0001 FC       		.byte	-4
+ 1212              		.section	.rodata.stopcmd.6728,"a",%progbits
+ 1213              		.set	.LANCHOR1,. + 0
+ 1216              	stopcmd.6728:
+ 1217 0000 4C       		.byte	76
+ 1218 0001 00       		.byte	0
+ 1219 0002 00       		.byte	0
+ 1220 0003 00       		.byte	0
+ 1221 0004 00       		.byte	0
+ 1222 0005 01       		.byte	1
+ 1223 0006 FF       		.byte	-1
+ 1224              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 mmc_spi.c
+     /tmp/ccxmA1r4.s:17     .text.recvr1:00000000 $t
+     /tmp/ccxmA1r4.s:21     .text.recvr1:00000000 recvr1
+     /tmp/ccxmA1r4.s:41     .text.wait:00000000 $t
+     /tmp/ccxmA1r4.s:45     .text.wait:00000000 wait
+     /tmp/ccxmA1r4.s:76     .text.tmrfunc:00000000 $t
+     /tmp/ccxmA1r4.s:80     .text.tmrfunc:00000000 tmrfunc
+     /tmp/ccxmA1r4.s:123    .text.tmrfunc:00000050 $d
+     /tmp/ccxmA1r4.s:126    .text.send_hdr:00000000 $t
+     /tmp/ccxmA1r4.s:130    .text.send_hdr:00000000 send_hdr
+     /tmp/ccxmA1r4.s:168    .text.send_hdr:00000058 $d
+     /tmp/ccxmA1r4.s:171    .text.send_command_R3:00000000 $t
+     /tmp/ccxmA1r4.s:175    .text.send_command_R3:00000000 send_command_R3
+     /tmp/ccxmA1r4.s:202    .text.send_command_R1:00000000 $t
+     /tmp/ccxmA1r4.s:206    .text.send_command_R1:00000000 send_command_R1
+     /tmp/ccxmA1r4.s:228    .text.mmcInit:00000000 $t
+     /tmp/ccxmA1r4.s:233    .text.mmcInit:00000000 mmcInit
+     /tmp/ccxmA1r4.s:240    .text.mmcObjectInit:00000000 $t
+     /tmp/ccxmA1r4.s:245    .text.mmcObjectInit:00000000 mmcObjectInit
+     /tmp/ccxmA1r4.s:268    .text.mmcStart:00000000 $t
+     /tmp/ccxmA1r4.s:273    .text.mmcStart:00000000 mmcStart
+     /tmp/ccxmA1r4.s:302    .text.mmcStart:0000002c $d
+     /tmp/ccxmA1r4.s:305    .text.mmcStop:00000000 $t
+     /tmp/ccxmA1r4.s:310    .text.mmcStop:00000000 mmcStop
+     /tmp/ccxmA1r4.s:337    .text.mmcConnect:00000000 $t
+     /tmp/ccxmA1r4.s:342    .text.mmcConnect:00000000 mmcConnect
+     /tmp/ccxmA1r4.s:464    .text.mmcConnect:000000e8 $d
+     /tmp/ccxmA1r4.s:467    .text.mmcDisconnect:00000000 $t
+     /tmp/ccxmA1r4.s:472    .text.mmcDisconnect:00000000 mmcDisconnect
+     /tmp/ccxmA1r4.s:519    .text.mmcStartSequentialRead:00000000 $t
+     /tmp/ccxmA1r4.s:524    .text.mmcStartSequentialRead:00000000 mmcStartSequentialRead
+     /tmp/ccxmA1r4.s:594    .text.mmcSequentialRead:00000000 $t
+     /tmp/ccxmA1r4.s:599    .text.mmcSequentialRead:00000000 mmcSequentialRead
+     /tmp/ccxmA1r4.s:664    .text.mmcStopSequentialRead:00000000 $t
+     /tmp/ccxmA1r4.s:669    .text.mmcStopSequentialRead:00000000 mmcStopSequentialRead
+     /tmp/ccxmA1r4.s:720    .text.mmcStopSequentialRead:0000004c $d
+     /tmp/ccxmA1r4.s:723    .text.mmcStartSequentialWrite:00000000 $t
+     /tmp/ccxmA1r4.s:728    .text.mmcStartSequentialWrite:00000000 mmcStartSequentialWrite
+     /tmp/ccxmA1r4.s:798    .text.mmcSequentialWrite:00000000 $t
+     /tmp/ccxmA1r4.s:803    .text.mmcSequentialWrite:00000000 mmcSequentialWrite
+     /tmp/ccxmA1r4.s:872    .text.mmcSequentialWrite:00000078 $d
+     /tmp/ccxmA1r4.s:875    .text.mmcStopSequentialWrite:00000000 $t
+     /tmp/ccxmA1r4.s:880    .text.mmcStopSequentialWrite:00000000 mmcStopSequentialWrite
+     /tmp/ccxmA1r4.s:935    .text.mmcStopSequentialWrite:0000004c $d
+     /tmp/ccxmA1r4.s:941    .rodata.stop.6758:00000000 stop.6758
+     /tmp/ccxmA1r4.s:948    .rodata.crc7_lookup_table:00000000 crc7_lookup_table
+     /tmp/ccxmA1r4.s:1209   .rodata.start.6748:00000000 start.6748
+     /tmp/ccxmA1r4.s:1216   .rodata.stopcmd.6728:00000000 stopcmd.6728
+
+UNDEFINED SYMBOLS
+spiReceive
+chThdSleep
+chEvtBroadcastFlagsI
+chVTSetI
+spiSend
+spiSelect
+spiUnselect
+chVTResetI
+spiStop
+spiStart
+spiIgnore

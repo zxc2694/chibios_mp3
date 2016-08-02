@@ -1,0 +1,594 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 4
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"bitstream.c"
+  16              		.section	.text.xmp3fixpt_SetBitstreamPointer,"ax",%progbits
+  17              		.align	1
+  18              		.global	xmp3fixpt_SetBitstreamPointer
+  19              		.thumb
+  20              		.thumb_func
+  22              	xmp3fixpt_SetBitstreamPointer:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0023     		movs	r3, #0
+  27 0002 80E80C00 		stmia	r0, {r2, r3}
+  28 0006 8360     		str	r3, [r0, #8]
+  29 0008 C160     		str	r1, [r0, #12]
+  30 000a 7047     		bx	lr
+  32              		.section	.text.xmp3fixpt_GetBits,"ax",%progbits
+  33              		.align	1
+  34              		.global	xmp3fixpt_GetBits
+  35              		.thumb
+  36              		.thumb_func
+  38              	xmp3fixpt_GetBits:
+  39              		@ args = 0, pretend = 0, frame = 0
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41 0000 0346     		mov	r3, r0
+  42 0002 F0B5     		push	{r4, r5, r6, r7, lr}
+  43 0004 01F01F01 		and	r1, r1, #31
+  44 0008 4468     		ldr	r4, [r0, #4]
+  45 000a C1F11F02 		rsb	r2, r1, #31
+  46 000e 24FA02F0 		lsr	r0, r4, r2
+  47 0012 04FA01F2 		lsl	r2, r4, r1
+  48 0016 9C68     		ldr	r4, [r3, #8]
+  49 0018 5A60     		str	r2, [r3, #4]
+  50 001a 641A     		subs	r4, r4, r1
+  51 001c 4008     		lsrs	r0, r0, #1
+  52 001e 002C     		cmp	r4, #0
+  53 0020 9C60     		str	r4, [r3, #8]
+  54 0022 47DA     		bge	.L3
+  55 0024 D968     		ldr	r1, [r3, #12]
+  56 0026 6442     		negs	r4, r4
+  57 0028 0329     		cmp	r1, #3
+  58 002a 1DDD     		ble	.L4
+  59 002c 1A68     		ldr	r2, [r3, #0]
+  60 002e 1546     		mov	r5, r2
+  61 0030 0439     		subs	r1, r1, #4
+  62 0032 15F8016B 		ldrb	r6, [r5], #1	@ zero_extendqisi2
+  63 0036 3606     		lsls	r6, r6, #24
+  64 0038 83E86000 		stmia	r3, {r5, r6}
+  65 003c 5578     		ldrb	r5, [r2, #1]	@ zero_extendqisi2
+  66 003e 46EA0545 		orr	r5, r6, r5, lsl #16
+  67 0042 961C     		adds	r6, r2, #2
+  68 0044 5D60     		str	r5, [r3, #4]
+  69 0046 1E60     		str	r6, [r3, #0]
+  70 0048 92F802C0 		ldrb	ip, [r2, #2]	@ zero_extendqisi2
+  71 004c D61C     		adds	r6, r2, #3
+  72 004e 45EA0C25 		orr	r5, r5, ip, lsl #8
+  73 0052 5D60     		str	r5, [r3, #4]
+  74 0054 1E60     		str	r6, [r3, #0]
+  75 0056 D678     		ldrb	r6, [r2, #3]	@ zero_extendqisi2
+  76 0058 D960     		str	r1, [r3, #12]
+  77 005a 0432     		adds	r2, r2, #4
+  78 005c 3543     		orrs	r5, r5, r6
+  79 005e 1A60     		str	r2, [r3, #0]
+  80 0060 2022     		movs	r2, #32
+  81 0062 5D60     		str	r5, [r3, #4]
+  82 0064 9A60     		str	r2, [r3, #8]
+  83 0066 18E0     		b	.L5
+  84              	.L4:
+  85 0068 0022     		movs	r2, #0
+  86 006a 5A60     		str	r2, [r3, #4]
+  87 006c 0A46     		mov	r2, r1
+  88 006e 06E0     		b	.L6
+  89              	.L7:
+  90 0070 1D68     		ldr	r5, [r3, #0]
+  91 0072 15F8017B 		ldrb	r7, [r5], #1	@ zero_extendqisi2
+  92 0076 3E43     		orrs	r6, r6, r7
+  93 0078 3602     		lsls	r6, r6, #8
+  94 007a 83E86000 		stmia	r3, {r5, r6}
+  95              	.L6:
+  96 007e 013A     		subs	r2, r2, #1
+  97 0080 561C     		adds	r6, r2, #1
+  98 0082 5E68     		ldr	r6, [r3, #4]
+  99 0084 F4D1     		bne	.L7
+ 100 0086 C1F10302 		rsb	r2, r1, #3
+ 101 008a D200     		lsls	r2, r2, #3
+ 102 008c 06FA02F6 		lsl	r6, r6, r2
+ 103 0090 CA00     		lsls	r2, r1, #3
+ 104 0092 0021     		movs	r1, #0
+ 105 0094 5E60     		str	r6, [r3, #4]
+ 106 0096 9A60     		str	r2, [r3, #8]
+ 107 0098 D960     		str	r1, [r3, #12]
+ 108              	.L5:
+ 109 009a 5A68     		ldr	r2, [r3, #4]
+ 110 009c C4F12001 		rsb	r1, r4, #32
+ 111 00a0 22FA01FC 		lsr	ip, r2, r1
+ 112 00a4 9968     		ldr	r1, [r3, #8]
+ 113 00a6 091B     		subs	r1, r1, r4
+ 114 00a8 02FA04F4 		lsl	r4, r2, r4
+ 115 00ac 40EA0C00 		orr	r0, r0, ip
+ 116 00b0 9960     		str	r1, [r3, #8]
+ 117 00b2 5C60     		str	r4, [r3, #4]
+ 118              	.L3:
+ 119 00b4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 121              		.section	.text.xmp3fixpt_CalcBitsUsed,"ax",%progbits
+ 122              		.align	1
+ 123              		.global	xmp3fixpt_CalcBitsUsed
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	xmp3fixpt_CalcBitsUsed:
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 10B5     		push	{r4, lr}
+ 131 0002 0468     		ldr	r4, [r0, #0]
+ 132 0004 611A     		subs	r1, r4, r1
+ 133 0006 8468     		ldr	r4, [r0, #8]
+ 134 0008 CB00     		lsls	r3, r1, #3
+ 135 000a 181B     		subs	r0, r3, r4
+ 136 000c 801A     		subs	r0, r0, r2
+ 137 000e 10BD     		pop	{r4, pc}
+ 139              		.section	.text.xmp3fixpt_CheckPadBit,"ax",%progbits
+ 140              		.align	1
+ 141              		.global	xmp3fixpt_CheckPadBit
+ 142              		.thumb
+ 143              		.thumb_func
+ 145              	xmp3fixpt_CheckPadBit:
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 149 0000 30B1     		cbz	r0, .L11
+ 150 0002 0368     		ldr	r3, [r0, #0]
+ 151 0004 3BB1     		cbz	r3, .L12
+ 152 0006 5869     		ldr	r0, [r3, #20]
+ 153 0008 0030     		adds	r0, r0, #0
+ 154 000a 18BF     		it	ne
+ 155 000c 0120     		movne	r0, #1
+ 156 000e 7047     		bx	lr
+ 157              	.L11:
+ 158 0010 4FF0FF30 		mov	r0, #-1
+ 159 0014 7047     		bx	lr
+ 160              	.L12:
+ 161 0016 4FF0FF30 		mov	r0, #-1
+ 162 001a 7047     		bx	lr
+ 164              		.section	.text.xmp3fixpt_UnpackFrameHeader,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	xmp3fixpt_UnpackFrameHeader
+ 167              		.thumb
+ 168              		.thumb_func
+ 170              	xmp3fixpt_UnpackFrameHeader:
+ 171              		@ args = 0, pretend = 0, frame = 8
+ 172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173 0000 2DE9F74F 		push	{r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 174 0004 0028     		cmp	r0, #0
+ 175 0006 00F0E480 		beq	.L28
+ 176 000a 0368     		ldr	r3, [r0, #0]
+ 177 000c 002B     		cmp	r3, #0
+ 178 000e 00F0E080 		beq	.L28
+ 179 0012 0A78     		ldrb	r2, [r1, #0]	@ zero_extendqisi2
+ 180 0014 FF2A     		cmp	r2, #255
+ 181 0016 40F0DC80 		bne	.L28
+ 182 001a 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 183 001c 02F0E004 		and	r4, r2, #224
+ 184 0020 E02C     		cmp	r4, #224
+ 185 0022 40F0D680 		bne	.L28
+ 186 0026 D208     		lsrs	r2, r2, #3
+ 187 0028 9707     		lsls	r7, r2, #30
+ 188 002a 1ABF     		itte	ne
+ 189 002c 02F00102 		andne	r2, r2, #1
+ 190 0030 82F00102 		eorne	r2, r2, #1
+ 191 0034 0222     		moveq	r2, #2
+ 192 0036 1A70     		strb	r2, [r3, #0]
+ 193 0038 4D78     		ldrb	r5, [r1, #1]	@ zero_extendqisi2
+ 194 003a 6F08     		lsrs	r7, r5, #1
+ 195 003c 07F00308 		and	r8, r7, #3
+ 196 0040 C8F1040C 		rsb	ip, r8, #4
+ 197 0044 C3F804C0 		str	ip, [r3, #4]
+ 198 0048 4C78     		ldrb	r4, [r1, #1]	@ zero_extendqisi2
+ 199 004a 04F00106 		and	r6, r4, #1
+ 200 004e 86F00106 		eor	r6, r6, #1
+ 201 0052 9E60     		str	r6, [r3, #8]
+ 202 0054 8D78     		ldrb	r5, [r1, #2]	@ zero_extendqisi2
+ 203 0056 2D09     		lsrs	r5, r5, #4
+ 204 0058 DD60     		str	r5, [r3, #12]
+ 205 005a 8F78     		ldrb	r7, [r1, #2]	@ zero_extendqisi2
+ 206 005c BC08     		lsrs	r4, r7, #2
+ 207 005e 04F00304 		and	r4, r4, #3
+ 208 0062 1C61     		str	r4, [r3, #16]
+ 209 0064 8F78     		ldrb	r7, [r1, #2]	@ zero_extendqisi2
+ 210 0066 7F08     		lsrs	r7, r7, #1
+ 211 0068 07F00107 		and	r7, r7, #1
+ 212 006c 5F61     		str	r7, [r3, #20]
+ 213 006e 91F80290 		ldrb	r9, [r1, #2]	@ zero_extendqisi2
+ 214 0072 0097     		str	r7, [sp, #0]
+ 215 0074 09F00107 		and	r7, r9, #1
+ 216 0078 9F61     		str	r7, [r3, #24]
+ 217 007a CF78     		ldrb	r7, [r1, #3]	@ zero_extendqisi2
+ 218 007c BF09     		lsrs	r7, r7, #6
+ 219 007e 1F77     		strb	r7, [r3, #28]
+ 220 0080 91F80390 		ldrb	r9, [r1, #3]	@ zero_extendqisi2
+ 221 0084 4FEA1919 		lsr	r9, r9, #4
+ 222 0088 09F00309 		and	r9, r9, #3
+ 223 008c C3F82090 		str	r9, [r3, #32]
+ 224 0090 91F80390 		ldrb	r9, [r1, #3]	@ zero_extendqisi2
+ 225 0094 4FEAD909 		lsr	r9, r9, #3
+ 226 0098 09F00109 		and	r9, r9, #1
+ 227 009c C3F82490 		str	r9, [r3, #36]
+ 228 00a0 91F80390 		ldrb	r9, [r1, #3]	@ zero_extendqisi2
+ 229 00a4 4FEA9909 		lsr	r9, r9, #2
+ 230 00a8 09F00109 		and	r9, r9, #1
+ 231 00ac C3F82890 		str	r9, [r3, #40]
+ 232 00b0 91F80390 		ldrb	r9, [r1, #3]	@ zero_extendqisi2
+ 233 00b4 032C     		cmp	r4, #3
+ 234 00b6 09F00309 		and	r9, r9, #3
+ 235 00ba C3F82C90 		str	r9, [r3, #44]
+ 236 00be 00F08880 		beq	.L28
+ 237 00c2 BCF1040F 		cmp	ip, #4
+ 238 00c6 00F08480 		beq	.L28
+ 239 00ca 0F2D     		cmp	r5, #15
+ 240 00cc 00F08180 		beq	.L28
+ 241 00d0 4FF04A09 		mov	r9, #74
+ 242 00d4 09FB04FA 		mul	sl, r9, r4
+ 243 00d8 4FF0DE0B 		mov	fp, #222
+ 244 00dc 0BFB02A9 		mla	r9, fp, r2, sl
+ 245 00e0 DFF800B1 		ldr	fp, .L33+8
+ 246 00e4 012F     		cmp	r7, #1
+ 247 00e6 09EB0B0A 		add	sl, r9, fp
+ 248 00ea C3F834A0 		str	sl, [r3, #52]
+ 249 00ee 0AD0     		beq	.L29
+ 250 00f0 4FF0000A 		mov	sl, #0
+ 251 00f4 C3F820A0 		str	sl, [r3, #32]
+ 252 00f8 032F     		cmp	r7, #3
+ 253 00fa 14BF     		ite	ne
+ 254 00fc 4FF00209 		movne	r9, #2
+ 255 0100 4FF00109 		moveq	r9, #1
+ 256 0104 01E0     		b	.L16
+ 257              	.L29:
+ 258 0106 4FF00209 		mov	r9, #2
+ 259              	.L16:
+ 260 010a 4FEA420B 		lsl	fp, r2, #1
+ 261 010e CDF804B0 		str	fp, [sp, #4]
+ 262 0112 9344     		add	fp, fp, r2
+ 263 0114 0BEB040A 		add	sl, fp, r4
+ 264 0118 C0F8BC97 		str	r9, [r0, #1980]
+ 265 011c DFF8C890 		ldr	r9, .L33+12
+ 266 0120 C0F8D0C7 		str	ip, [r0, #2000]
+ 267 0124 C8F10308 		rsb	r8, r8, #3
+ 268 0128 59F82AA0 		ldr	sl, [r9, sl, lsl #2]
+ 269 012c DFF8BC90 		ldr	r9, .L33+16
+ 270 0130 C0F8C0A7 		str	sl, [r0, #1984]
+ 271 0134 C344     		add	fp, fp, r8
+ 272 0136 002A     		cmp	r2, #0
+ 273 0138 14BF     		ite	ne
+ 274 013a 4FF0010A 		movne	sl, #1
+ 275 013e 4FF0020A 		moveq	sl, #2
+ 276 0142 39F91B90 		ldrsh	r9, [r9, fp, lsl #1]
+ 277 0146 C0F8C4A7 		str	sl, [r0, #1988]
+ 278 014a 99FBFAFA 		sdiv	sl, r9, sl
+ 279 014e C0F8C8A7 		str	sl, [r0, #1992]
+ 280 0152 80F8D427 		strb	r2, [r0, #2004]
+ 281 0156 8DB3     		cbz	r5, .L18
+ 282 0158 4FF02D0C 		mov	ip, #45
+ 283 015c 0CFB02F2 		mul	r2, ip, r2
+ 284 0160 4FEA081C 		lsl	ip, r8, #4
+ 285 0164 C8EB0C0C 		rsb	ip, r8, ip
+ 286 0168 02EB0C08 		add	r8, r2, ip
+ 287 016c A844     		add	r8, r8, r5
+ 288 016e DFF880C0 		ldr	ip, .L33+20
+ 289 0172 3CF81880 		ldrh	r8, [ip, r8, lsl #1]
+ 290 0176 4FF47A7C 		mov	ip, #1000	@ movhi
+ 291 017a 18FB0CFC 		smulbb	ip, r8, ip
+ 292 017e C0F8B8C7 		str	ip, [r0, #1976]
+ 293 0182 4FEA041C 		lsl	ip, r4, #4
+ 294 0186 C4EB0C04 		rsb	r4, r4, ip
+ 295 018a 02EB040C 		add	ip, r2, r4
+ 296 018e 019A     		ldr	r2, [sp, #4]
+ 297 0190 124C     		ldr	r4, .L33
+ 298 0192 032F     		cmp	r7, #3
+ 299 0194 18BF     		it	ne
+ 300 0196 0132     		addne	r2, r2, #1
+ 301 0198 6544     		add	r5, ip, r5
+ 302 019a 1746     		mov	r7, r2
+ 303 019c 104A     		ldr	r2, .L33+4
+ 304 019e 34F91540 		ldrsh	r4, [r4, r5, lsl #1]
+ 305 01a2 32F917C0 		ldrsh	ip, [r2, r7, lsl #1]
+ 306 01a6 CCEB0402 		rsb	r2, ip, r4
+ 307 01aa 043A     		subs	r2, r2, #4
+ 308 01ac 7400     		lsls	r4, r6, #1
+ 309 01ae C4EB020C 		rsb	ip, r4, r2
+ 310 01b2 009C     		ldr	r4, [sp, #0]
+ 311 01b4 0CEB0402 		add	r2, ip, r4
+ 312 01b8 C0F8CC27 		str	r2, [r0, #1996]
+ 313              	.L18:
+ 314 01bc 36B1     		cbz	r6, .L20
+ 315 01be 0A79     		ldrb	r2, [r1, #4]	@ zero_extendqisi2
+ 316 01c0 4979     		ldrb	r1, [r1, #5]	@ zero_extendqisi2
+ 317 01c2 41EA0220 		orr	r0, r1, r2, lsl #8
+ 318 01c6 1863     		str	r0, [r3, #48]
+ 319 01c8 0620     		movs	r0, #6
+ 320 01ca 04E0     		b	.L14
+ 321              	.L20:
+ 322 01cc 1E63     		str	r6, [r3, #48]
+ 323 01ce 0420     		movs	r0, #4
+ 324 01d0 01E0     		b	.L14
+ 325              	.L28:
+ 326 01d2 4FF0FF30 		mov	r0, #-1
+ 327              	.L14:
+ 328 01d6 BDE8FE8F 		pop	{r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 329              	.L34:
+ 330 01da 00BF     		.align	2
+ 331              	.L33:
+ 332 01dc 00000000 		.word	xmp3fixpt_slotTab
+ 333 01e0 00000000 		.word	xmp3fixpt_sideBytesTab
+ 334 01e4 00000000 		.word	xmp3fixpt_sfBandTable
+ 335 01e8 00000000 		.word	xmp3fixpt_samplerateTab
+ 336 01ec 00000000 		.word	xmp3fixpt_samplesPerFrameTab
+ 337 01f0 00000000 		.word	xmp3fixpt_bitrateTab
+ 339              		.section	.text.xmp3fixpt_UnpackSideInfo,"ax",%progbits
+ 340              		.align	1
+ 341              		.global	xmp3fixpt_UnpackSideInfo
+ 342              		.thumb
+ 343              		.thumb_func
+ 345              	xmp3fixpt_UnpackSideInfo:
+ 346              		@ args = 0, pretend = 0, frame = 24
+ 347              		@ frame_needed = 0, uses_anonymous_args = 0
+ 348 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 349 0004 0A46     		mov	r2, r1
+ 350 0006 87B0     		sub	sp, sp, #28
+ 351 0008 0646     		mov	r6, r0
+ 352 000a 0028     		cmp	r0, #0
+ 353 000c 00F01F81 		beq	.L57
+ 354 0010 0768     		ldr	r7, [r0, #0]
+ 355 0012 002F     		cmp	r7, #0
+ 356 0014 00F01B81 		beq	.L57
+ 357 0018 4468     		ldr	r4, [r0, #4]
+ 358 001a 002C     		cmp	r4, #0
+ 359 001c 00F01781 		beq	.L57
+ 360 0020 97F80080 		ldrb	r8, [r7, #0]	@ zero_extendqisi2
+ 361 0024 3D7F     		ldrb	r5, [r7, #28]	@ zero_extendqisi2
+ 362 0026 B8F1000F 		cmp	r8, #0
+ 363 002a 2ED1     		bne	.L37
+ 364 002c 032D     		cmp	r5, #3
+ 365 002e 14BF     		ite	ne
+ 366 0030 2025     		movne	r5, #32
+ 367 0032 1125     		moveq	r5, #17
+ 368 0034 02A8     		add	r0, sp, #8
+ 369 0036 2946     		mov	r1, r5
+ 370 0038 FFF7FEFF 		bl	xmp3fixpt_SetBitstreamPointer
+ 371 003c 0921     		movs	r1, #9
+ 372 003e 02A8     		add	r0, sp, #8
+ 373 0040 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 374 0044 397F     		ldrb	r1, [r7, #28]	@ zero_extendqisi2
+ 375 0046 2060     		str	r0, [r4, #0]
+ 376 0048 0329     		cmp	r1, #3
+ 377 004a 14BF     		ite	ne
+ 378 004c 0321     		movne	r1, #3
+ 379 004e 0521     		moveq	r1, #5
+ 380 0050 02A8     		add	r0, sp, #8
+ 381 0052 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 382 0056 A246     		mov	sl, r4
+ 383 0058 6060     		str	r0, [r4, #4]
+ 384 005a 11E0     		b	.L40
+ 385              	.L60:
+ 386 005c 4FF00009 		mov	r9, #0
+ 387              	.L41:
+ 388 0060 0121     		movs	r1, #1
+ 389 0062 02A8     		add	r0, sp, #8
+ 390 0064 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 391 0068 0AEB0903 		add	r3, sl, r9
+ 392 006c 09F10409 		add	r9, r9, #4
+ 393 0070 B9F1100F 		cmp	r9, #16
+ 394 0074 9860     		str	r0, [r3, #8]
+ 395 0076 F3D1     		bne	.L41
+ 396 0078 08F10108 		add	r8, r8, #1
+ 397 007c 0AF1100A 		add	sl, sl, #16
+ 398              	.L40:
+ 399 0080 D6F8BC07 		ldr	r0, [r6, #1980]
+ 400 0084 8045     		cmp	r8, r0
+ 401 0086 E9DB     		blt	.L60
+ 402 0088 15E0     		b	.L42
+ 403              	.L37:
+ 404 008a 032D     		cmp	r5, #3
+ 405 008c 14BF     		ite	ne
+ 406 008e 1125     		movne	r5, #17
+ 407 0090 0925     		moveq	r5, #9
+ 408 0092 02A8     		add	r0, sp, #8
+ 409 0094 2946     		mov	r1, r5
+ 410 0096 FFF7FEFF 		bl	xmp3fixpt_SetBitstreamPointer
+ 411 009a 0821     		movs	r1, #8
+ 412 009c 02A8     		add	r0, sp, #8
+ 413 009e FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 414 00a2 3A7F     		ldrb	r2, [r7, #28]	@ zero_extendqisi2
+ 415 00a4 2060     		str	r0, [r4, #0]
+ 416 00a6 032A     		cmp	r2, #3
+ 417 00a8 14BF     		ite	ne
+ 418 00aa 0221     		movne	r1, #2
+ 419 00ac 0121     		moveq	r1, #1
+ 420 00ae 02A8     		add	r0, sp, #8
+ 421 00b0 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 422 00b4 6060     		str	r0, [r4, #4]
+ 423              	.L42:
+ 424 00b6 4FF00009 		mov	r9, #0
+ 425 00ba CDF80090 		str	r9, [sp, #0]
+ 426 00be BDE0     		b	.L45
+ 427              	.L53:
+ 428 00c0 0C21     		movs	r1, #12
+ 429 00c2 02A8     		add	r0, sp, #8
+ 430 00c4 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 431 00c8 04F1280B 		add	fp, r4, #40
+ 432 00cc 0921     		movs	r1, #9
+ 433 00ce 4BF80A00 		str	r0, [fp, sl]
+ 434 00d2 02A8     		add	r0, sp, #8
+ 435 00d4 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 436 00d8 0BEB0A08 		add	r8, fp, sl
+ 437 00dc 0821     		movs	r1, #8
+ 438 00de C8F80400 		str	r0, [r8, #4]
+ 439 00e2 02A8     		add	r0, sp, #8
+ 440 00e4 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 441 00e8 97F800C0 		ldrb	ip, [r7, #0]	@ zero_extendqisi2
+ 442 00ec C8F80800 		str	r0, [r8, #8]
+ 443 00f0 BCF1000F 		cmp	ip, #0
+ 444 00f4 14BF     		ite	ne
+ 445 00f6 0921     		movne	r1, #9
+ 446 00f8 0421     		moveq	r1, #4
+ 447 00fa 02A8     		add	r0, sp, #8
+ 448 00fc FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 449 0100 0121     		movs	r1, #1
+ 450 0102 C8F80C00 		str	r0, [r8, #12]
+ 451 0106 02A8     		add	r0, sp, #8
+ 452 0108 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 453 010c C8F81000 		str	r0, [r8, #16]
+ 454 0110 0028     		cmp	r0, #0
+ 455 0112 47D0     		beq	.L47
+ 456 0114 0221     		movs	r1, #2
+ 457 0116 02A8     		add	r0, sp, #8
+ 458 0118 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 459 011c 0121     		movs	r1, #1
+ 460 011e C8F81400 		str	r0, [r8, #20]
+ 461 0122 02A8     		add	r0, sp, #8
+ 462 0124 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 463 0128 0521     		movs	r1, #5
+ 464 012a C8F81800 		str	r0, [r8, #24]
+ 465 012e 02A8     		add	r0, sp, #8
+ 466 0130 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 467 0134 0521     		movs	r1, #5
+ 468 0136 C8F81C00 		str	r0, [r8, #28]
+ 469 013a 02A8     		add	r0, sp, #8
+ 470 013c FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 471 0140 0021     		movs	r1, #0
+ 472 0142 C8F82000 		str	r0, [r8, #32]
+ 473 0146 C8F82410 		str	r1, [r8, #36]
+ 474 014a 02A8     		add	r0, sp, #8
+ 475 014c 0321     		movs	r1, #3
+ 476 014e FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 477 0152 0321     		movs	r1, #3
+ 478 0154 C8F82800 		str	r0, [r8, #40]
+ 479 0158 02A8     		add	r0, sp, #8
+ 480 015a FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 481 015e 0321     		movs	r1, #3
+ 482 0160 C8F82C00 		str	r0, [r8, #44]
+ 483 0164 02A8     		add	r0, sp, #8
+ 484 0166 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 485 016a D8F81430 		ldr	r3, [r8, #20]
+ 486 016e C8F83000 		str	r0, [r8, #48]
+ 487 0172 33B9     		cbnz	r3, .L48
+ 488 0174 C8F80430 		str	r3, [r8, #4]
+ 489 0178 C8F80030 		str	r3, [r8, #0]
+ 490 017c C8F80C30 		str	r3, [r8, #12]
+ 491 0180 09E0     		b	.L49
+ 492              	.L48:
+ 493 0182 022B     		cmp	r3, #2
+ 494 0184 04D1     		bne	.L50
+ 495 0186 D8F81830 		ldr	r3, [r8, #24]
+ 496 018a 0BB9     		cbnz	r3, .L50
+ 497 018c 0823     		movs	r3, #8
+ 498 018e 00E0     		b	.L67
+ 499              	.L50:
+ 500 0190 0723     		movs	r3, #7
+ 501              	.L67:
+ 502 0192 C8F83430 		str	r3, [r8, #52]
+ 503              	.L49:
+ 504 0196 D8F83420 		ldr	r2, [r8, #52]
+ 505 019a C2F11400 		rsb	r0, r2, #20
+ 506 019e C8F83800 		str	r0, [r8, #56]
+ 507 01a2 21E0     		b	.L51
+ 508              	.L47:
+ 509 01a4 C8F81400 		str	r0, [r8, #20]
+ 510 01a8 C8F81800 		str	r0, [r8, #24]
+ 511 01ac 0521     		movs	r1, #5
+ 512 01ae 02A8     		add	r0, sp, #8
+ 513 01b0 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 514 01b4 0521     		movs	r1, #5
+ 515 01b6 C8F81C00 		str	r0, [r8, #28]
+ 516 01ba 02A8     		add	r0, sp, #8
+ 517 01bc FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 518 01c0 0521     		movs	r1, #5
+ 519 01c2 C8F82000 		str	r0, [r8, #32]
+ 520 01c6 02A8     		add	r0, sp, #8
+ 521 01c8 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 522 01cc 0421     		movs	r1, #4
+ 523 01ce C8F82400 		str	r0, [r8, #36]
+ 524 01d2 02A8     		add	r0, sp, #8
+ 525 01d4 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 526 01d8 0321     		movs	r1, #3
+ 527 01da C8F83400 		str	r0, [r8, #52]
+ 528 01de 02A8     		add	r0, sp, #8
+ 529 01e0 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 530 01e4 C8F83800 		str	r0, [r8, #56]
+ 531              	.L51:
+ 532 01e8 3978     		ldrb	r1, [r7, #0]	@ zero_extendqisi2
+ 533 01ea 21B9     		cbnz	r1, .L64
+ 534 01ec 02A8     		add	r0, sp, #8
+ 535 01ee 0121     		movs	r1, #1
+ 536 01f0 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 537 01f4 00E0     		b	.L52
+ 538              	.L64:
+ 539 01f6 0020     		movs	r0, #0
+ 540              	.L52:
+ 541 01f8 C8F83C00 		str	r0, [r8, #60]
+ 542 01fc 0121     		movs	r1, #1
+ 543 01fe 02A8     		add	r0, sp, #8
+ 544 0200 FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 545 0204 0121     		movs	r1, #1
+ 546 0206 C8F84000 		str	r0, [r8, #64]
+ 547 020a 02A8     		add	r0, sp, #8
+ 548 020c FFF7FEFF 		bl	xmp3fixpt_GetBits
+ 549 0210 C8F84400 		str	r0, [r8, #68]
+ 550 0214 0198     		ldr	r0, [sp, #4]
+ 551 0216 431C     		adds	r3, r0, #1
+ 552 0218 0193     		str	r3, [sp, #4]
+ 553 021a 0AF1480A 		add	sl, sl, #72
+ 554 021e 02E0     		b	.L54
+ 555              	.L65:
+ 556 0220 0022     		movs	r2, #0
+ 557 0222 CA46     		mov	sl, r9
+ 558 0224 0192     		str	r2, [sp, #4]
+ 559              	.L54:
+ 560 0226 D6F8BC37 		ldr	r3, [r6, #1980]
+ 561 022a 0199     		ldr	r1, [sp, #4]
+ 562 022c 9942     		cmp	r1, r3
+ 563 022e FFF647AF 		blt	.L53
+ 564 0232 009A     		ldr	r2, [sp, #0]
+ 565 0234 501C     		adds	r0, r2, #1
+ 566 0236 0090     		str	r0, [sp, #0]
+ 567 0238 09F19009 		add	r9, r9, #144
+ 568              	.L45:
+ 569 023c D6F8C437 		ldr	r3, [r6, #1988]
+ 570 0240 0099     		ldr	r1, [sp, #0]
+ 571 0242 9942     		cmp	r1, r3
+ 572 0244 ECDB     		blt	.L65
+ 573 0246 2068     		ldr	r0, [r4, #0]
+ 574 0248 C6F8D807 		str	r0, [r6, #2008]
+ 575 024c 01E0     		b	.L36
+ 576              	.L57:
+ 577 024e 4FF0FF35 		mov	r5, #-1
+ 578              	.L36:
+ 579 0252 2846     		mov	r0, r5
+ 580 0254 07B0     		add	sp, sp, #28
+ 581 0256 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 583              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bitstream.c
+     /tmp/ccOOjR5m.s:17     .text.xmp3fixpt_SetBitstreamPointer:00000000 $t
+     /tmp/ccOOjR5m.s:22     .text.xmp3fixpt_SetBitstreamPointer:00000000 xmp3fixpt_SetBitstreamPointer
+     /tmp/ccOOjR5m.s:33     .text.xmp3fixpt_GetBits:00000000 $t
+     /tmp/ccOOjR5m.s:38     .text.xmp3fixpt_GetBits:00000000 xmp3fixpt_GetBits
+     /tmp/ccOOjR5m.s:122    .text.xmp3fixpt_CalcBitsUsed:00000000 $t
+     /tmp/ccOOjR5m.s:127    .text.xmp3fixpt_CalcBitsUsed:00000000 xmp3fixpt_CalcBitsUsed
+     /tmp/ccOOjR5m.s:140    .text.xmp3fixpt_CheckPadBit:00000000 $t
+     /tmp/ccOOjR5m.s:145    .text.xmp3fixpt_CheckPadBit:00000000 xmp3fixpt_CheckPadBit
+     /tmp/ccOOjR5m.s:165    .text.xmp3fixpt_UnpackFrameHeader:00000000 $t
+     /tmp/ccOOjR5m.s:170    .text.xmp3fixpt_UnpackFrameHeader:00000000 xmp3fixpt_UnpackFrameHeader
+     /tmp/ccOOjR5m.s:332    .text.xmp3fixpt_UnpackFrameHeader:000001dc $d
+     /tmp/ccOOjR5m.s:340    .text.xmp3fixpt_UnpackSideInfo:00000000 $t
+     /tmp/ccOOjR5m.s:345    .text.xmp3fixpt_UnpackSideInfo:00000000 xmp3fixpt_UnpackSideInfo
+
+UNDEFINED SYMBOLS
+xmp3fixpt_slotTab
+xmp3fixpt_sideBytesTab
+xmp3fixpt_sfBandTable
+xmp3fixpt_samplerateTab
+xmp3fixpt_samplesPerFrameTab
+xmp3fixpt_bitrateTab
