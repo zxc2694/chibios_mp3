@@ -220,23 +220,23 @@
  234              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chcore_v7m.c
-     /tmp/ccx82pMA.s:17     .text._port_switch_from_isr:00000000 $t
-     /tmp/ccx82pMA.s:22     .text._port_switch_from_isr:00000000 _port_switch_from_isr
-     /tmp/ccx82pMA.s:28     .text._port_switch_from_isr:00000004 _port_exit_from_isr
-     /tmp/ccx82pMA.s:36     .text.SVCallVector:00000000 $t
-     /tmp/ccx82pMA.s:41     .text.SVCallVector:00000000 SVCallVector
-     /tmp/ccx82pMA.s:62     .text._port_init:00000000 $t
-     /tmp/ccx82pMA.s:67     .text._port_init:00000000 _port_init
-     /tmp/ccx82pMA.s:89     .text._port_init:0000002c $d
-     /tmp/ccx82pMA.s:93     .text._port_irq_epilogue:00000000 $t
-     /tmp/ccx82pMA.s:98     .text._port_irq_epilogue:00000000 _port_irq_epilogue
-     /tmp/ccx82pMA.s:161    .text._port_irq_epilogue:00000060 $d
-     /tmp/ccx82pMA.s:167    .text.SysTickVector:00000000 $t
-     /tmp/ccx82pMA.s:172    .text.SysTickVector:00000000 SysTickVector
-     /tmp/ccx82pMA.s:191    .text._port_switch:00000000 $t
-     /tmp/ccx82pMA.s:196    .text._port_switch:00000000 _port_switch
-     /tmp/ccx82pMA.s:213    .text._port_thread_start:00000000 $t
-     /tmp/ccx82pMA.s:218    .text._port_thread_start:00000000 _port_thread_start
+     /tmp/ccuSqt3Y.s:17     .text._port_switch_from_isr:00000000 $t
+     /tmp/ccuSqt3Y.s:22     .text._port_switch_from_isr:00000000 _port_switch_from_isr
+     /tmp/ccuSqt3Y.s:28     .text._port_switch_from_isr:00000004 _port_exit_from_isr
+     /tmp/ccuSqt3Y.s:36     .text.SVCallVector:00000000 $t
+     /tmp/ccuSqt3Y.s:41     .text.SVCallVector:00000000 SVCallVector
+     /tmp/ccuSqt3Y.s:62     .text._port_init:00000000 $t
+     /tmp/ccuSqt3Y.s:67     .text._port_init:00000000 _port_init
+     /tmp/ccuSqt3Y.s:89     .text._port_init:0000002c $d
+     /tmp/ccuSqt3Y.s:93     .text._port_irq_epilogue:00000000 $t
+     /tmp/ccuSqt3Y.s:98     .text._port_irq_epilogue:00000000 _port_irq_epilogue
+     /tmp/ccuSqt3Y.s:161    .text._port_irq_epilogue:00000060 $d
+     /tmp/ccuSqt3Y.s:167    .text.SysTickVector:00000000 $t
+     /tmp/ccuSqt3Y.s:172    .text.SysTickVector:00000000 SysTickVector
+     /tmp/ccuSqt3Y.s:191    .text._port_switch:00000000 $t
+     /tmp/ccuSqt3Y.s:196    .text._port_switch:00000000 _port_switch
+     /tmp/ccuSqt3Y.s:213    .text._port_thread_start:00000000 $t
+     /tmp/ccuSqt3Y.s:218    .text._port_thread_start:00000000 _port_thread_start
 
 UNDEFINED SYMBOLS
 chSchDoReschedule

@@ -92,7 +92,7 @@
 #include "ff.h"			/* FatFs configurations and declarations */
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
 
-
+#define _USE_STRFUNC 1
 /*--------------------------------------------------------------------------
 
    Module Private Definitions

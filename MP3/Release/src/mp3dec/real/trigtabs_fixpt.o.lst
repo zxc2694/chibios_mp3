@@ -592,20 +592,20 @@
  608              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 trigtabs_fixpt.c
-     /tmp/ccWfqSzz.s:149    .rodata.xmp3fixpt_polyCoef:00000000 xmp3fixpt_polyCoef
-     /tmp/ccWfqSzz.s:576    .rodata.xmp3fixpt_coef32:00000000 xmp3fixpt_coef32
-     /tmp/ccWfqSzz.s:109    .rodata.xmp3fixpt_csa:00000000 xmp3fixpt_csa
-     /tmp/ccWfqSzz.s:27     .rodata.xmp3fixpt_uniqueIDTab:00000000 xmp3fixpt_uniqueIDTab
-     /tmp/ccWfqSzz.s:418    .rodata.xmp3fixpt_ISFIIP:00000000 xmp3fixpt_ISFIIP
-     /tmp/ccWfqSzz.s:40     .rodata.xmp3fixpt_ISFMpeg2:00000000 xmp3fixpt_ISFMpeg2
-     /tmp/ccWfqSzz.s:130    .rodata.xmp3fixpt_ISFMpeg1:00000000 xmp3fixpt_ISFMpeg1
-     /tmp/ccWfqSzz.s:427    .rodata.xmp3fixpt_imdctWin:00000000 xmp3fixpt_imdctWin
-     /tmp/ccWfqSzz.s:37     .rodata.xmp3fixpt_ISFMpeg2:00000000 $d
-     /tmp/ccWfqSzz.s:106    .rodata.xmp3fixpt_csa:00000000 $d
-     /tmp/ccWfqSzz.s:127    .rodata.xmp3fixpt_ISFMpeg1:00000000 $d
-     /tmp/ccWfqSzz.s:146    .rodata.xmp3fixpt_polyCoef:00000000 $d
-     /tmp/ccWfqSzz.s:415    .rodata.xmp3fixpt_ISFIIP:00000000 $d
-     /tmp/ccWfqSzz.s:424    .rodata.xmp3fixpt_imdctWin:00000000 $d
-     /tmp/ccWfqSzz.s:573    .rodata.xmp3fixpt_coef32:00000000 $d
+     /tmp/ccDwx6gV.s:149    .rodata.xmp3fixpt_polyCoef:00000000 xmp3fixpt_polyCoef
+     /tmp/ccDwx6gV.s:576    .rodata.xmp3fixpt_coef32:00000000 xmp3fixpt_coef32
+     /tmp/ccDwx6gV.s:109    .rodata.xmp3fixpt_csa:00000000 xmp3fixpt_csa
+     /tmp/ccDwx6gV.s:27     .rodata.xmp3fixpt_uniqueIDTab:00000000 xmp3fixpt_uniqueIDTab
+     /tmp/ccDwx6gV.s:418    .rodata.xmp3fixpt_ISFIIP:00000000 xmp3fixpt_ISFIIP
+     /tmp/ccDwx6gV.s:40     .rodata.xmp3fixpt_ISFMpeg2:00000000 xmp3fixpt_ISFMpeg2
+     /tmp/ccDwx6gV.s:130    .rodata.xmp3fixpt_ISFMpeg1:00000000 xmp3fixpt_ISFMpeg1
+     /tmp/ccDwx6gV.s:427    .rodata.xmp3fixpt_imdctWin:00000000 xmp3fixpt_imdctWin
+     /tmp/ccDwx6gV.s:37     .rodata.xmp3fixpt_ISFMpeg2:00000000 $d
+     /tmp/ccDwx6gV.s:106    .rodata.xmp3fixpt_csa:00000000 $d
+     /tmp/ccDwx6gV.s:127    .rodata.xmp3fixpt_ISFMpeg1:00000000 $d
+     /tmp/ccDwx6gV.s:146    .rodata.xmp3fixpt_polyCoef:00000000 $d
+     /tmp/ccDwx6gV.s:415    .rodata.xmp3fixpt_ISFIIP:00000000 $d
+     /tmp/ccDwx6gV.s:424    .rodata.xmp3fixpt_imdctWin:00000000 $d
+     /tmp/ccDwx6gV.s:573    .rodata.xmp3fixpt_coef32:00000000 $d
 
 NO UNDEFINED SYMBOLS

@@ -23,8 +23,8 @@
   25              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 syscall.c
-     /tmp/ccgg0SYB.s:21     .data.fs_sem_pool:00000000 fs_sem_pool
-     /tmp/ccgg0SYB.s:18     .data.fs_sem_pool:00000000 $d
+     /tmp/ccHqcHhR.s:21     .data.fs_sem_pool:00000000 fs_sem_pool
+     /tmp/ccHqcHhR.s:18     .data.fs_sem_pool:00000000 $d
 
 UNDEFINED SYMBOLS
 chCoreAlloc

@@ -674,19 +674,19 @@
  688              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 mp3tabs.c
-     /tmp/ccahPOTI.s:343    .rodata.xmp3fixpt_sfBandTable:00000000 xmp3fixpt_sfBandTable
-     /tmp/ccahPOTI.s:27     .rodata.xmp3fixpt_slotTab:00000000 xmp3fixpt_slotTab
-     /tmp/ccahPOTI.s:681    .rodata.xmp3fixpt_sideBytesTab:00000000 xmp3fixpt_sideBytesTab
-     /tmp/ccahPOTI.s:335    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 xmp3fixpt_bitsPerSlotTab
-     /tmp/ccahPOTI.s:181    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 xmp3fixpt_samplesPerFrameTab
-     /tmp/ccahPOTI.s:195    .rodata.xmp3fixpt_bitrateTab:00000000 xmp3fixpt_bitrateTab
-     /tmp/ccahPOTI.s:167    .rodata.xmp3fixpt_samplerateTab:00000000 xmp3fixpt_samplerateTab
-     /tmp/ccahPOTI.s:24     .rodata.xmp3fixpt_slotTab:00000000 $d
-     /tmp/ccahPOTI.s:164    .rodata.xmp3fixpt_samplerateTab:00000000 $d
-     /tmp/ccahPOTI.s:178    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 $d
-     /tmp/ccahPOTI.s:192    .rodata.xmp3fixpt_bitrateTab:00000000 $d
-     /tmp/ccahPOTI.s:332    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 $d
-     /tmp/ccahPOTI.s:340    .rodata.xmp3fixpt_sfBandTable:00000000 $d
-     /tmp/ccahPOTI.s:678    .rodata.xmp3fixpt_sideBytesTab:00000000 $d
+     /tmp/ccrAkVo8.s:343    .rodata.xmp3fixpt_sfBandTable:00000000 xmp3fixpt_sfBandTable
+     /tmp/ccrAkVo8.s:27     .rodata.xmp3fixpt_slotTab:00000000 xmp3fixpt_slotTab
+     /tmp/ccrAkVo8.s:681    .rodata.xmp3fixpt_sideBytesTab:00000000 xmp3fixpt_sideBytesTab
+     /tmp/ccrAkVo8.s:335    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 xmp3fixpt_bitsPerSlotTab
+     /tmp/ccrAkVo8.s:181    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 xmp3fixpt_samplesPerFrameTab
+     /tmp/ccrAkVo8.s:195    .rodata.xmp3fixpt_bitrateTab:00000000 xmp3fixpt_bitrateTab
+     /tmp/ccrAkVo8.s:167    .rodata.xmp3fixpt_samplerateTab:00000000 xmp3fixpt_samplerateTab
+     /tmp/ccrAkVo8.s:24     .rodata.xmp3fixpt_slotTab:00000000 $d
+     /tmp/ccrAkVo8.s:164    .rodata.xmp3fixpt_samplerateTab:00000000 $d
+     /tmp/ccrAkVo8.s:178    .rodata.xmp3fixpt_samplesPerFrameTab:00000000 $d
+     /tmp/ccrAkVo8.s:192    .rodata.xmp3fixpt_bitrateTab:00000000 $d
+     /tmp/ccrAkVo8.s:332    .rodata.xmp3fixpt_bitsPerSlotTab:00000000 $d
+     /tmp/ccrAkVo8.s:340    .rodata.xmp3fixpt_sfBandTable:00000000 $d
+     /tmp/ccrAkVo8.s:678    .rodata.xmp3fixpt_sideBytesTab:00000000 $d
 
 NO UNDEFINED SYMBOLS

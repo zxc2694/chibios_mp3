@@ -458,10 +458,31 @@ int Mp3Decode(const char* pszFile)
   chEvtWaitOneTimeout(2, 50);
   chEvtWaitOneTimeout(4, 50);
 
-  while(1)
-  {
-    chprintf((BaseChannel*)&SD2, "zzzzzzzzzzzzzzzzzzzzz\r\n");
-  }
+ ////////////////////////////////////////////////////////////////////////////////////
+ ////////////////////// Read data from sd card //////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////
+
+    FIL fil_data;       /* File object */
+    char line[200]; /* Line buffer */
+    FRESULT fr_data;    /* FatFs return code */
+
+    /* Register work area to the default drive */
+    f_mount(0,&MMC_FS);
+
+    /* Open a text file */
+    fr_data = f_open(&fil_data, "data.txt", FA_READ);
+    if (fr_data) return (int)fr_data;
+
+    /* Read all lines and display it */
+    while (f_gets(line, sizeof line, &fil_data))
+        chprintf((BaseChannel*)&SD2, "%s\r\n", line);
+
+    /* Close the file */
+    f_close(&fil_data);
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+     while(1);
 
   return nResult;
 }

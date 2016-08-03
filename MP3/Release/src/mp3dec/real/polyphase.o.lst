@@ -1117,15 +1117,15 @@
  1127              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 polyphase.c
-     /tmp/ccBRjrJa.s:17     .text.MADD64:00000000 $t
-     /tmp/ccBRjrJa.s:21     .text.MADD64:00000000 MADD64
-     /tmp/ccBRjrJa.s:29     .text.ClipToShort.constprop.0:00000000 $t
-     /tmp/ccBRjrJa.s:33     .text.ClipToShort.constprop.0:00000000 ClipToShort.constprop.0
-     /tmp/ccBRjrJa.s:47     .text.SAR64.constprop.1:00000000 $t
-     /tmp/ccBRjrJa.s:51     .text.SAR64.constprop.1:00000000 SAR64.constprop.1
-     /tmp/ccBRjrJa.s:61     .text.xmp3fixpt_PolyphaseMono:00000000 $t
-     /tmp/ccBRjrJa.s:66     .text.xmp3fixpt_PolyphaseMono:00000000 xmp3fixpt_PolyphaseMono
-     /tmp/ccBRjrJa.s:386    .text.xmp3fixpt_PolyphaseStereo:00000000 $t
-     /tmp/ccBRjrJa.s:391    .text.xmp3fixpt_PolyphaseStereo:00000000 xmp3fixpt_PolyphaseStereo
+     /tmp/ccDOS8Gm.s:17     .text.MADD64:00000000 $t
+     /tmp/ccDOS8Gm.s:21     .text.MADD64:00000000 MADD64
+     /tmp/ccDOS8Gm.s:29     .text.ClipToShort.constprop.0:00000000 $t
+     /tmp/ccDOS8Gm.s:33     .text.ClipToShort.constprop.0:00000000 ClipToShort.constprop.0
+     /tmp/ccDOS8Gm.s:47     .text.SAR64.constprop.1:00000000 $t
+     /tmp/ccDOS8Gm.s:51     .text.SAR64.constprop.1:00000000 SAR64.constprop.1
+     /tmp/ccDOS8Gm.s:61     .text.xmp3fixpt_PolyphaseMono:00000000 $t
+     /tmp/ccDOS8Gm.s:66     .text.xmp3fixpt_PolyphaseMono:00000000 xmp3fixpt_PolyphaseMono
+     /tmp/ccDOS8Gm.s:386    .text.xmp3fixpt_PolyphaseStereo:00000000 $t
+     /tmp/ccDOS8Gm.s:391    .text.xmp3fixpt_PolyphaseStereo:00000000 xmp3fixpt_PolyphaseStereo
 
 NO UNDEFINED SYMBOLS

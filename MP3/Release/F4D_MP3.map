@@ -154,7 +154,7 @@ destructors     0x08000188        0x0
  *(SORT(.fini_array.*))
                 0x08000188                PROVIDE (__fini_array_end, .)
 
-.text           0x08000190    0x10108
+.text           0x08000190    0x1049b
  *(.text.startup.*)
  .text.startup.main
                 0x08000190      0x12c ./src/main.o
@@ -2091,223 +2091,236 @@ destructors     0x08000188        0x0
                 0x0800bb80      0x116 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
                 0x0800bb80                f_rename
  *fill*         0x0800bc96        0xa 00
- .text.__early_init
-                0x0800bca0        0x4 ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
-                0x0800bca0                __early_init
- *fill*         0x0800bca4        0xc 00
- .text.boardInit
-                0x0800bcb0        0x2 ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
-                0x0800bcb0                boardInit
- *fill*         0x0800bcb2        0xe 00
- .text.mmc_is_inserted
-                0x0800bcc0        0x4 ./src/main.o
- *fill*         0x0800bcc4        0xc 00
- .text.mmc_is_protected
-                0x0800bcd0        0x4 ./src/main.o
- *fill*         0x0800bcd4        0xc 00
- .text.RemoveHandler
-                0x0800bce0        0xc ./src/main.o
- *fill*         0x0800bcec        0x4 00
- .text.BlinkThread
-                0x0800bcf0       0x54 ./src/main.o
+ .text.f_gets   0x0800bca0       0x46 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+                0x0800bca0                f_gets
+ *fill*         0x0800bce6        0xa 00
+ .text.f_putc   0x0800bcf0       0x22 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+                0x0800bcf0                f_putc
+ *fill*         0x0800bd12        0xe 00
+ .text.f_puts   0x0800bd20       0x24 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+                0x0800bd20                f_puts
  *fill*         0x0800bd44        0xc 00
+ .text.f_printf
+                0x0800bd50      0x250 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+                0x0800bd50                f_printf
+ .text.__early_init
+                0x0800bfa0        0x4 ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
+                0x0800bfa0                __early_init
+ *fill*         0x0800bfa4        0xc 00
+ .text.boardInit
+                0x0800bfb0        0x2 ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
+                0x0800bfb0                boardInit
+ *fill*         0x0800bfb2        0xe 00
+ .text.mmc_is_inserted
+                0x0800bfc0        0x4 ./src/main.o
+ *fill*         0x0800bfc4        0xc 00
+ .text.mmc_is_protected
+                0x0800bfd0        0x4 ./src/main.o
+ *fill*         0x0800bfd4        0xc 00
+ .text.RemoveHandler
+                0x0800bfe0        0xc ./src/main.o
+ *fill*         0x0800bfec        0x4 00
+ .text.BlinkThread
+                0x0800bff0       0x54 ./src/main.o
+ *fill*         0x0800c044        0xc 00
  .text.I2SDmaTxInterrupt
-                0x0800bd50       0x48 ./src/main.o
- *fill*         0x0800bd98        0x8 00
+                0x0800c050       0x48 ./src/main.o
+ *fill*         0x0800c098        0x8 00
  .text.Mp3ReadId3V2Text.constprop.1
-                0x0800bda0       0x98 ./src/main.o
- *fill*         0x0800be38        0x8 00
+                0x0800c0a0       0x98 ./src/main.o
+ *fill*         0x0800c138        0x8 00
  .text.Mp3Decode
-                0x0800be40      0x4e8 ./src/main.o
-                0x0800be40                Mp3Decode
- *fill*         0x0800c328        0x8 00
+                0x0800c140      0x584 ./src/main.o
+                0x0800c140                Mp3Decode
+ *fill*         0x0800c6c4        0xc 00
  .text.Mp3PlayAllFiles
-                0x0800c330       0xb8 ./src/main.o
-                0x0800c330                Mp3PlayAllFiles
- *fill*         0x0800c3e8        0x8 00
+                0x0800c6d0       0xb8 ./src/main.o
+                0x0800c6d0                Mp3PlayAllFiles
+ *fill*         0x0800c788        0x8 00
  .text.InsertHandler
-                0x0800c3f0       0x78 ./src/main.o
- *fill*         0x0800c468        0x8 00
+                0x0800c790       0x78 ./src/main.o
+ *fill*         0x0800c808        0x8 00
  .text.port_halt
-                0x0800c470       0x10 ./src/main.o
-                0x0800c470                port_halt
+                0x0800c810       0x10 ./src/main.o
+                0x0800c810                port_halt
  .text.Codec_TIMEOUT_UserCallback
-                0x0800c480        0x6 ./src/main.o
-                0x0800c480                Codec_TIMEOUT_UserCallback
+                0x0800c820        0x6 ./src/main.o
+                0x0800c820                Codec_TIMEOUT_UserCallback
  *(.rodata)
- *fill*         0x0800c486        0xa 00
- .rodata        0x0800c490      0x104 /usr/local/csl/arm-2012.03/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-ctype_.o)
-                0x0800c490                _ctype_
+ *fill*         0x0800c826        0xa 00
+ .rodata        0x0800c830      0x104 /usr/local/csl/arm-2012.03/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-ctype_.o)
+                0x0800c830                _ctype_
  *(.rodata.*)
- *fill*         0x0800c594        0xc 00
+ *fill*         0x0800c934        0xc 00
  .rodata.dcttab
-                0x0800c5a0       0xc0 ./src/mp3dec/real/dct32.o
+                0x0800c940       0xc0 ./src/mp3dec/real/dct32.o
  .rodata.poly43hi
-                0x0800c660       0x14 ./src/mp3dec/real/dqchan.o
- *fill*         0x0800c674        0xc 00
+                0x0800ca00       0x14 ./src/mp3dec/real/dqchan.o
+ *fill*         0x0800ca14        0xc 00
  .rodata.pow2frac
-                0x0800c680       0x20 ./src/mp3dec/real/dqchan.o
+                0x0800ca20       0x20 ./src/mp3dec/real/dqchan.o
  .rodata.pow43_14
-                0x0800c6a0      0x100 ./src/mp3dec/real/dqchan.o
- .rodata.pow43  0x0800c7a0       0xc0 ./src/mp3dec/real/dqchan.o
+                0x0800ca40      0x100 ./src/mp3dec/real/dqchan.o
+ .rodata.pow43  0x0800cb40       0xc0 ./src/mp3dec/real/dqchan.o
  .rodata.preTab
-                0x0800c860       0x16 ./src/mp3dec/real/dqchan.o
- *fill*         0x0800c876        0xa 00
+                0x0800cc00       0x16 ./src/mp3dec/real/dqchan.o
+ *fill*         0x0800cc16        0xa 00
  .rodata.pow2exp
-                0x0800c880       0x20 ./src/mp3dec/real/dqchan.o
- .rodata.pow14  0x0800c8a0       0x10 ./src/mp3dec/real/dqchan.o
+                0x0800cc20       0x20 ./src/mp3dec/real/dqchan.o
+ .rodata.pow14  0x0800cc40       0x10 ./src/mp3dec/real/dqchan.o
  .rodata.poly43lo
-                0x0800c8b0       0x14 ./src/mp3dec/real/dqchan.o
- *fill*         0x0800c8c4        0xc 00
+                0x0800cc50       0x14 ./src/mp3dec/real/dqchan.o
+ *fill*         0x0800cc64        0xc 00
  .rodata.xmp3fixpt_quadTabMaxBits
-                0x0800c8d0        0x8 ./src/mp3dec/real/hufftabs.o
-                0x0800c8d0                xmp3fixpt_quadTabMaxBits
- *fill*         0x0800c8d8        0x8 00
+                0x0800cc70        0x8 ./src/mp3dec/real/hufftabs.o
+                0x0800cc70                xmp3fixpt_quadTabMaxBits
+ *fill*         0x0800cc78        0x8 00
  .rodata.xmp3fixpt_quadTable
-                0x0800c8e0       0x50 ./src/mp3dec/real/hufftabs.o
-                0x0800c8e0                xmp3fixpt_quadTable
+                0x0800cc80       0x50 ./src/mp3dec/real/hufftabs.o
+                0x0800cc80                xmp3fixpt_quadTable
  .rodata.xmp3fixpt_huffTable
-                0x0800c930     0x2124 ./src/mp3dec/real/hufftabs.o
-                0x0800c930                xmp3fixpt_huffTable
- *fill*         0x0800ea54        0xc 00
+                0x0800ccd0     0x2124 ./src/mp3dec/real/hufftabs.o
+                0x0800ccd0                xmp3fixpt_huffTable
+ *fill*         0x0800edf4        0xc 00
  .rodata.xmp3fixpt_huffTabLookup
-                0x0800ea60      0x100 ./src/mp3dec/real/hufftabs.o
-                0x0800ea60                xmp3fixpt_huffTabLookup
+                0x0800ee00      0x100 ./src/mp3dec/real/hufftabs.o
+                0x0800ee00                xmp3fixpt_huffTabLookup
  .rodata.xmp3fixpt_quadTabOffset
-                0x0800eb60        0x8 ./src/mp3dec/real/hufftabs.o
-                0x0800eb60                xmp3fixpt_quadTabOffset
- *fill*         0x0800eb68        0x8 00
+                0x0800ef00        0x8 ./src/mp3dec/real/hufftabs.o
+                0x0800ef00                xmp3fixpt_quadTabOffset
+ *fill*         0x0800ef08        0x8 00
  .rodata.xmp3fixpt_huffTabOffset
-                0x0800eb70       0x80 ./src/mp3dec/real/hufftabs.o
-                0x0800eb70                xmp3fixpt_huffTabOffset
+                0x0800ef10       0x80 ./src/mp3dec/real/hufftabs.o
+                0x0800ef10                xmp3fixpt_huffTabOffset
  .rodata.fastWin36
-                0x0800ebf0       0x48 ./src/mp3dec/real/imdct.o
- *fill*         0x0800ec38        0x8 00
- .rodata.c18    0x0800ec40       0x24 ./src/mp3dec/real/imdct.o
- *fill*         0x0800ec64        0xc 00
+                0x0800ef90       0x48 ./src/mp3dec/real/imdct.o
+ *fill*         0x0800efd8        0x8 00
+ .rodata.c18    0x0800efe0       0x24 ./src/mp3dec/real/imdct.o
+ *fill*         0x0800f004        0xc 00
  .rodata.SFLenTab
-                0x0800ec70       0x20 ./src/mp3dec/real/scalfact.o
- .rodata.NRTab  0x0800ec90       0x48 ./src/mp3dec/real/scalfact.o
- *fill*         0x0800ecd8        0x8 00
+                0x0800f010       0x20 ./src/mp3dec/real/scalfact.o
+ .rodata.NRTab  0x0800f030       0x48 ./src/mp3dec/real/scalfact.o
+ *fill*         0x0800f078        0x8 00
  .rodata.xmp3fixpt_uniqueIDTab
-                0x0800ece0        0x8 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800ece0                xmp3fixpt_uniqueIDTab
- *fill*         0x0800ece8        0x8 00
+                0x0800f080        0x8 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f080                xmp3fixpt_uniqueIDTab
+ *fill*         0x0800f088        0x8 00
  .rodata.xmp3fixpt_ISFMpeg2
-                0x0800ecf0      0x100 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800ecf0                xmp3fixpt_ISFMpeg2
+                0x0800f090      0x100 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f090                xmp3fixpt_ISFMpeg2
  .rodata.xmp3fixpt_csa
-                0x0800edf0       0x40 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800edf0                xmp3fixpt_csa
+                0x0800f190       0x40 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f190                xmp3fixpt_csa
  .rodata.xmp3fixpt_ISFMpeg1
-                0x0800ee30       0x38 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800ee30                xmp3fixpt_ISFMpeg1
- *fill*         0x0800ee68        0x8 00
+                0x0800f1d0       0x38 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f1d0                xmp3fixpt_ISFMpeg1
+ *fill*         0x0800f208        0x8 00
  .rodata.xmp3fixpt_polyCoef
-                0x0800ee70      0x420 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800ee70                xmp3fixpt_polyCoef
+                0x0800f210      0x420 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f210                xmp3fixpt_polyCoef
  .rodata.xmp3fixpt_ISFIIP
-                0x0800f290       0x10 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800f290                xmp3fixpt_ISFIIP
+                0x0800f630       0x10 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f630                xmp3fixpt_ISFIIP
  .rodata.xmp3fixpt_imdctWin
-                0x0800f2a0      0x240 ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800f2a0                xmp3fixpt_imdctWin
+                0x0800f640      0x240 ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f640                xmp3fixpt_imdctWin
  .rodata.xmp3fixpt_coef32
-                0x0800f4e0       0x7c ./src/mp3dec/real/trigtabs_fixpt.o
-                0x0800f4e0                xmp3fixpt_coef32
- *fill*         0x0800f55c        0x4 00
+                0x0800f880       0x7c ./src/mp3dec/real/trigtabs_fixpt.o
+                0x0800f880                xmp3fixpt_coef32
+ *fill*         0x0800f8fc        0x4 00
  .rodata.xmp3fixpt_slotTab
-                0x0800f560      0x10e ./src/mp3dec/mp3tabs.o
-                0x0800f560                xmp3fixpt_slotTab
- *fill*         0x0800f66e        0x2 00
+                0x0800f900      0x10e ./src/mp3dec/mp3tabs.o
+                0x0800f900                xmp3fixpt_slotTab
+ *fill*         0x0800fa0e        0x2 00
  .rodata.xmp3fixpt_samplerateTab
-                0x0800f670       0x24 ./src/mp3dec/mp3tabs.o
-                0x0800f670                xmp3fixpt_samplerateTab
- *fill*         0x0800f694        0xc 00
+                0x0800fa10       0x24 ./src/mp3dec/mp3tabs.o
+                0x0800fa10                xmp3fixpt_samplerateTab
+ *fill*         0x0800fa34        0xc 00
  .rodata.xmp3fixpt_samplesPerFrameTab
-                0x0800f6a0       0x12 ./src/mp3dec/mp3tabs.o
-                0x0800f6a0                xmp3fixpt_samplesPerFrameTab
- *fill*         0x0800f6b2        0xe 00
+                0x0800fa40       0x12 ./src/mp3dec/mp3tabs.o
+                0x0800fa40                xmp3fixpt_samplesPerFrameTab
+ *fill*         0x0800fa52        0xe 00
  .rodata.xmp3fixpt_bitrateTab
-                0x0800f6c0      0x10e ./src/mp3dec/mp3tabs.o
-                0x0800f6c0                xmp3fixpt_bitrateTab
- *fill*         0x0800f7ce        0x2 00
+                0x0800fa60      0x10e ./src/mp3dec/mp3tabs.o
+                0x0800fa60                xmp3fixpt_bitrateTab
+ *fill*         0x0800fb6e        0x2 00
  .rodata.xmp3fixpt_bitsPerSlotTab
-                0x0800f7d0        0x6 ./src/mp3dec/mp3tabs.o
-                0x0800f7d0                xmp3fixpt_bitsPerSlotTab
- *fill*         0x0800f7d6        0xa 00
+                0x0800fb70        0x6 ./src/mp3dec/mp3tabs.o
+                0x0800fb70                xmp3fixpt_bitsPerSlotTab
+ *fill*         0x0800fb76        0xa 00
  .rodata.xmp3fixpt_sfBandTable
-                0x0800f7e0      0x29a ./src/mp3dec/mp3tabs.o
-                0x0800f7e0                xmp3fixpt_sfBandTable
- *fill*         0x0800fa7a        0x6 00
+                0x0800fb80      0x29a ./src/mp3dec/mp3tabs.o
+                0x0800fb80                xmp3fixpt_sfBandTable
+ *fill*         0x0800fe1a        0x6 00
  .rodata.xmp3fixpt_sideBytesTab
-                0x0800fa80        0xc ./src/mp3dec/mp3tabs.o
-                0x0800fa80                xmp3fixpt_sideBytesTab
- *fill*         0x0800fa8c        0x4 00
+                0x0800fe20        0xc ./src/mp3dec/mp3tabs.o
+                0x0800fe20                xmp3fixpt_sideBytesTab
+ *fill*         0x0800fe2c        0x4 00
  .rodata.str1.1
-                0x0800fa90        0x7 ./src/ChibiOS_2.4.0/os/various/chprintf.o
- *fill*         0x0800fa97        0x9 00
+                0x0800fe30        0x7 ./src/ChibiOS_2.4.0/os/various/chprintf.o
+ *fill*         0x0800fe37        0x9 00
  .rodata.str1.1
-                0x0800faa0        0xa ./src/ChibiOS_2.4.0/os/kernel/src/chsys.o
- *fill*         0x0800faaa        0x6 00
+                0x0800fe40        0xa ./src/ChibiOS_2.4.0/os/kernel/src/chsys.o
+ *fill*         0x0800fe4a        0x6 00
  .rodata.stop.6758
-                0x0800fab0        0x2 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
- *fill*         0x0800fab2        0xe 00
+                0x0800fe50        0x2 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
+ *fill*         0x0800fe52        0xe 00
  .rodata.crc7_lookup_table
-                0x0800fac0      0x100 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
+                0x0800fe60      0x100 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
  .rodata.start.6748
-                0x0800fbc0        0x2 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
- *fill*         0x0800fbc2        0xe 00
+                0x0800ff60        0x2 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
+ *fill*         0x0800ff62        0xe 00
  .rodata.stopcmd.6728
-                0x0800fbd0        0x7 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
- *fill*         0x0800fbd7        0x9 00
- .rodata.vmt    0x0800fbe0       0x24 ./src/ChibiOS_2.4.0/os/hal/src/serial.o
- *fill*         0x0800fc04        0xc 00
+                0x0800ff70        0x7 ./src/ChibiOS_2.4.0/os/hal/src/mmc_spi.o
+ *fill*         0x0800ff77        0x9 00
+ .rodata.vmt    0x0800ff80       0x24 ./src/ChibiOS_2.4.0/os/hal/src/serial.o
+ *fill*         0x0800ffa4        0xc 00
  .rodata._stm32_dma_streams
-                0x0800fc10       0xc0 ./src/ChibiOS_2.4.0/os/hal/platforms/STM32F4xx/stm32_dma.o
-                0x0800fc10                _stm32_dma_streams
+                0x0800ffb0       0xc0 ./src/ChibiOS_2.4.0/os/hal/platforms/STM32F4xx/stm32_dma.o
+                0x0800ffb0                _stm32_dma_streams
  .rodata.default_config
-                0x0800fcd0        0xc ./src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.o
- *fill*         0x0800fcdc        0x4 00
+                0x08010070        0xc ./src/ChibiOS_2.4.0/os/hal/platforms/STM32/serial_lld.o
+ *fill*         0x0801007c        0x4 00
  .rodata.excvt.4279
-                0x0800fce0       0x80 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+                0x08010080       0x80 ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
  .rodata.str1.1
-                0x0800fd60        0xf ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
- *fill*         0x0800fd6f        0x1 00
+                0x08010100        0xf ./src/ChibiOS_2.4.0/ext/fatfs/src/ff.o
+ *fill*         0x0801010f        0x1 00
  .rodata.pal_default_config
-                0x0800fd70       0xfc ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
-                0x0800fd70                pal_default_config
- *fill*         0x0800fe6c        0x4 00
+                0x08010110       0xfc ./src/ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY/board.o
+                0x08010110                pal_default_config
+ *fill*         0x0801020c        0x4 00
+ .rodata.evhndl.6984
+                0x08010210        0x8 ./src/main.o
+ *fill*         0x08010218        0x8 00
  .rodata.str1.1
-                0x0800fe70      0x41a ./src/main.o
- *fill*         0x0801028a        0x6 00
- .rodata.evhndl.6978
-                0x08010290        0x8 ./src/main.o
+                0x08010220      0x40b ./src/main.o
+                                0x410 (size before relaxing)
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.gcc*)
 
-.vfp11_veneer   0x08010298        0x0
+.vfp11_veneer   0x0801062c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08010298        0x0
+.v4_bx          0x0801062c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08010298        0x0
+.iplt           0x0801062c        0x0
  .iplt          0x00000000        0x0 ./src/mp3dec/real/bitstream.o
 
-.rel.dyn        0x08010298        0x0
+.rel.dyn        0x0801062c        0x0
  .rel.iplt      0x00000000        0x0 ./src/mp3dec/real/bitstream.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x08010298        0x0
-                0x08010298                PROVIDE (__exidx_start, .)
+.ARM.exidx      0x0801062b        0x0
+                0x0801062b                PROVIDE (__exidx_start, .)
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08010298                PROVIDE (__exidx_end, .)
+                0x0801062b                PROVIDE (__exidx_end, .)
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
@@ -2315,10 +2328,11 @@ destructors     0x08000188        0x0
 .eh_frame
  *(.eh_frame)
 
-.textalign      0x08010298        0x0
-                0x08010298                . = ALIGN (0x8)
-                0x08010298                _etext = .
-                0x08010298                _textdata = _etext
+.textalign      0x0801062b        0x5
+                0x08010630                . = ALIGN (0x8)
+ *fill*         0x0801062b        0x5 00
+                0x08010630                _etext = .
+                0x08010630                _textdata = _etext
 
 .stacks         0x20000000     0x2000
                 0x20000000                . = ALIGN (0x8)
@@ -2335,7 +2349,7 @@ destructors     0x08000188        0x0
                 0x20002000                __process_stack_end__ = .
                 0x20002000                __main_thread_stack_end__ = .
 
-.data           0x20002000       0x3c load address 0x08010298
+.data           0x20002000       0x3c load address 0x08010630
                 0x20002000                . = ALIGN (0x4)
                 0x20002000                PROVIDE (_data, .)
  *(.data)
@@ -2451,10 +2465,10 @@ destructors     0x08000188        0x0
                 0x2000203c                . = ALIGN (0x4)
                 0x2000203c                PROVIDE (_edata, .)
 
-.igot.plt       0x2000203c        0x0 load address 0x080102d4
+.igot.plt       0x2000203c        0x0 load address 0x0801066c
  .igot.plt      0x00000000        0x0 ./src/mp3dec/real/bitstream.o
 
-.bss            0x20002040     0x70f4 load address 0x080102d8
+.bss            0x20002040     0x70f4 load address 0x08010670
                 0x20002040                . = ALIGN (0x4)
                 0x20002040                PROVIDE (_bss_start, .)
  *(.bss)

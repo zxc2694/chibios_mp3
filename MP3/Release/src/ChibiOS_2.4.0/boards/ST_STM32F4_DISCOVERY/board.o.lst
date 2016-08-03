@@ -103,12 +103,12 @@
  109              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 board.c
-     /tmp/ccej469a.s:17     .text.__early_init:00000000 $t
-     /tmp/ccej469a.s:22     .text.__early_init:00000000 __early_init
-     /tmp/ccej469a.s:29     .text.boardInit:00000000 $t
-     /tmp/ccej469a.s:34     .text.boardInit:00000000 boardInit
-     /tmp/ccej469a.s:45     .rodata.pal_default_config:00000000 pal_default_config
-     /tmp/ccej469a.s:42     .rodata.pal_default_config:00000000 $d
+     /tmp/ccQrUL3j.s:17     .text.__early_init:00000000 $t
+     /tmp/ccQrUL3j.s:22     .text.__early_init:00000000 __early_init
+     /tmp/ccQrUL3j.s:29     .text.boardInit:00000000 $t
+     /tmp/ccQrUL3j.s:34     .text.boardInit:00000000 boardInit
+     /tmp/ccQrUL3j.s:45     .rodata.pal_default_config:00000000 pal_default_config
+     /tmp/ccQrUL3j.s:42     .rodata.pal_default_config:00000000 $d
 
 UNDEFINED SYMBOLS
 stm32_clock_init

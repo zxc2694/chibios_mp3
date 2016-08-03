@@ -141,18 +141,18 @@
  149              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chvt.c
-     /tmp/cc8oZt4D.s:17     .text._vt_init:00000000 $t
-     /tmp/cc8oZt4D.s:22     .text._vt_init:00000000 _vt_init
-     /tmp/cc8oZt4D.s:37     .text._vt_init:00000014 $d
+     /tmp/ccBwk9BV.s:17     .text._vt_init:00000000 $t
+     /tmp/ccBwk9BV.s:22     .text._vt_init:00000000 _vt_init
+     /tmp/ccBwk9BV.s:37     .text._vt_init:00000014 $d
                             *COM*:00000010 vtlist
-     /tmp/cc8oZt4D.s:40     .text.chVTSetI:00000000 $t
-     /tmp/cc8oZt4D.s:45     .text.chVTSetI:00000000 chVTSetI
-     /tmp/cc8oZt4D.s:78     .text.chVTSetI:00000030 $d
-     /tmp/cc8oZt4D.s:81     .text.chVTResetI:00000000 $t
-     /tmp/cc8oZt4D.s:86     .text.chVTResetI:00000000 chVTResetI
-     /tmp/cc8oZt4D.s:109    .text.chVTResetI:00000020 $d
-     /tmp/cc8oZt4D.s:112    .text.chTimeIsWithin:00000000 $t
-     /tmp/cc8oZt4D.s:117    .text.chTimeIsWithin:00000000 chTimeIsWithin
-     /tmp/cc8oZt4D.s:146    .text.chTimeIsWithin:00000024 $d
+     /tmp/ccBwk9BV.s:40     .text.chVTSetI:00000000 $t
+     /tmp/ccBwk9BV.s:45     .text.chVTSetI:00000000 chVTSetI
+     /tmp/ccBwk9BV.s:78     .text.chVTSetI:00000030 $d
+     /tmp/ccBwk9BV.s:81     .text.chVTResetI:00000000 $t
+     /tmp/ccBwk9BV.s:86     .text.chVTResetI:00000000 chVTResetI
+     /tmp/ccBwk9BV.s:109    .text.chVTResetI:00000020 $d
+     /tmp/ccBwk9BV.s:112    .text.chTimeIsWithin:00000000 $t
+     /tmp/ccBwk9BV.s:117    .text.chTimeIsWithin:00000000 chTimeIsWithin
+     /tmp/ccBwk9BV.s:146    .text.chTimeIsWithin:00000024 $d
 
 NO UNDEFINED SYMBOLS

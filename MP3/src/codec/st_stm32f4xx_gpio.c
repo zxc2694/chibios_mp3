@@ -76,6 +76,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+#include "st_stm32f4xx.h"
 #include "st_stm32f4xx_gpio.h"
 #include "st_stm32f4xx_rcc.h"
 

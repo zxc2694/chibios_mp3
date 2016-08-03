@@ -148,17 +148,17 @@
  158              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 crt0.c
-     /tmp/cc5jEPJE.s:17     .text.fill32:00000000 $t
-     /tmp/cc5jEPJE.s:21     .text.fill32:00000000 fill32
-     /tmp/cc5jEPJE.s:34     .text.__early_init:00000000 $t
-     /tmp/cc5jEPJE.s:39     .text.__early_init:00000000 __early_init
-     /tmp/cc5jEPJE.s:46     .text.__late_init:00000000 $t
-     /tmp/cc5jEPJE.s:51     .text.__late_init:00000000 __late_init
-     /tmp/cc5jEPJE.s:58     .text._default_exit:00000000 $t
-     /tmp/cc5jEPJE.s:63     .text._default_exit:00000000 _default_exit
-     /tmp/cc5jEPJE.s:71     .text.ResetHandler:00000000 $t
-     /tmp/cc5jEPJE.s:76     .text.ResetHandler:00000000 ResetHandler
-     /tmp/cc5jEPJE.s:144    .text.ResetHandler:00000078 $d
+     /tmp/ccCKqRN1.s:17     .text.fill32:00000000 $t
+     /tmp/ccCKqRN1.s:21     .text.fill32:00000000 fill32
+     /tmp/ccCKqRN1.s:34     .text.__early_init:00000000 $t
+     /tmp/ccCKqRN1.s:39     .text.__early_init:00000000 __early_init
+     /tmp/ccCKqRN1.s:46     .text.__late_init:00000000 $t
+     /tmp/ccCKqRN1.s:51     .text.__late_init:00000000 __late_init
+     /tmp/ccCKqRN1.s:58     .text._default_exit:00000000 $t
+     /tmp/ccCKqRN1.s:63     .text._default_exit:00000000 _default_exit
+     /tmp/ccCKqRN1.s:71     .text.ResetHandler:00000000 $t
+     /tmp/ccCKqRN1.s:76     .text.ResetHandler:00000000 ResetHandler
+     /tmp/ccCKqRN1.s:144    .text.ResetHandler:00000078 $d
 
 UNDEFINED SYMBOLS
 main

@@ -675,30 +675,30 @@
  699              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 dqchan.c
-     /tmp/cct3f3Hx.s:17     .text.MULSHIFT32:00000000 $t
-     /tmp/cct3f3Hx.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
-     /tmp/cct3f3Hx.s:34     .text.CLZ:00000000 $t
-     /tmp/cct3f3Hx.s:38     .text.CLZ:00000000 CLZ
-     /tmp/cct3f3Hx.s:59     .text.DequantBlock:00000000 $t
-     /tmp/cct3f3Hx.s:63     .text.DequantBlock:00000000 DequantBlock
-     /tmp/cct3f3Hx.s:223    .text.DequantBlock:00000164 $d
-     /tmp/cct3f3Hx.s:235    .text.xmp3fixpt_DequantChannel:00000000 $t
-     /tmp/cct3f3Hx.s:240    .text.xmp3fixpt_DequantChannel:00000000 xmp3fixpt_DequantChannel
-     /tmp/cct3f3Hx.s:486    .text.xmp3fixpt_DequantChannel:0000024c $d
-     /tmp/cct3f3Hx.s:489    .rodata.poly43hi:00000000 $d
-     /tmp/cct3f3Hx.s:493    .rodata.poly43hi:00000000 poly43hi
-     /tmp/cct3f3Hx.s:500    .rodata.pow2frac:00000000 $d
-     /tmp/cct3f3Hx.s:504    .rodata.pow2frac:00000000 pow2frac
-     /tmp/cct3f3Hx.s:514    .rodata.pow43_14:00000000 $d
-     /tmp/cct3f3Hx.s:518    .rodata.pow43_14:00000000 pow43_14
-     /tmp/cct3f3Hx.s:584    .rodata.pow43:00000000 $d
-     /tmp/cct3f3Hx.s:588    .rodata.pow43:00000000 pow43
-     /tmp/cct3f3Hx.s:641    .rodata.preTab:00000000 preTab
-     /tmp/cct3f3Hx.s:665    .rodata.pow2exp:00000000 $d
-     /tmp/cct3f3Hx.s:669    .rodata.pow2exp:00000000 pow2exp
-     /tmp/cct3f3Hx.s:679    .rodata.pow14:00000000 $d
-     /tmp/cct3f3Hx.s:683    .rodata.pow14:00000000 pow14
-     /tmp/cct3f3Hx.s:689    .rodata.poly43lo:00000000 $d
-     /tmp/cct3f3Hx.s:693    .rodata.poly43lo:00000000 poly43lo
+     /tmp/ccSxBqlX.s:17     .text.MULSHIFT32:00000000 $t
+     /tmp/ccSxBqlX.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
+     /tmp/ccSxBqlX.s:34     .text.CLZ:00000000 $t
+     /tmp/ccSxBqlX.s:38     .text.CLZ:00000000 CLZ
+     /tmp/ccSxBqlX.s:59     .text.DequantBlock:00000000 $t
+     /tmp/ccSxBqlX.s:63     .text.DequantBlock:00000000 DequantBlock
+     /tmp/ccSxBqlX.s:223    .text.DequantBlock:00000164 $d
+     /tmp/ccSxBqlX.s:235    .text.xmp3fixpt_DequantChannel:00000000 $t
+     /tmp/ccSxBqlX.s:240    .text.xmp3fixpt_DequantChannel:00000000 xmp3fixpt_DequantChannel
+     /tmp/ccSxBqlX.s:486    .text.xmp3fixpt_DequantChannel:0000024c $d
+     /tmp/ccSxBqlX.s:489    .rodata.poly43hi:00000000 $d
+     /tmp/ccSxBqlX.s:493    .rodata.poly43hi:00000000 poly43hi
+     /tmp/ccSxBqlX.s:500    .rodata.pow2frac:00000000 $d
+     /tmp/ccSxBqlX.s:504    .rodata.pow2frac:00000000 pow2frac
+     /tmp/ccSxBqlX.s:514    .rodata.pow43_14:00000000 $d
+     /tmp/ccSxBqlX.s:518    .rodata.pow43_14:00000000 pow43_14
+     /tmp/ccSxBqlX.s:584    .rodata.pow43:00000000 $d
+     /tmp/ccSxBqlX.s:588    .rodata.pow43:00000000 pow43
+     /tmp/ccSxBqlX.s:641    .rodata.preTab:00000000 preTab
+     /tmp/ccSxBqlX.s:665    .rodata.pow2exp:00000000 $d
+     /tmp/ccSxBqlX.s:669    .rodata.pow2exp:00000000 pow2exp
+     /tmp/ccSxBqlX.s:679    .rodata.pow14:00000000 $d
+     /tmp/ccSxBqlX.s:683    .rodata.pow14:00000000 pow14
+     /tmp/ccSxBqlX.s:689    .rodata.poly43lo:00000000 $d
+     /tmp/ccSxBqlX.s:693    .rodata.poly43lo:00000000 poly43lo
 
 NO UNDEFINED SYMBOLS

@@ -227,21 +227,21 @@
  235              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 chheap.c
-     /tmp/ccJUaFeZ.s:17     .text._heap_init:00000000 $t
-     /tmp/ccJUaFeZ.s:22     .text._heap_init:00000000 _heap_init
-     /tmp/ccJUaFeZ.s:37     .text._heap_init:00000014 $d
-     /tmp/ccJUaFeZ.s:41     .text.chHeapInit:00000000 $t
-     /tmp/ccJUaFeZ.s:46     .text.chHeapInit:00000000 chHeapInit
-     /tmp/ccJUaFeZ.s:61     .text.chHeapAlloc:00000000 $t
-     /tmp/ccJUaFeZ.s:66     .text.chHeapAlloc:00000000 chHeapAlloc
-     /tmp/ccJUaFeZ.s:124    .text.chHeapAlloc:00000074 $d
-     /tmp/ccJUaFeZ.s:127    .text.chHeapFree:00000000 $t
-     /tmp/ccJUaFeZ.s:132    .text.chHeapFree:00000000 chHeapFree
-     /tmp/ccJUaFeZ.s:189    .text.chHeapStatus:00000000 $t
-     /tmp/ccJUaFeZ.s:194    .text.chHeapStatus:00000000 chHeapStatus
-     /tmp/ccJUaFeZ.s:226    .text.chHeapStatus:00000038 $d
-     /tmp/ccJUaFeZ.s:229    .bss.default_heap:00000000 $d
-     /tmp/ccJUaFeZ.s:233    .bss.default_heap:00000000 default_heap
+     /tmp/ccQnP4dg.s:17     .text._heap_init:00000000 $t
+     /tmp/ccQnP4dg.s:22     .text._heap_init:00000000 _heap_init
+     /tmp/ccQnP4dg.s:37     .text._heap_init:00000014 $d
+     /tmp/ccQnP4dg.s:41     .text.chHeapInit:00000000 $t
+     /tmp/ccQnP4dg.s:46     .text.chHeapInit:00000000 chHeapInit
+     /tmp/ccQnP4dg.s:61     .text.chHeapAlloc:00000000 $t
+     /tmp/ccQnP4dg.s:66     .text.chHeapAlloc:00000000 chHeapAlloc
+     /tmp/ccQnP4dg.s:124    .text.chHeapAlloc:00000074 $d
+     /tmp/ccQnP4dg.s:127    .text.chHeapFree:00000000 $t
+     /tmp/ccQnP4dg.s:132    .text.chHeapFree:00000000 chHeapFree
+     /tmp/ccQnP4dg.s:189    .text.chHeapStatus:00000000 $t
+     /tmp/ccQnP4dg.s:194    .text.chHeapStatus:00000000 chHeapStatus
+     /tmp/ccQnP4dg.s:226    .text.chHeapStatus:00000038 $d
+     /tmp/ccQnP4dg.s:229    .bss.default_heap:00000000 $d
+     /tmp/ccQnP4dg.s:233    .bss.default_heap:00000000 default_heap
 
 UNDEFINED SYMBOLS
 chMtxInit

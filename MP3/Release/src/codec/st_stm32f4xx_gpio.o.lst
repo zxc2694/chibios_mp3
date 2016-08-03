@@ -368,35 +368,35 @@
  396              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 st_stm32f4xx_gpio.c
-     /tmp/ccK38Jz0.s:17     .text.GPIO_DeInit:00000000 $t
-     /tmp/ccK38Jz0.s:22     .text.GPIO_DeInit:00000000 GPIO_DeInit
-     /tmp/ccK38Jz0.s:114    .text.GPIO_DeInit:000000b4 $d
-     /tmp/ccK38Jz0.s:125    .text.GPIO_Init:00000000 $t
-     /tmp/ccK38Jz0.s:130    .text.GPIO_Init:00000000 GPIO_Init
-     /tmp/ccK38Jz0.s:192    .text.GPIO_StructInit:00000000 $t
-     /tmp/ccK38Jz0.s:197    .text.GPIO_StructInit:00000000 GPIO_StructInit
-     /tmp/ccK38Jz0.s:211    .text.GPIO_PinLockConfig:00000000 $t
-     /tmp/ccK38Jz0.s:216    .text.GPIO_PinLockConfig:00000000 GPIO_PinLockConfig
-     /tmp/ccK38Jz0.s:239    .text.GPIO_ReadInputDataBit:00000000 $t
-     /tmp/ccK38Jz0.s:244    .text.GPIO_ReadInputDataBit:00000000 GPIO_ReadInputDataBit
-     /tmp/ccK38Jz0.s:256    .text.GPIO_ReadInputData:00000000 $t
-     /tmp/ccK38Jz0.s:261    .text.GPIO_ReadInputData:00000000 GPIO_ReadInputData
-     /tmp/ccK38Jz0.s:270    .text.GPIO_ReadOutputDataBit:00000000 $t
-     /tmp/ccK38Jz0.s:275    .text.GPIO_ReadOutputDataBit:00000000 GPIO_ReadOutputDataBit
-     /tmp/ccK38Jz0.s:287    .text.GPIO_ReadOutputData:00000000 $t
-     /tmp/ccK38Jz0.s:292    .text.GPIO_ReadOutputData:00000000 GPIO_ReadOutputData
-     /tmp/ccK38Jz0.s:301    .text.GPIO_SetBits:00000000 $t
-     /tmp/ccK38Jz0.s:306    .text.GPIO_SetBits:00000000 GPIO_SetBits
-     /tmp/ccK38Jz0.s:314    .text.GPIO_ResetBits:00000000 $t
-     /tmp/ccK38Jz0.s:319    .text.GPIO_ResetBits:00000000 GPIO_ResetBits
-     /tmp/ccK38Jz0.s:327    .text.GPIO_WriteBit:00000000 $t
-     /tmp/ccK38Jz0.s:332    .text.GPIO_WriteBit:00000000 GPIO_WriteBit
-     /tmp/ccK38Jz0.s:344    .text.GPIO_Write:00000000 $t
-     /tmp/ccK38Jz0.s:349    .text.GPIO_Write:00000000 GPIO_Write
-     /tmp/ccK38Jz0.s:357    .text.GPIO_ToggleBits:00000000 $t
-     /tmp/ccK38Jz0.s:362    .text.GPIO_ToggleBits:00000000 GPIO_ToggleBits
-     /tmp/ccK38Jz0.s:372    .text.GPIO_PinAFConfig:00000000 $t
-     /tmp/ccK38Jz0.s:377    .text.GPIO_PinAFConfig:00000000 GPIO_PinAFConfig
+     /tmp/cco9KiTf.s:17     .text.GPIO_DeInit:00000000 $t
+     /tmp/cco9KiTf.s:22     .text.GPIO_DeInit:00000000 GPIO_DeInit
+     /tmp/cco9KiTf.s:114    .text.GPIO_DeInit:000000b4 $d
+     /tmp/cco9KiTf.s:125    .text.GPIO_Init:00000000 $t
+     /tmp/cco9KiTf.s:130    .text.GPIO_Init:00000000 GPIO_Init
+     /tmp/cco9KiTf.s:192    .text.GPIO_StructInit:00000000 $t
+     /tmp/cco9KiTf.s:197    .text.GPIO_StructInit:00000000 GPIO_StructInit
+     /tmp/cco9KiTf.s:211    .text.GPIO_PinLockConfig:00000000 $t
+     /tmp/cco9KiTf.s:216    .text.GPIO_PinLockConfig:00000000 GPIO_PinLockConfig
+     /tmp/cco9KiTf.s:239    .text.GPIO_ReadInputDataBit:00000000 $t
+     /tmp/cco9KiTf.s:244    .text.GPIO_ReadInputDataBit:00000000 GPIO_ReadInputDataBit
+     /tmp/cco9KiTf.s:256    .text.GPIO_ReadInputData:00000000 $t
+     /tmp/cco9KiTf.s:261    .text.GPIO_ReadInputData:00000000 GPIO_ReadInputData
+     /tmp/cco9KiTf.s:270    .text.GPIO_ReadOutputDataBit:00000000 $t
+     /tmp/cco9KiTf.s:275    .text.GPIO_ReadOutputDataBit:00000000 GPIO_ReadOutputDataBit
+     /tmp/cco9KiTf.s:287    .text.GPIO_ReadOutputData:00000000 $t
+     /tmp/cco9KiTf.s:292    .text.GPIO_ReadOutputData:00000000 GPIO_ReadOutputData
+     /tmp/cco9KiTf.s:301    .text.GPIO_SetBits:00000000 $t
+     /tmp/cco9KiTf.s:306    .text.GPIO_SetBits:00000000 GPIO_SetBits
+     /tmp/cco9KiTf.s:314    .text.GPIO_ResetBits:00000000 $t
+     /tmp/cco9KiTf.s:319    .text.GPIO_ResetBits:00000000 GPIO_ResetBits
+     /tmp/cco9KiTf.s:327    .text.GPIO_WriteBit:00000000 $t
+     /tmp/cco9KiTf.s:332    .text.GPIO_WriteBit:00000000 GPIO_WriteBit
+     /tmp/cco9KiTf.s:344    .text.GPIO_Write:00000000 $t
+     /tmp/cco9KiTf.s:349    .text.GPIO_Write:00000000 GPIO_Write
+     /tmp/cco9KiTf.s:357    .text.GPIO_ToggleBits:00000000 $t
+     /tmp/cco9KiTf.s:362    .text.GPIO_ToggleBits:00000000 GPIO_ToggleBits
+     /tmp/cco9KiTf.s:372    .text.GPIO_PinAFConfig:00000000 $t
+     /tmp/cco9KiTf.s:377    .text.GPIO_PinAFConfig:00000000 GPIO_PinAFConfig
 
 UNDEFINED SYMBOLS
 RCC_AHB1PeriphResetCmd

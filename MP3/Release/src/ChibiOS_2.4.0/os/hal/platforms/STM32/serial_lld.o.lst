@@ -324,24 +324,24 @@
  336              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 serial_lld.c
-     /tmp/ccAIBgHj.s:17     .text.notify2:00000000 $t
-     /tmp/ccAIBgHj.s:21     .text.notify2:00000000 notify2
-     /tmp/ccAIBgHj.s:34     .text.notify2:00000010 $d
-     /tmp/ccAIBgHj.s:37     .text.VectorD8:00000000 $t
-     /tmp/ccAIBgHj.s:42     .text.VectorD8:00000000 VectorD8
-     /tmp/ccAIBgHj.s:188    .text.VectorD8:00000118 $d
+     /tmp/cc5gnlBE.s:17     .text.notify2:00000000 $t
+     /tmp/cc5gnlBE.s:21     .text.notify2:00000000 notify2
+     /tmp/cc5gnlBE.s:34     .text.notify2:00000010 $d
+     /tmp/cc5gnlBE.s:37     .text.VectorD8:00000000 $t
+     /tmp/cc5gnlBE.s:42     .text.VectorD8:00000000 VectorD8
+     /tmp/cc5gnlBE.s:188    .text.VectorD8:00000118 $d
                             *COM*:00000074 SD2
-     /tmp/ccAIBgHj.s:193    .text.sd_lld_init:00000000 $t
-     /tmp/ccAIBgHj.s:198    .text.sd_lld_init:00000000 sd_lld_init
-     /tmp/ccAIBgHj.s:213    .text.sd_lld_init:00000014 $d
-     /tmp/ccAIBgHj.s:218    .text.sd_lld_start:00000000 $t
-     /tmp/ccAIBgHj.s:223    .text.sd_lld_start:00000000 sd_lld_start
-     /tmp/ccAIBgHj.s:281    .text.sd_lld_start:00000070 $d
-     /tmp/ccAIBgHj.s:290    .text.sd_lld_stop:00000000 $t
-     /tmp/ccAIBgHj.s:295    .text.sd_lld_stop:00000000 sd_lld_stop
-     /tmp/ccAIBgHj.s:321    .text.sd_lld_stop:00000028 $d
-     /tmp/ccAIBgHj.s:326    .rodata.default_config:00000000 $d
-     /tmp/ccAIBgHj.s:330    .rodata.default_config:00000000 default_config
+     /tmp/cc5gnlBE.s:193    .text.sd_lld_init:00000000 $t
+     /tmp/cc5gnlBE.s:198    .text.sd_lld_init:00000000 sd_lld_init
+     /tmp/cc5gnlBE.s:213    .text.sd_lld_init:00000014 $d
+     /tmp/cc5gnlBE.s:218    .text.sd_lld_start:00000000 $t
+     /tmp/cc5gnlBE.s:223    .text.sd_lld_start:00000000 sd_lld_start
+     /tmp/cc5gnlBE.s:281    .text.sd_lld_start:00000070 $d
+     /tmp/cc5gnlBE.s:290    .text.sd_lld_stop:00000000 $t
+     /tmp/cc5gnlBE.s:295    .text.sd_lld_stop:00000000 sd_lld_stop
+     /tmp/cc5gnlBE.s:321    .text.sd_lld_stop:00000028 $d
+     /tmp/cc5gnlBE.s:326    .rodata.default_config:00000000 $d
+     /tmp/cc5gnlBE.s:330    .rodata.default_config:00000000 default_config
 
 UNDEFINED SYMBOLS
 chEvtBroadcastFlagsI

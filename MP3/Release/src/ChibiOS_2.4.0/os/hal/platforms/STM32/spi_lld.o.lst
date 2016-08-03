@@ -471,42 +471,42 @@
  499              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 spi_lld.c
-     /tmp/cc4FEpes.s:17     .text.spi_lld_serve_tx_interrupt:00000000 $t
-     /tmp/cc4FEpes.s:21     .text.spi_lld_serve_tx_interrupt:00000000 spi_lld_serve_tx_interrupt
-     /tmp/cc4FEpes.s:32     .text.spi_lld_serve_rx_interrupt:00000000 $t
-     /tmp/cc4FEpes.s:36     .text.spi_lld_serve_rx_interrupt:00000000 spi_lld_serve_rx_interrupt
-     /tmp/cc4FEpes.s:106    .text.spi_lld_init:00000000 $t
-     /tmp/cc4FEpes.s:111    .text.spi_lld_init:00000000 spi_lld_init
-     /tmp/cc4FEpes.s:148    .text.spi_lld_init:00000048 $d
+     /tmp/cc7HsuuH.s:17     .text.spi_lld_serve_tx_interrupt:00000000 $t
+     /tmp/cc7HsuuH.s:21     .text.spi_lld_serve_tx_interrupt:00000000 spi_lld_serve_tx_interrupt
+     /tmp/cc7HsuuH.s:32     .text.spi_lld_serve_rx_interrupt:00000000 $t
+     /tmp/cc7HsuuH.s:36     .text.spi_lld_serve_rx_interrupt:00000000 spi_lld_serve_rx_interrupt
+     /tmp/cc7HsuuH.s:106    .text.spi_lld_init:00000000 $t
+     /tmp/cc7HsuuH.s:111    .text.spi_lld_init:00000000 spi_lld_init
+     /tmp/cc7HsuuH.s:148    .text.spi_lld_init:00000048 $d
                             *COM*:00000030 SPID1
                             *COM*:00000030 SPID3
-     /tmp/cc4FEpes.s:158    .text.spi_lld_start:00000000 $t
-     /tmp/cc4FEpes.s:163    .text.spi_lld_start:00000000 spi_lld_start
-     /tmp/cc4FEpes.s:250    .text.spi_lld_start:000000bc $d
-     /tmp/cc4FEpes.s:257    .text.spi_lld_stop:00000000 $t
-     /tmp/cc4FEpes.s:262    .text.spi_lld_stop:00000000 spi_lld_stop
-     /tmp/cc4FEpes.s:298    .text.spi_lld_stop:00000040 $d
-     /tmp/cc4FEpes.s:303    .text.spi_lld_select:00000000 $t
-     /tmp/cc4FEpes.s:308    .text.spi_lld_select:00000000 spi_lld_select
-     /tmp/cc4FEpes.s:321    .text.spi_lld_unselect:00000000 $t
-     /tmp/cc4FEpes.s:326    .text.spi_lld_unselect:00000000 spi_lld_unselect
-     /tmp/cc4FEpes.s:339    .text.spi_lld_ignore:00000000 $t
-     /tmp/cc4FEpes.s:344    .text.spi_lld_ignore:00000000 spi_lld_ignore
-     /tmp/cc4FEpes.s:368    .text.spi_lld_ignore:00000028 $d
-     /tmp/cc4FEpes.s:372    .text.spi_lld_exchange:00000000 $t
-     /tmp/cc4FEpes.s:377    .text.spi_lld_exchange:00000000 spi_lld_exchange
-     /tmp/cc4FEpes.s:400    .text.spi_lld_send:00000000 $t
-     /tmp/cc4FEpes.s:405    .text.spi_lld_send:00000000 spi_lld_send
-     /tmp/cc4FEpes.s:429    .text.spi_lld_send:0000002c $d
-     /tmp/cc4FEpes.s:432    .text.spi_lld_receive:00000000 $t
-     /tmp/cc4FEpes.s:437    .text.spi_lld_receive:00000000 spi_lld_receive
-     /tmp/cc4FEpes.s:461    .text.spi_lld_receive:00000028 $d
-     /tmp/cc4FEpes.s:464    .text.spi_lld_polled_exchange:00000000 $t
-     /tmp/cc4FEpes.s:469    .text.spi_lld_polled_exchange:00000000 spi_lld_polled_exchange
-     /tmp/cc4FEpes.s:486    .bss.dummytx:00000000 $d
-     /tmp/cc4FEpes.s:490    .bss.dummytx:00000000 dummytx
-     /tmp/cc4FEpes.s:493    .bss.dummyrx:00000000 $d
-     /tmp/cc4FEpes.s:497    .bss.dummyrx:00000000 dummyrx
+     /tmp/cc7HsuuH.s:158    .text.spi_lld_start:00000000 $t
+     /tmp/cc7HsuuH.s:163    .text.spi_lld_start:00000000 spi_lld_start
+     /tmp/cc7HsuuH.s:250    .text.spi_lld_start:000000bc $d
+     /tmp/cc7HsuuH.s:257    .text.spi_lld_stop:00000000 $t
+     /tmp/cc7HsuuH.s:262    .text.spi_lld_stop:00000000 spi_lld_stop
+     /tmp/cc7HsuuH.s:298    .text.spi_lld_stop:00000040 $d
+     /tmp/cc7HsuuH.s:303    .text.spi_lld_select:00000000 $t
+     /tmp/cc7HsuuH.s:308    .text.spi_lld_select:00000000 spi_lld_select
+     /tmp/cc7HsuuH.s:321    .text.spi_lld_unselect:00000000 $t
+     /tmp/cc7HsuuH.s:326    .text.spi_lld_unselect:00000000 spi_lld_unselect
+     /tmp/cc7HsuuH.s:339    .text.spi_lld_ignore:00000000 $t
+     /tmp/cc7HsuuH.s:344    .text.spi_lld_ignore:00000000 spi_lld_ignore
+     /tmp/cc7HsuuH.s:368    .text.spi_lld_ignore:00000028 $d
+     /tmp/cc7HsuuH.s:372    .text.spi_lld_exchange:00000000 $t
+     /tmp/cc7HsuuH.s:377    .text.spi_lld_exchange:00000000 spi_lld_exchange
+     /tmp/cc7HsuuH.s:400    .text.spi_lld_send:00000000 $t
+     /tmp/cc7HsuuH.s:405    .text.spi_lld_send:00000000 spi_lld_send
+     /tmp/cc7HsuuH.s:429    .text.spi_lld_send:0000002c $d
+     /tmp/cc7HsuuH.s:432    .text.spi_lld_receive:00000000 $t
+     /tmp/cc7HsuuH.s:437    .text.spi_lld_receive:00000000 spi_lld_receive
+     /tmp/cc7HsuuH.s:461    .text.spi_lld_receive:00000028 $d
+     /tmp/cc7HsuuH.s:464    .text.spi_lld_polled_exchange:00000000 $t
+     /tmp/cc7HsuuH.s:469    .text.spi_lld_polled_exchange:00000000 spi_lld_polled_exchange
+     /tmp/cc7HsuuH.s:486    .bss.dummytx:00000000 $d
+     /tmp/cc7HsuuH.s:490    .bss.dummytx:00000000 dummytx
+     /tmp/cc7HsuuH.s:493    .bss.dummyrx:00000000 $d
+     /tmp/cc7HsuuH.s:497    .bss.dummyrx:00000000 dummyrx
 
 UNDEFINED SYMBOLS
 port_halt

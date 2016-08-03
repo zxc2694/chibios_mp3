@@ -727,15 +727,15 @@
  733              		.ident	"GCC: (Sourcery CodeBench Lite 2012.03-56) 4.6.3"
 DEFINED SYMBOLS
                             *ABS*:00000000 dct32.c
-     /tmp/ccvSNt4m.s:17     .text.MULSHIFT32:00000000 $t
-     /tmp/ccvSNt4m.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
-     /tmp/ccvSNt4m.s:34     .text.xmp3fixpt_FDCT32:00000000 $t
-     /tmp/ccvSNt4m.s:39     .text.xmp3fixpt_FDCT32:00000000 xmp3fixpt_FDCT32
-     /tmp/ccvSNt4m.s:297    .text.xmp3fixpt_FDCT32:000002e0 $d
-     /tmp/ccvSNt4m.s:324    .text.xmp3fixpt_FDCT32:00000344 $t
-     /tmp/ccvSNt4m.s:659    .text.xmp3fixpt_FDCT32:0000071c $d
-     /tmp/ccvSNt4m.s:662    .text.xmp3fixpt_FDCT32:00000720 $t
-     /tmp/ccvSNt4m.s:680    .rodata.dcttab:00000000 $d
-     /tmp/ccvSNt4m.s:684    .rodata.dcttab:00000000 dcttab
+     /tmp/ccYsTdmH.s:17     .text.MULSHIFT32:00000000 $t
+     /tmp/ccYsTdmH.s:21     .text.MULSHIFT32:00000000 MULSHIFT32
+     /tmp/ccYsTdmH.s:34     .text.xmp3fixpt_FDCT32:00000000 $t
+     /tmp/ccYsTdmH.s:39     .text.xmp3fixpt_FDCT32:00000000 xmp3fixpt_FDCT32
+     /tmp/ccYsTdmH.s:297    .text.xmp3fixpt_FDCT32:000002e0 $d
+     /tmp/ccYsTdmH.s:324    .text.xmp3fixpt_FDCT32:00000344 $t
+     /tmp/ccYsTdmH.s:659    .text.xmp3fixpt_FDCT32:0000071c $d
+     /tmp/ccYsTdmH.s:662    .text.xmp3fixpt_FDCT32:00000720 $t
+     /tmp/ccYsTdmH.s:680    .rodata.dcttab:00000000 $d
+     /tmp/ccYsTdmH.s:684    .rodata.dcttab:00000000 dcttab
 
 NO UNDEFINED SYMBOLS
