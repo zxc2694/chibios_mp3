@@ -272,8 +272,33 @@ int Mp3Decode(const char* pszFile)
   }
   int nDecodeRes = ERR_MP3_NONE;
   UINT unFramesDecoded = 0;
+
+
+    FIL fil_data_w;                 //File object 
+    FRESULT fr_data_w;       //FatFs return code
+
+///////////////////////////////////////////////////////////////////////////////////
+/////////////////////// Main while()  /////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
   do
   {
+
+////////////////////// Write data to SD card  //////////////////////////////////
+    // // Open a text file 
+    // fr_data_w = f_open(&fil_data_w, "data.txt", FA_OPEN_ALWAYS);
+    // if (fr_data_w) return (int)fr_data_w;
+    // int test =578;
+    // char a[10]="apple";
+    //  f_printf(&fil_data_w, "%d", test); 
+    //   f_printf(&fil_data_w, "%s", a); 
+
+    // //Close the file
+    // f_close(&fil_data_w);
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+
     if(unInDataLeft < (2 * MAINBUF_SIZE) && (!bEof))
     {
       UINT unRead = Mp3FillReadBuffer(pInData, unInDataLeft, &fIn);
