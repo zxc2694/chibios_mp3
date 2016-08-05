@@ -4,7 +4,6 @@ EXECUTABLE=$(PROJECT).elf
 BIN_IMAGE=$(PROJECT).bin
 
 #========= Cross Compiler ============================
-#Cross Compiler
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
 GDB=arm-none-eabi-gdb
