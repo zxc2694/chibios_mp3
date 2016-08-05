@@ -1,16 +1,15 @@
-#Output files
+#========== Output files =============================
 PROJECT=MP3Application
 EXECUTABLE=$(PROJECT).elf
 BIN_IMAGE=$(PROJECT).bin
 
-#===================================================
+#========= Cross Compiler ============================
 #Cross Compiler
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
 GDB=arm-none-eabi-gdb
 
-#===================================================
-#Flags
+#========== Flags ====================================
 CFLAGS=-g -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
@@ -24,9 +23,8 @@ CFLAGS+= \
         -D ARM_MATH_CM4
 
 LDFLAGS+=-lm -lc -lgcc
-ARCH=CM4F
 
-# Library ====================================================
+#========== Path =====================================
 BOARD=./ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY
 FATFS=./ChibiOS_2.4.0/ext/fatfs/src
 STLIB=./STM32F4xx_StdPeriph_Driver
@@ -37,7 +35,8 @@ ChibiOS_KERNEL=./ChibiOS_2.4.0/os/kernel
 ChibiOS_PORT=./ChibiOS_2.4.0/os/ports
 CODEC = ./codec
 MP3DEC = ./mp3dec
-# Include ====================================================
+
+#========== Include ==================================
 CFLAGS+=-I./
 CFLAGS+=-I$(BOARD)
 CFLAGS+=-I$(FATFS)
@@ -48,7 +47,8 @@ CFLAGS+=-I$(ChibiOS_KERNEL)/include
 CFLAGS+=-I$(ChibiOS_PORT)
 CFLAGS+=-I$(CODEC)
 CFLAGS+=-I$(MP3DEC)
-# Source =====================================================
+
+#========== Source ===================================
 SRC+=$(BOARD)/board.c \
 	$(FATFS)/diskio.c \
 	$(FATFS)/ff.c \
@@ -133,9 +133,9 @@ SRC+=$(BOARD)/board.c \
 SRC+=./main.c
 
 OBJS = $(SRCS:.c=.o)
-#===================================================
-#Make all
-# All Target
+
+#========== Target ===================================
+# Make all
 all: $(BIN_IMAGE)
 
 # Tool invocations
@@ -161,9 +161,11 @@ clean:
 #Make flash
 flash:
 	st-flash write $(BIN_IMAGE) 0x8000000
+
 #Make screen
 screen:
 	echo sudo screen /dev/ttyUSB0 38400 
+
 #Make openocd
 openocd: flash
 	openocd -s /opt/openocd/share/openocd/scripts/ -f ./debug/openocd.cfg
@@ -178,6 +180,7 @@ gdbtui:
 
 #Make gdbauto
 gdbauto: cgdb
+
 #automatically formate
 astyle: 
 	astyle -r --exclude=lib  *.c *.h
