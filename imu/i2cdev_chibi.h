@@ -48,6 +48,9 @@ THE SOFTWARE.
 ===============================================
 */
 
+#include "i2c_lld.h"
+#include "i2c.h"
+
 #ifndef _I2CDEV_CHIBI_H_
 #define _I2CDEV_CHIBI_H_
 

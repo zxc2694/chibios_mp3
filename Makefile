@@ -34,7 +34,7 @@ ChibiOS_KERNEL=./ChibiOS_2.4.0/os/kernel
 ChibiOS_PORT=./ChibiOS_2.4.0/os/ports
 CODEC = ./codec
 MP3DEC = ./mp3dec
-
+IMU = ./imu
 #========== Include ==================================
 CFLAGS+=-I./
 CFLAGS+=-I$(BOARD)
@@ -46,7 +46,7 @@ CFLAGS+=-I$(ChibiOS_KERNEL)/include
 CFLAGS+=-I$(ChibiOS_PORT)
 CFLAGS+=-I$(CODEC)
 CFLAGS+=-I$(MP3DEC)
-
+CFLAGS+=-I$(IMU)
 #========== Source ===================================
 SRC+=$(BOARD)/board.c \
 	$(FATFS)/diskio.c \
@@ -128,7 +128,9 @@ SRC+=$(BOARD)/board.c \
 	$(MP3DEC)/subband.c \
 	$(MP3DEC)/trigtabs_fixpt.c \
 	$(MP3DEC)/mp3dec.c \
-	$(MP3DEC)/mp3tabs.c 
+	$(MP3DEC)/mp3tabs.c \
+	$(IMU)/i2cdev_chibi.c \
+	$(IMU)/mpu6050.c 
 
 SRC+=./main.c
 
