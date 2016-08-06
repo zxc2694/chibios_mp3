@@ -1,0 +1,24 @@
+
+#Object files
+*.o
+*.ko
+
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.so
+*.so.*
+
+# Executables
+*.out
+*.bin
+*.elf
+*.swp
+*.map
+
+# Sublime
+*.tags_sorted_by_file
+*.tags
