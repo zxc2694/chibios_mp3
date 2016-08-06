@@ -487,23 +487,23 @@ int Mp3Decode(const char* pszFile)
  ////////////////////// Read data from sd card //////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
 
-    FIL fil_data;       /* File object */
+    FIL fil_dataR;       /* File object */
     char line[200]; /* Line buffer */
-    FRESULT fr_data;    /* FatFs return code */
+    FRESULT fr_dataR;    /* FatFs return code */
 
     /* Register work area to the default drive */
     f_mount(0,&MMC_FS);
 
     /* Open a text file */
-    fr_data = f_open(&fil_data, "data.txt", FA_READ);
-    if (fr_data) return (int)fr_data;
+    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ);
+    if (fr_dataR) return (int)fr_dataR;
 
     /* Read all lines and display it */
-    while (f_gets(line, sizeof line, &fil_data))
+    while (f_gets(line, sizeof line, &fil_dataR))
         chprintf((BaseChannel*)&SD2, "%s\r\n", line);
 
     /* Close the file */
-    f_close(&fil_data);
+    f_close(&fil_dataR);
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
