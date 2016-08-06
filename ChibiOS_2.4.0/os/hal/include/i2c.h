@@ -36,7 +36,8 @@
  * @addtogroup I2C
  * @{
  */
-
+#include "i2c_lld.h"
+  
 #ifndef _I2C_H_
 #define _I2C_H_
 
@@ -96,8 +97,6 @@ typedef enum {
   I2C_ACTIVE_RX = 4,                        /**< Receiving.                 */
   I2C_LOCKED = 5                            /**> Bus or driver locked.      */
 } i2cstate_t;
-
-#include "i2c_lld.h"
 
 /*===========================================================================*/
 /* Driver macros.                                                            */

@@ -39,7 +39,8 @@
 
 #include "ch.h"
 #include "hal.h"
-
+#include "i2c_lld.h"
+  
 #if HAL_USE_I2C || defined(__DOXYGEN__)
 
 /*===========================================================================*/

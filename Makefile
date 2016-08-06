@@ -61,6 +61,7 @@ SRC+=$(BOARD)/board.c \
 	$(ChibiOS_HAL_STM32)/serial_lld.c \
 	$(ChibiOS_HAL_STM32)/spi_lld.c \
 	$(ChibiOS_HAL_STM32)/uart_lld.c \
+	$(ChibiOS_HAL_STM32)/i2c_lld.c \
 	$(ChibiOS_HAL_STM32F4XX)/adc_lld.c \
 	$(ChibiOS_HAL_STM32F4XX)/hal_lld.c \
 	$(ChibiOS_HAL_STM32F4XX)/stm32_dma.c \
