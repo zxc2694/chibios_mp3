@@ -7,6 +7,23 @@ uint16_t g_pMp3DmaBuffer[MP3_DMA_BUFFER_SIZE];
 uint16_t* g_pMp3DmaBufferPtr = NULL;
 Thread* g_pMp3DecoderThread = NULL;
 
+
+/* Card insertion verification.*/
+bool_t mmc_is_inserted(void)
+{
+  // not wired yet, assume card is always in
+  //return palReadPad(IOPORT3, GPIOC_MMCCP);
+  return 1;
+}
+
+/* Card protection verification.*/
+bool_t mmc_is_protected(void)
+{
+  // not wired yet
+  //return !palReadPad(IOPORT3, GPIOC_MMCWP);
+  return 1;
+}
+
 FRESULT Mp3PlayAllFiles(char* path)
 {
   FILINFO fno;

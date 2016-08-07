@@ -17,9 +17,8 @@ MMCDriver MMCD1;
 
 extern Thread* g_pMp3DecoderThread;
 
-
-
-
+bool_t mmc_is_inserted(void);
+bool_t mmc_is_protected(void);
 FRESULT Mp3PlayAllFiles(char* path);
 uint32_t Mp3ReadId3V2Text(FIL* pInFile, uint32_t unDataLen, char* pszBuffer, uint32_t unBufferSize);
 uint32_t Mp3ReadId3V2Tag(FIL* pInFile, char* pszArtist, uint32_t unArtistSize, char* pszTitle, uint32_t unTitleSize);
