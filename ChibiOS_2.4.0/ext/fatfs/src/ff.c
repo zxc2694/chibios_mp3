@@ -2250,7 +2250,8 @@ FRESULT f_open (
 
 #if !_FS_READONLY
 	mode &= FA_READ | FA_WRITE | FA_CREATE_ALWAYS | FA_OPEN_ALWAYS | FA_CREATE_NEW;
-	res = chk_mounted(&path, &dj.fs, (BYTE)(mode & ~FA_READ));
+	//res = chk_mounted(&path, &dj.fs, (BYTE)(mode & ~FA_READ));
+	res = chk_mounted(&path, &dj.fs, 0);
 #else
 	mode &= FA_READ;
 	res = chk_mounted(&path, &dj.fs, 0);
