@@ -7,6 +7,11 @@ uint16_t g_pMp3DmaBuffer[MP3_DMA_BUFFER_SIZE];
 uint16_t* g_pMp3DmaBufferPtr = NULL;
 Thread* g_pMp3DecoderThread = NULL;
 
+#define ReadBuf_Size 500
+#define WriteData_Size 500
+
+uint8_t ReadBuf[ReadBuf_Size] = {'\0'};
+char WriteData[WriteData_Size] = {'\0'};
 
 /* Card insertion verification.*/
 bool_t mmc_is_inserted(void)
@@ -506,48 +511,27 @@ int Mp3Decode(const char* pszFile)
  ////////////////////// Read data from sd card //////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
 
-    FIL fil_dataR;       /* File object */
-    char line[200]; /* Line buffer */
-    FRESULT fr_dataR;    /* FatFs return code */
-
-    /* Register work area to the default drive */
+    FIL fil_dataR;              // File object
+    char line[200];           // Line buffer
+    FRESULT fr_dataR;    // FatFs return code
+    uint32_t i = 0;
     f_mount(0,&MMC_FS);
+    
+    // write data to sd card
+    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ | FA_OPEN_ALWAYS | FA_WRITE);
 
-    /* Open a text file */
-    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ);
-    if (fr_dataR) return (int)fr_dataR;
-
-    /* Read all lines and display it */
-    while (f_gets(line, sizeof line, &fil_dataR))
-        chprintf((BaseChannel*)&SD2, "%s\r\n", line);
-
-    /* Close the file */
+    sprintf(WriteData, "write test : %d\n\r",100);
+    f_write(&fil_dataR, WriteData, strlen(WriteData), (UINT *)&i);
+    
     f_close(&fil_dataR);
 
-    // FIL fil_dataR;       /* File object */
-    // char line[200]; /* Line buffer */
-    // FRESULT fr_dataR;    /* FatFs return code */
+    // read data from sd card and show on monitor
+    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ);
 
-    // /* Register work area to the default drive */
-    // f_mount(0,&MMC_FS);
+    while (f_gets(line, sizeof line, &fil_dataR))
+        chprintf((BaseChannel*)&SD2, "%s\r\n\r\n", line);
 
-    // /* Open a text file */
-    // fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ | FA_CREATE_NEW | FA_WRITE);
-    // chprintf((BaseChannel*)&SD2, "11111fr_dataR$ %d\r\n", fr_dataR);
-    // if (fr_dataR) return (int)fr_dataR;
-
-    // char test[20]="appleapple123";
-    // WORD bw;
-
-    // fr_dataR = f_write(&fil_dataR,test,sizeof(test), &bw );
-    // chprintf((BaseChannel*)&SD2, "22222fr_dataR$ %d\r\n", fr_dataR);
-
-    // /* Read all lines and display it */
-    // while (f_gets(line, sizeof line, &fil_dataR))
-    //     chprintf((BaseChannel*)&SD2, "%s\r\n", line);
-
-    // /* Close the file */
-    // f_close(&fil_dataR);
+    f_close(&fil_dataR);
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
