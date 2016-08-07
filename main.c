@@ -46,6 +46,18 @@ static uint16_t g_pMp3DmaBuffer[MP3_DMA_BUFFER_SIZE];
 static uint16_t* g_pMp3DmaBufferPtr = NULL;
 static Thread* g_pMp3DecoderThread = NULL;
 
+/* Periodic thread 2 */
+static WORKING_AREA(waSensorRecord, 128);
+static msg_t SensorRecord(void *arg){
+    (void)arg;
+    chRegSetThreadName("blink2");
+    while (TRUE){
+        palTogglePad(GPIOD, GPIOD_LED6);
+        chThdSleepMilliseconds(1000);
+    }
+    return 0;
+}
+
 static uint32_t Mp3ReadId3V2Text(FIL* pInFile, uint32_t unDataLen, char* pszBuffer, uint32_t unBufferSize)
 {
   UINT unRead = 0;
@@ -716,6 +728,9 @@ int main(void)
 
   // blink thread; also checks the user button
   chThdCreateStatic(waBlinkThread, sizeof(waBlinkThread), NORMALPRIO, BlinkThread, NULL);
+
+  // blink thread; also checks the user button
+  chThdCreateStatic(waSensorRecord, sizeof(waSensorRecord), NORMALPRIO, SensorRecord, NULL);
 
   chEvtRegister(&MMCD1.inserted_event, &el0, 0);
   chEvtRegister(&MMCD1.removed_event, &el1, 1);
