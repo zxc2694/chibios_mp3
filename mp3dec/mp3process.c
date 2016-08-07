@@ -19,9 +19,8 @@ bool_t mmc_is_inserted(void)
 /* Card protection verification.*/
 bool_t mmc_is_protected(void)
 {
-  // not wired yet
-  //return !palReadPad(IOPORT3, GPIOC_MMCWP);
-  return 1;
+  // 1: write protection. 0: write permission
+  return 0;  
 }
 
 FRESULT Mp3PlayAllFiles(char* path)
@@ -524,6 +523,31 @@ int Mp3Decode(const char* pszFile)
 
     /* Close the file */
     f_close(&fil_dataR);
+
+    // FIL fil_dataR;       /* File object */
+    // char line[200]; /* Line buffer */
+    // FRESULT fr_dataR;    /* FatFs return code */
+
+    // /* Register work area to the default drive */
+    // f_mount(0,&MMC_FS);
+
+    // /* Open a text file */
+    // fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ | FA_CREATE_NEW | FA_WRITE);
+    // chprintf((BaseChannel*)&SD2, "11111fr_dataR$ %d\r\n", fr_dataR);
+    // if (fr_dataR) return (int)fr_dataR;
+
+    // char test[20]="appleapple123";
+    // WORD bw;
+
+    // fr_dataR = f_write(&fil_dataR,test,sizeof(test), &bw );
+    // chprintf((BaseChannel*)&SD2, "22222fr_dataR$ %d\r\n", fr_dataR);
+
+    // /* Read all lines and display it */
+    // while (f_gets(line, sizeof line, &fil_dataR))
+    //     chprintf((BaseChannel*)&SD2, "%s\r\n", line);
+
+    // /* Close the file */
+    // f_close(&fil_dataR);
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
