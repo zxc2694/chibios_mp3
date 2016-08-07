@@ -121,6 +121,7 @@ SRC+=$(BOARD)/board.c \
 	$(MP3DEC)/bitstream.c \
 	$(MP3DEC)/buffers.c \
 	$(MP3DEC)/dct32.c \
+	$(MP3DEC)/mp3process.c \
 	$(MP3DEC)/dequant.c \
 	$(MP3DEC)/dqchan.c \
 	$(MP3DEC)/huffman.c \
