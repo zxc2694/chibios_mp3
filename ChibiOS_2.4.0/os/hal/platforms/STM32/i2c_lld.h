@@ -40,7 +40,6 @@
 #ifndef _I2C_LLD_H_
 #define _I2C_LLD_H_
 
-#define STM32_I2C_USE_I2C1 TRUE
 
 #if HAL_USE_I2C || defined(__DOXYGEN__)
 

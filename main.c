@@ -10,6 +10,9 @@ SPIConfig hs_spicfg = { NULL, GPIOC, 4, 0 };
 SPIConfig ls_spicfg = { NULL, GPIOC, 4, SPI_CR1_BR_2 | SPI_CR1_BR_1 };
 extern Thread* g_pMp3DecoderThread;
 
+// Configure I2C for sensors
+static const I2CConfig i2cfg1 = {OPMODE_I2C, 200000, FAST_DUTY_CYCLE_2};
+
 // Periodic thread 1 
 static WORKING_AREA(waBlinkThread, 256);
 static msg_t BlinkThread(void *arg)
@@ -146,6 +149,13 @@ static void pinModeInit()
   palSetPadMode(GPIOA, 6, PAL_MODE_ALTERNATE(5));                                                                // MISO
   palSetPadMode(GPIOA, 7, PAL_MODE_ALTERNATE(5) | PAL_STM32_OSPEED_HIGHEST);          // MOSI
   palSetPad(GPIOC, 4); // set NSS high
+
+  // setup pads to I2C1
+  i2cStart(&I2CD1, &i2cfg1);
+  palSetPadMode(GPIOB, 6, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
+  palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
+
+  chThdSleepMilliseconds(50);
 }
 
 int main(void)
