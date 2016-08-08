@@ -152,7 +152,7 @@ static void pinModeInit()
 
   // setup pads to I2C1
   i2cStart(&I2CD1, &i2cfg1);
-  palSetPadMode(GPIOB, 6, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
+  palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
   palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
 
   chThdSleepMilliseconds(50);
