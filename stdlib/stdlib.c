@@ -9,6 +9,7 @@
 void *malloc(size_t size)
 {
 	//return pvPortMalloc(size);
+	return 0;
 }
 
 void free(void *p)
@@ -28,6 +29,7 @@ void *realloc(void *ptr, size_t len)
 	}
 
 	return NULL;*/
+	return 0;
 }
 
 char *itoa(int value, char *str)
