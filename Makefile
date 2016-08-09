@@ -136,6 +136,7 @@ SRC+=$(BOARD)/board.c \
 	$(MP3DEC)/mp3tabs.c \
 	$(IMU)/i2cdev_chibi.c \
 	$(IMU)/mpu6050.c \
+	$(IMU)/MPU60X0.c \
 	$(STDLIB)/stdlib.c 
 
 SRC+=./main.c
