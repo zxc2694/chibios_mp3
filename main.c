@@ -43,11 +43,10 @@ static WORKING_AREA(waSensorRecordThread, 128);
 static msg_t SensorRecordThread(void *arg){
     (void)arg;
     chRegSetThreadName("SensorRecordThread");
-    while (TRUE){
-        // Not yet done
-        palTogglePad(GPIOD, GPIOD_LED6);
-        chThdSleepMilliseconds(1000);
-    }
+   while (TRUE) {
+     mpu_i2c_read_data(0x3B, 14); /* Read accelerometer, temperature and gyro data */
+     chThdSleepMilliseconds(50);
+  }
  
   return (msg_t)0;
 }
@@ -171,11 +170,6 @@ static void pinModeInit()
   write_mpu_gyro();
   write_mpu_accel();
   write_mpu_sample_rate();
-  while (TRUE) {
-     mpu_i2c_read_data(0x3B, 14); /* Read accelerometer, temperature and gyro data */
-     chThdSleepMilliseconds(50);
-  }
-
 }
 
 int main(void)
