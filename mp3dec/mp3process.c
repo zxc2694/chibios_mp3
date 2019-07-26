@@ -53,7 +53,7 @@ FRESULT Mp3PlayAllFiles(char* path)
         size_t unLen = strlen(fpath);
         if(unLen > 3)
         {
-          if(stricmp(fpath + unLen - 4, ".mp3") == 0)
+          if(strcasecmp(fpath + unLen - 4, ".mp3") == 0)
           {
             /////////////////////////////////////////////////////////////
             ///////// main mp3 decoder process ////////////////////
