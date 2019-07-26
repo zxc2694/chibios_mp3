@@ -13,7 +13,7 @@ CFLAGS=-g -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CFLAGS+=-ffreestanding  -Wall 
-CFLAGS+=-Wl,-T,STM32F407xG.ld
+CFLAGS+=-Wl,-T,libs.ld,-T,STM32F407xG.ld
 
 CFLAGS+= \
         -D STM32F40XX \
@@ -23,6 +23,9 @@ CFLAGS+= \
 
 LDFLAGS+=-lm -lc -lgcc
 
+GLOBAL_FLAGS += -DF_CPU=168000000UL #for f4discovery
+GLOBAL_FLAGS += -D__FPU_PRESENT=1
+CFLAGS+= -Wl,--gc-sections $(GLOBAL_FLAGS)
 #========== Path =====================================
 BOARD=./ChibiOS_2.4.0/boards/ST_STM32F4_DISCOVERY
 FATFS=./ChibiOS_2.4.0/ext/fatfs/src
