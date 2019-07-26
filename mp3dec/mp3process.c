@@ -300,29 +300,8 @@ int Mp3Decode(const char* pszFile)
   }
   int nDecodeRes = ERR_MP3_NONE;
   UINT unFramesDecoded = 0;
-
-///////////////////////////////////////////////////////////////////////////////////
-/////////////////////// Main while()  /////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
   do
   {
-
-////////////////////// Write data to SD card  //////////////////////////////////
-    // // Open a text file 
-    // fr_data_w = f_open(&fil_data_w, "data.txt", FA_OPEN_ALWAYS);
-    // if (fr_data_w) return (int)fr_data_w;
-    // int test =578;
-    // char a[10]="apple";
-    //  f_printf(&fil_data_w, "%d", test); 
-    //   f_printf(&fil_data_w, "%s", a); 
-
-    // //Close the file
-    // f_close(&fil_data_w);
-
-//////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-
-
     if(unInDataLeft < (2 * MAINBUF_SIZE) && (!bEof))
     {
       UINT unRead = Mp3FillReadBuffer(pInData, unInDataLeft, &fIn);
@@ -506,36 +485,6 @@ int Mp3Decode(const char* pszFile)
   // from the thread
   chEvtWaitOneTimeout(2, 50);
   chEvtWaitOneTimeout(4, 50);
-
- ////////////////////////////////////////////////////////////////////////////////////
- ////////////////////// Read data from sd card //////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////
-
-    FIL fil_dataR;              // File object
-    char line[200];           // Line buffer
-    FRESULT fr_dataR;    // FatFs return code
-    uint32_t i = 0;
-    f_mount(0,&MMC_FS);
-    
-    // write data to sd card
-    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ | FA_OPEN_ALWAYS | FA_WRITE);
-
-    sprintf(WriteData, "write test : %d\n\r",100);
-    f_write(&fil_dataR, WriteData, strlen(WriteData), (UINT *)&i);
-    
-    f_close(&fil_dataR);
-
-    // read data from sd card and show on monitor
-    fr_dataR = f_open(&fil_dataR, "data.txt", FA_READ);
-
-    while (f_gets(line, sizeof line, &fil_dataR))
-        chprintf((BaseChannel*)&SD2, "%s\r\n\r\n", line);
-
-    f_close(&fil_dataR);
-
-//////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-     while(1);
 
   return nResult;
 }

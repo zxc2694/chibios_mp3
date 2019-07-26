@@ -38,20 +38,6 @@ static msg_t BlinkThread(void *arg)
   return (msg_t)0;
 }
 
-// Periodic thread 2
-static WORKING_AREA(waSensorRecordThread, 128);
-static msg_t SensorRecordThread(void *arg){
-    (void)arg;
-    chRegSetThreadName("SensorRecordThread");
-   while (TRUE) {
-     mpu_i2c_read_data(0x3B, 14); /* Read accelerometer, temperature and gyro data */
-     chThdSleepMilliseconds(50);
-  }
- 
-  return (msg_t)0;
-}
-
-
 static void I2SDmaTxInterrupt(SPIDriver* spip, uint32_t flags)
 {
   if(spip == &SPID3)
@@ -149,27 +135,6 @@ static void pinModeInit()
   palSetPadMode(GPIOA, 6, PAL_MODE_ALTERNATE(5));                                                                // MISO
   palSetPadMode(GPIOA, 7, PAL_MODE_ALTERNATE(5) | PAL_STM32_OSPEED_HIGHEST);          // MOSI
   palSetPad(GPIOC, 4); // set NSS high
-
-  // setup pads to I2C1
-  i2cStart(&I2CD1, &i2cfg1);
-  palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-  palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN);
-
-  chThdSleepMilliseconds(50);
-
-
-
-  set_mpu_sample_rate(9);
-  set_mpu_config_regsiter(EXT_SYNC_SET0, DLPF_CFG0);
-  set_mpu_gyro(XG_ST_DIS, YG_ST_DIS, ZG_ST_DIS, FS_SEL_250);
-  set_mpu_accel(XA_ST_DIS, YA_ST_DIS, ZA_ST_DIS, AFS_SEL_2g, ACCEL_HPF0);
-  set_mpu_power_mgmt1(DEVICE_RESET_DIS, SLEEP_DIS, CYCLE_DIS, TEMPERATURE_EN, CLKSEL_XG);
-  set_mpu_user_control(USER_FIFO_DIS, I2C_MST_DIS, I2C_IF_DIS, FIFO_RESET_DIS, I2C_MST_RESET_DIS, SIG_COND_RESET_DIS);
-
-  write_mpu_power_mgmt1();
-  write_mpu_gyro();
-  write_mpu_accel();
-  write_mpu_sample_rate();
 }
 
 int main(void)
@@ -193,9 +158,6 @@ int main(void)
 
   // blink thread; also checks the user button
   chThdCreateStatic(waBlinkThread, sizeof(waBlinkThread), NORMALPRIO, BlinkThread, NULL);
-
-  // Sensor data record
-  chThdCreateStatic(waSensorRecordThread, sizeof(waSensorRecordThread), NORMALPRIO, SensorRecordThread, NULL);
 
   chEvtRegister(&MMCD1.inserted_event, &el0, 0);
   chEvtRegister(&MMCD1.removed_event, &el1, 1);
