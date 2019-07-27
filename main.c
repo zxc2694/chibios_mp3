@@ -5,14 +5,70 @@
 
 #include "mp3process.h"
 #include "MPU60X0.h"
+#include "adc_lld.h"
 
 bool_t fs_ready = FALSE;
 SPIConfig hs_spicfg = { NULL, GPIOC, 4, 0 };
 SPIConfig ls_spicfg = { NULL, GPIOC, 4, SPI_CR1_BR_2 | SPI_CR1_BR_1 };
 extern Thread* g_pMp3DecoderThread;
 
-// Configure I2C for sensors
-static const I2CConfig i2cfg1 = {OPMODE_I2C, 200000, FAST_DUTY_CYCLE_2};
+#define SOUND_ADC_GRP1_NUM_CHANNELS 1
+#define SOUND_ADC_GRP1_BUF_DEPTH 1
+static adcsample_t irSamples[SOUND_ADC_GRP1_NUM_CHANNELS * SOUND_ADC_GRP1_BUF_DEPTH];
+static const ADCConversionGroup adcgrpcfg1 = {
+  FALSE, // circular buffer mode
+  SOUND_ADC_GRP1_NUM_CHANNELS, // number of the analog channels
+  NULL, // callback function
+  NULL, // error callback
+  0, // CR1
+  ADC_CR2_SWSTART, // CR2
+  ADC_SMPR1_SMP_AN11(ADC_SAMPLE_3) | ADC_SMPR1_SMP_AN14(ADC_SAMPLE_3) | ADC_SMPR1_SMP_AN15(ADC_SAMPLE_3),// sample times for channel 10-18
+  0,// sample times for channel 0-9
+  ADC_SQR1_NUM_CH(SOUND_ADC_GRP1_NUM_CHANNELS),// ADC SQR1 Conversion group sequence 13-16 + sequence length.
+  0, // ADC SQR2 Conversion group sequence 7-12
+  ADC_SQR3_SQ1_N(ADC_CHANNEL_IN11) | ADC_SQR3_SQ2_N(ADC_CHANNEL_IN14) | ADC_SQR3_SQ3_N(ADC_CHANNEL_IN15) // ADC SQR3 Conversion group sequence 1-6
+};
+
+void SoundADCinit(void){
+   palSetGroupMode(GPIOC, PAL_PORT_BIT(1), 0, PAL_MODE_INPUT_ANALOG); //Pin PC1
+   adcStart(&ADCD1, NULL);
+   adcConvert(&ADCD1, &adcgrpcfg1, irSamples, SOUND_ADC_GRP1_BUF_DEPTH);
+}
+
+void int2str(int n, char *str){
+   char buf[10] = "";
+   int i = 0;
+   int len = 0;
+   int temp = n < 0 ? -n: n;
+   if(str == NULL){
+       return;
+   }
+
+   while(temp){
+   buf[i++] = (temp % 10) + '0';
+   temp = temp / 10;
+   }
+   len = n < 0 ? ++i: i;
+   str[i] = 0;
+   while(1){
+       i--;
+       if(buf[len-i-1] ==0){
+           break;
+       }
+   str[i] = buf[len-i-1];
+   }
+   if (i == 0){
+       str[i] = '-';
+   }
+}
+
+void chprintf_int(BaseChannel *chp, int data)
+{
+  char p[100];
+  int2str(data, p);
+  chprintf(chp, p);
+  chprintf((BaseChannel *) &SD2, "\r\n");
+}
 
 // Periodic thread 1 
 static WORKING_AREA(waBlinkThread, 256);
@@ -28,11 +84,17 @@ static msg_t BlinkThread(void *arg)
       {
         chEvtSignalFlags(g_pMp3DecoderThread, (eventmask_t)8);
       }
+    }    
+    chThdSleepMilliseconds(1);
+    adcConvert(&ADCD1, &adcgrpcfg1, irSamples, SOUND_ADC_GRP1_BUF_DEPTH);
+    //chprintf_int((BaseChannel *) &SD2, (uint8_t)irSamples[0]);
+    if((uint8_t)irSamples[0] > 150) // sound detected 
+    {
+      chprintf_int((BaseChannel *) &SD2, (uint8_t)irSamples[0]);
+      palSetPad(GPIOD, GPIOD_LED3);
+      chThdSleepMilliseconds(200);
+      palClearPad(GPIOD, GPIOD_LED3);
     }
-    palSetPad(GPIOD, GPIOD_LED3);
-    chThdSleepMilliseconds(80);
-    palClearPad(GPIOD, GPIOD_LED3);
-    chThdSleepMilliseconds(80);
   }
 
   return (msg_t)0;
@@ -148,6 +210,7 @@ int main(void)
 
   // setup pin mode init
   pinModeInit();
+  SoundADCinit();
 
   // initialize MMC driver
   mmcObjectInit(&MMCD1, &SPID1, &ls_spicfg, &hs_spicfg, mmc_is_protected, mmc_is_inserted);
@@ -161,6 +224,7 @@ int main(void)
 
   chEvtRegister(&MMCD1.inserted_event, &el0, 0);
   chEvtRegister(&MMCD1.removed_event, &el1, 1);
+ 
   while(TRUE)
   {
     chEvtDispatch(evhndl, chEvtWaitOne(ALL_EVENTS));
